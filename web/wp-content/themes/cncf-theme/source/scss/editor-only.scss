@@ -1,0 +1,247 @@
+/**
+ * Editor Styles
+ *
+ * Import, add or override any styles here for Editor
+ *
+ * @package WordPress
+ * @subpackage cncf-theme
+ * @since 1.0.0
+ */
+
+@import "core/variables";
+@import "core/normalize";
+@import "core/reset";
+// @import "blocks/entry-content"; // maybe dont need this file TBC.
+
+// import typography and styles over the top of editor styles defaults.
+#editor {
+
+    .editor-styles-wrapper {
+        @import "core/typography";
+        @import "blocks/gradients";
+        @import "blocks/colors";
+        @import "blocks/buttons";
+        @import "blocks/columns";
+        @import "blocks/paragraph-headers";
+        @import 'blocks/guest-author';
+        @import 'blocks/quote';
+        @import "blocks/case-study-highlights";
+        @import "blocks/case-study-overview";
+        @import "blocks/latest-jobs";
+        @import "components/events";
+        @import "components/webinars";
+        @import "components/hero";
+    }
+}
+
+// Fix the font in the editor.
+.editor-post-title__block .editor-post-title__input,
+.editor-writing-flow .wp-block textarea,
+.editor-writing-flow .wp-block .wp-block-freeform,
+.editor-rich-text p,
+.editor-post-title__input,
+.wp-block-quote__citation {
+    font-family: $font-primary;
+    font-weight: 300;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    line-height: 1.5;
+}
+
+.editor-styles-wrapper {
+    font-family: $font-primary !important;
+}
+
+#editor .editor-styles-wrapper a {
+    color: $primary-color;
+}
+
+// make blocks wider to fit the screen
+.wp-block {
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 1150px;
+}
+
+// stop ridiculous dropcap in paragraph preview.
+.block-editor-block-preview__content .has-drop-cap:not(:focus):first-letter {
+    float: none;
+    font-size: inherit;
+    line-height: inherit;
+    font-weight: inherit;
+    margin: inherit;
+    text-transform: inherit;
+    font-style: inherit;
+}
+
+// allows for transparent images to be visible in Sidebar Metabox.
+#pmc-cncf_event-logo .pmc-image-container {
+    background-color: $grey-200;
+}
+
+
+.skew-box {
+    font-size: 0.750em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: $white;
+    padding: 5px 6px;
+    background-color: $purple-400;
+    padding-right: 25px;
+    clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 100%, calc(100% - 22px) 0);
+    // useful if inside flexbox.
+    align-self: start;
+
+    &:first-child {
+        margin-bottom: 0.5em;
+    }
+
+    &.secondary {
+        background-color: $blue-200;
+    }
+
+    &.centered {
+        margin-left: auto;
+        margin-right: auto;
+        display: inline-block;
+        transform: translateX(12px);
+    }
+
+    &.smaller {
+        font-size: 0.675em;
+    }
+}
+
+.unskew-box {
+    font-size: 0.750em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: $white;
+    padding: 5px 6px;
+    background-color: $purple-400;
+    align-self: start;
+
+    &:first-child {
+        margin-bottom: 0.5em;
+    }
+
+    &.secondary {
+        background-color: $blue-200;
+    }
+
+    &.centered {
+        margin-left: auto;
+        margin-right: auto;
+        display: inline-block;
+    }
+}
+
+// Gutenberg style to break out of page container.
+.alignfull {
+    position: relative;
+    right: 50%;
+    left: 50%;
+    margin-right: -50vw;
+    margin-left: -50vw;
+    width: 100vw;
+}
+
+// block using alignwide include:
+// case study overview
+
+.alignwide:not(.wp-block-gallery) {
+    width: 100%;
+
+    @media (min-width: 800px) {
+        width: 100vw;
+        position: relative;
+        left: 50%;
+        right: 50%;
+        margin-left: -50vw;
+        margin-right: -50vw;
+
+        >* {
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 4em;
+            padding-right: 4em;
+        }
+    }
+}
+
+.background-image-wrapper {
+    overflow: hidden;
+    position: relative;
+}
+
+figure {
+    margin-block-start: 0;
+    margin-block-end: 0;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+}
+
+.background-image-figure img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+}
+
+.background-image-text-overlay {
+    position: relative;
+    z-index: 2;
+}
+
+// 	.editor-styles-wrapper p {
+// 	margin-top: 28px;
+// 	}
+
+// 	.editor-styles-wrapper ol,
+// 	.editor-styles-wrapper p,
+// 	.editor-styles-wrapper ul {
+// 	margin-bottom: 28px;
+// 	}
+
+// 	.editor-styles-wrapper ol,
+// 	.editor-styles-wrapper ul {
+// 	padding: inherit;
+// 	padding-left: 1.3em;
+// 	margin-left: 1.3em;
+// 	}
+
+// 	.editor-styles-wrapper ol li,
+// 	.editor-styles-wrapper ol ol,
+// 	.editor-styles-wrapper ol ul,
+// 	.editor-styles-wrapper ul li,
+// 	.editor-styles-wrapper ul ol,
+// 	.editor-styles-wrapper ul ul {
+// 	margin-bottom: 0;
+// 	}
+
+// 	.editor-styles-wrapper ul {
+// 	list-style-type: disc;
+// 	}
+
+// 	.editor-styles-wrapper ol {
+// 	list-style-type: decimal;
+// 	}
+
+// 	.editor-styles-wrapper ol ul,
+// 	.editor-styles-wrapper ul ul {
+// 	list-style-type: circle;
+// 	}
+
+// .is-style-blue-paragraph {
+//     background-color: $secondary-color;
+//     color: $white;
+//     padding: 20px;
+// }
+
+div.pmc-sidebar ::placeholder {
+    color: #c4c4c4;
+}

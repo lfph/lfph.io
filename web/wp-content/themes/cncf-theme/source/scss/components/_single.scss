@@ -1,0 +1,26 @@
+.newsroom-single {
+    text-align: center;
+}
+
+.newsroom-single-meta {
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.newsroom-single-hero-image {
+    max-width: 100%;
+    width: 760px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    border: 1px solid $grey-400;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.newsroom-single-hr {
+    background-color: $tertiary-color;
+    height: 1px;
+    border: none;
+    margin-bottom: 20px;
+}

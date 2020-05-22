@@ -1,0 +1,136 @@
+.archive-container {
+    display: grid;
+    grid-gap: 4em;
+    grid-template-rows: 1fr;
+    max-width: 1000px;
+    margin-top: 4em;
+    margin-left: auto;
+    margin-right: auto;
+
+    a {
+        color: $primary-color;
+    }
+}
+
+.archive-date {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 0.875em;
+    font-weight: 500;
+    color: $grey-500;
+}
+
+.archive-item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+
+    .archive-title {
+        @media (max-width: 767px) {
+            margin-top: 1em;
+        }
+
+        a {
+            font-weight: 700;
+        }
+    }
+
+    @media (min-width: 768px) {
+        flex-direction: row;
+        align-items: center;
+
+        &.featured {
+            flex-direction: row;
+
+            .archive-image-wrapper {
+                flex-basis: 500px;
+                max-width: 600px;
+                min-width: 300px;
+                flex-grow: 1;
+                flex-shrink: 1;
+                height: 320px;
+            }
+
+            .archive-text-wrapper {
+                flex-basis: 250px;
+                flex-grow: 1;
+                flex-shrink: 0;
+            }
+
+        }
+
+    }
+}
+
+.archive-image-wrapper {
+    max-width: 100%;
+    border: 1px solid $tertiary-color;
+    overflow: hidden;
+    transition: all 0.25s ease;
+    object-fit: cover;
+    object-position: bottom;
+
+    img {
+        display: block;
+    }
+
+    @media (min-width: 768px) {
+        flex-basis: 250px;
+        flex-grow: 0;
+        flex-shrink: 0;
+        height: auto;
+        height: 180px;
+        margin-right: 3em;
+
+        &:hover {
+            .newsroom-image {
+                opacity: 0.75;
+            }
+
+        }
+    }
+
+}
+
+.archive-text-wrapper {
+    @media (min-width: 768px) {
+        flex-basis: 0;
+        flex-grow: 1;
+        flex-shrink: 0;
+    }
+}
+
+.in-news-item {
+    .archive-image-wrapper {
+        display: flex;
+        align-content: center;
+        justify-content: center;
+
+        @media (max-width: 799px) {
+            height: 200px;
+        }
+
+        a {
+            display: flex;
+            align-content: center;
+            justify-content: center;
+        }
+
+        img {
+            align-self: center;
+            padding: 0.5em;
+
+            &[src$=".svg"] {
+                padding: 1em;
+            }
+
+            // // some control of size.
+            max-height: 200px;
+            // max-width: 280px;
+            // // for small logos.
+            min-width: 200px;
+        }
+
+
+    }
+}
