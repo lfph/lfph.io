@@ -1,5 +1,4 @@
-[![CircleCI](https://circleci.com/gh/cncf/cncf.io.svg?style=svg)](https://circleci.com/gh/cncf/cncf.io)
-
+[![CircleCI](https://circleci.com/gh/lfph/lfph.io.svg?style=svg)](https://circleci.com/gh/lfph/lfph.io)
 
 # LFPH.io Developer Instructions
 
