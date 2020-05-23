@@ -117,7 +117,7 @@ jobs:
                     - build
 
 
-    build_and_deploy_cncfci:
+    build_and_deploy_lfph:
         <<: *defaults
         steps:
             - checkout
@@ -146,7 +146,7 @@ jobs:
                 name: deploy to Pantheon
                 command: ./.circleci/deploy-to-pantheon.sh $TERMINUS_SITE
 
-    behat_test_cncfci:
+    behat_test_lfph:
         <<: *defaults
         steps:
             - checkout
@@ -176,7 +176,7 @@ jobs:
                 command: ./.circleci/behat-test-cleanup.sh
                 when: always
 
-    wraith_test_cncfci:
+    wraith_test_lfph:
         docker:
             - image: lopezs/wraith
 
@@ -198,7 +198,7 @@ workflows:
       - build
       - build_css_js
       # Build and deploy
-      - build_and_deploy_cncfci:
+      - build_and_deploy_lfph:
             requires:
                 - build_css_js
       # Code sniff
@@ -207,11 +207,11 @@ workflows:
                 - build
       # Run Behat tests after deploy so they can be done on Pantheon
     # commenting out behat tests until we need them.
-    #   - behat_test_cncfci:
+    #   - behat_test_lfph:
     #         requires:
     #             - build
-    #             - build_and_deploy_cncfci
-    #   - wraith_test_cncfci:
+    #             - build_and_deploy_lfph
+    #   - wraith_test_lfph:
     #         requires:
-    #             - build_and_deploy_cncfci
-    #             # - behat_test_cncfci
+    #             - build_and_deploy_lfph
+    #             # - behat_test_lfph
