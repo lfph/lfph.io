@@ -31,13 +31,6 @@ endif;
 			</a>
 			<?php } ?>
 		</div>
-
-		<button class="hamburger hamburger--spin" type="button" aria-label="Toggle Menu">
-			<span class="hamburger-box">
-				<span class="hamburger-inner"></span>
-			</span>
-		</button>
-
 		
 	</div>
 </header>
