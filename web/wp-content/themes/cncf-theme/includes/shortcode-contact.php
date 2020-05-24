@@ -357,7 +357,7 @@ function add_contact_shortcode() {
 		<div class="form-group">
 			<input type="checkbox" name="OptIn" id="OptIn"><label
 				for="OptIn">Subscribe to get the latest project news and
-				updates in the CNCF Newsletter.</label>
+				updates in the LFPH Newsletter.</label>
 		</div>
 		<input type="hidden" id="txtUrl" name="txtUrl" value="" readonly="">
 		<script>
