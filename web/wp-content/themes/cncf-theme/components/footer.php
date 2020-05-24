@@ -28,5 +28,5 @@ $options = get_option( 'cncf-mu' );
 	</div>
 </footer>
 <?php get_template_part( 'components/back-to-top' ); ?>
-<?php get_template_part( 'components/cookie-banner' ); ?>
+<?php // get_template_part( 'components/cookie-banner' );  //phpcs:ignore. ?>
 <?php get_footer(); ?>
