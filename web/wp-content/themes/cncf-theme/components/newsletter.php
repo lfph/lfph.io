@@ -10,8 +10,7 @@
 ?>
 <section class="newsletter">
 <div class="container wrap">
-	<label for="FirstName"><h4 class="is-style-center-width-900">Subscribe to the LFPH newsletter to receive regular updates about
-		webinars, events & latest news</h4></label>
+	<label for="FirstName"><h4 class="is-style-center-width-900">Subscribe to the LFPH newsletter to receive updates as they become available!</h4></label>
 
 	<form id="sfmc-form1" class="newsletter-form"
 		action="https://cloud.email.thelinuxfoundation.org/CNCF-Newsletter-Subscriber-Form">
