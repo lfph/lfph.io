@@ -14,16 +14,16 @@ get_template_part( 'components/header' );
 ?>
 
 <main class="page-content">
-<article class="container wrap entry-content">
+	<article class="container wrap entry-content">
 
-<section class="front-hero alignfull ">
+		<section class="front-hero alignfull ">
 
-<div class="container wrap front-hero-wrapper">
-<img src="/wp-content/themes/cncf-theme/images/lfph/lfph-horizontal-long-white.svg"
-alt="Linux Foundation Public Health" class="lfph-logo">
+			<div class="container wrap front-hero-wrapper">
+				<img src="/wp-content/themes/cncf-theme/images/lfph/lfph-horizontal-long-white.svg"
+					alt="Linux Foundation Public Health" class="lfph-logo">
 
-<figure class="front-hero-main-image">
-<img sizes="(max-width: 2000px) 100vw, 2000px" srcset="
+				<figure class="front-hero-main-image">
+					<img sizes="(max-width: 2000px) 100vw, 2000px" srcset="
 /wp-content/themes/cncf-theme/images/lfph/faces-w_300.png 300w,
 /wp-content/themes/cncf-theme/images/lfph/faces-w_520.png 520w,
 /wp-content/themes/cncf-theme/images/lfph/faces-w_690.png 690w,
@@ -41,17 +41,17 @@ alt="Linux Foundation Public Health" class="lfph-logo">
 /wp-content/themes/cncf-theme/images/lfph/faces-w_1961.png 1961w,
 /wp-content/themes/cncf-theme/images/lfph/faces-w_1999.png 1999w,
 /wp-content/themes/cncf-theme/images/lfph/faces-w_2000.png 2000w"
-src="/wp-content/themes/cncf-theme/images/lfph/faces-w_2000.png"
-alt="LFPH" width="300px" height="120px">
+						src="/wp-content/themes/cncf-theme/images/lfph/faces-w_2000.png"
+						alt="LFPH" width="300px" height="120px">
 
-</figure>
-<h2>Launching in June.</h2>
+				</figure>
+				<h2>Launching in June.</h2>
 
-<p class="front-hero-small">Contact us at <a
-href="mailto:info@lfph.io">info@lfph.io</a></p>
-</div>
-</section>
-</article>
+				<p class="front-hero-small">Contact us at <a
+						href="mailto:info@lfph.io">info@lfph.io</a></p>
+			</div>
+		</section>
+	</article>
 </main>
 
 <?php
