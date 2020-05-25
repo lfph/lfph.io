@@ -19,14 +19,14 @@ body {
 
 .container {
     width: 100%;
-    max-width: 1200px;
+    max-width: 1000px;
     margin: auto;
 }
 
 .wrap {
     padding: 0em 12px;
 
-    @media (min-width: 500px) {
+    @media (min-width: 375px) {
         padding: 0em 25px;
     }
 }
@@ -103,7 +103,8 @@ img {
     &.stocky {
         letter-spacing: 2px;
         font-weight: 600;
-        font-size: 0.7em;
+        font-size: 0.8em;
+        height: 40px;
     }
 
     &.transparent {
