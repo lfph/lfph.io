@@ -17,7 +17,7 @@ $options = get_option( 'cncf-mu' );
 <footer class="footer">
 	<div class="container wrap copyright-social-wrapper">
 
-			<?php get_template_part( 'components/social-links' ); ?>
+			<?php // get_template_part( 'components/social-links' ); //phpcs:ignore. ?>
 
 			<div class="copyright-text">
 				<p class="smaller-text">Copyright &copy; <?php echo esc_html( gmdate( 'Y' ) ); ?>
@@ -27,6 +27,6 @@ $options = get_option( 'cncf-mu' );
 
 	</div>
 </footer>
-<?php get_template_part( 'components/back-to-top' ); ?>
+<?php // get_template_part( 'components/back-to-top' ); //phpcs:ignore. ?>
 <?php // get_template_part( 'components/cookie-banner' );  //phpcs:ignore. ?>
 <?php get_footer(); ?>

@@ -14,7 +14,7 @@ $grey-700: #444444;
 $grey-800: #333333;
 
 $blue-100: #F0F5F7; // current boxes background
-$blue-200: #acc8d3;
+
 $blue-300: #43B4DB; // current icons
 $blue-400: #436ca9;
 $blue-600: #416FD9;
@@ -31,16 +31,23 @@ $purple-400: #48549C;
 $purple-700: #2C2960; // secondary
 $purple-800: #242b5e;
 
+// LFPH
+
+$blue-200: #44BACD;
+$lfph-blue-400: #199DB8;
+$lfph-blue-700: #123863;
+
+
 // variable setup.
 
 // main.
-$primary-color: $pink-400;
-$secondary-color: $purple-700;
+$primary-color: $lfph-blue-400;
+$secondary-color: $lfph-blue-700;
 $tertiary-color: $blue-100;
 
 // links.
 $link-color: $primary-color;
-$link-hover: $pink-300;
+$link-hover: $blue-200;
 $menu-link: $white;
 $menu-hover: #e1e1e1;
 $link-color-alt: $blue-400;

@@ -1,5 +1,10 @@
 .newsletter {
-    text-align: center;
+    text-align: left;
+
+    @media (min-width: 768px) {
+        text-align: center;
+    }
+
     background-color: $blue-700;
     color: $white;
     padding-top: 1em;
@@ -41,20 +46,42 @@
     margin-bottom: 1em;
     display: flex;
     flex-direction: column;
-    max-width: 300px;
-    margin-left: auto;
-    margin-right: auto;
+
+    align-items: center;
+
+    @media (min-width: 500px) {
+        align-items: flex-start;
+    }
+
+    >* {
+        width: 100%;
+        max-width: 325px;
+    }
 
     >*:not(:last-child) {
         margin-bottom: 0.5em;
     }
 
-    @media (max-width: 699px) {
-        input {
-            text-align: center;
-        }
-    }
+    // @media (min-width: 460px) {
+    //     flex-direction: row;
+    //     flex-wrap: wrap;
 
+    //     >* {
+    //         width: initial;
+    //         flex-grow: 1;
+    //         flex-shrink: 1;
+    //     }
+
+    //     >*:not(:last-child) {
+    //         margin-right: 0.5em;
+    //     }
+    // }
+
+    // @media (max-width: 699px) {
+    //     input {
+    //         text-align: left;
+    //     }
+    // }
     @media (min-width: 700px) {
         flex-direction: row;
         justify-content: center;

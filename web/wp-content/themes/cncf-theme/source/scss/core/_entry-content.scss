@@ -1,29 +1,6 @@
 // Use entry-content class to encapsulate the_content.
 // This lets us style lists and links suitable for content.
 
-.single-post,
-.webinar-single,
-.case-study-single,
-.event-single {
-    .entry-content {
-        max-width: 700px;
-        margin-left: auto;
-        margin-right: auto;
-        text-align: left;
-        margin-top: 2em;
-
-        &.no-max {
-            max-width: initial;
-        }
-    }
-}
-
-.case-study-single {
-    .entry-content {
-        margin-top: 0;
-    }
-}
-
 .entry-content {
 
     p {
@@ -32,7 +9,8 @@
 
     a {
         text-decoration: none;
-        color: $primary-color;
+        // color: $primary-color;
+        color: $white;
         font-weight: 500;
         transition: all 0.25s ease-out;
 
@@ -150,12 +128,98 @@
         }
     }
 
-    // having this affects search filter.
-    // .button {
+    // LFPH.
+    .front-hero {
+        background: linear-gradient(90deg, #000f38 0%, #010119 100%);
+        color: $white;
 
-    //     &:link,
-    //     &:visited {
-    //         color: $white;
-    //     }
-    // }
+        .lfph-logo {
+            max-width: 300px;
+
+            @media (min-width: 768px) {
+                padding-top: 100px;
+                max-width: 350px;
+                position: relative;
+                z-index: 99;
+            }
+
+            @media (min-width: 1024px) {
+                max-width: 400px;
+            }
+
+            @media (min-width: 1200px) {
+                padding-top: 50px;
+            }
+
+
+        }
+
+    }
+
+    .front-hero-wrapper {
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+
+        @media (min-width: 375px) {
+            padding-top: 3em;
+            padding-bottom: 3em;
+        }
+
+        @media (min-width: 768px) {
+            position: relative;
+            height: 75vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: 600px;
+
+            @media (min-width: 1200px) {
+                height: 90vh;
+                min-height: 540px;
+
+            }
+
+            h2 {
+                margin-top: 7rem;
+                margin-bottom: 1rem;
+            }
+        }
+    }
+
+    .front-hero-main-image {
+        img {
+            display: block;
+            margin-top: 3rem;
+            margin-bottom: 3rem;
+
+            @media (min-width: 375px) {
+                margin-top: 4rem;
+                margin-bottom: 4rem;
+            }
+
+            @media (min-width: 500px) {
+                margin-top: 3rem;
+                margin-bottom: 3rem;
+                max-width: 450px;
+            }
+
+            @media (min-width: 768px) {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+                z-index: 1;
+                right: 25px;
+                max-width: 75%;
+                height: auto;
+                transform: translateY(-50%);
+            }
+        }
+
+    }
+
+    .front-hero-small {
+        font-size: 1.35em;
+        font-weight: 500;
+    }
 }
