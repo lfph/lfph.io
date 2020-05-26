@@ -173,7 +173,7 @@
             min-height: 600px;
 
             @media (min-width: 1200px) {
-                padding-top: 3rem;
+                padding-top: 3rem !important;
                 height: 104vh;
                 min-height: 540px;
 
