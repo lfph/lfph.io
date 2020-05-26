@@ -45,7 +45,7 @@ get_template_part( 'components/header' );
 						alt="LFPH" width="300px" height="120px">
 
 				</figure>
-				<h2>Linux Foundation Public Health will be launching in June</h2>
+				<h2>Launching in late June</h2>
 
 				<p class="front-hero-small">You can contact us at <a
 						href="mailto:info@lfph.io">info@lfph.io</a></p>
