@@ -134,11 +134,10 @@
         color: $white;
 
         .lfph-logo {
-            max-width: 300px;
+            max-width: 350px;
 
             @media (min-width: 768px) {
                 padding-top: 100px;
-                max-width: 350px;
                 position: relative;
                 z-index: 99;
             }
