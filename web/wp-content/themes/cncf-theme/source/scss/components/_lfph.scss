@@ -151,8 +151,6 @@ a {
 
         @media (min-width: 900px) {
             margin-top: 0;
-            flex-shrink: 0;
-            flex-grow: 0;
         }
     }
 }
@@ -230,7 +228,7 @@ input[type="button"] {
     border: 0; // reset
     padding: 0px; // reset
     width: auto;
-    min-width: 100px;
+    min-width: 150px;
     cursor: pointer;
     text-decoration: none;
     display: inline-block;
