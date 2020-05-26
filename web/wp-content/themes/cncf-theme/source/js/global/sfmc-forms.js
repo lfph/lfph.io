@@ -13,7 +13,7 @@ jQuery(
 	function( $ ) {
 		var PS = PS || {};
 		let widget_1; let widget_2;
-		let recaptcha_site_key = '6LdMldUUAAAAABG2vrZ1GT7Eo_TgI-UPlG14ocVH';
+		let recaptcha_site_key = '6LcOQ_wUAAAAAHQhy1jOTvWzRuwdKDhp83-9eq6E';
 
 		if ( typeof PS.RECAPTCHA === 'undefined' ) {
 			( function( a, $ ) {
