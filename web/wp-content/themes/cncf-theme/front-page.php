@@ -11,19 +11,18 @@
 
 get_template_part( 'components/header' );
 
+$options = get_option( 'cncf-mu' );
 ?>
 
-<main class="page-content">
-	<article class="container wrap entry-content">
+<main class="page-content lfph-holding">
+	<article class="container wrap">
 
-		<section class="front-hero alignfull ">
+		<!-- breakout image container -->
+		<section
+			class="alignwide background-image-wrapper lfph-logo-image-container">
 
-			<div class="container wrap front-hero-wrapper">
-				<img src="/wp-content/themes/cncf-theme/images/lfph/lfph-horizontal-long-white.svg"
-					alt="Linux Foundation Public Health" class="lfph-logo">
-
-				<figure class="front-hero-main-image">
-					<img sizes="(max-width: 2000px) 100vw, 2000px" srcset="
+			<figure class="background-image-figure">
+				<img sizes="(max-width: 2000px) 100vw, 2000px" srcset="
 /wp-content/themes/cncf-theme/images/lfph/faces-w_300.png 300w,
 /wp-content/themes/cncf-theme/images/lfph/faces-w_520.png 520w,
 /wp-content/themes/cncf-theme/images/lfph/faces-w_690.png 690w,
@@ -41,24 +40,79 @@ get_template_part( 'components/header' );
 /wp-content/themes/cncf-theme/images/lfph/faces-w_1961.png 1961w,
 /wp-content/themes/cncf-theme/images/lfph/faces-w_1999.png 1999w,
 /wp-content/themes/cncf-theme/images/lfph/faces-w_2000.png 2000w"
-						src="/wp-content/themes/cncf-theme/images/lfph/faces-w_2000.png"
-						alt="LFPH" width="300px" height="120px">
+					src="/wp-content/themes/cncf-theme/images/lfph/faces-w_2000.png"
+					alt="LFPH" width="300px" height="120px">
+			</figure>
 
-				</figure>
-				<h2>Launching in late June</h2>
+			<!-- logo  -->
+			<div class="background-image-text-overlay">
+				<img src="/wp-content/themes/cncf-theme/images/lfph/lfph-horizontal-long-white.svg"
+					alt="Linux Foundation Public Health" class="lfph-logo">
+			</div>
+		</section>
 
-				<p class="front-hero-small">You can contact us at <a
-						href="mailto:info@lfph.io">info@lfph.io</a></p>
+		<div class="container">
+			<h2 class="launch-header">Launching in late June</h2>
+			<p class="contact-text">You can contact us at <a
+					href="mailto:info@lfph.io">info@lfph.io</a></p>
+			<p class="subscribe-text">Subscribe to
+				the LFPH newsletter to receive updates as they
+				become available.</p>
 
-				<?php get_template_part( 'components/newsletter' ); ?>
+			<!-- form  -->
 
+			<form id="sfmc-form1" class="newsletter-form"
+				action="https://cloud.email.thelinuxfoundation.org/CNCF-Newsletter-Subscriber-Form">
+				<label for="FirstName" required>
+					<span class="screen-reader-text">First
+						Name</span>
+					<input type="text" id="FirstName" name="FirstName"
+						placeholder="First Name" autocomplete="given-name"
+						spellcheck="false" required>
+				</label>
+				<label for="LastName" required>
+					<span class="screen-reader-text">Last
+						Name</span>
+					<input type="text" id="LastName" name="LastName"
+						placeholder="Last Name" autocomplete="family-name"
+						spellcheck="false" required>
+				</label>
+				<label for="EmailAddress" required>
+					<span class="screen-reader-text">Email
+						Address</span>
+					<input type="email" id="EmailAddress" name="EmailAddress"
+						placeholder="Email Address" autocomplete="email"
+						spellcheck="false" required>
+				</label>
+				<button type="submit" class="button stocky"
+					id="sfmc-submit1">Subscribe</button>
+				<div id="recaptcha-form1" style="display:none;">
+				</div>
+			</form>
+			<div id="sfmc-message1" class="form-message"></div>
+			<p class="smaller-text">By submitting this form, you
+				acknowledge that your
+				information is subject to The Linux Foundation’s <a
+					href="https://www.linuxfoundation.org/privacy/"
+					rel="norefferer noopener" class="external is-primary-color"
+					target="_blank">Privacy Policy</a>.</p>
+
+			<!-- form end  -->
+		</div>
+	</article>
+	<footer class="footer">
+	<div class="container wrap">
+
+<div class="copyright-text">
+				<p class="smaller-text">Copyright &copy; <?php echo esc_html( gmdate( 'Y' ) ); ?>
+					<?php echo wp_kses_post( $options['copyright_textarea'] ); ?>
+				</p>
 			</div>
 
+	</div>
+</footer>
 
-		</section>
-	</article>
 </main>
 
 <?php
-
-get_template_part( 'components/footer' );
+get_footer();

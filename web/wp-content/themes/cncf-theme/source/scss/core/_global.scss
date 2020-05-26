@@ -1,7 +1,12 @@
 body {
-    background-color: $white;
+    background: linear-gradient(-90deg, #000f38 0%, #010119 100%);
     font-family: $font-primary;
     font-size: 1em; // 16px
+
+    @media (min-width: 1200px) {
+        font-size: 1.125em; // 18px
+    }
+
     color: $black;
     font-weight: 300;
 
@@ -19,7 +24,7 @@ body {
 
 .container {
     width: 100%;
-    max-width: 1000px;
+    max-width: 900px;
     margin: auto;
 }
 
@@ -41,138 +46,6 @@ img {
     height: auto;
 }
 
-.button {
-    border: 0; // reset
-    padding: 0px; // reset
-    width: auto;
-    min-width: 100px;
-    cursor: pointer;
-    text-decoration: none;
-    display: inline-block;
-    text-align: center;
-    padding: 0.7rem 1.1rem;
-    white-space: nowrap;
-    text-transform: uppercase;
-    background-color: $primary-color;
-    color: $white;
-    transition: all 0.25s ease-out;
-    font-size: 1rem;
-
-    a {
-        color: $white;
-    }
-
-    &:active {
-        position: relative;
-        top: 1px;
-    }
-
-    &:hover {
-        background-color: lighten($primary-color, 5%);
-        color: $white;
-    }
-
-    &.search-open {
-        min-width: initial;
-    }
-
-    &.search-close {
-        min-width: initial;
-        margin-left: 20px;
-
-        &:hover {
-            svg {
-                transition: all 0.25s ease-out;
-                color: $primary-color;
-                fill: $primary-color;
-            }
-        }
-    }
-
-    &.search-submit {
-        box-sizing: border-box;
-        border: 1px solid $white;
-        border-radius: 0;
-        -webkit-appearance: none;
-
-        &:hover {
-            border: 1px solid $primary-color;
-        }
-    }
-
-    &.stocky {
-        letter-spacing: 2px;
-        font-weight: 600;
-        font-size: 0.8em;
-        height: 40px;
-    }
-
-    &.transparent {
-        background-color: transparent;
-        color: $white;
-        fill: $white;
-
-        &:hover {
-            color: $primary-color;
-            fill: $primary-color;
-        }
-
-        a:visited {
-            color: $white;
-        }
-    }
-
-    &.outline {
-        box-sizing: border-box;
-        border: 1px solid $white;
-
-        &:hover {
-            background-color: $white;
-            color: $primary-color;
-        }
-
-    }
-
-    &.event {
-        background-color: transparent;
-        box-sizing: border-box;
-        border: 1px solid $white;
-        color: $white;
-
-        &:hover {
-            background-color: $white;
-            color: $primary-color;
-
-            a:visited {
-                color: $primary-color !important;
-            }
-        }
-
-        a:visited {
-            color: $primary-color !important;
-        }
-    }
-
-    &.header {
-        height: 38px;
-        padding: 0;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    &.smaller {
-        padding: 0.3rem 0.5rem;
-    }
-
-    &.secondary-color {
-        background-color: $secondary-color;
-
-        &:hover {
-            background-color: lighten($secondary-color, 5%);
-        }
-    }
-}
 
 
 // makes button plain like icon (wechat, people modal).
@@ -207,7 +80,7 @@ figure {
 .background-image-figure img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
     position: absolute;
     z-index: 1;
     top: 0;

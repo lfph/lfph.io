@@ -1,7 +1,6 @@
 .footer {
     padding-top: 3em;
     padding-bottom: 5em;
-    background-color: #1e213c;
     color: $white;
 
     a {
@@ -14,10 +13,10 @@
 }
 
 .copyright-text {
-    text-align: center;
+    // text-align: center;
 
     @media (min-width: 1000px) {
-        text-align: center;
+        // text-align: center;
     }
 
     a:hover::after {
