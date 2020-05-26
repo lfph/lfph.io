@@ -5,14 +5,12 @@
     @media (min-width: 768px) {
         text-align: center;
         padding-bottom: 0;
+        padding-top: 5em;
+        margin-top: 0;
     }
 
     color: $white;
     padding-top: 3em;
-
-    @media (min-width: 768px) {
-        margin-top: 0;
-    }
 
     a {
         color: $white;
