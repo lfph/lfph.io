@@ -13,7 +13,7 @@
 	<label for="FirstName"><h4 class="is-style-center-width-900">Subscribe to the LFPH newsletter to receive updates as they become available!</h4></label>
 
 	<form id="sfmc-form1" class="newsletter-form"
-		action="https://cloud.email.thelinuxfoundation.org/CNCF-Newsletter-Subscriber-Form">
+		action="https://cloud.email.thelinuxfoundation.org/LFPH-Newsletter-Form-Submission">
 		<label for="FirstName" required>
 		<span class="screen-reader-text">First Name</span>
 			<input type="text" id="FirstName" name="FirstName" placeholder="Your First Name" autocomplete="given-name" spellcheck="false"
