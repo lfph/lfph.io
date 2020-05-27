@@ -8,7 +8,7 @@
 // var project = "cncf-theme";
 
 // Local project URL. From MAMP or Lando - whatever local server you use.
-var projectURL = "https://cncfci.lndo.site";
+var projectURL = "https://lfph.lndo.site";
 
 // const PROJECT_FOLDER = "./web/wp-content/themes/" + project;
 const PROJECT_FOLDER = ".";
