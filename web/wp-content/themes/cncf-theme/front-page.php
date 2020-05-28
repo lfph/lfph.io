@@ -77,17 +77,17 @@ $options = get_option( 'cncf-mu' );
 						placeholder="Last Name" autocomplete="family-name"
 						spellcheck="false" required>
 				</label>
+				<label for="Organization" required>
+					<span class="screen-reader-text">Organization</span>
+					<input type="text" id="Organization" name="Organization"
+						placeholder="Organization"
+						spellcheck="false" required>
+				</label>
 				<label for="EmailAddress" required>
 					<span class="screen-reader-text">Email
 						Address</span>
 					<input type="email" id="EmailAddress" name="EmailAddress"
 						placeholder="Email Address" autocomplete="email"
-						spellcheck="false" required>
-				</label>
-				<label for="Organization" required>
-					<span class="screen-reader-text">Organization</span>
-					<input type="text" id="Organization" name="Organization"
-						placeholder="Organization"
 						spellcheck="false" required>
 				</label>
 				<button type="submit" class="button stocky"
