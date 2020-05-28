@@ -62,7 +62,7 @@ $options = get_option( 'cncf-mu' );
 			<!-- form  -->
 
 			<form id="sfmc-form1" class="newsletter-form"
-				action="https://cloud.email.thelinuxfoundation.org/CNCF-Newsletter-Subscriber-Form">
+				action="https://cloud.email.thelinuxfoundation.org/LFPH-Newsletter-Form-Submission">
 				<label for="FirstName" required>
 					<span class="screen-reader-text">First
 						Name</span>
@@ -82,6 +82,12 @@ $options = get_option( 'cncf-mu' );
 						Address</span>
 					<input type="email" id="EmailAddress" name="EmailAddress"
 						placeholder="Email Address" autocomplete="email"
+						spellcheck="false" required>
+				</label>
+				<label for="Organization" required>
+					<span class="screen-reader-text">Organization</span>
+					<input type="text" id="Organization" name="Organization"
+						placeholder="Organization"
 						spellcheck="false" required>
 				</label>
 				<button type="submit" class="button stocky"
