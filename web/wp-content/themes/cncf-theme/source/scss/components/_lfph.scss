@@ -320,3 +320,24 @@ input[type="button"] {
         width: 850px;
     }
 }
+
+// Control autocomplete styles
+input,
+textarea,
+select {
+
+    &:-webkit-autofill,
+    &:-webkit-autofill:hover,
+    &:-webkit-autofill:focus {
+        border-right: 0;
+        -webkit-text-fill-color: $primary-color;
+        -webkit-box-shadow: 0 0 0px 1000px transparent inset;
+        transition: background-color 5000s ease-in-out 0s;
+
+        @media (min-width: 900px) {
+            border-right: 0;
+            border-top: 0;
+        }
+    }
+
+}
