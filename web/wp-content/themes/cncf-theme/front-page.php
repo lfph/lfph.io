@@ -46,7 +46,7 @@ $options = get_option( 'cncf-mu' );
 
 			<!-- logo  -->
 			<div class="background-image-text-overlay">
-				<img src="/wp-content/themes/cncf-theme/images/lfph/lfph-horizontal-long-white.svg"
+				<img src="/wp-content/themes/cncf-theme/images/lfph/lfph-horizontal-white.svg"
 					alt="Linux Foundation Public Health" class="lfph-logo">
 			</div>
 		</section>
