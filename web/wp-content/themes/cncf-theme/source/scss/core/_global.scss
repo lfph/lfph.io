@@ -1,5 +1,5 @@
 body {
-    background: linear-gradient(-90deg, #000f38 0%, #010119 100%);
+    background-color: $white;
     font-family: $font-primary;
     font-size: 1em; // 16px
 
@@ -24,20 +24,24 @@ body {
 
 .container {
     width: 100%;
-    max-width: 900px;
+    max-width: 1050px;
     margin: auto;
+
+}
+
+.container-full-width {
+    width: 100%;
+    max-width: 1250px;
+    margin: auto;
+
 }
 
 .wrap {
     padding: 0em 12px;
 
-    @media (min-width: 375px) {
+    @media (min-width: 500px) {
         padding: 0em 25px;
     }
-}
-
-.box-shadow {
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
 img {
@@ -46,6 +50,140 @@ img {
     height: auto;
 }
 
+.button {
+    border: 0; // reset
+    padding: 0px; // reset
+    width: auto;
+    min-width: 100px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+    padding: 0.7rem 1.1rem;
+    white-space: nowrap;
+    text-transform: uppercase;
+    background-color: $primary-color;
+    color: $white;
+    transition: all 0.25s ease-out;
+    font-size: 1rem;
+
+    a {
+        color: $white;
+    }
+
+    &:active {
+        position: relative;
+        top: 1px;
+    }
+
+    &:hover {
+        background-color: lighten($primary-color, 5%);
+        color: $white;
+    }
+
+    &.search-open {
+        min-width: initial;
+    }
+
+    &.search-close {
+        min-width: initial;
+        margin-left: 20px;
+
+        &:hover {
+            svg {
+                transition: all 0.25s ease-out;
+                color: $primary-color;
+                fill: $primary-color;
+            }
+        }
+    }
+
+    &.search-submit {
+        box-sizing: border-box;
+        border: 1px solid $white;
+        border-radius: 0;
+        -webkit-appearance: none;
+
+        &:hover {
+            border: 1px solid $primary-color;
+        }
+    }
+
+    &.stocky {
+        letter-spacing: 2px;
+        font-weight: 700;
+        font-size: 0.7rem;
+    }
+
+    &.transparent {
+        background-color: transparent;
+        color: $white;
+        fill: $white;
+
+        &:hover {
+            color: $primary-color;
+            fill: $primary-color;
+        }
+
+        a:visited {
+            color: $white;
+        }
+    }
+
+    &.outline {
+        box-sizing: border-box;
+        border: 1px solid $white;
+
+        &:hover {
+            background-color: $white;
+            color: $primary-color;
+        }
+
+    }
+
+    &.on-image {
+        background-color: transparent;
+        box-sizing: border-box;
+        border: 1px solid $white;
+        color: $white;
+        letter-spacing: 2px;
+        font-weight: 600;
+        font-size: 0.7em;
+
+        &:hover {
+            background-color: $white;
+            color: $primary-color;
+
+            a:visited {
+                color: $primary-color !important;
+            }
+        }
+
+        a:visited {
+            color: $primary-color !important;
+        }
+    }
+
+    &.header {
+        height: 38px;
+        padding: 0;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &.smaller {
+        padding: 0.3rem 0.5rem;
+    }
+
+    &.secondary-color {
+        background-color: $secondary-color;
+
+        &:hover {
+            background-color: lighten($secondary-color, 5%);
+        }
+    }
+}
 
 
 // makes button plain like icon (wechat, people modal).
@@ -56,8 +194,9 @@ img {
     padding: 0;
     cursor: pointer;
     display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
-
 
 /*
 |--------------------------------------------
@@ -80,7 +219,7 @@ figure {
 .background-image-figure img {
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: cover;
     position: absolute;
     z-index: 1;
     top: 0;
@@ -141,6 +280,21 @@ figure {
     }
 }
 
+.author-icon {
+    display: flex;
+    align-items: center;
+
+    &::before {
+        content: ' ';
+        background-image: url("data:image/svg+xml,%3Csvg width='24' height='24' xmlns='http://www.w3.org/2000/svg' fill='%2387969c' clip-rule='evenodd'%3E%3Cpath d='M24 0v24h-24v-24h24zm-6.118 16.064c-2.293-.529-4.427-.993-3.394-2.945 3.146-5.942.834-9.119-2.488-9.119-3.388 0-5.643 3.299-2.488 9.119 1.064 1.963-1.15 2.427-3.394 2.945-2.048.473-2.124 1.49-2.118 3.269l.004.667h15.993l.003-.646c.007-1.792-.062-2.815-2.118-3.29z'/%3E%3C/svg%3E");
+        background-size: 0.875em;
+        height: 0.875em;
+        width: 0.875em;
+        background-repeat: no-repeat;
+        margin-right: 5px;
+    }
+}
+
 .live-icon {
     display: inline-flex;
     align-items: center;
@@ -156,9 +310,8 @@ figure {
     }
 }
 
-
 .skew-box {
-    font-size: 0.750em;
+    font-size: 0.775em;
     text-transform: uppercase;
     font-weight: 500;
     color: $white;
@@ -169,19 +322,13 @@ figure {
     // useful if inside flexbox.
     align-self: start;
 
-    &:first-child {
-        margin-bottom: 0.5em;
-    }
-
     &.secondary {
-        background-color: $blue-200;
+        background-color: $blue-400;
     }
 
     &.centered {
-        margin-left: auto;
         margin-right: auto;
         display: inline-block;
-        transform: translateX(12px);
     }
 
     &.smaller {
@@ -190,7 +337,7 @@ figure {
 }
 
 .unskew-box {
-    font-size: 0.750em;
+    font-size: 0.775em;
     text-transform: uppercase;
     font-weight: 500;
     color: $white;
@@ -198,16 +345,12 @@ figure {
     background-color: $purple-400;
     align-self: start;
 
-    &:first-child {
-        margin-bottom: 0.5em;
-    }
-
     &.secondary {
         background-color: $blue-200;
     }
 
     &.centered {
-        margin-left: auto;
+        // margin-left: auto;
         margin-right: auto;
         display: inline-block;
     }
@@ -250,6 +393,10 @@ figure {
     margin-bottom: 2em;
 }
 
+.margin-bottom-small {
+    margin-bottom: 0.5em;
+}
+
 .margin-bottom {
     margin-bottom: 1em;
 }
@@ -260,8 +407,14 @@ figure {
     }
 }
 
-.show-desktop-only {
+.show-tablet-only {
     @media (max-width: 599px) {
+        display: none;
+    }
+}
+
+.show-desktop-only {
+    @media (max-width: 999px) {
         display: none;
     }
 }

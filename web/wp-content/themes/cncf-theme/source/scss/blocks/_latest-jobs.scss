@@ -5,16 +5,11 @@
     // title.
     a {
         font-size: 1em;
-        color: $secondary-color;
         font-weight: 500;
         line-height: 1.2;
         display: block;
         margin: 0 auto 0.25em;
         text-decoration: none;
-
-        // &:hover {
-        //     color: $purple-800;
-        // }
     }
 
     .jobs-list {
@@ -24,25 +19,29 @@
         grid-auto-rows: 1fr;
 
         li {
-            padding: 15px 15px 15px 20px;
+            background-color: $white;
+            padding: 1em 0.5em 1em 1em;
             margin: 0;
             display: flex;
             align-items: center;
         }
     }
 
+    .job-title {
+        margin-bottom: 0;
+    }
+
     .job-content {
-        margin-left: 1.5em;
+        margin-left: 1em;
         display: flex;
         flex-direction: column;
         text-align: left;
     }
 
-    .job-location,
-    .job-company {
+    .job-company,
+    .job-location {
         display: flex;
         align-items: center;
-        color: $black;
         font-size: 0.875em;
         margin-bottom: 0.25em;
 
@@ -54,10 +53,28 @@
         }
     }
 
+    .job-location {
+        color: $grey-500;
+    }
+
     .job-image {
         min-width: 80px;
         max-width: 80px;
+
+        @media (min-width: 1024px) {
+            min-width: 120px;
+            max-width: 120px;
+
+            img {
+                width: 100%;
+            }
+        }
+
         margin: 0;
+
+        &:hover {
+            opacity: 0.8;
+        }
     }
 
 }
@@ -65,12 +82,16 @@
 .wp-block-lf-latest-jobs {
     &.is-style-horizontal {
         .jobs-list {
-            display: flex;
-            flex-direction: row;
-            flex-wrap: wrap;
+            display: grid;
+            grid-gap: 1em;
+            grid-template-columns: 1fr;
 
-            li {
-                flex: 1 0 350px;
+            @media (min-width: 700px) {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            @media (min-width: 1024px) {
+                grid-gap: 1.5em;
             }
         }
     }

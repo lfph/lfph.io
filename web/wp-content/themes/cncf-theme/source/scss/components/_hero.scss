@@ -1,22 +1,44 @@
 .hero {
-    margin-bottom: 2em;
+    margin-bottom: $sm-padding;
+
+    @media (min-width: 1200px) {
+        margin-bottom: $lg-padding;
+
+    }
+
+    .single & {
+        margin-top: $sm-padding;
+        margin-bottom: $sm-padding;
+
+        @media (min-width: 1200px) {
+            margin-top: $lg-padding;
+
+        }
+
+    }
 
     &.background-image-wrapper {
         display: flex;
-        min-height: 180px;
+        min-height: 220px;
         justify-content: center;
         align-items: center;
+
+        @media (min-width: 1400px) {
+            min-height: 260px;
+        }
     }
 
     .container {
-        text-align: center;
         color: $white;
+
+        .page-template-full-width & {
+            max-width: 1250px;
+
+        }
     }
 
     .background-image-figure:after {
-        background-color: $purple-800;
-        // background: linear-gradient(90deg, #2825f2 0%, #dc096a 100%);
-        background-size: cover;
+        background-color: $purple-900;
         content: "";
         display: block;
         position: absolute;
@@ -25,17 +47,12 @@
         width: 100%;
         height: 100%;
         z-index: 2;
-        opacity: .75;
-        mix-blend-mode: normal;
+        opacity: 0.80;
+        mix-blend-mode: darken;
     }
 
-    // 	background: linear-gradient(90deg,#2825f2 0%,#dc096a 100%);
-    // opacity: 0.5;
-
-    .background-image-figure {
-        // background-color: $purple-800;
-        background: linear-gradient(90deg, #2825f2 0%, #dc096a 100%);
-        background-color: red;
+    .background-image-figure img {
+        filter: grayscale(100%);
     }
 
     h1 {
@@ -44,13 +61,18 @@
     }
 
     .no-background {
-        margin-top: 2em;
+        margin-top: $sm-padding;
+
+        @media (min-width: 1400px) {
+            margin-top: $lg-padding;
+            margin-bottom: $sm-padding;
+        }
     }
 
-
+    &.alignfull {
+        margin-bottom: 4em;
+    }
 }
-
-
 
 // used in post, event, webinars, case study single
 .hero-parent-link {
@@ -77,20 +99,8 @@
     }
 }
 
-
 // used in post, event, webinars single
 .hero-post-title {
-    margin-top: 40px;
-    text-align: center;
-    font-weight: 500;
-    max-width: 650px;
-    margin-left: auto;
-    margin-right: auto;
-    line-height: 1.25;
-    letter-spacing: -0.2px;
     color: $secondary-color;
-
-    @media (max-width: 767px) {
-        font-size: 1.9em;
-    }
+    max-width: 900px;
 }

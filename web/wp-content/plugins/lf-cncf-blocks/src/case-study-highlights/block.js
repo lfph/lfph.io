@@ -42,24 +42,37 @@ registerBlockType(
 		category: 'cncf',
 		keywords: [
 			__( 'case study' ),
-			__( 'case' ),
+			__( 'metrics' ),
 			__( 'highlights' ),
 			__( 'cncf' ),
 		],
 		example: {
 			attributes: {
-				highlight01: 'DEPLOYMENT TIME Went from an hour to minutes',
+				headingText01: 'DEPLOYMENT TIME',
+				smallerText01: 'Went from an hour to minutes',
 			} },
 		attributes: {
-			highlight01: {
+			headingText01: {
 				type: 'string',
 				default: '',
 			},
-			highlight02: {
+			headingText02: {
 				type: 'string',
 				default: '',
 			},
-			highlight03: {
+			headingText03: {
+				type: 'string',
+				default: '',
+			},
+			smallerText01: {
+				type: 'string',
+				default: '',
+			},
+			smallerText02: {
+				type: 'string',
+				default: '',
+			},
+			smallerText03: {
 				type: 'string',
 				default: '',
 			},

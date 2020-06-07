@@ -95,7 +95,7 @@ if ( $dat_webinar > $dat_now ) {
 				<?php
 				if ( 'upcoming' == $period_status && $registration_url ) :
 					?>
-		<p><a target="_blank" href="<?php echo esc_url( $registration_url ); ?>"
+		<p><a target="_blank" href="<?php echo esc_url( $registration_url ); ?>" rel="noopener noreferrer"
 				class="button margin-top-large"
 				title="Register for <?php the_title(); ?> Webinar">Register
 				Now</a></p>
@@ -106,7 +106,7 @@ if ( $dat_webinar > $dat_now ) {
 				?>
 		<div class="recorded">
 			<p class="live-icon">Recorded:
-				<?php echo esc_html( $dat_webinar->format( 'l j F Y' ) ); ?>
+				<?php echo esc_html( $dat_webinar->format( 'l F j, Y' ) ); ?>
 			</p>
 		</div>
 		<?php endif; ?>
@@ -175,7 +175,8 @@ if ( $dat_webinar > $dat_now ) {
 						href="<?php echo esc_url( $conversion_url ); ?>"
 						target="_blank">Convert to your local time</a>.</p>
 
-				Attend: <a href="#" target="_blank">Register for this
+				Attend: <a target="_blank" href="<?php echo esc_url( $registration_url ); ?>" rel="noopener noreferrer"
+				title="Register for <?php the_title(); ?> Webinar">Register for this
 					webinar</a>.
 			</div>
 			<?php endif; ?>

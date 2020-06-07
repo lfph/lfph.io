@@ -2,10 +2,6 @@
 .wp-block-button__link {
     border-radius: 0 !important;
 
-    // &:hover {
-    //     // text-decoration: none;
-    // }
-
     .is-style-full &,
     &.full {
         display: block;
@@ -17,7 +13,6 @@
 
         &:hover {
             color: white;
-            // text-decoration: none;
         }
 
         &:visited {
@@ -58,16 +53,8 @@
     }
 }
 
-.is-style-extra-large-outline {
-    .wp-block-button__link {
-        background-color: transparent;
-        border: 1px solid $white;
-        padding: 50px;
-        color: $white;
-
-        &:hover {
-            color: $white;
-            background-color: rgba($white, 0.2);
-        }
+.wp-block-buttons {
+    &.alignright {
+        text-align: right;
     }
 }

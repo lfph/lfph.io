@@ -96,6 +96,46 @@ class Cncf_Mu_Admin {
 	 */
 	public function register_cpts() {
 
+		// Case Study Block Template setup.
+		$case_study_block_template = array(
+			array(
+				'core/heading',
+				array(
+					'level'     => '1',
+					'placeholder'   => 'Case study title to be shown as page header',
+					'className' => 'is-style-max-800',
+				),
+			),
+			array( 'lf/case-study-overview' ),
+			array( 'lf/case-study-highlights' ),
+			array( 'core-embed/youtube' ),
+			array(
+				'core/heading',
+				array(
+					'level'       => '3',
+					'placeholder' => 'Introductory paragraph to the case study',
+					'className' => 'is-style-max-800',
+				),
+			),
+			array( 'core/paragraph' ),
+			array( 'core/paragraph' ),
+			array(
+				'core/gallery',
+				array(
+					'align' => 'wide',
+				),
+			),
+			array( 'core/paragraph' ),
+			array( 'core/paragraph' ),
+			array(
+				'core/quote',
+				array(
+					'placeholder'   => 'Nice quote from customer lorem ipsum dolor sit amet consectetuer adipiscing elit aenean commodo',
+					'className' => 'is-style-case-study-quote',
+				),
+			),
+		);
+
 		$opts = array(
 			'labels'              => array(
 				'name'          => __( 'People' ),
@@ -126,6 +166,7 @@ class Cncf_Mu_Admin {
 			'show_in_nav_menus' => false,
 			'show_in_rest'      => true,
 			'hierarchical'      => false,
+			'template'          => $case_study_block_template,
 			'menu_icon'         => 'dashicons-awards',
 			'rewrite'           => array( 'slug' => 'case-studies' ),
 			'supports'          => array( 'title', 'editor', 'thumbnail', 'revisions', 'custom-fields' ),
@@ -438,6 +479,7 @@ class Cncf_Mu_Admin {
 									'ui_border_top' => true,
 									'default_value' => '',
 									'placeholder'   => 'https://www.youtube.com/watch?v=95pkfWf8DgA',
+									'help' => 'Leave blank if there is no recording',
 								),
 								array(
 									'type'          => 'text',
@@ -819,6 +861,17 @@ class Cncf_Mu_Admin {
 							'label'        => __( 'General' ),
 							'initial_open' => true,
 							'settings'     => array(
+								array(
+									'type'          => 'text',
+									'data_type'     => 'meta',
+									'data_key'      => 'guest_author',
+									'label'         => __( 'Guest Author' ),
+									'help'          => __( 'Enter a guest author name to override WordPress default Posted By' ),
+									'register_meta' => true,
+									'ui_border_top' => true,
+									'default_value' => '',
+									'placeholder'   => '',
+								),
 								array(
 									'type'          => 'text',
 									'data_type'     => 'meta',
@@ -1296,6 +1349,8 @@ class Cncf_Mu_Admin {
 
 		$options['hello_bar_bg'] = ( isset( $input['hello_bar_bg'] ) && ! empty( $input['hello_bar_bg'] ) ) ? esc_attr( $input['hello_bar_bg'] ) : '';
 
+		$options['hello_bar_text'] = ( isset( $input['hello_bar_text'] ) && ! empty( $input['hello_bar_text'] ) ) ? esc_attr( $input['hello_bar_text'] ) : '';
+
 		$options['header_image_id'] = ( isset( $input['header_image_id'] ) && ! empty( $input['header_image_id'] ) ) ? absint( $input['header_image_id'] ) : '';
 
 		$options['header_cta_text'] = ( isset( $input['header_cta_text'] ) && ! empty( $input['header_cta_text'] ) ) ? esc_html( $input['header_cta_text'] ) : '';
@@ -1331,6 +1386,8 @@ class Cncf_Mu_Admin {
 		$options['generic_thumb_id'] = ( isset( $input['generic_thumb_id'] ) && ! empty( $input['generic_thumb_id'] ) ) ? absint( $input['generic_thumb_id'] ) : '';
 
 		$options['generic_avatar_id'] = ( isset( $input['generic_avatar_id'] ) && ! empty( $input['generic_avatar_id'] ) ) ? absint( $input['generic_avatar_id'] ) : '';
+
+		$options['generic_hero_id'] = ( isset( $input['generic_hero_id'] ) && ! empty( $input['generic_hero_id'] ) ) ? absint( $input['generic_hero_id'] ) : '';
 
 		return $options;
 	}
@@ -1394,8 +1451,8 @@ class Cncf_Mu_Admin {
 			}
 			$speaker_id = wp_insert_post(
 				array(
-					'post_title' => $last_name . $first_name,
-					'post_name'  => $user_id,
+					'post_title'  => $last_name . $first_name,
+					'post_name'   => $user_id,
 					'post_type'   => 'cncf_speaker',
 					'post_status' => 'publish',
 				)

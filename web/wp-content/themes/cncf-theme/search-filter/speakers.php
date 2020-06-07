@@ -33,7 +33,7 @@ if ( $query->have_posts() ) {
 			echo esc_html( 'Showing ' . esc_html( $query->found_posts ) . ' of ' . esc_html( $full_count ) . ' speakers' );
 		}
 		?>
-	</span><span class="show-desktop-only">&nbsp;&#124;&nbsp;</span><br
+	</span><span class="show-tablet-only">&nbsp;&#124;&nbsp;</span><br
 		class="show-mobile-only" />
 
 	<?php
@@ -81,7 +81,7 @@ if ( $query->have_posts() ) {
 		// makes the name capitalised.
 		$display_name = ucwords( strtolower( um_user( 'display_name' ) ) );
 		?>
-	<div class="speaker box-shadow">
+	<div class="speaker">
 		<div class="speaker-photo">
 			<a href="<?php echo esc_url( um_user_profile_url() ); ?>"
 				title="<?php echo esc_attr( $display_name ); ?>">

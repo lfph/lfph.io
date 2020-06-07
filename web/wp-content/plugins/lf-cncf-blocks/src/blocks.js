@@ -50,3 +50,9 @@ import './hero/block.js';
 
 // Hero Block.
 import './image-hero/block.js';
+
+// Case Studies.
+import './case-studies/block.js';
+
+// Spotlights.
+import './spotlight/block.js';

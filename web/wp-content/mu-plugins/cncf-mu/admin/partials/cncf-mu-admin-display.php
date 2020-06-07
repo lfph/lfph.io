@@ -34,6 +34,8 @@ if ( ! defined( 'WPINC' ) ) {
 
 		$hello_bar_bg = ( isset( $options['hello_bar_bg'] ) && ! empty( $options['hello_bar_bg'] ) ) ? esc_attr( $options['hello_bar_bg'] ) : '';
 
+		$hello_bar_text = ( isset( $options['hello_bar_text'] ) && ! empty( $options['hello_bar_text'] ) ) ? esc_attr( $options['hello_bar_text'] ) : '';
+
 		$header_image_id = ( isset( $options['header_image_id'] ) && ! empty( $options['header_image_id'] ) ) ? absint( $options['header_image_id'] ) : '';
 
 		$header_cta_text = ( isset( $options['header_cta_text'] ) && ! empty( $options['header_cta_text'] ) ) ? esc_attr( $options['header_cta_text'] ) : '';
@@ -70,6 +72,8 @@ if ( ! defined( 'WPINC' ) ) {
 
 		$generic_avatar_id = ( isset( $options['generic_avatar_id'] ) && ! empty( $options['generic_avatar_id'] ) ) ? absint( $options['generic_avatar_id'] ) : '';
 
+		$generic_hero_id = ( isset( $options['generic_hero_id'] ) && ! empty( $options['generic_hero_id'] ) ) ? absint( $options['generic_hero_id'] ) : '';
+
 		settings_fields( $this->plugin_name );
 
 		do_settings_sections( $this->plugin_name );
@@ -102,7 +106,7 @@ if ( ! defined( 'WPINC' ) ) {
 					<th scope="row"><label for="hello_bar_content">Hello Bar
 							Content</label>
 					</th>
-					<td>
+					<td colspan="2">
 						<?php
 							$hello_bar_settings = array(
 								'teeny'         => true, // extra options.
@@ -116,6 +120,16 @@ if ( ! defined( 'WPINC' ) ) {
 					</td>
 				</tr>
 				<tr>
+					<th scope="row"><label for="hello_bar_text">Text and Link Color</label>
+					</th>
+					<td>
+						<div class="pagebox">
+							<input class="color_field" type="hidden"
+								name="<?php echo esc_html( $this->plugin_name ); ?>[hello_bar_text]"
+								data-default-color="#FFFFFF"
+								value="<?php echo esc_attr( $hello_bar_text ); ?>" />
+						</div>
+					</td>
 					<th scope="row"><label for="hello_bar_bg">Background
 							Color</label>
 					</th>
@@ -123,7 +137,7 @@ if ( ! defined( 'WPINC' ) ) {
 						<div class="pagebox">
 							<input class="color_field" type="hidden"
 								name="<?php echo esc_html( $this->plugin_name ); ?>[hello_bar_bg]"
-								data-default-color="#DE176C"
+								data-default-color="#416FD9"
 								value="<?php echo esc_attr( $hello_bar_bg ); ?>" />
 						</div>
 					</td>
@@ -138,10 +152,9 @@ if ( ! defined( 'WPINC' ) ) {
 					<th scope="row"><label for="header_image_id">Header Logo
 							Image</label>
 					</th>
-					<td colspan="3">
+					<td colspan="2">
 						<div class='image-preview-wrapper'>
 							<img src='<?php echo esc_url( wp_get_attachment_url( $header_image_id ) ); ?>'
-								height='100'
 								class="image-preview thumbnail-margin-bottom"
 								data-id="<?php echo esc_html( $this->plugin_name ); ?>-header_image_id">
 						</div>
@@ -351,7 +364,6 @@ if ( ! defined( 'WPINC' ) ) {
 					<td>
 						<div class='image-preview-wrapper'>
 							<img src='<?php echo esc_url( wp_get_attachment_url( $social_wechat_id ) ); ?>'
-								height='100'
 								class="image-preview thumbnail-margin-bottom"
 								data-id="<?php echo esc_html( $this->plugin_name ); ?>-social_wechat_id">
 						</div>
@@ -383,7 +395,6 @@ if ( ! defined( 'WPINC' ) ) {
 					<td colspan="3">
 						<div class='image-preview-wrapper'>
 							<img src='<?php echo esc_url( wp_get_attachment_url( $generic_thumb_id ) ); ?>'
-								height='100'
 								class="image-preview thumbnail-margin-bottom"
 								data-id="<?php echo esc_html( $this->plugin_name ); ?>-generic_thumb_id">
 						</div>
@@ -409,7 +420,6 @@ if ( ! defined( 'WPINC' ) ) {
 					<td colspan="3">
 						<div class='image-preview-wrapper'>
 							<img src='<?php echo esc_url( wp_get_attachment_url( $generic_avatar_id ) ); ?>'
-								height='100'
 								class="image-preview thumbnail-margin-bottom"
 								data-id="<?php echo esc_html( $this->plugin_name ); ?>-generic_avatar_id">
 						</div>
@@ -426,6 +436,31 @@ if ( ! defined( 'WPINC' ) ) {
 							data-id="<?php echo esc_html( $this->plugin_name ); ?>-generic_avatar_id"
 							name="<?php echo esc_html( $this->plugin_name ); ?>[generic_avatar_id]"
 							value="<?php echo absint( $generic_avatar_id ); ?>" />
+					</td>
+				</tr>
+				<tr>
+					<th scope="row"><label for="generic_hero_id">Generic
+							Hero Image</label>
+					</th>
+					<td colspan="3">
+						<div class='image-preview-wrapper'>
+							<img src='<?php echo esc_url( wp_get_attachment_url( $generic_hero_id ) ); ?>'
+								class="image-preview thumbnail-margin-bottom"
+								data-id="<?php echo esc_html( $this->plugin_name ); ?>-generic_hero_id">
+						</div>
+						<input type="button"
+							data-id="<?php echo esc_html( $this->plugin_name ); ?>-generic_hero_id"
+							class="upload_image_button button"
+							value="Choose image" />
+						<input type="button"
+							data-id="<?php echo esc_html( $this->plugin_name ); ?>-generic_hero_id"
+							class="clear_upload_image_button button"
+							value="Remove image" />
+						<input type="hidden"
+							id="<?php echo esc_html( $this->plugin_name ); ?>-generic_hero_id"
+							data-id="<?php echo esc_html( $this->plugin_name ); ?>-generic_hero_id"
+							name="<?php echo esc_html( $this->plugin_name ); ?>[generic_hero_id]"
+							value="<?php echo absint( $generic_hero_id ); ?>" />
 					</td>
 				</tr>
 			</tbody>

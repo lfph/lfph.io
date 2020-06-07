@@ -180,6 +180,9 @@ function lf_cncf_blocks_register_dynamic_blocks() {
 				'category'  => array(
 					'type' => 'string',
 				),
+				'numberposts'     => array(
+					'type' => 'number',
+				),
 			),
 			'render_callback' => 'lf_events_render_callback',
 		)
@@ -297,7 +300,7 @@ function lf_cncf_blocks_register_dynamic_blocks() {
 					'type' => 'string',
 				),
 				'quantity'  => array(
-					'type' => 'string',
+					'type' => 'number',
 				),
 			),
 			'render_callback' => 'lf_latest_jobs_render_callback',
@@ -354,6 +357,40 @@ function lf_cncf_blocks_register_dynamic_blocks() {
 			'render_callback' => 'lf_image_hero_render_callback',
 		)
 	);
+
+	// Case Studies Block.
+	require_once 'case-studies/render-callback.php';
+	register_block_type(
+		'lf/case-studies',
+		array(
+			'attributes'      => array(
+				'className' => array(
+					'type' => 'string',
+				),
+				'numberposts'     => array(
+					'type' => 'number',
+				),
+			),
+			'render_callback' => 'lf_case_studies_render_callback',
+		)
+	);
+
+		// Case Studies Block.
+		require_once 'spotlight/render-callback.php';
+		register_block_type(
+			'lf/spotlight',
+			array(
+				'attributes'      => array(
+					'className' => array(
+						'type' => 'string',
+					),
+					'numberposts'     => array(
+						'type' => 'number',
+					),
+				),
+				'render_callback' => 'lf_spotlight_render_callback',
+			)
+		);
 
 }
 add_action( 'init', 'lf_cncf_blocks_register_dynamic_blocks' );

@@ -3,14 +3,50 @@
 
 .entry-content {
 
-    p {
-        margin-bottom: 1.5em;
+    // annoying event box button fix.
+    .button {
+        &.on-image {
+            background-color: transparent;
+            box-sizing: border-box;
+            border: 1px solid $white;
+            color: $white;
+            letter-spacing: 2px;
+            font-weight: 600;
+            font-size: 0.7em;
+
+            &:hover {
+                background-color: $white;
+                color: $primary-color;
+
+                a:visited {
+                    color: $primary-color !important;
+                }
+            }
+
+            a:visited {
+                color: $primary-color !important;
+            }
+        }
+    }
+
+    p:not([class*='is-style']):not(.hero-parent-link) {
+        max-width: 700px;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        &:not([class*='is-style']) {
+            max-width: 900px;
+        }
     }
 
     a {
         text-decoration: none;
-        // color: $primary-color;
-        color: $white;
+        color: $primary-color;
         font-weight: 500;
         transition: all 0.25s ease-out;
 
@@ -43,7 +79,18 @@
         margin-right: 0;
         margin-bottom: 1em;
         margin-left: 2em;
+
+        // used for tab container.
+        &.no-style {
+            list-style: none;
+            margin-left: 0;
+        }
     }
+
+    // ul:not(.jobs-list) {
+    //     // To limit the width, experimental.
+    //     max-width: 700px;
+    // }
 
     ol {
         list-style: decimal;
@@ -108,8 +155,8 @@
 
     th {
         background: $grey-800;
-        color: white;
-        font-weight: bold;
+        color: $white;
+        font-weight: 600;
     }
 
     td,
@@ -121,12 +168,122 @@
 
     // fix for responsive tables without thead or data-labels.
     @media only screen and (max-width: 768px) {
-        table {
+        table:not([class*='has']) {
             overflow: hidden;
             overflow-x: scroll;
             display: block;
         }
     }
 
+    // Applied to Single Blog Posts only.
+    &.post-content {
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            margin: 0;
+            font-weight: 600;
+            color: $secondary-color;
+
+            a {
+                text-decoration: none;
+            }
+
+            b,
+            strong {
+                font-weight: 600;
+                font-style: normal;
+            }
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin-top: 3rem;
+            margin-bottom: 1rem;
+
+            @media (max-width: 767px) {
+                font-size: 1.75em;
+            }
+        }
+
+        h2,
+        .h2,
+        .has-header-2-font-size {
+            font-size: 2.2em;
+            margin-top: 3rem;
+            margin-bottom: 1rem;
+
+            @media (max-width: 767px) {
+                font-size: 1.75em;
+            }
+        }
+
+        h3,
+        .h3,
+        .has-header-3-font-size {
+            font-size: 1.5em;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+
+            @media (max-width: 767px) {
+                font-size: 1.3em;
+            }
+        }
+
+        h4,
+        .h4,
+        .has-header-4-font-size {
+            font-size: 1.250em;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+
+            @media (max-width: 767px) {
+                font-size: 1.1em;
+            }
+        }
+
+        h5,
+        .h5,
+        .has-header-5-font-size {
+            font-size: 1em;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        h6 {
+            font-size: 0.9em;
+            margin-bottom: 1rem;
+        }
+
+    }
 
 }
+
+
+
+
+// .single-post,
+// .webinar-single,
+// .case-study-single,
+// .event-single {
+//     .entry-content {
+//         max-width: 1050px;
+//         margin-left: auto;
+//         margin-right: auto;
+//         text-align: left;
+//         margin-top: 2em;
+
+//         &.no-max {
+//             max-width: initial;
+//         }
+//     }
+// }
+
+// .case-study-single {
+//     .entry-content {
+//         margin-top: 0;
+//     }
+// }

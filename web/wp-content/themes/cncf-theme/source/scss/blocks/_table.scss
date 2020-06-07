@@ -1,0 +1,58 @@
+.is-style-pricing-table {
+    color: $white;
+    font-size: 0.9em;
+    max-width: 800px;
+
+    @media (min-width: 375px) {
+        font-size: 0.95em;
+    }
+
+    @media (min-width: 415px) {
+        font-size: initial;
+    }
+
+    @media (min-width: 800px) {
+        font-size: 1.25em;
+    }
+
+    td,
+    th {
+        border: 0;
+        padding: 1em;
+        word-wrap: break-word;
+
+        &:first-child {
+            font-weight: 600;
+            padding-left: 0.5em;
+        }
+    }
+
+    tr {
+        &:first-child {
+            td {
+                background: $purple-800;
+                font-weight: 600;
+                vertical-align: middle;
+                border-bottom: 1px solid $white;
+
+            }
+        }
+
+        &:not(:first-child) {
+            font-weight: 400;
+        }
+
+        &:nth-of-type(even) {
+            background-color: lighten($cs-overlay, 16%);
+        }
+
+        &:nth-of-type(odd) {
+            background-color: lighten($cs-overlay, 8%);
+        }
+
+        td:first-child,
+        td:nth-child(2) {
+            border-right: 1px solid $white;
+        }
+    }
+}

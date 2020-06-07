@@ -30,38 +30,43 @@ if ( strlen( $content ) > 20 ) {
 }
 ?>
 
-<div class="people-box box-shadow">
+<div class="people-box">
 	<!-- thumbnail  -->
 	<?php if ( $show_modal ) : ?>
 	<button
 		data-micromodal-trigger="modal-<?php echo esc_html( $person_id ); ?>"
 		class="button-reset">
 	<?php endif; ?>
+	<div class="background-image-wrapper people-profile-picture">
+	<figure class="background-image-figure">
 	<?php
 	if ( has_post_thumbnail() ) {
-		echo wp_get_attachment_image( get_post_thumbnail_id(), 'people', false, array( 'class' => 'people-thumbnail' ) );
+		echo wp_get_attachment_image( get_post_thumbnail_id(), 'full', false, array( 'class' => '' ) );
 	} else {
 		$options = get_option( 'cncf-mu' );
-		echo wp_get_attachment_image( $options['generic_avatar_id'], 'people', false, array( 'class' => 'people-thumbnail' ) );
+		echo wp_get_attachment_image( $options['generic_avatar_id'], 'people', false, array( 'class' => '' ) );
 	}
 	?>
+	</figure>
+	</div>
 	<?php if ( $show_modal ) : ?>
 	</button>
 	<?php endif; ?>
 	<!-- Name  -->
-	<h5 class="people-title"><?php the_title(); ?></h5>
+	<h4 class="people-title"><?php the_title(); ?></h4>
 
 	<!-- Company  -->
 	<?php
 	if ( $company ) :
 		?>
-	<h6 class="people-company"><?php echo esc_html( $company ); ?></h6>
+	<h5 class="people-company"><?php echo esc_html( $company ); ?></h5>
 	<?php endif; ?>
 
 	<div class="people-excerpt">
 		<?php the_excerpt(); ?>
 	</div>
 
+<div class="social-modal-wrapper">
 	<?php
 	// Social Icons.
 	if ( $linkedin || $twitter || $github || $wechat || $website || $youtube ) :
@@ -126,15 +131,28 @@ if ( strlen( $content ) > 20 ) {
 					<button class="modal__close" aria-label="Close modal"
 						data-micromodal-close=""></button>
 				</header>
-
+<div class="modal-content-wrapper">
 				<div class="profile__header">
+
 					<?php
-					if ( has_post_thumbnail() ) {
-						echo wp_get_attachment_image( get_post_thumbnail_id(), 'people', false, array( 'class' => 'people-thumbnail' ) );
-					}
+					if ( has_post_thumbnail() ) :
+						?>
+				<div class="background-image-wrapper people-profile-picture">
+	<figure class="background-image-figure">
+						<?php
+						echo wp_get_attachment_image( get_post_thumbnail_id(), 'full', false, array( 'class' => 'people-thumbnail' ) );
+						?>
+</figure></div>
+						<?php
+					endif;
 					?>
-					<!-- Name  -->
-					<h3 class="modal__title margin-reset margin-top-small"
+				</div>
+
+				<div class="modal__content"
+					id="modal-<?php echo esc_html( $person_id ); ?>-content">
+
+						<!-- Name  -->
+						<h3 class="modal__title margin-reset margin-top-small"
 						id="modal-<?php echo esc_html( $person_id ); ?>-title">
 						<?php the_title(); ?></h3>
 
@@ -142,19 +160,17 @@ if ( strlen( $content ) > 20 ) {
 					<?php
 					if ( $company ) :
 						?>
-					<h6 class="margin-reset margin-top-small">
-						<?php echo esc_html( $company ); ?></h6>
+					<h5 class="margin-top-small ">
+						<?php echo esc_html( $company ); ?></h5>
 					<?php endif; ?>
 
-				</div>
 
-				<div class="modal__content"
-					id="modal-<?php echo esc_html( $person_id ); ?>-content">
 					<?php the_content(); ?>
+				</div>
 				</div>
 			</div>
 		</div>
 	</div>
 	<?php endif; ?>
-
+</div>
 </div><!-- end of people box  -->

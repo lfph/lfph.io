@@ -19,22 +19,20 @@
 }
 
 .case-study-overview-wrapper {
-    // background-color: $tertiary-color;
     display: flex;
     flex-wrap: wrap;
+    margin-bottom: $sm-padding;
 
     @media (min-width: 800px) {
         padding-left: 1em;
         padding-right: 1em;
-        padding-top: 1em;
         padding-bottom: 1em;
         flex-direction: column;
-        margin-left: 3em;
         flex-grow: 0;
         flex-shrink: 0;
         width: 230px;
-        padding-top: 1em;
-        margin-bottom: 1em;
+        margin-left: 3em;
+        margin-bottom: 0;
     }
 
     p {
@@ -45,7 +43,8 @@
     }
 
     >div {
-        padding: 0.5em;
+        padding-right: 0.5em;
+        padding-bottom: 0.5em;
     }
 
     .skew-box {

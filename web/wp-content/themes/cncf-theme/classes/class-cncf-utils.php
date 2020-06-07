@@ -131,7 +131,7 @@ class Cncf_Utils {
 		}
 
 		// format the webinar date.
-		$webinar_date = $dt_date->format( 'l j F Y' );
+		$webinar_date = $dt_date->format( 'l F j, Y' );
 
 		// setup the results.
 		if ( $formatted ) {
@@ -142,11 +142,11 @@ class Cncf_Utils {
 			}
 
 			// output in way suitable for DateTime.
-			$result = $date . ' ' . $padded_starting_time . ' ' . $timezone;
+			$result = $date . ', ' . $padded_starting_time . ' ' . $timezone;
 
 		} else {
 			// output in readable format.
-			$result = $webinar_date . ' ' . $starting_time . $period . ' ' . $timezone;
+			$result = $webinar_date . ', ' . $starting_time . $period . ' ' . $timezone;
 		}
 		return isset( $result ) ? $result : false;
 	}
@@ -208,6 +208,39 @@ class Cncf_Utils {
 			}
 		}
 		return $date;
+	}
+
+	/**
+	 * Display Author if not CNCF.
+	 *
+	 * @param string  $the_post_id Post ID.
+	 * @param boolean $with_class Adds surround tag.
+	 */
+	public static function display_author( $the_post_id, $with_class = false ) {
+
+		// if no post id or not number, return.
+		if ( ! $the_post_id || ! is_integer( $the_post_id ) ) {
+			return;
+		}
+
+		$author_id = get_post_field( 'post_author', $the_post_id );
+		$author    = get_the_author_meta( 'display_name', $author_id );
+
+		// Basic match for CNCF admin user.
+		if ( 'CNCF' === $author ) {
+			return;
+		}
+
+		if ( $with_class ) {
+			// Insert with surrounding class icon.
+			$author = '<span class="author-name author-icon">By ' . $author . '</span>';
+		} else {
+			// Insert the author.
+			$author = 'By ' . $author;
+		}
+
+		return $author;
+
 	}
 
 }
