@@ -117,20 +117,12 @@ Thumbs.db
 
 
 # Allowing premium plugins
-!web/wp-content/plugins/gravityforms
 !web/wp-content/plugins/search-filter-pro
-!web/wp-content/plugins/wp-all-import-pro
-!web/wp-content/plugins/customer-import-export-for-woocommerce
-!web/wp-content/plugins/miniorange-saml-20-single-sign-on
 
 # Allowing custom plugins
 !web/wp-content/plugins/text-on-image-block
 web/wp-content/plugins/text-on-image-block/node_modules
 !web/wp-content/plugins/tab-container-block
 web/wp-content/plugins/tab-container-block/node_modules
-!web/wp-content/plugins/lf-count-up-block
-web/wp-content/plugins/lf-count-up-block/node_modules
-!web/wp-content/plugins/lf-latest-jobs
-web/wp-content/plugins/lf-latest-jobs/node_modules
 !web/wp-content/plugins/lf-cncf-blocks
 web/wp-content/plugins/lf-cncf-blocks/node_modules
