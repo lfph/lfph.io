@@ -18,10 +18,10 @@
  * For more information, see the following discussion:
  * https://github.com/tommcfarlin/WordPress-Plugin-Boilerplate/pull/123#issuecomment-28541913
  *
- * @link       https://www.cncf.io/
+ * @link       https://www.lfph.io/
  * @since      1.0.0
  *
- * @package    Cncf_Mu
+ * @package    Lfph_Mu
  */
 
 // If uninstall not called from WordPress, then exit.

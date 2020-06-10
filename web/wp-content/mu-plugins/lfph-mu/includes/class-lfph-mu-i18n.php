@@ -5,11 +5,11 @@
  * Loads and defines the internationalization files for this plugin
  * so that it is ready for translation.
  *
- * @link       https://www.cncf.io/
+ * @link       https://www.lfph.io/
  * @since      1.0.0
  *
- * @package    Cncf_Mu
- * @subpackage Cncf_Mu/includes
+ * @package    Lfph_Mu
+ * @subpackage Lfph_Mu/includes
  */
 
 /**
@@ -19,11 +19,11 @@
  * so that it is ready for translation.
  *
  * @since      1.0.0
- * @package    Cncf_Mu
- * @subpackage Cncf_Mu/includes
+ * @package    Lfph_Mu
+ * @subpackage Lfph_Mu/includes
  * @author     Chris Abraham <cjyabraham@gmail.com>
  */
-class Cncf_Mu_I18n {
+class Lfph_Mu_I18n {
 
 
 	/**
@@ -34,7 +34,7 @@ class Cncf_Mu_I18n {
 	public function load_plugin_textdomain() {
 
 		load_plugin_textdomain(
-			'cncf-mu',
+			'lfph-mu',
 			false,
 			dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/languages/'
 		);

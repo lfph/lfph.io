@@ -2,11 +2,11 @@
 /**
  * The admin-specific functionality of the plugin.
  *
- * @link       https://www.cncf.io/
+ * @link       https://www.lfph.io/
  * @since      1.0.0
  *
- * @package    Cncf_Mu
- * @subpackage Cncf_Mu/admin
+ * @package    Lfph_Mu
+ * @subpackage Lfph_Mu/admin
  */
 
 /**
@@ -15,11 +15,11 @@
  * Defines the plugin name, version, and two examples hooks for how to
  * enqueue the admin-specific stylesheet and JavaScript.
  *
- * @package    Cncf_Mu
- * @subpackage Cncf_Mu/admin
+ * @package    Lfph_Mu
+ * @subpackage Lfph_Mu/admin
  * @author     Chris Abraham <cjyabraham@gmail.com>
  */
-class Cncf_Mu_Admin {
+class Lfph_Mu_Admin {
 
 	/**
 	 * The ID of this plugin.
@@ -61,13 +61,13 @@ class Cncf_Mu_Admin {
 	 */
 	public function enqueue_styles( $hook_suffix ) {
 
-			// only loads on CNCF MU top level page.
-		if ( 'toplevel_page_cncf-mu' == $hook_suffix ) {
+			// only loads on LFPH MU top level page.
+		if ( 'toplevel_page_lfph-mu' == $hook_suffix ) {
 
 			// color picker.
 			wp_enqueue_style( 'wp-color-picker' );
 
-			wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/cncf-mu-admin.css', array(), $this->version, 'all' );
+			wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/lfph-mu-admin.css', array(), $this->version, 'all' );
 		}
 	}
 
@@ -79,15 +79,15 @@ class Cncf_Mu_Admin {
 	 */
 	public function enqueue_scripts( $hook_suffix ) {
 
-		// only loads on CNCF MU top level page.
-		if ( 'toplevel_page_cncf-mu' == $hook_suffix ) {
+		// only loads on LFPH MU top level page.
+		if ( 'toplevel_page_lfph-mu' == $hook_suffix ) {
 
 			// color picker.
 			wp_enqueue_script( 'wp-color-picker' );
 			// media uploader.
 			wp_enqueue_media();
 			// custom scripts.
-			wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/cncf-mu-admin.js', array( 'jquery' ), $this->version, false );
+			wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/lfph-mu-admin.js', array( 'jquery' ), $this->version, false );
 		}
 	}
 
@@ -153,7 +153,7 @@ class Cncf_Mu_Admin {
 			'rewrite'             => array( 'slug' => 'person' ),
 			'supports'            => array( 'title', 'editor', 'thumbnail', 'revisions', 'custom-fields', 'excerpt' ),
 		);
-		register_post_type( 'cncf_person', $opts );
+		register_post_type( 'lfph_person', $opts );
 
 		$opts = array(
 			'labels'            => array(
@@ -171,7 +171,7 @@ class Cncf_Mu_Admin {
 			'rewrite'           => array( 'slug' => 'case-studies' ),
 			'supports'          => array( 'title', 'editor', 'thumbnail', 'revisions', 'custom-fields' ),
 		);
-		register_post_type( 'cncf_case_study', $opts );
+		register_post_type( 'lfph_case_study', $opts );
 
 		$opts = array(
 			'labels'            => array(
@@ -188,7 +188,7 @@ class Cncf_Mu_Admin {
 			'rewrite'           => array( 'slug' => 'case-studies-ch' ),
 			'supports'          => array( 'title', 'editor', 'thumbnail', 'revisions', 'custom-fields' ),
 		);
-		register_post_type( 'cncf_case_study_ch', $opts );
+		register_post_type( 'lfph_case_study_ch', $opts );
 
 		$opts = array(
 			'labels'            => array(
@@ -205,7 +205,7 @@ class Cncf_Mu_Admin {
 			'rewrite'           => array( 'slug' => 'webinars' ),
 			'supports'          => array( 'title', 'editor', 'revisions', 'custom-fields' ),
 		);
-		register_post_type( 'cncf_webinar', $opts );
+		register_post_type( 'lfph_webinar', $opts );
 
 		$opts = array(
 			'labels'            => array(
@@ -222,7 +222,7 @@ class Cncf_Mu_Admin {
 			'rewrite'           => array( 'slug' => 'events' ),
 			'supports'          => array( 'title', 'editor', 'thumbnail', 'revisions', 'custom-fields' ),
 		);
-		register_post_type( 'cncf_event', $opts );
+		register_post_type( 'lfph_event', $opts );
 
 		$opts = array(
 			'labels'              => array(
@@ -241,7 +241,7 @@ class Cncf_Mu_Admin {
 			'rewrite'             => array( 'slug' => 'projects' ),
 			'supports'            => array( 'title', 'editor', 'thumbnail', 'revisions', 'custom-fields' ),
 		);
-		register_post_type( 'cncf_project', $opts );
+		register_post_type( 'lfph_project', $opts );
 
 		$opts = array(
 			'labels'            => array(
@@ -258,7 +258,7 @@ class Cncf_Mu_Admin {
 			'rewrite'           => array( 'slug' => 'speakers-mirror' ),
 			'supports'          => array( 'title', 'custom-fields' ),
 		);
-		register_post_type( 'cncf_speaker', $opts );
+		register_post_type( 'lfph_speaker', $opts );
 
 		$opts = array(
 			'labels'            => array(
@@ -275,7 +275,7 @@ class Cncf_Mu_Admin {
 			'rewrite'           => array( 'slug' => 'spotlights' ),
 			'supports'          => array( 'title', 'editor', 'thumbnail', 'revisions', 'custom-fields' ),
 		);
-		register_post_type( 'cncf_spotlight', $opts );
+		register_post_type( 'lfph_spotlight', $opts );
 
 	}
 
@@ -320,11 +320,11 @@ class Cncf_Mu_Admin {
 		);
 
 		$sidebar    = array(
-			'id'              => 'cncf-sidebar-event',
-			'id_prefix'       => 'cncf_',
+			'id'              => 'lfph-sidebar-event',
+			'id_prefix'       => 'lfph_',
 			'label'           => __( 'Event Settings' ),
-			'post_type'       => 'cncf_event',
-			'data_key_prefix' => 'cncf_event_',
+			'post_type'       => 'lfph_event',
+			'data_key_prefix' => 'lfph_event_',
 			'icon_dashicon'   => 'admin-settings',
 			'tabs'            => array(
 				array(
@@ -415,11 +415,11 @@ class Cncf_Mu_Admin {
 		$sidebars[] = $sidebar;
 
 		$sidebar    = array(
-			'id'              => 'cncf-sidebar-webinar',
-			'id_prefix'       => 'cncf_',
+			'id'              => 'lfph-sidebar-webinar',
+			'id_prefix'       => 'lfph_',
 			'label'           => __( 'Webinar Settings' ),
-			'post_type'       => 'cncf_webinar',
-			'data_key_prefix' => 'cncf_webinar_',
+			'post_type'       => 'lfph_webinar',
+			'data_key_prefix' => 'lfph_webinar_',
 			'icon_dashicon'   => 'admin-settings',
 			'tabs'            => array(
 				array(
@@ -489,7 +489,7 @@ class Cncf_Mu_Admin {
 									'register_meta' => true,
 									'ui_border_top' => true,
 									'default_value' => '',
-									'placeholder'   => 'https://www.cncf.io/wp-content/uploads/2019/11/StackRox-Webinar-2019-11-12.pdf',
+									'placeholder'   => 'https://www.lfph.io/wp-content/uploads/2019/11/StackRox-Webinar-2019-11-12.pdf',
 								),
 							),
 						),
@@ -500,11 +500,11 @@ class Cncf_Mu_Admin {
 		$sidebars[] = $sidebar;
 
 		$sidebar    = array(
-			'id'              => 'cncf-sidebar-person',
-			'id_prefix'       => 'cncf_',
+			'id'              => 'lfph-sidebar-person',
+			'id_prefix'       => 'lfph_',
 			'label'           => __( 'Person Settings' ),
-			'post_type'       => 'cncf_person',
-			'data_key_prefix' => 'cncf_person_',
+			'post_type'       => 'lfph_person',
+			'data_key_prefix' => 'lfph_person_',
 			'icon_dashicon'   => 'admin-settings',
 			'tabs'            => array(
 				array(
@@ -603,11 +603,11 @@ class Cncf_Mu_Admin {
 		$sidebars[] = $sidebar;
 
 		$sidebar    = array(
-			'id'              => 'cncf-sidebar-case-study',
-			'id_prefix'       => 'cncf_',
+			'id'              => 'lfph-sidebar-case-study',
+			'id_prefix'       => 'lfph_',
 			'label'           => __( 'Case Study Settings' ),
-			'post_type'       => 'cncf_case_study',
-			'data_key_prefix' => 'cncf_case_study_',
+			'post_type'       => 'lfph_case_study',
+			'data_key_prefix' => 'lfph_case_study_',
 			'icon_dashicon'   => 'admin-settings',
 			'tabs'            => array(
 				array(
@@ -637,11 +637,11 @@ class Cncf_Mu_Admin {
 		$sidebars[] = $sidebar;
 
 		$sidebar    = array(
-			'id'              => 'cncf-sidebar-case-study',
-			'id_prefix'       => 'cncf_',
+			'id'              => 'lfph-sidebar-case-study',
+			'id_prefix'       => 'lfph_',
 			'label'           => __( 'Case Study Settings' ),
-			'post_type'       => 'cncf_case_study_ch',
-			'data_key_prefix' => 'cncf_case_study_ch_',
+			'post_type'       => 'lfph_case_study_ch',
+			'data_key_prefix' => 'lfph_case_study_ch_',
 			'icon_dashicon'   => 'admin-settings',
 			'tabs'            => array(
 				array(
@@ -671,11 +671,11 @@ class Cncf_Mu_Admin {
 		$sidebars[] = $sidebar;
 
 		$sidebar    = array(
-			'id'              => 'cncf-sidebar-project',
-			'id_prefix'       => 'cncf_',
+			'id'              => 'lfph-sidebar-project',
+			'id_prefix'       => 'lfph_',
 			'label'           => __( 'Project Settings' ),
-			'post_type'       => 'cncf_project',
-			'data_key_prefix' => 'cncf_project_',
+			'post_type'       => 'lfph_project',
+			'data_key_prefix' => 'lfph_project_',
 			'icon_dashicon'   => 'admin-settings',
 			'tabs'            => array(
 				array(
@@ -723,7 +723,7 @@ class Cncf_Mu_Admin {
 									'register_meta' => true,
 									'ui_border_top' => false,
 									'default_value' => '',
-									'placeholder'   => 'https://k8s.devstats.cncf.io/',
+									'placeholder'   => 'https://k8s.devstats.lfph.io/',
 								),
 								array(
 									'type'          => 'text',
@@ -733,7 +733,7 @@ class Cncf_Mu_Admin {
 									'register_meta' => true,
 									'ui_border_top' => false,
 									'default_value' => '',
-									'placeholder'   => 'https://github.com/cncf/artwork/blob/master/examples/graduated.md#coredns-logos',
+									'placeholder'   => 'https://github.com/lfph/artwork/blob/master/examples/graduated.md#coredns-logos',
 								),
 								array(
 									'type'          => 'text',
@@ -814,11 +814,11 @@ class Cncf_Mu_Admin {
 		$sidebars[] = $sidebar;
 
 		$sidebar    = array(
-			'id'              => 'cncf-sidebar-spotlight',
-			'id_prefix'       => 'cncf_',
+			'id'              => 'lfph-sidebar-spotlight',
+			'id_prefix'       => 'lfph_',
 			'label'           => __( 'Spotlight Settings' ),
-			'post_type'       => 'cncf_spotlight',
-			'data_key_prefix' => 'cncf_spotlight_',
+			'post_type'       => 'lfph_spotlight',
+			'data_key_prefix' => 'lfph_spotlight_',
 			'icon_dashicon'   => 'admin-settings',
 			'tabs'            => array(
 				array(
@@ -847,11 +847,11 @@ class Cncf_Mu_Admin {
 		$sidebars[] = $sidebar;
 
 		$sidebar    = array(
-			'id'              => 'cncf-sidebar-post',
-			'id_prefix'       => 'cncf_',
+			'id'              => 'lfph-sidebar-post',
+			'id_prefix'       => 'lfph_',
 			'label'           => __( 'Post Settings' ),
 			'post_type'       => 'post',
-			'data_key_prefix' => 'cncf_post_',
+			'data_key_prefix' => 'lfph_post_',
 			'icon_dashicon'   => 'admin-settings',
 			'tabs'            => array(
 				array(
@@ -902,17 +902,17 @@ class Cncf_Mu_Admin {
 	public function register_taxonomies() {
 
 		$labels = array(
-			'name'              => __( 'Country', 'cncf-mu' ),
-			'singular_name'     => __( 'Country', 'cncf-mu' ),
-			'search_items'      => __( 'Search Countries', 'cncf-mu' ),
-			'all_items'         => __( 'All Countries', 'cncf-mu' ),
-			'parent_item'       => __( 'Parent Continent', 'cncf-mu' ),
-			'parent_item_colon' => __( 'Parent Continent:', 'cncf-mu' ),
-			'edit_item'         => __( 'Edit Country', 'cncf-mu' ),
-			'update_item'       => __( 'Update Country', 'cncf-mu' ),
-			'add_new_item'      => __( 'Add New Country', 'cncf-mu' ),
-			'new_item_name'     => __( 'New Country Name', 'cncf-mu' ),
-			'menu_name'         => __( 'Countries', 'cncf-mu' ),
+			'name'              => __( 'Country', 'lfph-mu' ),
+			'singular_name'     => __( 'Country', 'lfph-mu' ),
+			'search_items'      => __( 'Search Countries', 'lfph-mu' ),
+			'all_items'         => __( 'All Countries', 'lfph-mu' ),
+			'parent_item'       => __( 'Parent Continent', 'lfph-mu' ),
+			'parent_item_colon' => __( 'Parent Continent:', 'lfph-mu' ),
+			'edit_item'         => __( 'Edit Country', 'lfph-mu' ),
+			'update_item'       => __( 'Update Country', 'lfph-mu' ),
+			'add_new_item'      => __( 'Add New Country', 'lfph-mu' ),
+			'new_item_name'     => __( 'New Country Name', 'lfph-mu' ),
+			'menu_name'         => __( 'Countries', 'lfph-mu' ),
 		);
 		$args   = array(
 			'labels'            => $labels,
@@ -921,20 +921,20 @@ class Cncf_Mu_Admin {
 			'show_in_nav_menus' => false,
 			'show_admin_column' => true,
 		);
-		register_taxonomy( 'cncf-country', array( 'cncf_event', 'cncf_case_study', 'cncf_speaker' ), $args );
+		register_taxonomy( 'lfph-country', array( 'lfph_event', 'lfph_case_study', 'lfph_speaker' ), $args );
 
 		$labels = array(
-			'name'              => __( 'Country', 'cncf-mu' ),
-			'singular_name'     => __( 'Country', 'cncf-mu' ),
-			'search_items'      => __( 'Search Countries', 'cncf-mu' ),
-			'all_items'         => __( 'All Countries', 'cncf-mu' ),
-			'parent_item'       => __( 'Parent Continent', 'cncf-mu' ),
-			'parent_item_colon' => __( 'Parent Continent:', 'cncf-mu' ),
-			'edit_item'         => __( 'Edit Country', 'cncf-mu' ),
-			'update_item'       => __( 'Update Country', 'cncf-mu' ),
-			'add_new_item'      => __( 'Add New Country', 'cncf-mu' ),
-			'new_item_name'     => __( 'New Country Name', 'cncf-mu' ),
-			'menu_name'         => __( 'Countries', 'cncf-mu' ),
+			'name'              => __( 'Country', 'lfph-mu' ),
+			'singular_name'     => __( 'Country', 'lfph-mu' ),
+			'search_items'      => __( 'Search Countries', 'lfph-mu' ),
+			'all_items'         => __( 'All Countries', 'lfph-mu' ),
+			'parent_item'       => __( 'Parent Continent', 'lfph-mu' ),
+			'parent_item_colon' => __( 'Parent Continent:', 'lfph-mu' ),
+			'edit_item'         => __( 'Edit Country', 'lfph-mu' ),
+			'update_item'       => __( 'Update Country', 'lfph-mu' ),
+			'add_new_item'      => __( 'Add New Country', 'lfph-mu' ),
+			'new_item_name'     => __( 'New Country Name', 'lfph-mu' ),
+			'menu_name'         => __( 'Countries', 'lfph-mu' ),
 		);
 		$args   = array(
 			'labels'            => $labels,
@@ -943,18 +943,18 @@ class Cncf_Mu_Admin {
 			'show_in_nav_menus' => false,
 			'show_admin_column' => true,
 		);
-		register_taxonomy( 'cncf-country-ch', array( 'cncf_case_study_ch' ), $args );
+		register_taxonomy( 'lfph-country-ch', array( 'lfph_case_study_ch' ), $args );
 
 		$labels = array(
-			'name'          => __( 'Product Type', 'cncf-mu' ),
-			'singular_name' => __( 'Product Type', 'cncf-mu' ),
-			'search_items'  => __( 'Search Product Types', 'cncf-mu' ),
-			'all_items'     => __( 'All Product Types', 'cncf-mu' ),
-			'edit_item'     => __( 'Edit Product Type', 'cncf-mu' ),
-			'update_item'   => __( 'Update Product Type', 'cncf-mu' ),
-			'add_new_item'  => __( 'Add New Product Type', 'cncf-mu' ),
-			'new_item_name' => __( 'New Product Type Name', 'cncf-mu' ),
-			'menu_name'     => __( 'Product Types', 'cncf-mu' ),
+			'name'          => __( 'Product Type', 'lfph-mu' ),
+			'singular_name' => __( 'Product Type', 'lfph-mu' ),
+			'search_items'  => __( 'Search Product Types', 'lfph-mu' ),
+			'all_items'     => __( 'All Product Types', 'lfph-mu' ),
+			'edit_item'     => __( 'Edit Product Type', 'lfph-mu' ),
+			'update_item'   => __( 'Update Product Type', 'lfph-mu' ),
+			'add_new_item'  => __( 'Add New Product Type', 'lfph-mu' ),
+			'new_item_name' => __( 'New Product Type Name', 'lfph-mu' ),
+			'menu_name'     => __( 'Product Types', 'lfph-mu' ),
 		);
 		$args   = array(
 			'labels'            => $labels,
@@ -963,18 +963,18 @@ class Cncf_Mu_Admin {
 			'show_in_nav_menus' => false,
 			'show_admin_column' => true,
 		);
-		register_taxonomy( 'cncf-product-type', array( 'cncf_case_study' ), $args );
+		register_taxonomy( 'lfph-product-type', array( 'lfph_case_study' ), $args );
 
 		$labels = array(
-			'name'          => __( 'Product Type', 'cncf-mu' ),
-			'singular_name' => __( 'Product Type', 'cncf-mu' ),
-			'search_items'  => __( 'Search Product Types', 'cncf-mu' ),
-			'all_items'     => __( 'All Product Types', 'cncf-mu' ),
-			'edit_item'     => __( 'Edit Product Type', 'cncf-mu' ),
-			'update_item'   => __( 'Update Product Type', 'cncf-mu' ),
-			'add_new_item'  => __( 'Add New Product Type', 'cncf-mu' ),
-			'new_item_name' => __( 'New Product Type Name', 'cncf-mu' ),
-			'menu_name'     => __( 'Product Types', 'cncf-mu' ),
+			'name'          => __( 'Product Type', 'lfph-mu' ),
+			'singular_name' => __( 'Product Type', 'lfph-mu' ),
+			'search_items'  => __( 'Search Product Types', 'lfph-mu' ),
+			'all_items'     => __( 'All Product Types', 'lfph-mu' ),
+			'edit_item'     => __( 'Edit Product Type', 'lfph-mu' ),
+			'update_item'   => __( 'Update Product Type', 'lfph-mu' ),
+			'add_new_item'  => __( 'Add New Product Type', 'lfph-mu' ),
+			'new_item_name' => __( 'New Product Type Name', 'lfph-mu' ),
+			'menu_name'     => __( 'Product Types', 'lfph-mu' ),
 		);
 		$args   = array(
 			'labels'            => $labels,
@@ -983,18 +983,18 @@ class Cncf_Mu_Admin {
 			'show_in_nav_menus' => false,
 			'show_admin_column' => true,
 		);
-		register_taxonomy( 'cncf-product-type-ch', array( 'cncf_case_study_ch' ), $args );
+		register_taxonomy( 'lfph-product-type-ch', array( 'lfph_case_study_ch' ), $args );
 
 		$labels = array(
-			'name'          => __( 'Cloud Type', 'cncf-mu' ),
-			'singular_name' => __( 'Cloud Type', 'cncf-mu' ),
-			'search_items'  => __( 'Search Cloud Types', 'cncf-mu' ),
-			'all_items'     => __( 'All Cloud Types', 'cncf-mu' ),
-			'edit_item'     => __( 'Edit Cloud Type', 'cncf-mu' ),
-			'update_item'   => __( 'Update Cloud Type', 'cncf-mu' ),
-			'add_new_item'  => __( 'Add New Cloud Type', 'cncf-mu' ),
-			'new_item_name' => __( 'New Cloud Type Name', 'cncf-mu' ),
-			'menu_name'     => __( 'Cloud Types', 'cncf-mu' ),
+			'name'          => __( 'Cloud Type', 'lfph-mu' ),
+			'singular_name' => __( 'Cloud Type', 'lfph-mu' ),
+			'search_items'  => __( 'Search Cloud Types', 'lfph-mu' ),
+			'all_items'     => __( 'All Cloud Types', 'lfph-mu' ),
+			'edit_item'     => __( 'Edit Cloud Type', 'lfph-mu' ),
+			'update_item'   => __( 'Update Cloud Type', 'lfph-mu' ),
+			'add_new_item'  => __( 'Add New Cloud Type', 'lfph-mu' ),
+			'new_item_name' => __( 'New Cloud Type Name', 'lfph-mu' ),
+			'menu_name'     => __( 'Cloud Types', 'lfph-mu' ),
 		);
 		$args   = array(
 			'labels'            => $labels,
@@ -1003,18 +1003,18 @@ class Cncf_Mu_Admin {
 			'show_in_nav_menus' => false,
 			'show_admin_column' => true,
 		);
-		register_taxonomy( 'cncf-cloud-type', array( 'cncf_case_study' ), $args );
+		register_taxonomy( 'lfph-cloud-type', array( 'lfph_case_study' ), $args );
 
 		$labels = array(
-			'name'          => __( 'Cloud Type', 'cncf-mu' ),
-			'singular_name' => __( 'Cloud Type', 'cncf-mu' ),
-			'search_items'  => __( 'Search Cloud Types', 'cncf-mu' ),
-			'all_items'     => __( 'All Cloud Types', 'cncf-mu' ),
-			'edit_item'     => __( 'Edit Cloud Type', 'cncf-mu' ),
-			'update_item'   => __( 'Update Cloud Type', 'cncf-mu' ),
-			'add_new_item'  => __( 'Add New Cloud Type', 'cncf-mu' ),
-			'new_item_name' => __( 'New Cloud Type Name', 'cncf-mu' ),
-			'menu_name'     => __( 'Cloud Types', 'cncf-mu' ),
+			'name'          => __( 'Cloud Type', 'lfph-mu' ),
+			'singular_name' => __( 'Cloud Type', 'lfph-mu' ),
+			'search_items'  => __( 'Search Cloud Types', 'lfph-mu' ),
+			'all_items'     => __( 'All Cloud Types', 'lfph-mu' ),
+			'edit_item'     => __( 'Edit Cloud Type', 'lfph-mu' ),
+			'update_item'   => __( 'Update Cloud Type', 'lfph-mu' ),
+			'add_new_item'  => __( 'Add New Cloud Type', 'lfph-mu' ),
+			'new_item_name' => __( 'New Cloud Type Name', 'lfph-mu' ),
+			'menu_name'     => __( 'Cloud Types', 'lfph-mu' ),
 		);
 		$args   = array(
 			'labels'            => $labels,
@@ -1023,18 +1023,18 @@ class Cncf_Mu_Admin {
 			'show_in_nav_menus' => false,
 			'show_admin_column' => true,
 		);
-		register_taxonomy( 'cncf-cloud-type-ch', array( 'cncf_case_study_ch' ), $args );
+		register_taxonomy( 'lfph-cloud-type-ch', array( 'lfph_case_study_ch' ), $args );
 
 		$labels = array(
-			'name'          => __( 'Projects', 'cncf-mu' ),
-			'singular_name' => __( 'Project', 'cncf-mu' ),
-			'search_items'  => __( 'Search Projects', 'cncf-mu' ),
-			'all_items'     => __( 'All Projects', 'cncf-mu' ),
-			'edit_item'     => __( 'Edit Project', 'cncf-mu' ),
-			'update_item'   => __( 'Update Project', 'cncf-mu' ),
-			'add_new_item'  => __( 'Add New Project', 'cncf-mu' ),
-			'new_item_name' => __( 'New Project Name', 'cncf-mu' ),
-			'menu_name'     => __( 'Projects', 'cncf-mu' ),
+			'name'          => __( 'Projects', 'lfph-mu' ),
+			'singular_name' => __( 'Project', 'lfph-mu' ),
+			'search_items'  => __( 'Search Projects', 'lfph-mu' ),
+			'all_items'     => __( 'All Projects', 'lfph-mu' ),
+			'edit_item'     => __( 'Edit Project', 'lfph-mu' ),
+			'update_item'   => __( 'Update Project', 'lfph-mu' ),
+			'add_new_item'  => __( 'Add New Project', 'lfph-mu' ),
+			'new_item_name' => __( 'New Project Name', 'lfph-mu' ),
+			'menu_name'     => __( 'Projects', 'lfph-mu' ),
 		);
 		$args   = array(
 			'labels'            => $labels,
@@ -1043,18 +1043,18 @@ class Cncf_Mu_Admin {
 			'show_in_nav_menus' => false,
 			'show_admin_column' => true,
 		);
-		register_taxonomy( 'cncf-project', array( 'cncf_webinar', 'cncf_case_study', 'cncf_case_study_ch', 'cncf_speaker', 'cncf_spotlight' ), $args );
+		register_taxonomy( 'lfph-project', array( 'lfph_webinar', 'lfph_case_study', 'lfph_case_study_ch', 'lfph_speaker', 'lfph_spotlight' ), $args );
 
 		$labels = array(
-			'name'          => __( 'Author Category', 'cncf-mu' ),
-			'singular_name' => __( 'Author Category', 'cncf-mu' ),
-			'search_items'  => __( 'Search Author Categories', 'cncf-mu' ),
-			'all_items'     => __( 'All Author Categories', 'cncf-mu' ),
-			'edit_item'     => __( 'Edit Author Category', 'cncf-mu' ),
-			'update_item'   => __( 'Update Author Category', 'cncf-mu' ),
-			'add_new_item'  => __( 'Add New Author Category', 'cncf-mu' ),
-			'new_item_name' => __( 'New Author Category Name', 'cncf-mu' ),
-			'menu_name'     => __( 'Author Categories', 'cncf-mu' ),
+			'name'          => __( 'Author Category', 'lfph-mu' ),
+			'singular_name' => __( 'Author Category', 'lfph-mu' ),
+			'search_items'  => __( 'Search Author Categories', 'lfph-mu' ),
+			'all_items'     => __( 'All Author Categories', 'lfph-mu' ),
+			'edit_item'     => __( 'Edit Author Category', 'lfph-mu' ),
+			'update_item'   => __( 'Update Author Category', 'lfph-mu' ),
+			'add_new_item'  => __( 'Add New Author Category', 'lfph-mu' ),
+			'new_item_name' => __( 'New Author Category Name', 'lfph-mu' ),
+			'menu_name'     => __( 'Author Categories', 'lfph-mu' ),
 		);
 		$args   = array(
 			'labels'            => $labels,
@@ -1063,18 +1063,18 @@ class Cncf_Mu_Admin {
 			'show_in_nav_menus' => false,
 			'show_admin_column' => true,
 		);
-		register_taxonomy( 'cncf-author-category', array( 'cncf_webinar', 'post' ), $args );
+		register_taxonomy( 'lfph-author-category', array( 'lfph_webinar', 'post' ), $args );
 
 		$labels = array(
-			'name'          => __( 'Company', 'cncf-mu' ),
-			'singular_name' => __( 'Company', 'cncf-mu' ),
-			'search_items'  => __( 'Search Companies', 'cncf-mu' ),
-			'all_items'     => __( 'All Companies', 'cncf-mu' ),
-			'edit_item'     => __( 'Edit Company', 'cncf-mu' ),
-			'update_item'   => __( 'Update Company', 'cncf-mu' ),
-			'add_new_item'  => __( 'Add New Company', 'cncf-mu' ),
-			'new_item_name' => __( 'New Company Name', 'cncf-mu' ),
-			'menu_name'     => __( 'Companies', 'cncf-mu' ),
+			'name'          => __( 'Company', 'lfph-mu' ),
+			'singular_name' => __( 'Company', 'lfph-mu' ),
+			'search_items'  => __( 'Search Companies', 'lfph-mu' ),
+			'all_items'     => __( 'All Companies', 'lfph-mu' ),
+			'edit_item'     => __( 'Edit Company', 'lfph-mu' ),
+			'update_item'   => __( 'Update Company', 'lfph-mu' ),
+			'add_new_item'  => __( 'Add New Company', 'lfph-mu' ),
+			'new_item_name' => __( 'New Company Name', 'lfph-mu' ),
+			'menu_name'     => __( 'Companies', 'lfph-mu' ),
 		);
 		$args   = array(
 			'labels'            => $labels,
@@ -1083,18 +1083,18 @@ class Cncf_Mu_Admin {
 			'show_in_nav_menus' => false,
 			'show_admin_column' => true,
 		);
-		register_taxonomy( 'cncf-company', array( 'cncf_webinar' ), $args );
+		register_taxonomy( 'lfph-company', array( 'lfph_webinar' ), $args );
 
 		$labels = array(
-			'name'          => __( 'Topics', 'cncf-mu' ),
-			'singular_name' => __( 'Topic', 'cncf-mu' ),
-			'search_items'  => __( 'Search Topics', 'cncf-mu' ),
-			'all_items'     => __( 'All Topics', 'cncf-mu' ),
-			'edit_item'     => __( 'Edit Topic', 'cncf-mu' ),
-			'update_item'   => __( 'Update Topic', 'cncf-mu' ),
-			'add_new_item'  => __( 'Add New Topic', 'cncf-mu' ),
-			'new_item_name' => __( 'New Topic Name', 'cncf-mu' ),
-			'menu_name'     => __( 'Topics', 'cncf-mu' ),
+			'name'          => __( 'Topics', 'lfph-mu' ),
+			'singular_name' => __( 'Topic', 'lfph-mu' ),
+			'search_items'  => __( 'Search Topics', 'lfph-mu' ),
+			'all_items'     => __( 'All Topics', 'lfph-mu' ),
+			'edit_item'     => __( 'Edit Topic', 'lfph-mu' ),
+			'update_item'   => __( 'Update Topic', 'lfph-mu' ),
+			'add_new_item'  => __( 'Add New Topic', 'lfph-mu' ),
+			'new_item_name' => __( 'New Topic Name', 'lfph-mu' ),
+			'menu_name'     => __( 'Topics', 'lfph-mu' ),
 		);
 		$args   = array(
 			'labels'            => $labels,
@@ -1103,18 +1103,18 @@ class Cncf_Mu_Admin {
 			'show_in_nav_menus' => false,
 			'show_admin_column' => true,
 		);
-		register_taxonomy( 'cncf-topic', array( 'cncf_webinar' ), $args );
+		register_taxonomy( 'lfph-topic', array( 'lfph_webinar' ), $args );
 
 		$labels = array(
-			'name'          => __( 'Category', 'cncf-mu' ),
-			'singular_name' => __( 'Category', 'cncf-mu' ),
-			'search_items'  => __( 'Search Categories', 'cncf-mu' ),
-			'all_items'     => __( 'All Categories', 'cncf-mu' ),
-			'edit_item'     => __( 'Edit Category', 'cncf-mu' ),
-			'update_item'   => __( 'Update Category', 'cncf-mu' ),
-			'add_new_item'  => __( 'Add New Category', 'cncf-mu' ),
-			'new_item_name' => __( 'New Category Name', 'cncf-mu' ),
-			'menu_name'     => __( 'People Categories', 'cncf-mu' ),
+			'name'          => __( 'Category', 'lfph-mu' ),
+			'singular_name' => __( 'Category', 'lfph-mu' ),
+			'search_items'  => __( 'Search Categories', 'lfph-mu' ),
+			'all_items'     => __( 'All Categories', 'lfph-mu' ),
+			'edit_item'     => __( 'Edit Category', 'lfph-mu' ),
+			'update_item'   => __( 'Update Category', 'lfph-mu' ),
+			'add_new_item'  => __( 'Add New Category', 'lfph-mu' ),
+			'new_item_name' => __( 'New Category Name', 'lfph-mu' ),
+			'menu_name'     => __( 'People Categories', 'lfph-mu' ),
 		);
 		$args   = array(
 			'labels'            => $labels,
@@ -1123,18 +1123,18 @@ class Cncf_Mu_Admin {
 			'show_in_nav_menus' => false,
 			'show_admin_column' => true,
 		);
-		register_taxonomy( 'cncf-person-category', array( 'cncf_person' ), $args );
+		register_taxonomy( 'lfph-person-category', array( 'lfph_person' ), $args );
 
 		$labels = array(
-			'name'          => __( 'Challenges', 'cncf-mu' ),
-			'singular_name' => __( 'Challenge', 'cncf-mu' ),
-			'search_items'  => __( 'Search Challenges', 'cncf-mu' ),
-			'all_items'     => __( 'All Challenges', 'cncf-mu' ),
-			'edit_item'     => __( 'Edit Challenge', 'cncf-mu' ),
-			'update_item'   => __( 'Update Challenge', 'cncf-mu' ),
-			'add_new_item'  => __( 'Add New Challenge', 'cncf-mu' ),
-			'new_item_name' => __( 'New Challenge Name', 'cncf-mu' ),
-			'menu_name'     => __( 'Challenges', 'cncf-mu' ),
+			'name'          => __( 'Challenges', 'lfph-mu' ),
+			'singular_name' => __( 'Challenge', 'lfph-mu' ),
+			'search_items'  => __( 'Search Challenges', 'lfph-mu' ),
+			'all_items'     => __( 'All Challenges', 'lfph-mu' ),
+			'edit_item'     => __( 'Edit Challenge', 'lfph-mu' ),
+			'update_item'   => __( 'Update Challenge', 'lfph-mu' ),
+			'add_new_item'  => __( 'Add New Challenge', 'lfph-mu' ),
+			'new_item_name' => __( 'New Challenge Name', 'lfph-mu' ),
+			'menu_name'     => __( 'Challenges', 'lfph-mu' ),
 		);
 		$args   = array(
 			'labels'            => $labels,
@@ -1143,18 +1143,18 @@ class Cncf_Mu_Admin {
 			'show_in_nav_menus' => false,
 			'show_admin_column' => true,
 		);
-		register_taxonomy( 'cncf-challenge', array( 'cncf_case_study' ), $args );
+		register_taxonomy( 'lfph-challenge', array( 'lfph_case_study' ), $args );
 
 		$labels = array(
-			'name'          => __( 'Challenges', 'cncf-mu' ),
-			'singular_name' => __( 'Challenge', 'cncf-mu' ),
-			'search_items'  => __( 'Search Challenges', 'cncf-mu' ),
-			'all_items'     => __( 'All Challenges', 'cncf-mu' ),
-			'edit_item'     => __( 'Edit Challenge', 'cncf-mu' ),
-			'update_item'   => __( 'Update Challenge', 'cncf-mu' ),
-			'add_new_item'  => __( 'Add New Challenge', 'cncf-mu' ),
-			'new_item_name' => __( 'New Challenge Name', 'cncf-mu' ),
-			'menu_name'     => __( 'Challenges', 'cncf-mu' ),
+			'name'          => __( 'Challenges', 'lfph-mu' ),
+			'singular_name' => __( 'Challenge', 'lfph-mu' ),
+			'search_items'  => __( 'Search Challenges', 'lfph-mu' ),
+			'all_items'     => __( 'All Challenges', 'lfph-mu' ),
+			'edit_item'     => __( 'Edit Challenge', 'lfph-mu' ),
+			'update_item'   => __( 'Update Challenge', 'lfph-mu' ),
+			'add_new_item'  => __( 'Add New Challenge', 'lfph-mu' ),
+			'new_item_name' => __( 'New Challenge Name', 'lfph-mu' ),
+			'menu_name'     => __( 'Challenges', 'lfph-mu' ),
 		);
 		$args   = array(
 			'labels'            => $labels,
@@ -1163,18 +1163,18 @@ class Cncf_Mu_Admin {
 			'show_in_nav_menus' => false,
 			'show_admin_column' => true,
 		);
-		register_taxonomy( 'cncf-challenge-ch', array( 'cncf_case_study_ch' ), $args );
+		register_taxonomy( 'lfph-challenge-ch', array( 'lfph_case_study_ch' ), $args );
 
 		$labels = array(
-			'name'          => __( 'Industries', 'cncf-mu' ),
-			'singular_name' => __( 'Industry', 'cncf-mu' ),
-			'search_items'  => __( 'Search Industries', 'cncf-mu' ),
-			'all_items'     => __( 'All Industries', 'cncf-mu' ),
-			'edit_item'     => __( 'Edit Industry', 'cncf-mu' ),
-			'update_item'   => __( 'Update Industry', 'cncf-mu' ),
-			'add_new_item'  => __( 'Add New Industry', 'cncf-mu' ),
-			'new_item_name' => __( 'New Industry Name', 'cncf-mu' ),
-			'menu_name'     => __( 'Industries', 'cncf-mu' ),
+			'name'          => __( 'Industries', 'lfph-mu' ),
+			'singular_name' => __( 'Industry', 'lfph-mu' ),
+			'search_items'  => __( 'Search Industries', 'lfph-mu' ),
+			'all_items'     => __( 'All Industries', 'lfph-mu' ),
+			'edit_item'     => __( 'Edit Industry', 'lfph-mu' ),
+			'update_item'   => __( 'Update Industry', 'lfph-mu' ),
+			'add_new_item'  => __( 'Add New Industry', 'lfph-mu' ),
+			'new_item_name' => __( 'New Industry Name', 'lfph-mu' ),
+			'menu_name'     => __( 'Industries', 'lfph-mu' ),
 		);
 		$args   = array(
 			'labels'            => $labels,
@@ -1183,18 +1183,18 @@ class Cncf_Mu_Admin {
 			'show_in_nav_menus' => false,
 			'show_admin_column' => true,
 		);
-		register_taxonomy( 'cncf-industry', array( 'cncf_case_study' ), $args );
+		register_taxonomy( 'lfph-industry', array( 'lfph_case_study' ), $args );
 
 		$labels = array(
-			'name'          => __( 'Industries', 'cncf-mu' ),
-			'singular_name' => __( 'Industry', 'cncf-mu' ),
-			'search_items'  => __( 'Search Industries', 'cncf-mu' ),
-			'all_items'     => __( 'All Industries', 'cncf-mu' ),
-			'edit_item'     => __( 'Edit Industry', 'cncf-mu' ),
-			'update_item'   => __( 'Update Industry', 'cncf-mu' ),
-			'add_new_item'  => __( 'Add New Industry', 'cncf-mu' ),
-			'new_item_name' => __( 'New Industry Name', 'cncf-mu' ),
-			'menu_name'     => __( 'Industries', 'cncf-mu' ),
+			'name'          => __( 'Industries', 'lfph-mu' ),
+			'singular_name' => __( 'Industry', 'lfph-mu' ),
+			'search_items'  => __( 'Search Industries', 'lfph-mu' ),
+			'all_items'     => __( 'All Industries', 'lfph-mu' ),
+			'edit_item'     => __( 'Edit Industry', 'lfph-mu' ),
+			'update_item'   => __( 'Update Industry', 'lfph-mu' ),
+			'add_new_item'  => __( 'Add New Industry', 'lfph-mu' ),
+			'new_item_name' => __( 'New Industry Name', 'lfph-mu' ),
+			'menu_name'     => __( 'Industries', 'lfph-mu' ),
 		);
 		$args   = array(
 			'labels'            => $labels,
@@ -1203,21 +1203,21 @@ class Cncf_Mu_Admin {
 			'show_in_nav_menus' => false,
 			'show_admin_column' => true,
 		);
-		register_taxonomy( 'cncf-industry-ch', array( 'cncf_case_study_ch' ), $args );
+		register_taxonomy( 'lfph-industry-ch', array( 'lfph_case_study_ch' ), $args );
 
 		/**
 		 * Project Stage Taxonomy for Projects.
 		 */
 		$labels = array(
-			'name'          => __( 'Project Stage', 'cncf-mu' ),
-			'singular_name' => __( 'Project Stage', 'cncf-mu' ),
-			'search_items'  => __( 'Search Project Stages', 'cncf-mu' ),
-			'all_items'     => __( 'All Project Stages', 'cncf-mu' ),
-			'edit_item'     => __( 'Edit Project Stage', 'cncf-mu' ),
-			'update_item'   => __( 'Update Project Stage', 'cncf-mu' ),
-			'add_new_item'  => __( 'Add New Project Stage', 'cncf-mu' ),
-			'new_item_name' => __( 'New Project Stage', 'cncf-mu' ),
-			'menu_name'     => __( 'Project Stages', 'cncf-mu' ),
+			'name'          => __( 'Project Stage', 'lfph-mu' ),
+			'singular_name' => __( 'Project Stage', 'lfph-mu' ),
+			'search_items'  => __( 'Search Project Stages', 'lfph-mu' ),
+			'all_items'     => __( 'All Project Stages', 'lfph-mu' ),
+			'edit_item'     => __( 'Edit Project Stage', 'lfph-mu' ),
+			'update_item'   => __( 'Update Project Stage', 'lfph-mu' ),
+			'add_new_item'  => __( 'Add New Project Stage', 'lfph-mu' ),
+			'new_item_name' => __( 'New Project Stage', 'lfph-mu' ),
+			'menu_name'     => __( 'Project Stages', 'lfph-mu' ),
 		);
 		$args   = array(
 			'labels'            => $labels,
@@ -1226,18 +1226,18 @@ class Cncf_Mu_Admin {
 			'hierarchical'      => false,
 			'show_in_nav_menus' => false,
 		);
-		register_taxonomy( 'cncf-project-stage', array( 'cncf_project' ), $args );
+		register_taxonomy( 'lfph-project-stage', array( 'lfph_project' ), $args );
 
 		$labels = array(
-			'name'          => __( 'Host', 'cncf-mu' ),
-			'singular_name' => __( 'Host', 'cncf-mu' ),
-			'search_items'  => __( 'Search Hosts', 'cncf-mu' ),
-			'all_items'     => __( 'All Hosts', 'cncf-mu' ),
-			'edit_item'     => __( 'Edit Host', 'cncf-mu' ),
-			'update_item'   => __( 'Update Host', 'cncf-mu' ),
-			'add_new_item'  => __( 'Add New Host', 'cncf-mu' ),
-			'new_item_name' => __( 'New Host', 'cncf-mu' ),
-			'menu_name'     => __( 'Hosts', 'cncf-mu' ),
+			'name'          => __( 'Host', 'lfph-mu' ),
+			'singular_name' => __( 'Host', 'lfph-mu' ),
+			'search_items'  => __( 'Search Hosts', 'lfph-mu' ),
+			'all_items'     => __( 'All Hosts', 'lfph-mu' ),
+			'edit_item'     => __( 'Edit Host', 'lfph-mu' ),
+			'update_item'   => __( 'Update Host', 'lfph-mu' ),
+			'add_new_item'  => __( 'Add New Host', 'lfph-mu' ),
+			'new_item_name' => __( 'New Host', 'lfph-mu' ),
+			'menu_name'     => __( 'Hosts', 'lfph-mu' ),
 		);
 		$args   = array(
 			'labels'            => $labels,
@@ -1246,18 +1246,18 @@ class Cncf_Mu_Admin {
 			'show_in_nav_menus' => false,
 			'show_admin_column' => true,
 		);
-		register_taxonomy( 'cncf-event-host', array( 'cncf_event' ), $args );
+		register_taxonomy( 'lfph-event-host', array( 'lfph_event' ), $args );
 
 		$labels = array(
-			'name'          => __( 'Language', 'cncf-mu' ),
-			'singular_name' => __( 'Language', 'cncf-mu' ),
-			'search_items'  => __( 'Search Languages', 'cncf-mu' ),
-			'all_items'     => __( 'All Languages', 'cncf-mu' ),
-			'edit_item'     => __( 'Edit Language', 'cncf-mu' ),
-			'update_item'   => __( 'Update Language', 'cncf-mu' ),
-			'add_new_item'  => __( 'Add New Language', 'cncf-mu' ),
-			'new_item_name' => __( 'New Language', 'cncf-mu' ),
-			'menu_name'     => __( 'Languages', 'cncf-mu' ),
+			'name'          => __( 'Language', 'lfph-mu' ),
+			'singular_name' => __( 'Language', 'lfph-mu' ),
+			'search_items'  => __( 'Search Languages', 'lfph-mu' ),
+			'all_items'     => __( 'All Languages', 'lfph-mu' ),
+			'edit_item'     => __( 'Edit Language', 'lfph-mu' ),
+			'update_item'   => __( 'Update Language', 'lfph-mu' ),
+			'add_new_item'  => __( 'Add New Language', 'lfph-mu' ),
+			'new_item_name' => __( 'New Language', 'lfph-mu' ),
+			'menu_name'     => __( 'Languages', 'lfph-mu' ),
 		);
 		$args   = array(
 			'labels'            => $labels,
@@ -1266,35 +1266,35 @@ class Cncf_Mu_Admin {
 			'show_in_nav_menus' => false,
 			'show_admin_column' => true,
 		);
-		register_taxonomy( 'cncf-language', array( 'cncf_webinar', 'cncf_speaker' ), $args );
+		register_taxonomy( 'lfph-language', array( 'lfph_webinar', 'lfph_speaker' ), $args );
 
 		$args = array(
-			'labels'            => array( 'name' => __( 'Affiliations', 'cncf-mu' ) ),
+			'labels'            => array( 'name' => __( 'Affiliations', 'lfph-mu' ) ),
 			'show_in_rest'      => true,
 			'hierarchical'      => false,
 			'show_in_nav_menus' => false,
 			'show_admin_column' => true,
 		);
-		register_taxonomy( 'cncf-speaker-affiliation', array( 'cncf_speaker' ), $args );
+		register_taxonomy( 'lfph-speaker-affiliation', array( 'lfph_speaker' ), $args );
 		$args = array(
-			'labels'            => array( 'name' => __( 'Expertise', 'cncf-mu' ) ),
+			'labels'            => array( 'name' => __( 'Expertise', 'lfph-mu' ) ),
 			'show_in_rest'      => true,
 			'hierarchical'      => false,
 			'show_in_nav_menus' => false,
 			'show_admin_column' => true,
 		);
-		register_taxonomy( 'cncf-speaker-expertise', array( 'cncf_speaker' ), $args );
+		register_taxonomy( 'lfph-speaker-expertise', array( 'lfph_speaker' ), $args );
 
 		$labels = array(
-			'name'          => __( 'Spotlight Type', 'cncf-mu' ),
-			'singular_name' => __( 'Spotlight Type', 'cncf-mu' ),
-			'search_items'  => __( 'Search Spotlight Types', 'cncf-mu' ),
-			'all_items'     => __( 'All Spotlight Types', 'cncf-mu' ),
-			'edit_item'     => __( 'Edit Type', 'cncf-mu' ),
-			'update_item'   => __( 'Update Type', 'cncf-mu' ),
-			'add_new_item'  => __( 'Add New Spotlight Type', 'cncf-mu' ),
-			'new_item_name' => __( 'New Type Name', 'cncf-mu' ),
-			'menu_name'     => __( 'Spotlight Types', 'cncf-mu' ),
+			'name'          => __( 'Spotlight Type', 'lfph-mu' ),
+			'singular_name' => __( 'Spotlight Type', 'lfph-mu' ),
+			'search_items'  => __( 'Search Spotlight Types', 'lfph-mu' ),
+			'all_items'     => __( 'All Spotlight Types', 'lfph-mu' ),
+			'edit_item'     => __( 'Edit Type', 'lfph-mu' ),
+			'update_item'   => __( 'Update Type', 'lfph-mu' ),
+			'add_new_item'  => __( 'Add New Spotlight Type', 'lfph-mu' ),
+			'new_item_name' => __( 'New Type Name', 'lfph-mu' ),
+			'menu_name'     => __( 'Spotlight Types', 'lfph-mu' ),
 		);
 		$args   = array(
 			'labels'            => $labels,
@@ -1303,7 +1303,7 @@ class Cncf_Mu_Admin {
 			'show_in_nav_menus' => false,
 			'show_admin_column' => true,
 		);
-		register_taxonomy( 'cncf-spotlight-type', array( 'cncf_spotlight' ), $args );
+		register_taxonomy( 'lfph-spotlight-type', array( 'lfph_spotlight' ), $args );
 	}
 
 	/**
@@ -1408,7 +1408,7 @@ class Cncf_Mu_Admin {
 	}
 
 	/**
-	 * Sync User of role "Speaker" to the cncf_speaker CPT.
+	 * Sync User of role "Speaker" to the lfph_speaker CPT.
 	 *
 	 * @param int $user_id ID of user.
 	 */
@@ -1434,7 +1434,7 @@ class Cncf_Mu_Admin {
 		$query = new WP_Query(
 			array(
 				'name'      => $user_id,
-				'post_type' => 'cncf_speaker',
+				'post_type' => 'lfph_speaker',
 			)
 		);
 
@@ -1453,7 +1453,7 @@ class Cncf_Mu_Admin {
 				array(
 					'post_title'  => $last_name . $first_name,
 					'post_name'   => $user_id,
-					'post_type'   => 'cncf_speaker',
+					'post_type'   => 'lfph_speaker',
 					'post_status' => 'publish',
 				)
 			);
@@ -1479,17 +1479,17 @@ class Cncf_Mu_Admin {
 		$country = str_replace( 'Venezuela, Bolivarian Republic of', 'Venezuela', $country );
 		$country = str_replace( 'Viet Nam', 'Vietnam', $country );
 
-		wp_set_object_terms( $speaker_id, $affiliations, 'cncf-speaker-affiliation' );
-		wp_set_object_terms( $speaker_id, $expertise, 'cncf-speaker-expertise' );
-		wp_set_object_terms( $speaker_id, $languages, 'cncf-language' );
-		wp_set_object_terms( $speaker_id, $projects, 'cncf-project' );
-		wp_set_object_terms( $speaker_id, $country, 'cncf-country' );
+		wp_set_object_terms( $speaker_id, $affiliations, 'lfph-speaker-affiliation' );
+		wp_set_object_terms( $speaker_id, $expertise, 'lfph-speaker-expertise' );
+		wp_set_object_terms( $speaker_id, $languages, 'lfph-language' );
+		wp_set_object_terms( $speaker_id, $projects, 'lfph-project' );
+		wp_set_object_terms( $speaker_id, $country, 'lfph-country' );
 
 		wp_reset_postdata();
 	}
 
 	/**
-	 * Syncs all the cncf_speaker data with the Users of role "Speaker" metadata.
+	 * Syncs all the lfph_speaker data with the Users of role "Speaker" metadata.
 	 * This function is triggered when you update the "Speakers" page.
 	 *
 	 * @param int    $post_id ID of post that is trashed.
@@ -1504,7 +1504,7 @@ class Cncf_Mu_Admin {
 
 		$allposts = get_posts(
 			array(
-				'post_type'   => 'cncf_speaker',
+				'post_type'   => 'lfph_speaker',
 				'numberposts' => -1,
 			),
 		);
@@ -1521,7 +1521,7 @@ class Cncf_Mu_Admin {
 	}
 
 	/**
-	 * Function is triggered by any action that updates a cncf_speaker
+	 * Function is triggered by any action that updates a lfph_speaker
 	 *
 	 * @param int   $user_id User ID.
 	 * @param array $args Args.
@@ -1546,7 +1546,7 @@ class Cncf_Mu_Admin {
 		$query = new WP_Query(
 			array(
 				'name'      => $user_id,
-				'post_type' => 'cncf_speaker',
+				'post_type' => 'lfph_speaker',
 			)
 		);
 

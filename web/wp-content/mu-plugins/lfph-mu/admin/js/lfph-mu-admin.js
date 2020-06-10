@@ -1,11 +1,11 @@
 /**
- * Custom JS code for CNCF MU
+ * Custom JS code for LFPH MU
  *
- * @link   https://www.cncf.io/
+ * @link   https://www.lfph.io/
  * @file   This files defines the MyClass class.
  * @author James Hunt
  * @since  1.1.0
- * @package Cncf_Mu
+ * @package Lfph_Mu
  */
 
 (function( $ ) {

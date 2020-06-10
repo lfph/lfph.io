@@ -4,11 +4,11 @@
  *
  * This file is used to markup the admin-facing aspects of the plugin.
  *
- * @link       https://www.cncf.io/
+ * @link       https://www.lfph.io/
  * @since      1.1.0
  *
- * @package    Cncf_Mu
- * @subpackage Cncf_Mu/admin/partials
+ * @package    Lfph_Mu
+ * @subpackage Lfph_Mu/admin/partials
  */
 
  // phpcs:disable Squiz.PHP.EmbeddedPhp.ContentBeforeOpen
@@ -21,7 +21,7 @@ if ( ! defined( 'WPINC' ) ) {
 ?>
 
 <div class="wrap">
-	<h2><?php esc_attr_e( 'Global Site Options', 'cncf-mu' ); ?></h2>
+	<h2><?php esc_attr_e( 'Global Site Options', 'lfph-mu' ); ?></h2>
 	<form method="post" name="<?php echo esc_html( $this->plugin_name ); ?>"
 		action="options.php">
 		<?php
@@ -113,7 +113,7 @@ if ( ! defined( 'WPINC' ) ) {
 								'media_buttons' => false, // media upload.
 								'textarea_rows' => 4,
 								'tabindex'      => 1,
-								'textarea_name' => 'cncf-mu[hello_bar_content]',
+								'textarea_name' => 'lfph-mu[hello_bar_content]',
 							);
 							wp_editor( $hello_bar_content, 'hello_bar_content', $hello_bar_settings );
 							?>
@@ -220,7 +220,7 @@ if ( ! defined( 'WPINC' ) ) {
 								'media_buttons' => false, // media upload.
 								'textarea_rows' => 6,
 								'tabindex'      => 5,
-								'textarea_name' => 'cncf-mu[copyright_textarea]',
+								'textarea_name' => 'lfph-mu[copyright_textarea]',
 							);
 							wp_editor( $copyright_textarea, 'copyright_textarea', $copyright_textarea_settings );
 							?>
@@ -466,6 +466,6 @@ if ( ! defined( 'WPINC' ) ) {
 			</tbody>
 		</table>
 		<hr />
-		<?php submit_button( __( 'Save all changes', 'cncf-mu' ), 'primary', 'submit', true ); ?>
+		<?php submit_button( __( 'Save all changes', 'lfph-mu' ), 'primary', 'submit', true ); ?>
 	</form>
 </div>

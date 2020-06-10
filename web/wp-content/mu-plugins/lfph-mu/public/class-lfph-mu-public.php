@@ -2,11 +2,11 @@
 /**
  * The public-facing functionality of the plugin.
  *
- * @link       https://www.cncf.io/
+ * @link       https://www.lfph.io/
  * @since      1.0.0
  *
- * @package    Cncf_Mu
- * @subpackage Cncf_Mu/public
+ * @package    Lfph_Mu
+ * @subpackage Lfph_Mu/public
  */
 
 /**
@@ -15,11 +15,11 @@
  * Defines the plugin name, version, and two examples hooks for how to
  * enqueue the public-facing stylesheet and JavaScript.
  *
- * @package    Cncf_Mu
- * @subpackage Cncf_Mu/public
+ * @package    Lfph_Mu
+ * @subpackage Lfph_Mu/public
  * @author     Chris Abraham <cjyabraham@gmail.com>
  */
-class Cncf_Mu_Public {
+class Lfph_Mu_Public {
 
 	/**
 	 * The ID of this plugin.
@@ -59,7 +59,7 @@ class Cncf_Mu_Public {
 	 * @since    1.0.0
 	 */
 	public function enqueue_styles() {
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/cncf-mu-public.css', array(), $this->version, 'all' );
+		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/lfph-mu-public.css', array(), $this->version, 'all' );
 
 	}
 
@@ -69,7 +69,7 @@ class Cncf_Mu_Public {
 	 * @since    1.0.0
 	 */
 	public function enqueue_scripts() {
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/cncf-mu-public.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/lfph-mu-public.js', array( 'jquery' ), $this->version, false );
 
 	}
 
@@ -96,7 +96,7 @@ class Cncf_Mu_Public {
 
 	EOD;
 
-		if ( 'www.cncf.io' == $current_domain && ! is_user_logged_in() ) {
+		if ( 'www.lfph.io' == $current_domain && ! is_user_logged_in() ) {
 			// this is a live site so output the analytics code.
 			echo $analytics_code; //phpcs:ignore
 		}
@@ -115,7 +115,7 @@ class Cncf_Mu_Public {
 
 	EOD;
 
-		if ( 'www.cncf.io' == $current_domain && ! is_user_logged_in() ) {
+		if ( 'www.lfph.io' == $current_domain && ! is_user_logged_in() ) {
 			// this is a live site so output the analytics code.
 			echo $analytics_code; //phpcs:ignore
 		}

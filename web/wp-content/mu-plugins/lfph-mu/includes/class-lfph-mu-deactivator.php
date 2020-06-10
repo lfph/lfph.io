@@ -2,11 +2,11 @@
 /**
  * Fired during plugin deactivation
  *
- * @link       https://www.cncf.io/
+ * @link       https://www.lfph.io/
  * @since      1.0.0
  *
- * @package    Cncf_Mu
- * @subpackage Cncf_Mu/includes
+ * @package    Lfph_Mu
+ * @subpackage Lfph_Mu/includes
  */
 
 /**
@@ -15,11 +15,11 @@
  * This class defines all code necessary to run during the plugin's deactivation.
  *
  * @since      1.0.0
- * @package    Cncf_Mu
- * @subpackage Cncf_Mu/includes
+ * @package    Lfph_Mu
+ * @subpackage Lfph_Mu/includes
  * @author     Chris Abraham <cjyabraham@gmail.com>
  */
-class Cncf_Mu_Deactivator {
+class Lfph_Mu_Deactivator {
 
 	/**
 	 * Short Description. (use period)

@@ -4,11 +4,11 @@
  *
  * This file is used to markup the public-facing aspects of the plugin.
  *
- * @link       https://www.cncf.io/
+ * @link       https://www.lfph.io/
  * @since      1.0.0
  *
- * @package    Cncf_Mu
- * @subpackage Cncf_Mu/public/partials
+ * @package    Lfph_Mu
+ * @subpackage Lfph_Mu/public/partials
  */
 
 ?>

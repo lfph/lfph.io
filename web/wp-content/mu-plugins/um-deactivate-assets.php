@@ -2,13 +2,13 @@
 /**
  * Ultimate Member - Deactivate assets
  *
- * @link              https://cncf.io/
+ * @link              https://lfph.io/
  * @since             1.0.0
  * @package           umda
  *
  * @wordpress-plugin
  * Plugin Name:       Ultimate Member - Deactivate assets
- * Plugin URI:        https://github.com/cncf/cncf.io
+ * Plugin URI:        https://github.com/lfph/lfph.io
  * Description:       Remove UM from loading on every page.
  * Version:           1.0.2
  * Author:            Ultimate Member, James Hunt
