@@ -161,7 +161,7 @@ class Lfph_Mu_Admin {
 				'singular_name' => __( 'Case Study' ),
 				'all_items'     => __( 'All Case Studies' ),
 			),
-			'public'            => true,
+			'public'            => false,
 			'has_archive'       => false,
 			'show_in_nav_menus' => false,
 			'show_in_rest'      => true,
@@ -179,7 +179,7 @@ class Lfph_Mu_Admin {
 				'singular_name' => __( 'Case Study - Chinese' ),
 				'all_items'     => __( 'All Case Studies' ),
 			),
-			'public'            => true,
+			'public'            => false,
 			'has_archive'       => false,
 			'show_in_nav_menus' => false,
 			'show_in_rest'      => true,
@@ -213,7 +213,7 @@ class Lfph_Mu_Admin {
 				'singular_name' => __( 'Event' ),
 				'all_items'     => __( 'All Events' ),
 			),
-			'public'            => true,
+			'public'            => false,
 			'has_archive'       => false,
 			'show_in_nav_menus' => false,
 			'show_in_rest'      => true,
@@ -249,7 +249,7 @@ class Lfph_Mu_Admin {
 				'singular_name' => __( 'Spotlight' ),
 				'all_items'     => __( 'All Spotlights' ),
 			),
-			'public'            => true,
+			'public'            => false,
 			'has_archive'       => false,
 			'show_in_nav_menus' => false,
 			'show_in_rest'      => true,
@@ -1372,3 +1372,4 @@ class Lfph_Mu_Admin {
 			)
 		);
 	}
+}
