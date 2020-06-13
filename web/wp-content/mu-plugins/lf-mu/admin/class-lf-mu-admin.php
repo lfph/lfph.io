@@ -161,7 +161,7 @@ class Lf_Mu_Admin {
 				'singular_name' => __( 'Case Study' ),
 				'all_items'     => __( 'All Case Studies' ),
 			),
-			'public'            => true,
+			'public'            => false,
 			'has_archive'       => false,
 			'show_in_nav_menus' => false,
 			'show_in_rest'      => true,
@@ -179,7 +179,7 @@ class Lf_Mu_Admin {
 				'singular_name' => __( 'Case Study - Chinese' ),
 				'all_items'     => __( 'All Case Studies' ),
 			),
-			'public'            => true,
+			'public'            => false,
 			'has_archive'       => false,
 			'show_in_nav_menus' => false,
 			'show_in_rest'      => true,
@@ -213,7 +213,7 @@ class Lf_Mu_Admin {
 				'singular_name' => __( 'Event' ),
 				'all_items'     => __( 'All Events' ),
 			),
-			'public'            => true,
+			'public'            => false,
 			'has_archive'       => false,
 			'show_in_nav_menus' => false,
 			'show_in_rest'      => true,
@@ -245,28 +245,11 @@ class Lf_Mu_Admin {
 
 		$opts = array(
 			'labels'            => array(
-				'name'          => __( 'Speakers' ),
-				'singular_name' => __( 'Speaker' ),
-				'all_items'     => __( 'All Speakers' ),
-			),
-			'public'            => false,
-			'has_archive'       => false,
-			'show_in_nav_menus' => false,
-			'show_in_rest'      => true,
-			'hierarchical'      => false,
-			'menu_icon'         => 'dashicons-groups',
-			'rewrite'           => array( 'slug' => 'speakers-mirror' ),
-			'supports'          => array( 'title', 'custom-fields' ),
-		);
-		register_post_type( 'lf_speaker', $opts );
-
-		$opts = array(
-			'labels'            => array(
 				'name'          => __( 'Spotlights' ),
 				'singular_name' => __( 'Spotlight' ),
 				'all_items'     => __( 'All Spotlights' ),
 			),
-			'public'            => true,
+			'public'            => false,
 			'has_archive'       => false,
 			'show_in_nav_menus' => false,
 			'show_in_rest'      => true,
@@ -1022,7 +1005,7 @@ class Lf_Mu_Admin {
 			'show_in_nav_menus' => false,
 			'show_admin_column' => true,
 		);
-		register_taxonomy( 'lf-country', array( 'lf_event', 'lf_case_study', 'lf_speaker' ), $args );
+		register_taxonomy( 'lf-country', array( 'lf_event', 'lf_case_study' ), $args );
 
 		$labels = array(
 			'name'              => __( 'Country', 'lf-mu' ),
@@ -1144,7 +1127,7 @@ class Lf_Mu_Admin {
 			'show_in_nav_menus' => false,
 			'show_admin_column' => true,
 		);
-		register_taxonomy( 'lf-project', array( 'lf_webinar', 'lf_case_study', 'lf_case_study_ch', 'lf_speaker', 'lf_spotlight' ), $args );
+		register_taxonomy( 'lf-project', array( 'lf_webinar', 'lf_case_study', 'lf_case_study_ch', 'lf_spotlight' ), $args );
 
 		$labels = array(
 			'name'          => __( 'Author Category', 'lf-mu' ),
@@ -1367,24 +1350,7 @@ class Lf_Mu_Admin {
 			'show_in_nav_menus' => false,
 			'show_admin_column' => true,
 		);
-		register_taxonomy( 'lf-language', array( 'lf_webinar', 'lf_speaker' ), $args );
-
-		$args = array(
-			'labels'            => array( 'name' => __( 'Affiliations', 'lf-mu' ) ),
-			'show_in_rest'      => true,
-			'hierarchical'      => false,
-			'show_in_nav_menus' => false,
-			'show_admin_column' => true,
-		);
-		register_taxonomy( 'lf-speaker-affiliation', array( 'lf_speaker' ), $args );
-		$args = array(
-			'labels'            => array( 'name' => __( 'Expertise', 'lf-mu' ) ),
-			'show_in_rest'      => true,
-			'hierarchical'      => false,
-			'show_in_nav_menus' => false,
-			'show_admin_column' => true,
-		);
-		register_taxonomy( 'lf-speaker-expertise', array( 'lf_speaker' ), $args );
+		register_taxonomy( 'lf-language', array( 'lf_webinar' ), $args );
 
 		$labels = array(
 			'name'          => __( 'Spotlight Type', 'lf-mu' ),
@@ -1506,154 +1472,5 @@ class Lf_Mu_Admin {
 				'sanitize_callback' => array( $this, 'validate' ),
 			)
 		);
-	}
-
-	/**
-	 * Sync User of role "Speaker" to the lf_speaker CPT.
-	 *
-	 * @param int $user_id ID of user.
-	 */
-	private function sync_speaker( $user_id ) {
-		global $post;
-
-		if ( ! $user_id ) {
-			return;
-		}
-
-		$um_member_directory_data = get_user_meta( $user_id, 'um_member_directory_data', false )[0];
-		$um_hide_in_members       = get_user_meta( $user_id, 'hide_in_members', true );
-		$photo                    = get_user_meta( $user_id, 'profile_photo', true );
-		$first_name               = get_user_meta( $user_id, 'first_name', true );
-		$last_name                = get_user_meta( $user_id, 'last_name', true );
-		if ( 'approved' !== $um_member_directory_data['account_status'] || ! $photo || $um_hide_in_members ) {
-			// speaker must be approved, have a photo, and not have hidden their profile.
-			$eligible_for_search = false;
-		} else {
-			$eligible_for_search = true;
-		}
-
-		$query = new WP_Query(
-			array(
-				'name'      => $user_id,
-				'post_type' => 'lf_speaker',
-			)
-		);
-
-		if ( $query->have_posts() ) {
-			$query->the_post();
-			$speaker_id = $post->ID;
-			if ( ! $eligible_for_search ) {
-				wp_delete_post( $speaker_id, true );
-				return;
-			}
-		} else {
-			if ( ! $eligible_for_search ) {
-				return;
-			}
-			$speaker_id = wp_insert_post(
-				array(
-					'post_title'  => $last_name . $first_name,
-					'post_name'   => $user_id,
-					'post_type'   => 'lf_speaker',
-					'post_status' => 'publish',
-				)
-			);
-		}
-
-		$affiliations = get_user_meta( $user_id, 'sb_certifications', false )[0];
-		$expertise    = get_user_meta( $user_id, 'expertise', false )[0];
-		$languages    = get_user_meta( $user_id, 'languages', false )[0];
-		$projects     = get_user_meta( $user_id, 'project', false )[0];
-		$country      = get_user_meta( $user_id, 'country', false )[0];
-
-		$country = str_replace( 'Korea, Republic of', 'South Korea', $country );
-		$country = str_replace( "Korea, Democratic People's Republic of", 'North Korea', $country );
-		$country = str_replace( 'Bolivia, Plurinational State of', 'Bolivia', $country );
-		$country = str_replace( 'Congo', 'Congo, Republic of the', $country );
-		$country = str_replace( 'Iran, Islamic Republic of', 'Iran', $country );
-		$country = str_replace( 'Palestine', 'Palestinian Territory, Occupied', $country );
-		$country = str_replace( 'Pitcairn', 'Pitcairn Islands', $country );
-		$country = str_replace( 'Saint Martin (French part)', 'Saint Martin', $country );
-		$country = str_replace( 'Taiwan, Province of China', 'Taiwan', $country );
-		$country = str_replace( 'Virgin Islands, U.S.', 'United States Virgin Islands', $country );
-		$country = str_replace( 'Virgin Islands, British', 'British Virgin Islands', $country );
-		$country = str_replace( 'Venezuela, Bolivarian Republic of', 'Venezuela', $country );
-		$country = str_replace( 'Viet Nam', 'Vietnam', $country );
-
-		wp_set_object_terms( $speaker_id, $affiliations, 'lf-speaker-affiliation' );
-		wp_set_object_terms( $speaker_id, $expertise, 'lf-speaker-expertise' );
-		wp_set_object_terms( $speaker_id, $languages, 'lf-language' );
-		wp_set_object_terms( $speaker_id, $projects, 'lf-project' );
-		wp_set_object_terms( $speaker_id, $country, 'lf-country' );
-
-		wp_reset_postdata();
-	}
-
-	/**
-	 * Syncs all the lf_speaker data with the Users of role "Speaker" metadata.
-	 * This function is triggered when you update the "Speakers" page.
-	 *
-	 * @param int    $post_id ID of post that is trashed.
-	 * @param object $post_after Post object following the update.
-	 * @param object $post_before Post object before the update.
-	 */
-	public function sync_speakers( $post_id, $post_after = null, $post_before = null ) {
-		$post = get_post( $post_id );
-		if ( 'page' !== $post->post_type || 'speakers' !== $post->post_name ) {
-			return;
-		}
-
-		$allposts = get_posts(
-			array(
-				'post_type'   => 'lf_speaker',
-				'numberposts' => -1,
-			),
-		);
-		foreach ( $allposts as $eachpost ) {
-			wp_delete_post( $eachpost->ID, true );
-		}
-
-		$args          = array( 'role' => 'um_speaker' );
-		$wp_user_query = new WP_User_Query( $args );
-		$users         = $wp_user_query->get_results();
-		foreach ( $users as $user ) {
-			$this->sync_speaker( $user->ID );
-		}
-	}
-
-	/**
-	 * Function is triggered by any action that updates a lf_speaker
-	 *
-	 * @param int   $user_id User ID.
-	 * @param array $args Args.
-	 * @param array $userinfo User Info.
-	 */
-	public function speaker_updated( $user_id, $args = null, $userinfo = null ) {
-		$user       = get_userdata( $user_id );
-		$user_roles = $user->roles;
-
-		if ( in_array( 'um_speaker', $user_roles, true ) ) {
-			$this->sync_speaker( $user_id );
-		}
-	}
-
-	/**
-	 * Function is triggered by a delete user action
-	 *
-	 * @param int $user_id User ID.
-	 */
-	public function speaker_deleted( $user_id ) {
-		global $post;
-		$query = new WP_Query(
-			array(
-				'name'      => $user_id,
-				'post_type' => 'lf_speaker',
-			)
-		);
-
-		if ( $query->have_posts() ) {
-			$query->the_post();
-			wp_delete_post( $post->ID, true );
-		}
 	}
 }
