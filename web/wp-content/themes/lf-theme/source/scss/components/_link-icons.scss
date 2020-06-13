@@ -34,9 +34,9 @@
 .site-header .site-navigation .main-navigation,
 .copyright-text {
 
-    a[href^="http://"]:not([href^="http://www.cncf"]):not([href^="http://cncf"]):not([href^="http://localhost"]):not([href^="http://dev-cncf"]),
-    a[href^="https://"]:not([href^="https://www.cncf"]):not([href^="https://cncf"]):not([href^="https://localhost"]):not([href^="https://dev-cncf"]),
-    a[href^="//"]:not([href^="//www.cncf"]):not([href^="//cncf"]):not([href^="//localhost"]):not([href^="//dev-cncf"]) {
+    a[href^="http://"]:not([href^="http://www.lfph"]):not([href^="http://lfph"]):not([href^="http://localhost"]):not([href^="http://dev-lfph"]):not([href^="http://pr-5-lfph"]),
+    a[href^="https://"]:not([href^="https://www.lfph"]):not([href^="https://lfph"]):not([href^="https://localhost"]):not([href^="https://dev-lfph"]):not([href^="https://pr-5-lfph"]),
+    a[href^="//"]:not([href^="//www.lfph"]):not([href^="//lfph"]):not([href^="//localhost"]):not([href^="//dev-lfph"]):not([href^="//pr-5-lfph"]) {
 
         &::after {
             content: "  ";
@@ -63,9 +63,9 @@
 .hello-bar,
 .wp-block-buttons {
 
-    a[href^="http://"]:not([href^="http://www.cncf"]):not([href^="http://cncf"]):not([href^="http://localhost"]):not([href^="http://dev-cncf"]),
-    a[href^="https://"]:not([href^="https://www.cncf"]):not([href^="https://cncf"]):not([href^="https://localhost"]):not([href^="https://dev-cncf"]),
-    a[href^="//"]:not([href^="//www.cncf"]):not([href^="//cncf"]):not([href^="//localhost"]):not([href^="//dev-cncf"]) {
+    a[href^="http://"]:not([href^="http://www.lfph"]):not([href^="http://lfph"]):not([href^="http://localhost"]):not([href^="http://dev-lfph"]),
+    a[href^="https://"]:not([href^="https://www.lfph"]):not([href^="https://lfph"]):not([href^="https://localhost"]):not([href^="https://dev-lfph"]),
+    a[href^="//"]:not([href^="//www.lfph"]):not([href^="//lfph"]):not([href^="//localhost"]):not([href^="//dev-lfph"]) {
 
         &::after {
             content: "  ";
@@ -92,8 +92,8 @@
 .site-header .site-navigation .main-navigation,
 .wp-block-buttons {
 
-    a[href^="http://"][href$=".pdf"]:not([href*="cncf"]):not([href*="localhost"]):not([href*="pantheon"]),
-    a[href^="https://"][href$=".pdf"]:not([href*="cncf"]):not([href*="localhost"]):not([href*="pantheon"]),
+    a[href^="http://"][href$=".pdf"]:not([href*="lfph"]):not([href*="localhost"]):not([href*="pantheon"]),
+    a[href^="https://"][href$=".pdf"]:not([href*="lfph"]):not([href*="localhost"]):not([href*="pantheon"]),
     a[href^="/"][href$=".pdf"],
     a[href$=".pdf"] {
         display: flex;
