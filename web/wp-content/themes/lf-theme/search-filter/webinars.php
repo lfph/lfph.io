@@ -103,13 +103,13 @@ if ( $query->have_posts() ) : ?>
 							echo wp_get_attachment_image( $options['generic_thumb_id'], 'full', false, array( 'class' => 'webinar-default' ) );
 			} else {
 				echo '<img src="' . esc_url( get_stylesheet_directory_uri() )
-				. '/images/thumbnail-default.svg" alt="CNCF" class="webinar-default"/>';
+				. '/images/thumbnail-default.svg" alt="LFPH" class="webinar-default"/>';
 			}
 			?>
 			</a>
 		</figure>
 
-		<div class="skew-box secondary">CNCF
+		<div class="skew-box secondary">LFPH
 			<?php echo esc_html( $author_category ); ?> Webinar</div>
 
 		<h5 class="webinar-title"><a

@@ -31,8 +31,8 @@
 		color="#de176c">
 	<link rel="shortcut icon"
 		href="/wp-content/themes/lf-theme/images/favicon.ico">
-	<meta name="apple-mobile-web-app-title" content="CNCF">
-	<meta name="application-name" content="CNCF">
+	<meta name="apple-mobile-web-app-title" content="LFPH">
+	<meta name="application-name" content="LFPH">
 	<meta name="msapplication-TileColor" content="#de176c">
 	<meta name="msapplication-config"
 		content="/wp-content/themes/lf-theme/images/browserconfig.xml">

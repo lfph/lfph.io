@@ -9,7 +9,7 @@
 
 ?>
 <section class="newsletter">
-	<h3>Subscribe to the CNCF newsletter to receive regular updates about
+	<h3>Subscribe to the LFPH newsletter to receive regular updates about
 		webinars, events & latest news</h3>
 
 	<form id="sfmc-form1" class="newsletter-form"

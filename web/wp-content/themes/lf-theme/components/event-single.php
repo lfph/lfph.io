@@ -127,9 +127,9 @@ $color ? $overlay_color = $color : $overlay_color = '#254AAB';
 			Information</a>
 		<?php endif; ?>
 
-		<a href="mailto:meeting@cncf.io"
+		<a href="mailto:meeting@lfph.io"
 			class="button secondary-color margin-top-large">Arrange Meeting with
-			CNCF</a>
+			LFPH</a>
 
 
 

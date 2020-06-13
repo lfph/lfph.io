@@ -39,7 +39,7 @@ $image = new Image();
 			</div>
 		</form>
 
-<p class="margin-top-large">or go to CNCF homepage</p>
+<p class="margin-top-large">or go to LFPH homepage</p>
 		<a href="/" class="button">Go to Homepage</a>
 		</div>
 	</div>

@@ -28,7 +28,7 @@ $date_and_time             = str_replace( ':00', '', $dat_webinar_start->format(
 	<div class="webinars-upcoming-text-wrapper">
 
 		<!-- Category of Webinar  -->
-		<span class="skew-box secondary margin-bottom-small">CNCF
+		<span class="skew-box secondary margin-bottom-small">LFPH
 			<?php echo esc_html( $author_category ); ?> Webinar</span>
 
 		<!-- Date of webinar  -->

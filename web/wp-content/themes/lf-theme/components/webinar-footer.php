@@ -20,17 +20,17 @@ $image = new Image();
 		<div class="background-image-text-overlay webinar-footer-text-wrap">
 
 			<h2>Get involved</h2>
-			<h5>CNCF webinars are a great way to educate new and existing
+			<h5>LFPH webinars are a great way to educate new and existing
 				community members about trends and new technologies. We’re
-				looking for project maintainers, CNCF members, and community
+				looking for project maintainers, LFPH members, and community
 				experts to share their knowledge. Webinars are non-promotional
 				and focus on education and thought-leadership within the cloud
 				native space.</h5>
 
-			<h5 class="margin-bottom-large">Interested in hosting a CNCF
+			<h5 class="margin-bottom-large">Interested in hosting a LFPH
 				webinar?</h5>
 
-			<a title="Host a CNCF webinar" href="mailto:webinars@cncf.io"
+			<a title="Host a LFPH webinar" href="mailto:webinars@lfph.io"
 				class="button outline transparent">Let us know</a>
 
 		</div>

@@ -71,7 +71,7 @@ endif;
 							<form class="search-form" method="get"
 								action="<?php echo esc_url( home_url() ); ?>"
 								role="search">
-								<label for="search-bar" class="screen-reader-text">Search CNCF</label>
+								<label for="search-bar" class="screen-reader-text">Search LFPH</label>
 								<input class="search-input" type="search"
 									name="s" id="search-bar"
 									placeholder="Search for...">

@@ -8,7 +8,7 @@
  * @package  WordPress
  * @author   James Hunt <domains@thetwopercent.co.uk>
  * @license  https://www.gnu.org/licenses/gpl-3.0.txt GNU/GPLv3
- * @link     https://cncf.io
+ * @link     https://lfph.io
  * @since    1.0.0
  */
 

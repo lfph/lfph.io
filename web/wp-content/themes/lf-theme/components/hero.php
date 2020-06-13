@@ -23,7 +23,7 @@ $options = get_option( 'lf-mu' );
 		echo wp_get_attachment_image( $options['generic_hero_id'], 'full', false, false );
 	} else {
 		echo '<img src="' . esc_url( get_stylesheet_directory_uri() )
-		. '/images/hero-default.jpg" alt="CNCF" height="400" width="100%"/>';
+		. '/images/hero-default.jpg" alt="LFPH" height="400" width="100%"/>';
 	}
 	?>
 	</figure>

@@ -20,12 +20,12 @@
 			<div class="archive-text-wrapper">
 
 				<p class="archive-title"><a class="external is-primary-color"
-						href="https://landscape.cncf.io" target="_blank"
-						title="CNCF Landscape">View the CNCF Landscape</a></p>
+						href="https://landscape.lfph.io" target="_blank"
+						title="LFPH Landscape">View the LFPH Landscape</a></p>
 				<div class="archive-excerpt">This landscape is intended as a map
 					through the previously uncharted terrain of cloud native
 					technologies. There are many routes to deploying a cloud
-					native application, with CNCF Projects representing a
+					native application, with LFPH Projects representing a
 					particularly well-traveled path.</div>
 			</div>
 		</div>
@@ -75,7 +75,7 @@
 
 
 				<?php if ( $category_author ) : ?>
-				<div class="skew-box secondary centered margin-bottom">CNCF
+				<div class="skew-box secondary centered margin-bottom">LFPH
 					<?php
 					echo esc_html( $category_author );
 

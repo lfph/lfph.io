@@ -64,7 +64,7 @@ function website_details() {
 	echo "<ul>
 	<li><a href='#' target='_blank'>Link to editing guide will be here</a></li>
 <li><strong>Developed By:</strong> <a href='mailto:cjyabraham@gmail.com'>Chris Abraham</a>, <a href='mailto:jim@thetwopercent.co.uk'>James Hunt</a></li>
-<li><strong>Development Repo:</strong> <a href='https://github.com/cncf/cncf.io' target='_blank'>Github</a>
+<li><strong>Development Repo:</strong> <a href='https://github.com/lfph/lfph.io' target='_blank'>Github</a>
 </li>
 </ul>";
 }

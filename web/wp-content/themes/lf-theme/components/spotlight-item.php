@@ -30,7 +30,7 @@ $spotlight_type = Lf_Utils::get_term_names( get_the_ID(), 'lf-spotlight-type', t
 		</a>
 	</div>
 	<div class="spotlight-text-wrapper">
-		<div class="skew-box secondary margin-top-small centered">CNCF
+		<div class="skew-box secondary margin-top-small centered">LFPH
 			<?php echo esc_html( $spotlight_type ); ?> Spotlight</div>
 
 		<h5 class="spotlight-title"><a

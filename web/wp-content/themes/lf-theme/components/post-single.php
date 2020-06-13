@@ -47,7 +47,7 @@ endif;
 
 			if ( $category_author ) :
 				?>
-		<div class="skew-box secondary centered margin-bottom-large">CNCF
+		<div class="skew-box secondary centered margin-bottom-large">LFPH
 				<?php
 				echo esc_html( $category_author );
 				?>

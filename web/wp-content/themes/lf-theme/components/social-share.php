@@ -40,7 +40,7 @@ $options && $options['social_twitter_handle'] ? $twitter = $options['social_twit
  */
 $facebook_url = 'https://www.facebook.com/sharer/sharer.php?u=' . $page_url . '&t=' . $page_title;
 
-$twitter_url = 'https://twitter.com/intent/tweet?text=' . $page_title . '&amp;url=' . $page_url . '&amp;hashtags=cncf&amp;via=' . $twitter . '';
+$twitter_url = 'https://twitter.com/intent/tweet?text=' . $page_title . '&amp;url=' . $page_url . '&amp;hashtags=lfph&amp;via=' . $twitter . '';
 
 $whatsapp_url = 'https://api.whatsapp.com/send?text=' . $page_title . ' ' . $page_url;
 

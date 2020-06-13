@@ -53,7 +53,7 @@ $image = new Image();
 
 					} else {
 						echo '<img src="' . esc_url( get_stylesheet_directory_uri() )
-						. '/images/thumbnail-default.svg" alt="CNCF Media Coverage" class="newsroom-media-coverage"/>';
+						. '/images/thumbnail-default.svg" alt="LFPH Media Coverage" class="newsroom-media-coverage"/>';
 					}
 					?>
 				</a>
@@ -92,14 +92,14 @@ $image = new Image();
 								echo wp_get_attachment_image( $options['generic_thumb_id'], 'newsroom-image', false, array( 'class' => 'newsroom-image' ) );
 					} else {
 						echo '<img src="' . esc_url( get_stylesheet_directory_uri() )
-						. '/images/thumbnail-default.svg" alt="CNCF" class="newsroom-image"/>';
+						. '/images/thumbnail-default.svg" alt="LFPH" class="newsroom-image"/>';
 					}
 					?>
 				</a>
 			</div>
 			<div class="archive-text-wrapper">
 				<?php if ( $is_blog_category && $category_author ) : ?>
-				<div class="skew-box secondary centered margin-bottom">CNCF
+				<div class="skew-box secondary centered margin-bottom">LFPH
 					<?php
 					echo esc_html( $category_author );
 					?>

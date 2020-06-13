@@ -34,7 +34,7 @@
 			?>
 </p>
 
-<div class="skew-box secondary centered margin-bottom-large">CNCF
+<div class="skew-box secondary centered margin-bottom-large">LFPH
 			<?php echo esc_html( $spotlight_type ); ?> Spotlight</div>
 			<div class="entry-content">
 			<?php the_content(); ?>
