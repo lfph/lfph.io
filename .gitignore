@@ -15,13 +15,12 @@ web/*
 !web/wp-content/
 web/wp-content/*
 
+# ignore Pantheon MU plugin
+web/wp-content/mu-plugins/pantheon/
+web/wp-content/mu-plugins/pantheon.php
+
 !web/wp-content/mu-plugins/
-web/wp-content/mu-plugins/*
-!web/wp-content/mu-plugins/lfph-mu/
-!web/wp-content/mu-plugins/lfph-mu.php
-!web/wp-content/mu-plugins/um-deactivate-assets.php
-!web/wp-content/mu-plugins/wp-no-base-permalink.php
-!web/wp-content/mu-plugins/.gitkeep
+web/wp-content/mu-plugins/lf-blocks/node_modules
 
 !web/wp-content/plugins/
 web/wp-content/plugins/*
@@ -44,6 +43,7 @@ web/private/scripts/quicksilver
 behat-local.yml
 wraith/configs/capture.yaml
 wraith/shots
+web/wp-content/themes/twentynineteen/node_modules
 
 # :::::::::::::::::::::: cut ::::::::::::::::::::::
 
@@ -115,14 +115,9 @@ Thumbs.db
 ##########
 .sass-cache
 
-
 # Allowing premium plugins
 !web/wp-content/plugins/search-filter-pro
 
 # Allowing custom plugins
 !web/wp-content/plugins/text-on-image-block
 web/wp-content/plugins/text-on-image-block/node_modules
-!web/wp-content/plugins/tab-container-block
-web/wp-content/plugins/tab-container-block/node_modules
-!web/wp-content/plugins/lf-cncf-blocks
-web/wp-content/plugins/lf-cncf-blocks/node_modules
