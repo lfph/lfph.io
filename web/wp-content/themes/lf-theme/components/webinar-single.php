@@ -76,8 +76,11 @@ if ( $dat_webinar_start > $dat_now ) {
 		<span class="skew-box centered margin-bottom"><?php echo esc_html( str_replace( ':00', '', $dat_webinar_start->format( 'l F j, Y, g:iA T' ) ) ); ?></span>
 			<?php endif; ?>
 
+			<?php if ( $author_category ) : ?>
 		<div class="skew-box secondary centered">LFPH
-			<?php echo esc_html( $author_category ); ?> Webinar</div>
+				<?php echo esc_html( $author_category ); ?> Webinar
+			</div>
+			<?php endif; ?>
 
 			<?php
 			// the company - presented by.

@@ -28,15 +28,18 @@
 			the_post();
 			?>
 
-<p>Posted on
+		<p>Posted on
 			<?php
 			the_date();
 			?>
-</p>
+		</p>
 
-<div class="skew-box secondary centered margin-bottom-large">LFPH
-			<?php echo esc_html( $spotlight_type ); ?> Spotlight</div>
-			<div class="entry-content">
+			<?php if ( $spotlight_type ) : ?>
+		<div class="skew-box secondary centered margin-bottom-large">LFPH
+				<?php echo esc_html( $spotlight_type ); ?> Spotlight</div>
+		<?php endif; ?>
+
+		<div class="entry-content">
 			<?php the_content(); ?>
 		</div>
 
@@ -44,7 +47,5 @@
 			get_template_part( 'components/social-share' );
 			?>
 		<?php endwhile; ?>
-
-
 	</article>
 </main>
