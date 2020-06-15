@@ -79,7 +79,7 @@
         list-style: disc;
         margin-top: 0;
         margin-right: 0;
-        margin-bottom: 2rem;
+        margin-bottom: 1.5rem;
         margin-left: 2em;
 
         // used for tab container.
@@ -88,8 +88,14 @@
             margin-left: 0;
         }
 
+        // second level
         ul {
             margin-bottom: 0;
+
+            // third level
+            ul {
+                margin-bottom: 0;
+            }
         }
     }
 
@@ -97,7 +103,7 @@
         list-style: decimal;
         margin-top: 0;
         margin-right: 0;
-        margin-bottom: 1rem;
+        margin-bottom: 1.5rem;
         margin-left: 2em;
     }
 
