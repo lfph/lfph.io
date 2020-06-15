@@ -9,36 +9,40 @@
 
 ?>
 <main class="search-results">
-	<div class="container wrap archive-container">
-		<?php
-		if ( have_posts() ) :
 
-			if ( 'landscape' === get_search_query() ) :
-				?>
-		<div class="archive-item"
-			style="border: 1px solid black; padding: 2em;">
+	<?php
+	if ( have_posts() ) :
+		?>
+
+	<div class="container wrap archive-container">
+
+		<?php
+		if ( 'landscape' === get_search_query() ) :
+			?>
+		<div class="archive-item highlighted">
 			<div class="archive-text-wrapper">
 
 				<p class="archive-title"><a class="external is-primary-color"
 						href="https://landscape.lfph.io" target="_blank"
 						title="LFPH Landscape">View the LFPH Landscape</a></p>
-				<div class="archive-excerpt">This landscape is intended as a map
-					through the previously uncharted terrain of cloud native
-					technologies. There are many routes to deploying a cloud
-					native application, with LFPH Projects representing a
-					particularly well-traveled path.</div>
+				<div class="archive-excerpt">This landscape is a map to explore
+					the software that is being developed to combat COVID-19, and
+					focuses particularly on Google Apple Exposure Notification
+					(GAEN) implementations and the apps deployed by public
+					health authorities (PHAs).</div>
 			</div>
 		</div>
 
-				<?php
-		endif;
-			while ( have_posts() ) :
-				the_post();
+			<?php
+			endif;
 
-				// Get the Category Author.
-				$category_author = Lf_Utils::get_term_names( get_the_ID(), 'lf-author-category', true );
+		while ( have_posts() ) :
+			the_post();
 
-				?>
+			// Get the Category Author.
+			$category_author = Lf_Utils::get_term_names( get_the_ID(), 'lf-author-category', true );
+
+			?>
 		<div class="archive-item">
 
 			<div class="archive-text-wrapper">
@@ -167,7 +171,7 @@
 					<span class="posted-date date-icon">
 						Event date:
 						<?php
-								echo esc_html( Lf_Utils::display_event_date( $event_start_date ) );
+							echo esc_html( Lf_Utils::display_event_date( $event_start_date ) );
 						?>
 					</span>
 
@@ -185,18 +189,43 @@
 					?>
 					<?php
 					// Post author.
-					if ( in_category( 'blog' ) ) :
+					if ( in_category( 'blog' ) ) {
 						echo wp_kses_post( Lf_Utils::display_author( get_the_ID(), true ) );
-	endif;
+					}
 					?>
 				</p>
 
 				<div class="archive-excerpt"><?php the_excerpt(); ?></div>
 			</div>
 		</div>
-				<?php
+			<?php
 		endwhile;
-endif;
 		?>
 	</div>
+		<?php
+	else :
+		?>
+	<div class="container wrap">
+		<p class="h4">We're sorry, but there are no search results for
+			<strong><?php echo get_search_query(); ?></strong>. Try searching
+			again:</p>
+
+		<form role="search" method="get" class="no-search-results"
+			action="<?php echo esc_url( home_url() ); ?>">
+			<label><span class="search-text screen-reader-text">Search the
+					site</span><br />
+				<input type="search" class="search-field margin-y"
+					placeholder="Enter search term"
+					value="<?php echo get_search_query(); ?>" name="s"
+					title="Search for" autocomplete="off" autocorrect="off"
+					autocapitalize="off" spellcheck="false" />
+			</label>
+
+			<input type="submit" class="button" value="Search" />
+		</form>
+	</div>
+		<?php
+endif;
+	?>
+
 </main>
