@@ -30,8 +30,12 @@
         }
     }
 
-    p:not([class*='is-style']):not(.hero-parent-link) {
-        max-width: 700px;
+    p {
+
+        &:not([class*='is-style']):not(.hero-parent-link),
+        &.is-style-default {
+            max-width: 700px;
+        }
     }
 
     h1,
@@ -40,7 +44,9 @@
     h4,
     h5,
     h6 {
-        &:not([class*='is-style']) {
+
+        &:not([class*='is-style']),
+        &.is-style-default {
             max-width: 900px;
         }
     }
