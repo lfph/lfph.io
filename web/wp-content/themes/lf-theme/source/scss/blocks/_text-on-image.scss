@@ -1,0 +1,37 @@
+// revised file as original wasn't suitable for lf-theme.
+.front-page-hero {
+
+    background: linear-gradient(-90deg, #000f38 0%, #010119 100%);
+    color: $white;
+}
+
+.lfph-logo-image-container {
+    display: flex;
+    align-items: center;
+    height: calc(90vh - 4rem);
+    min-height: 400px;
+    max-height: 800px;
+
+    .background-image-figure {
+
+        img {
+            object-fit: contain;
+            padding: 2rem;
+            object-position: right;
+        }
+    }
+
+    // logo
+    .background-image-text-overlay {
+        width: 100%;
+
+        h1 {
+            max-width: 600px;
+            font-size: 48px;
+        }
+
+        p {
+            max-width: 550px;
+        }
+    }
+}

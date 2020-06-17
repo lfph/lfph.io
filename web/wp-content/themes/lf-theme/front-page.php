@@ -11,6 +11,8 @@
 
 get_template_part( 'components/header' );
 
+get_template_part( 'components/wip-front-page-hero' );
+
 get_template_part( 'components/page-single' );
 
 get_template_part( 'components/footer' );
