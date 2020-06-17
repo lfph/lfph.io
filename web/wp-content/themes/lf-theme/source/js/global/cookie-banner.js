@@ -13,8 +13,9 @@ if ( document.cookie.indexOf( 'cookieaccepted' ) < 0 ) {
 
 // Add event listener to button in banner.
 document.getElementById( 'cookie-banner-button' ).addEventListener(
-	'click',
-	() => { acceptCookie() }
+	'click', function() {
+		acceptCookie();
+	}
 );
 
 // Function to create cookie and hide banner.
