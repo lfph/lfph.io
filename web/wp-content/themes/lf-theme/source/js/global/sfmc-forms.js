@@ -16,30 +16,28 @@ jQuery(
 		let recaptcha_site_key = '6LcOQ_wUAAAAAHQhy1jOTvWzRuwdKDhp83-9eq6E';
 
 		if ( typeof PS.RECAPTCHA === 'undefined' ) {
-			( function( a, $ ) {
+			( function( a ) {
 				let retryTime = 300;
 				var x = {
-					init() {
+          init: function(){
 						if ( typeof grecaptcha !== 'undefined' ) {
 							// For Form 1 Initialization.
 							if ( $( '#sfmc-form1 #recaptcha-form1' ).length > 0 ) {
 								var callbackFn = {
-									action() {
+                  action : function(){
 										saveData( '1' );
 									},
 								};
-								/*--- 'recaptcha-form-1' - reCaptcha div ID | 'form1' - Form ID ---*/
 								widget_1 = x.renderInvisibleReCaptcha( 'recaptcha-form1', x.createCallbackFn( widget_1, 'form1', callbackFn ) );
 							}
 
 							// For Form 2 Initialization.
 							if ( $( '#sfmc-form2 #recaptcha-form2' ).length > 0 ) {
 								var callbackFn = {
-									action() {
+                  action : function(){
 										saveData( '2' );
 									},
 								};
-								/*--- 'recaptcha-form-2' - reCaptcha div ID | 'form2' - Form ID ---*/
 								widget_2 = x.renderInvisibleReCaptcha( 'recaptcha-form2', x.createCallbackFn( widget_2, 'form2', callbackFn ) );
 							}
 						} else {
@@ -51,7 +49,7 @@ jQuery(
 							);
 						}
 					},
-					renderInvisibleReCaptcha( recaptchaID, callbackFunction ) {
+					renderInvisibleReCaptcha: function(recaptchaID,callbackFunction){
 						return grecaptcha.render(
 							recaptchaID,
 							{
@@ -63,7 +61,7 @@ jQuery(
 							}
 						);
 					},
-					createCallbackFn( widget, formID, callbackFn ) {
+					createCallbackFn: function (widget,formID,callbackFn) {
 						return function( token ) {
 							$( '#' + formID + ' .g-recaptcha-response' ).val( token );
 							if ( $.trim( token ) == '' ) {
@@ -112,30 +110,30 @@ jQuery(
 		);
 
 		function saveData( form ) {
-			var message = document.getElementById( "sfmc-message" + form );
+			let message = document.getElementById( 'sfmc-message' + form );
 			$.ajax(
 				{
 					type: 'POST',
 					url: $( '#sfmc-form' + form ).attr( 'action' ),
-					data: $( '#sfmc-form' + form ).serialize(),
-					beforeSend() {
+          data: $( '#sfmc-form' + form ).serialize(),
+          beforeSend : function(){
 						$( '#sfmc-form' + form ).toggle();
 						$( '#sfmc-message' + form ).html( 'Thank you for your submission. Your request is being processed...' ).addClass( 'is-active' );
-						message.scrollIntoView( { behavior: "smooth", block: 'center' } );
+						message.scrollIntoView( { behavior: 'smooth', block: 'center' } );
 					},
-					success( response ) {
+					success : function( response ) {
 						let msg = $( response ).find( 'p' ).text();
 						$( '#sfmc-message' + form ).html( msg ).addClass( 'success' );
-						message.scrollIntoView( { behavior: "smooth", block: 'center' } );
+						message.scrollIntoView( { behavior: 'smooth', block: 'center' } );
 						switch ( form ) {
 							case '1' : grecaptcha.reset( widget_1 ); break;
 							case '2' : grecaptcha.reset( widget_2 ); break;
 						}
 					},
-					error( xhr, status, error ) {
+					error : function( xhr, status, error ) {
 						let errorMessage = xhr.status + ': ' + xhr.statusText;
 						$( '#sfmc-message' + form ).html( 'There was an error processing your submission. Please try again or contact us directly at info@lfph.io<br>Error code: (' + errorMessage + ')' ).addClass( 'error' );
-						message.scrollIntoView( { behavior: "smooth", block: 'center' } );
+						message.scrollIntoView( { behavior: 'smooth', block: 'center' } );
 					},
 				}
 			);
