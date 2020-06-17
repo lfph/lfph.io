@@ -13,6 +13,9 @@ var projectURL = "https://lfph.lndo.site";
 // const PROJECT_FOLDER = "./web/wp-content/themes/" + project;
 const PROJECT_FOLDER = ".";
 
+// Add files and directories here for Code Sniffs to ignore.
+const csSource 	= [ '**/**/*.php', '**/**/*.js', '!library/**/*', '!wpcs/**/*','!node_modules/**/*', '!vendor/**/*', '!build/**/*','!assets/bower_components/**/*', '!**/*-min.css', '!assets/js/vendor/*', '!assets/css/*', '!**/*-min.js', '!assets/js/production.js', '!gulpfile.js', '!source/js/third-party/*', '!plugins/*', '!uploads/*',  ];
+
 /**
  * File and folder links
  *
@@ -35,8 +38,7 @@ var globalJSWatchFiles = PROJECT_FOLDER + "/source/js/global/**/*.js";
 var projectPHPWatchFiles = PROJECT_FOLDER + "/**/**/*.php";
 var projectHTMLWatchFiles = PROJECT_FOLDER + "/**/**/*.html";
 
-const csSource 	= [ '**/**/*.php', '**/**/*.js', '!library/**/*', '!wpcs/**/*','!node_modules/**/*', '!vendor/**/*', '!build/**/*','!build/*.js','!build/*.css', '!assets/bower_components/**/*', '!**/*-min.css', '!assets/js/vendor/*', '!assets/css/*', '!**/*-min.js', '!assets/js/production.js', '!gulpfile.js' ];
-
+/*
 const AUTOPREFIXER_BROWSERS = [
     "last 2 version",
     "> 1%",
@@ -52,6 +54,8 @@ const AUTOPREFIXER_BROWSERS = [
 ];
 
 const AUTOPREFIXER_GRID = true;
+*/
+
 
 /**
  * Load Plugins.
@@ -63,8 +67,10 @@ var gulp = require("gulp");
 /** CSS plugins */
 var sass = require("gulp-sass");
 var minifycss = require("gulp-uglifycss");
-var autoprefixer = require("gulp-autoprefixer");
 var mmq = require("gulp-merge-media-queries");
+var postcss = require('gulp-postcss');
+// var autoprefixer = require("gulp-autoprefixer");
+var autoprefixer = require('autoprefixer');
 
 /** JS plugins */
 var concat = require("gulp-concat");
@@ -83,6 +89,11 @@ var gulpphpcbf = require("gulp-phpcbf");
 var notify = require("gulp-notify");
 
 var browserSync = require("browser-sync").create();
+
+const POSTCSS_PROCESSORS = [
+  autoprefixer()
+];
+
 
 function reload(done) {
     browserSync.reload();
@@ -108,6 +119,7 @@ function watch() {
     });
 }
 
+
 /**
  * SASS to CSS tasks
  */
@@ -123,6 +135,7 @@ function styles() {
             })
         )
         .on("error",console.error.bind(console))
+        .pipe(postcss(POSTCSS_PROCESSORS))
         .pipe(
             sourcemaps.write({
                 includeContent: false
@@ -133,10 +146,6 @@ function styles() {
                 loadMaps: true
             })
         )
-        .pipe(autoprefixer({
-          browsers: AUTOPREFIXER_BROWSERS,
-          grid: AUTOPREFIXER_GRID,
-          }))
         .pipe(sourcemaps.write())
         .pipe(lineec())
         .pipe(gulp.dest(styleDestination))
@@ -159,6 +168,7 @@ function styles() {
                 precision: 10
             })
         )
+        .pipe(postcss(POSTCSS_PROCESSORS))
         .pipe(
             minifycss({
                 maxLineLen: 10
