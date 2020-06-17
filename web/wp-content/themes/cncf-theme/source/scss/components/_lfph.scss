@@ -173,7 +173,6 @@ input[type="email"] {
 
     @media (min-width: 900px) {
         border-right: 0;
-        border-top: 2px dashed transparent;
         width: 100%;
     }
 
@@ -189,7 +188,6 @@ input[type="email"] {
 
         @media (min-width: 900px) {
             border-right: 0;
-            border-top: 2px dashed $primary-color;
         }
     }
 }
