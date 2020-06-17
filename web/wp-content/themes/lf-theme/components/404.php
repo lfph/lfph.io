@@ -15,14 +15,12 @@ $image = new Image();
 <section class="four-oh-four">
 	<div class="container wrap">
 
-		<img src="<?php $image->get_svg( '404-phippy.svg', true ); ?>" alt="Phippy says Sorry!" class="image-404">
-
-<div class="content-404">
-		<span class="extremely-large secondary">404</span>
+	<!-- <div class="content-404"> -->
+		<span class="extremely-large">404</span>
 		<h3 class="margin-y-small">Sorry that page wasn't found.</h3>
 
 		<form role="search" method="get" class="error-search-form"
-			action="<?php echo esc_url( home_url( '/' ) ); ?>">
+			action="<?php echo esc_url( home_url() ); ?>">
 			<div>
 				<label>
 					<span class="search-text">Search the site</span><br/>
@@ -41,6 +39,6 @@ $image = new Image();
 
 <p class="margin-top-large">or go to LFPH homepage</p>
 		<a href="/" class="button">Go to Homepage</a>
-		</div>
+		<!-- </div> -->
 	</div>
 </section>
