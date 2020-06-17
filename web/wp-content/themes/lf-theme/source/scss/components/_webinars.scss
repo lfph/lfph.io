@@ -2,20 +2,14 @@
 .webinars-wrapper {
     margin-top: 1rem;
     margin-bottom: 2rem;
+    display: grid;
+    grid-row-gap: 1rem;
+    grid-column-gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
 
-    // Older Browsers.
-    display: flex;
-
-    @supports (display: grid) {
-        display: grid;
-        grid-row-gap: 1rem;
-        grid-column-gap: 1rem;
-        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-
-        @media (min-width: 1000px) {
-            grid-row-gap: 1.5rem;
-            grid-column-gap: 1.5rem;
-        }
+    @media (min-width: 1000px) {
+        grid-row-gap: 1.5rem;
+        grid-column-gap: 1.5rem;
     }
 }
 
@@ -51,35 +45,21 @@
 
 // Upcoming Webinars Filter and Block
 .webinars-upcoming-wrapper {
-
-    // Older Browsers.
-    display: flex;
-    flex-direction: column;
-
-    @supports (display: grid) {
-        display: grid;
-        grid-row-gap: 1rem;
-        grid-column-gap: 1rem;
-        grid-auto-rows: 1fr;
-    }
+    display: grid;
+    grid-row-gap: 1rem;
+    grid-column-gap: 1rem;
+    grid-auto-rows: 1fr;
 
     .is-style-horizontal & {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 
-        flex-direction: row;
-        flex-flow: row wrap;
-        justify-content: space-between;
+        @media (min-width: 800px) {
+            grid-template-columns: repeat(auto-fill, 1fr);
+        }
 
-        @supports (display: grid) {
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-
-            @media (min-width: 800px) {
-                grid-template-columns: repeat(auto-fill, 1fr);
-            }
-
-            @media (min-width: 1000px) {
-                grid-row-gap: 1.5rem;
-                grid-column-gap: 1.5rem;
-            }
+        @media (min-width: 1000px) {
+            grid-row-gap: 1.5rem;
+            grid-column-gap: 1.5rem;
         }
     }
 }
@@ -90,7 +70,6 @@
     padding: 1em;
     background-color: $tertiary-color;
     align-content: center;
-
     // .home & {
     //     background-color: $white;
     // }

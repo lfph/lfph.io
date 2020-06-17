@@ -1,39 +1,29 @@
 .wp-block-lf-newsroom {
 
-    display: flex;
-    flex-direction: column;
 
-    @supports (display: grid) {
-        display: grid;
-        grid-row-gap: 1rem;
-        grid-column-gap: 1rem;
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    display: grid;
+    grid-row-gap: 1rem;
+    grid-column-gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 
-        @media (min-width: 950px) {
-            grid-template-columns: 1fr;
-            height: 100%;
-            grid-auto-rows: 1fr;
-            row-gap: 0px;
-        }
+    @media (min-width: 950px) {
+        grid-template-columns: 1fr;
+        height: 100%;
+        grid-auto-rows: 1fr;
+        grid-row-gap: 0px;
     }
 
+
     &.is-style-horizontal {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        grid-row-gap: 1rem;
+        grid-column-gap: 1rem;
+        margin-bottom: 1rem;
 
-        // Older Browsers.
-        display: flex;
-        flex-direction: row;
-
-        @supports (display: grid) {
-
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            margin-bottom: 1rem;
-
-            @media (min-width: 1000px) {
-                display: grid;
-                grid-row-gap: 1.5rem;
-                grid-column-gap: 1.5rem;
-            }
+        @media (min-width: 1000px) {
+            grid-row-gap: 1.5rem;
+            grid-column-gap: 1.5rem;
         }
 
         .newsroom-date {
