@@ -19,12 +19,12 @@ jQuery(
 			( function( a ) {
 				let retryTime = 300;
 				var x = {
-          init: function(){
+					init() {
 						if ( typeof grecaptcha !== 'undefined' ) {
 							// For Form 1 Initialization.
 							if ( $( '#sfmc-form1 #recaptcha-form1' ).length > 0 ) {
 								var callbackFn = {
-                  action : function(){
+									action() {
 										saveData( '1' );
 									},
 								};
@@ -34,7 +34,7 @@ jQuery(
 							// For Form 2 Initialization.
 							if ( $( '#sfmc-form2 #recaptcha-form2' ).length > 0 ) {
 								var callbackFn = {
-                  action : function(){
+									action() {
 										saveData( '2' );
 									},
 								};
@@ -49,7 +49,7 @@ jQuery(
 							);
 						}
 					},
-					renderInvisibleReCaptcha: function(recaptchaID,callbackFunction){
+					renderInvisibleReCaptcha( recaptchaID, callbackFunction ) {
 						return grecaptcha.render(
 							recaptchaID,
 							{
@@ -61,7 +61,7 @@ jQuery(
 							}
 						);
 					},
-					createCallbackFn: function (widget,formID,callbackFn) {
+					createCallbackFn( widget, formID, callbackFn ) {
 						return function( token ) {
 							$( '#' + formID + ' .g-recaptcha-response' ).val( token );
 							if ( $.trim( token ) == '' ) {
@@ -115,13 +115,13 @@ jQuery(
 				{
 					type: 'POST',
 					url: $( '#sfmc-form' + form ).attr( 'action' ),
-          data: $( '#sfmc-form' + form ).serialize(),
-          beforeSend : function(){
+					data: $( '#sfmc-form' + form ).serialize(),
+					beforeSend() {
 						$( '#sfmc-form' + form ).toggle();
 						$( '#sfmc-message' + form ).html( 'Thank you for your submission. Your request is being processed...' ).addClass( 'is-active' );
 						message.scrollIntoView( { behavior: 'smooth', block: 'center' } );
 					},
-					success : function( response ) {
+					success( response ) {
 						let msg = $( response ).find( 'p' ).text();
 						$( '#sfmc-message' + form ).html( msg ).addClass( 'success' );
 						message.scrollIntoView( { behavior: 'smooth', block: 'center' } );
@@ -130,7 +130,7 @@ jQuery(
 							case '2' : grecaptcha.reset( widget_2 ); break;
 						}
 					},
-					error : function( xhr, status, error ) {
+					error( xhr, status, error ) {
 						let errorMessage = xhr.status + ': ' + xhr.statusText;
 						$( '#sfmc-message' + form ).html( 'There was an error processing your submission. Please try again or contact us directly at info@lfph.io<br>Error code: (' + errorMessage + ')' ).addClass( 'error' );
 						message.scrollIntoView( { behavior: 'smooth', block: 'center' } );
