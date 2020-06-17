@@ -124,3 +124,6 @@ web/wp-content/plugins/text-on-image-block/node_modules
 
 # Ignore local VS code settings
 web/wp-content/themes/lf-theme/.vscode
+
+# Ignore the old CNCF theme (Landing Page)
+web/wp-content/themes/cncf-theme
