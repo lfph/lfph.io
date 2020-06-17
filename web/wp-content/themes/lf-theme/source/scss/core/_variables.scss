@@ -4,34 +4,34 @@ $white: #ffffff;
 $black: #202020;
 
 // primary - highlight colour
-$primary-300: #3792f2; // cta rollover
-$primary-400: #0078f7; // preferred CTA
+$primary-300: #3792f2; // CTA / links rollover
+$primary-400: #0078f7; // preferred CTA / Links
+$primary-700: #00356e; // new
 
 // secondary - bolder colour
-$secondary-300: #5f5f7a; // #908bb1;
-$secondary-500: #000000; // #4e4a6d;
-$secondary-600: #000000; // #302b54;
-$secondary-700: #282878; // #2C2960;
-$secondary-800: #221a55; // #242b5F;
+$secondary-300: #a2a2b6;
+$secondary-500: #6464c1;
+$secondary-600: #15153a;
+$secondary-700: #282878;
+$secondary-800: #221a55;
 $secondary-900: #01011a;
 
 // tertiary
-$tertiary-100: #e9f3fe;
-$tertiary-400: #000000; // #436ca9;
-$tertiary-600: #000000; // #416FD9;
-$tertiary-700: #221a55;
+$tertiary-100: #e4edf6;
+$tertiary-400: #000000;
+$tertiary-600: #000000;
 
 // greys.
 $grey-100: #E6E6E6;
 $grey-200: #ABB2BF;
 $grey-400: #a7a7a6;
 $grey-500: #87969c;
-$grey-700: #A7A4B6; // skew box grey.
+$grey-700: #97a8bb; // skew box grey.
 $grey-800: #333333;
 
 // main.
 $primary-color: $primary-400;
-$secondary-color: $secondary-700;
+$secondary-color: $grey-700;
 $tertiary-color: $tertiary-100;
 
 // links.
@@ -49,13 +49,15 @@ $menu-desktop-container: $secondary-900;
 $menu-desktop-submenu: $secondary-600;
 $menu-desktop-submenu-submenu: $secondary-500;
 $menu-desktop-divider: $secondary-900;
+$menu-desktop-search: $secondary-900;
 
 // menu text/links.
 $menu-link: $white;
 $menu-hover: $grey-100;
 
-// elements
-$cs-overlay: $secondary-800;
+// highlight elements (pricing table, case study overlay).
+$cs-overlay: $secondary-700;
+$hero-overlay: $primary-700;
 
 // forms.
 $error: #B80611;

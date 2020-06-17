@@ -1,27 +1,28 @@
 // define colors to use later in SASS functions
 
-$colors: ( // name : value for that name.
-    'pink-400': #DE176C,
+// The button color is this.
+$colors: ('primary-color': $primary-color,
+    'secondary-color': $secondary-color,
+    'tertiary-color': $tertiary-color,
     'white': $white,
     'black': $black,
-    'purple-700': #2C2960,
-    'blue-100': #F0F5F7,
-);
-$color_hover: ( // name : value for that name.
-    'pink-400': #E43B80,
-    'white': $tertiary-color,
-    'black': #252b5f,
-    'purple-700': #48549C,
-    'blue-100': #3CB3DD,
 );
 
-$text_color: ( // name : value for that name.
-    'pink-400': $white,
+// When hovered it is this.
+$color_hover: ('primary-color': $primary-300,
+    'secondary-color': $secondary-800,
+    'tertiary-color': $tertiary-400,
+    'white': $tertiary-color,
+    'black': $secondary-800,
+);
+
+// Text color is this.
+$text_color: ('primary-color': $white,
+    'secondary-color': $white,
+    'tertiary-color': $black,
     'white': $black,
     'black': $white,
-    'purple-700': $white,
-    'blue-100': $secondary-color,
 );
 
-// take the first colour to be the default
+// Take the first colour to be the default.
 $default: nth(nth($colors, 1), 2);

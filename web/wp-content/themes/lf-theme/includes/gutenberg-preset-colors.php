@@ -25,19 +25,19 @@ add_theme_support(
 			'color' => '#202020',
 		),
 		array(
-			'name'  => __( 'Pink' ),
-			'slug'  => 'pink-400',
-			'color' => '#DE176C',
+			'name'  => __( 'Primary' ),
+			'slug'  => 'primary',
+			'color' => '#0078f7',
 		),
 		array(
-			'name'  => __( 'Purple' ),
-			'slug'  => 'purple-700',
-			'color' => '#2C2960',
+			'name'  => __( 'Secondary' ),
+			'slug'  => 'secondary',
+			'color' => '#97a8bb',
 		),
 		array(
-			'name'  => __( 'Blue' ),
-			'slug'  => 'blue-100',
-			'color' => '#F0F5F7',
+			'name'  => __( 'Tertiary' ),
+			'slug'  => 'tertiary',
+			'color' => '#e4edf6',
 		),
 	)
 );
