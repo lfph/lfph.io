@@ -38,25 +38,6 @@ var globalJSWatchFiles = PROJECT_FOLDER + "/source/js/global/**/*.js";
 var projectPHPWatchFiles = PROJECT_FOLDER + "/**/**/*.php";
 var projectHTMLWatchFiles = PROJECT_FOLDER + "/**/**/*.html";
 
-/*
-const AUTOPREFIXER_BROWSERS = [
-    "last 2 version",
-    "> 1%",
-    "ie >= 11",
-    "ie_mob >= 10",
-    "ff >= 30",
-    "chrome >= 34",
-    "safari >= 7",
-    "opera >= 23",
-    "ios >= 7",
-    "android >= 4",
-    "bb >= 10"
-];
-
-const AUTOPREFIXER_GRID = true;
-*/
-
-
 /**
  * Load Plugins.
  *
@@ -69,7 +50,6 @@ var sass = require("gulp-sass");
 var minifycss = require("gulp-uglifycss");
 var mmq = require("gulp-merge-media-queries");
 var postcss = require('gulp-postcss');
-// var autoprefixer = require("gulp-autoprefixer");
 var autoprefixer = require('autoprefixer');
 
 /** JS plugins */
@@ -91,9 +71,8 @@ var notify = require("gulp-notify");
 var browserSync = require("browser-sync").create();
 
 const POSTCSS_PROCESSORS = [
-  autoprefixer()
+  autoprefixer({ supports: true, cascade: true, grid: false })
 ];
-
 
 function reload(done) {
     browserSync.reload();
@@ -107,7 +86,6 @@ function watch() {
     gulp.watch(projectPHPWatchFiles,reload);
     gulp.watch(projectHTMLWatchFiles).on("change",reload);
     gulp.watch(styleWatchFiles,gulp.series([styles]));
-
     gulp.watch(thirdpartyJSWatchFiles,gulp.series([reload]));
     gulp.watch(blocksJSWatchFiles,gulp.series([blocksJS,reload]));
     gulp.watch(globalJSWatchFiles,gulp.series([globalJS,reload]));
@@ -135,7 +113,6 @@ function styles() {
             })
         )
         .on("error",console.error.bind(console))
-        .pipe(postcss(POSTCSS_PROCESSORS))
         .pipe(
             sourcemaps.write({
                 includeContent: false
@@ -146,6 +123,7 @@ function styles() {
                 loadMaps: true
             })
         )
+        .pipe(postcss(POSTCSS_PROCESSORS))
         .pipe(sourcemaps.write())
         .pipe(lineec())
         .pipe(gulp.dest(styleDestination))
