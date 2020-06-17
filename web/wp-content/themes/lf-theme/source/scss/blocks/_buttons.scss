@@ -2,11 +2,14 @@
 .wp-block-button__link {
     border-radius: 0 !important;
 
-    .is-style-full &,
-    &.full {
-        display: block;
-        width: 100%;
-    }
+    // .is-style-full &,
+    // &.full {
+    //     display: block;
+    //     width: 100%;
+    // }
+
+    text-transform: uppercase;
+    font-size: 0.9rem;
 
     &:hover {
         text-decoration: none;

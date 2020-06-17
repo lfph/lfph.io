@@ -1,7 +1,8 @@
 // define colors to use later in SASS functions
 
 // The button color is this.
-$colors: ('primary-color': $primary-color,
+$colors: ( // name variable : color to be used.
+    'primary-color': $primary-color,
     'secondary-color': $secondary-color,
     'tertiary-color': $tertiary-color,
     'white': $white,
@@ -9,7 +10,8 @@ $colors: ('primary-color': $primary-color,
 );
 
 // When hovered it is this.
-$color_hover: ('primary-color': $primary-300,
+$color_hover: ( // name variable : color to be used.
+    'primary-color': $primary-300,
     'secondary-color': $secondary-800,
     'tertiary-color': $tertiary-400,
     'white': $tertiary-color,
@@ -17,7 +19,8 @@ $color_hover: ('primary-color': $primary-300,
 );
 
 // Text color is this.
-$text_color: ('primary-color': $white,
+$text_color: ( // name variable : color to be used.
+    'primary-color': $white,
     'secondary-color': $white,
     'tertiary-color': $black,
     'white': $black,

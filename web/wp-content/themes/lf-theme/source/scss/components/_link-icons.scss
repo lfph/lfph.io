@@ -1,37 +1,72 @@
 // link-icons.scss
 
 // use for random external links where needed.
+// should match text color it's attached to.
 .external {
     &::after {
         content: "  ";
         background-image: url("data:image/svg+xml,%3Csvg fill='currentColor' height='24' width='24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='m14 4h-13v18h20v-11h1v12h-22v-20h14zm10 5h-1v-6.293l-11.646 11.647-.708-.708 11.647-11.646h-6.293v-1h8z'/%3E%3C/svg%3E");
-        background-size: 10px;
-        height: 10px;
-        width: 10px;
+        background-size: 0.8em;
+        height: 0.8em;
+        width: 0.8em;
         background-repeat: no-repeat;
         display: inline-block;
-        margin-left: 5px;
+        margin-left: 4px;
         margin-top: 5px;
     }
 
+    // if you need it to match link color.
     &.is-primary-color {
         &::after {
+            // blue.
             // https://codepen.io/sosuke/pen/Pjoqqp
-            filter: invert(31%) sepia(94%) saturate(6410%) hue-rotate(323deg) brightness(89%) contrast(95%);
+            filter: invert(29%) sepia(86%) saturate(2416%) hue-rotate(197deg) brightness(97%) contrast(104%);
         }
     }
 
+    // if you want it to be white.
     &.is-footer {
         &::after {
             // white
             // https://codepen.io/sosuke/pen/Pjoqqp
-            filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(52deg) brightness(103%) contrast(104%);
+            filter: invert(100%) sepia(6%) saturate(641%) hue-rotate(218deg) brightness(106%) contrast(106%);
         }
     }
 }
 
-// apply inside main nav and copyright only.
-.site-header .site-navigation .main-navigation,
+// apply inside main nav only.
+// white with blue hover.
+.site-header .site-navigation .main-navigation {
+
+    a[href^="http://"]:not([href^="http://www.lfph"]):not([href^="http://lfph"]):not([href^="http://localhost"]):not([href^="http://dev-lfph"]):not([href^="http://pr-5-lfph"]),
+    a[href^="https://"]:not([href^="https://www.lfph"]):not([href^="https://lfph"]):not([href^="https://localhost"]):not([href^="https://dev-lfph"]):not([href^="https://pr-5-lfph"]),
+    a[href^="//"]:not([href^="//www.lfph"]):not([href^="//lfph"]):not([href^="//localhost"]):not([href^="//dev-lfph"]):not([href^="//pr-5-lfph"]) {
+
+        &::after {
+            content: "  ";
+            background-image: url("data:image/svg+xml,%3Csvg fill='%23FFFFFF' height='24' width='24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='m14 4h-13v18h20v-11h1v12h-22v-20h14zm10 5h-1v-6.293l-11.646 11.647-.708-.708 11.647-11.646h-6.293v-1h8z'/%3E%3C/svg%3E");
+            background-size: 0.8em;
+            height: 0.8em;
+            width: 0.8em;
+            background-repeat: no-repeat;
+            margin-left: 4px;
+            display: inline-flex;
+            white-space: nowrap;
+            align-self: center;
+        }
+
+        &:hover {
+            &::after {
+                // blue.
+                // https://codepen.io/sosuke/pen/Pjoqqp
+                filter: invert(29%) sepia(86%) saturate(2416%) hue-rotate(197deg) brightness(97%) contrast(104%);
+            }
+        }
+    }
+}
+
+// apply inside copyright only.
+// off-white with no hover.
 .copyright-text {
 
     a[href^="http://"]:not([href^="http://www.lfph"]):not([href^="http://lfph"]):not([href^="http://localhost"]):not([href^="http://dev-lfph"]):not([href^="http://pr-5-lfph"]),
@@ -40,7 +75,7 @@
 
         &::after {
             content: "  ";
-            background-image: url("data:image/svg+xml,%3Csvg fill='%23fff' height='24' width='24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='m14 4h-13v18h20v-11h1v12h-22v-20h14zm10 5h-1v-6.293l-11.646 11.647-.708-.708 11.647-11.646h-6.293v-1h8z'/%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg fill='%23a2a2b6' height='24' width='24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='m14 4h-13v18h20v-11h1v12h-22v-20h14zm10 5h-1v-6.293l-11.646 11.647-.708-.708 11.647-11.646h-6.293v-1h8z'/%3E%3C/svg%3E");
             background-size: 10px;
             height: 10px;
             width: 10px;
@@ -60,6 +95,7 @@
 }
 
 // Larger size for Hello Bar, no hover effect.
+// White with no rollover.
 .hello-bar,
 .wp-block-buttons {
 
@@ -69,10 +105,10 @@
 
         &::after {
             content: "  ";
-            background-image: url("data:image/svg+xml,%3Csvg fill='%23fff' height='24' width='24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='m14 4h-13v18h20v-11h1v12h-22v-20h14zm10 5h-1v-6.293l-11.646 11.647-.708-.708 11.647-11.646h-6.293v-1h8z'/%3E%3C/svg%3E");
-            background-size: 0.9em;
-            height: 0.9em;
-            width: 0.9em;
+            background-image: url("data:image/svg+xml,%3Csvg fill='%23FFFFFF' height='24' width='24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='m14 4h-13v18h20v-11h1v12h-22v-20h14zm10 5h-1v-6.293l-11.646 11.647-.708-.708 11.647-11.646h-6.293v-1h8z'/%3E%3C/svg%3E");
+            background-size: 0.95em;
+            height: 0.95em;
+            width: 0.95em;
             background-repeat: no-repeat;
             margin-left: 5px;
             display: inline-flex;
@@ -112,7 +148,9 @@
 
         &:hover {
             &::after {
-                filter: brightness(0) saturate(100%) invert(29%) sepia(98%) saturate(2129%) hue-rotate(317deg) brightness(97%) contrast(84%);
+                // blue.
+                // https://codepen.io/sosuke/pen/Pjoqqp
+                filter: invert(29%) sepia(86%) saturate(2416%) hue-rotate(197deg) brightness(97%) contrast(104%);
             }
         }
     }

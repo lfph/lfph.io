@@ -10,7 +10,7 @@ $primary-700: #00356e; // new
 
 // secondary - bolder colour
 $secondary-300: #a2a2b6;
-$secondary-500: #6464c1;
+$secondary-500: #292972;
 $secondary-600: #15153a;
 $secondary-700: #282878;
 $secondary-800: #221a55;
@@ -42,14 +42,14 @@ $link-hover: $primary-300;
 $menu-mobile-container: $secondary-900;
 $menu-mobile-submenu: $secondary-600;
 $menu-mobile-submenu-submenu: $secondary-500;
-$menu-mobile-divider: $secondary-900;
+$menu-mobile-divider: $secondary-800;
 
 // desktop menu.
 $menu-desktop-container: $secondary-900;
 $menu-desktop-submenu: $secondary-600;
 $menu-desktop-submenu-submenu: $secondary-500;
-$menu-desktop-divider: $secondary-900;
-$menu-desktop-search: $secondary-900;
+$menu-desktop-divider: $secondary-800;
+$menu-desktop-search: $secondary-600;
 
 // menu text/links.
 $menu-link: $white;
