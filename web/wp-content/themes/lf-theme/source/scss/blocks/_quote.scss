@@ -7,7 +7,7 @@
     margin-top: $sm-padding;
     margin-bottom: $sm-padding;
     font-weight: 500;
-    color: $secondary-800;
+    color: $secondary-color;
     font-size: 1.3em;
 
     @media (min-width: 768px) {
@@ -39,7 +39,6 @@
     }
 }
 
-
 .is-style-smaller-quote {
     font-size: 1.1em;
 
@@ -49,7 +48,6 @@
         margin-bottom: $sm-padding;
     }
 }
-
 
 .is-style-paragraph-quote {
     font-size: 1em;

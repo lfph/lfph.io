@@ -67,7 +67,7 @@ img[src$=".svg"] {
     box-shadow: none;
     cursor: pointer;
     display: inline-block;
-    font-size: 0.9rem;
+    font-size: 14px;
     margin: 0;
     padding: 12px 24px;
     text-align: center;
@@ -96,9 +96,8 @@ img[src$=".svg"] {
     }
 
     &:hover {
-        background-color: $link-hover;
         color: $white;
-        // text-decoration: none;
+        background-color: $link-hover;
     }
 
     &.search-open {
@@ -129,12 +128,6 @@ img[src$=".svg"] {
             border: 1px solid $primary-color;
         }
     }
-
-    // &.stocky {
-    //     letter-spacing: 2px;
-    //     font-weight: 700;
-    //     font-size: 0.7rem;
-    // }
 
     &.transparent {
         background-color: transparent;
@@ -302,6 +295,7 @@ figure {
         background-color: $grey-700;
     }
 
+    // Case Study box only.
     &.tertiary {
         color: $secondary-700;
         background-color: $white;

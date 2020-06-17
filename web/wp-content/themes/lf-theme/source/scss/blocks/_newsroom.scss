@@ -24,11 +24,13 @@
         flex-direction: row;
 
         @supports (display: grid) {
+
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             margin-bottom: 1rem;
 
             @media (min-width: 1000px) {
+                display: grid;
                 grid-row-gap: 1.5rem;
                 grid-column-gap: 1.5rem;
             }
