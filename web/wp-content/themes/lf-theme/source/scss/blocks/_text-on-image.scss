@@ -7,8 +7,7 @@
 
 .text-hero-overlay {
     @media (min-width: 700px) {
-
-        background: linear-gradient(90deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.33) 64%, rgba(255, 255, 255, 0) 105%);
+        background: linear-gradient(90deg, rgba(1, 2, 25, 1) 0%, rgba(0, 0, 0, 0.33) 64%, rgba(255, 255, 255, 0) 105%);
         position: absolute;
         top: 0;
         left: 0;
@@ -19,22 +18,17 @@
 }
 
 .text-hero-container {
-
-
     @media (min-width: 700px) {
         display: flex;
         align-items: center;
-        height: calc(80vh - 4rem);
+        height: calc(85vh - 4rem);
         min-height: 400px;
         max-height: 800px;
     }
 }
 
 .text-hero-container .background-image-figure {
-
-
     @media (max-width: 699px) {
-
         height: 200px;
     }
 
