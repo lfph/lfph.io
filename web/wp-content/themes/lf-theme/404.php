@@ -11,6 +11,8 @@
 
 get_template_part( 'components/header' );
 
+get_template_part( 'components/hero' );
+
 get_template_part( 'components/404' );
 
 get_template_part( 'components/footer' );

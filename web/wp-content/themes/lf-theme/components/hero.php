@@ -55,7 +55,7 @@ $options = get_option( 'lf-mu' );
 			<h1 class="post-title" itemprop="headline"><?php the_title(); ?>
 			</h1>
 			<?php elseif ( is_404() ) : ?>
-			<h2><?php esc_html__( 'That\'s a 404', 'lf-theme' ); ?></h2>
+				<h1 class="post-title" itemprop="headline">Sorry that page wasn't found</h1>
 			<?php elseif ( is_home() ) : ?>
 			<h2 class="blog-title"><?php single_post_title(); ?></h2>
 			<?php else : ?>
