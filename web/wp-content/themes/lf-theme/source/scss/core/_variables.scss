@@ -4,17 +4,17 @@ $white: #ffffff;
 $black: #202020;
 
 // primary - highlight colour
-$primary-300: #3792f2; // CTA / links rollover
+$primary-300: #64adfb; // CTA / links rollover
 $primary-400: #0078f7; // preferred CTA / Links
-$primary-700: #00356e; // new
+$primary-700: #4b6e92;
 
 // secondary - bolder colour
-$secondary-300: #a2a2b6;
+$secondary-300: #808392;
 $secondary-500: #292972;
 $secondary-600: #15153a;
 $secondary-700: #282878;
 $secondary-800: #221a55;
-$secondary-900: #01011a;
+$secondary-900: #000726;
 
 // tertiary
 $tertiary-100: #e4edf6;
@@ -47,9 +47,9 @@ $menu-mobile-divider: $secondary-800;
 
 // desktop menu.
 $menu-desktop-container: $secondary-900;
-$menu-desktop-submenu: $secondary-600;
+$menu-desktop-submenu: $secondary-900;
 $menu-desktop-submenu-submenu: $secondary-500;
-$menu-desktop-divider: $secondary-800;
+$menu-desktop-divider: $secondary-600;
 $menu-desktop-search: $secondary-600;
 
 // menu text/links.

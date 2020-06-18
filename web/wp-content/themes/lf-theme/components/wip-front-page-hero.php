@@ -1,9 +1,10 @@
 <?php // phpcs:ignore. ?>
 
-<section class="front-page-hero">
+<section class="text-hero">
 
-	<div
-		class="container wrap background-image-wrapper lfph-logo-image-container">
+<div class="text-hero-overlay"></div>
+
+	<div class="container wrap background-image-wrapper text-hero-container">
 
 		<figure class="background-image-figure">
 			<img sizes="(max-width: 2000px) 100vw, 2000px" srcset="

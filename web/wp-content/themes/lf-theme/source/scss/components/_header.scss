@@ -29,12 +29,16 @@
 .logo {
     margin-top: 20px;
     margin-bottom: 20px;
-    width: 180px;
+    width: 225px;
     flex-shrink: 0;
 
-    @media (min-width: 1200px) {
-        width: 220px;
+    @media (min-width: 1000px) {
+        width: 250px;
         margin-right: 20px;
+    }
+
+    @media (min-width: 1200px) {
+        width: 275px;
     }
 
     a {
