@@ -35,7 +35,7 @@ function lf_blocks_frontend_assets() {
 	);
 	*/
 
-	if ( has_block( 'lf/twitter-feed' ) || has_block( 'core-embed/twitter' ) ) {
+	if ( has_block( 'lf/twitter-feed' ) ) {
 		wp_enqueue_script(
 			'twitter-feed',
 			'//platform.twitter.com/widgets.js',
