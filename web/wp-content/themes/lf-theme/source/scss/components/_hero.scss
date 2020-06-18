@@ -53,6 +53,13 @@
 
     .background-image-figure img {
         filter: grayscale(100%);
+
+        // add for FOUC.
+        height: 220px;
+
+        @media (min-width: 1400px) {
+            height: 260px;
+        }
     }
 
     h1 {
