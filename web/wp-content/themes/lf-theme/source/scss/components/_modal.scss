@@ -1,147 +1,101 @@
-.modal {
-    display: none;
-}
-
-.modal.is-open {
+/* needed for old browsers */
+dialog {
     display: block;
 }
 
-.modal__overlay {
+/* removes scroll when modal is opened */
+.no-scroll {
+    overflow: hidden;
+}
+
+.modal-hide {
+    display: none;
+}
+
+/* overlay covers everything */
+.lf-modal-overlay {
     position: fixed;
     top: 0;
-    left: 0;
-    right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.6);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 99;
-}
-
-.modal__container {
-    background-color: $white;
-    padding: 30px;
-    max-width: 800px;
-    max-height: 100vh;
-    border-radius: 4px;
-    overflow-y: auto;
-    box-sizing: border-box;
-    min-width: 100%;
-
-    @media (min-width: 500px) {
-        min-width: 300px;
-    }
-}
-
-.modal__header {
-    display: flex;
-}
-
-.modal__close {
-    margin-left: auto;
-    background: transparent;
-    border: 0;
-    font-size: 2em;
-    line-height: 1;
+    right: 0;
+    left: 0;
+    background: #000;
+    opacity: .8;
+    z-index: 666;
     cursor: pointer;
 }
 
-.modal__header .modal__close {
-    &:before {
-        content: "\2715";
+.lf-modal {
+    position: fixed;
+    border: 2px solid #000;
+    background: #fff;
+    z-index: 667;
+    padding: 2em;
+    overflow: auto;
+    min-height: 300px;
+
+    left: 0;
+    top: 0;
+    max-width: 100%;
+    bottom: 0;
+
+    @media (min-width: 768px) {
+
+        top: 50%;
+        left: 50%;
+        width: 75%;
+        max-width: 800px;
+        max-height: 98vh;
+        transform: translate(-50%, -50%);
+
+        font-size: 0.8em;
+    }
+
+}
+
+.lf-modal-close {
+    float: right;
+    background: transparent;
+    border-radius: 50%;
+    color: $black;
+    padding: 1em;
+    text-decoration: none;
+    line-height: 1;
+    text-align: center;
+    font-weight: 900;
+    border: 0;
+    cursor: pointer;
+}
+
+.lf-modal-close:focus,
+.lf-modal-close:hover,
+.lf-modal-close:active {
+    background: $link-hover;
+}
+
+.lf-modal-overlay[data-background-click="disabled"] {
+    cursor: auto;
+}
+
+.lf-modal__content {
+    a {
         color: $primary-color;
+        font-weight: 500;
+        transition: all 0.25s ease-out;
+
+        &:visited {
+            text-decoration: none;
+        }
+
+        &:active {
+            text-decoration: none;
+        }
+
+        &:focus {
+            text-decoration: none;
+        }
     }
 
-    &:hover:before {
-        color: $link-hover;
-    }
-
-    &:active:before {
-        position: relative;
-        top: 1;
-    }
-}
-
-.modal__content {
-    margin-bottom: 2rem;
-    font-size: 0.875em;
-}
-
-.modal__title {
-    margin-top: 0;
-}
-
-@keyframes mmfadeIn {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
-}
-
-@keyframes mmfadeOut {
-    from {
-        opacity: 1;
-    }
-
-    to {
-        opacity: 0;
-    }
-}
-
-@keyframes mmslideIn {
-    from {
-        transform: translateY(15%);
-    }
-
-    to {
-        transform: translateY(0);
-    }
-}
-
-@keyframes mmslideOut {
-    from {
-        transform: translateY(0);
-    }
-
-    to {
-        transform: translateY(-10%);
-    }
-}
-
-.micromodal-slide {
-    display: none;
-}
-
-.micromodal-slide.is-open {
-    display: block;
-}
-
-.micromodal-slide[aria-hidden="false"] .modal__overlay {
-    animation: mmfadeIn .3s cubic-bezier(0.0, 0.0, 0.2, 1);
-}
-
-.micromodal-slide[aria-hidden="false"] .modal__container {
-    animation: mmslideIn .3s cubic-bezier(0, 0, .2, 1);
-}
-
-.micromodal-slide[aria-hidden="true"] .modal__overlay {
-    animation: mmfadeOut .3s cubic-bezier(0.0, 0.0, 0.2, 1);
-}
-
-.micromodal-slide[aria-hidden="true"] .modal__container {
-    animation: mmslideOut .3s cubic-bezier(0, 0, .2, 1);
-}
-
-.micromodal-slide .modal__container,
-.micromodal-slide .modal__overlay {
-    will-change: transform;
-}
-
-.modal.is-open {
     .people-profile-picture {
         @media (max-width: 599px) {
             width: 300px;
@@ -149,8 +103,11 @@
             max-width: 100%;
         }
 
+        height: 200px;
         width: 200px;
     }
+
+
 }
 
 .modal-content-wrapper {
@@ -171,5 +128,4 @@
             margin-left: 2rem;
         }
     }
-
 }
