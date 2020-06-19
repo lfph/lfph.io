@@ -143,13 +143,9 @@ if ( strlen( $content ) > 20 ) {
 						endif;
 					?>
 				</div>
-				<div class="modal__content"
-					id="modal-<?php echo esc_html( $person_id ); ?>-content">
-					<!-- Name  -->
-					<h3 class="modal__title margin-reset"
-						id="modal-<?php echo esc_html( $person_id ); ?>-title">
+				<div class="modal__content">
+					<h3 class="modal__title margin-reset">
 						<?php the_title(); ?></h3>
-					<!-- Title  -->
 					<?php
 					if ( $company ) :
 						?>

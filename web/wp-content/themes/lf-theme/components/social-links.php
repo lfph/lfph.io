@@ -21,7 +21,7 @@ $image   = new Image();
 	<?php endif; ?>
 
 	<?php if ( $options['social_wechat_id'] ) : ?>
-	<li class="social_wechat_id"><button class="button-reset" data-micromodal-trigger="modal-wechat" title="<?php echo esc_html( get_bloginfo( 'name' ) ) . ' on WeChat'; ?>"><?php $image->get_svg( 'social/wechat.svg' ); ?></button></li>
+	<li class="social_wechat_id"><button class="js-modal button-reset" data-modal-content-id="modal-wechat" data-modal-prefix-class="lf" data-modal-close-text="X" title="<?php echo esc_html( get_bloginfo( 'name' ) ) . ' on WeChat'; ?>"><?php $image->get_svg( 'social/wechat.svg' ); ?></button></li>
 
 	<?php endif; ?>
 
@@ -71,20 +71,12 @@ $image   = new Image();
 if ( $options['social_wechat_id'] ) :
 	?>
 	<!-- Modal -->
-	<div class="modal micromodal-slide"
-		id="modal-wechat" aria-hidden="true">
-		<div class="modal__overlay" tabindex="-1" data-micromodal-close="">
-			<div class="modal__container" role="dialog" aria-modal="true"
-				aria-labelledby="modal-wechat-title">
-				<header class="modal__header">
-					<button class="modal__close" aria-label="Close modal"
-						data-micromodal-close=""></button>
-				</header>
+	<div class="modal-hide" id="modal-wechat" aria-hidden="true">
+			<div class="modal-content-wrapper">
 				<div class="modal__content"
 					id="modal-wechat-content">
 					<img src="<?php echo esc_url( wp_get_attachment_url( $options['social_wechat_id'] ) ); ?>">
 				</div>
 			</div>
 		</div>
-	</div><!-- Modal end  -->
 	<?php endif; ?>
