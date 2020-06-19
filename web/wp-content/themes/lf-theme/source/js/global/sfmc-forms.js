@@ -76,7 +76,8 @@ jQuery(
 			}( PS, $ ) );
 		}
 
-		$( window ).load(
+		$( window ).on(
+			'load',
 			function() {
 				PS.RECAPTCHA.init();
 			}
