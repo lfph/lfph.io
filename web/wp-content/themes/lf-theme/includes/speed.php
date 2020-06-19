@@ -40,13 +40,15 @@ add_action( 'wp_enqueue_scripts', 'wpdocs_dequeue_dashicon' );
  *
  * @param string $scripts Scripts.
  */
-function opt_remove_jquery_migrate( &$scripts ) {
-	if ( ! is_user_logged_in() ) {
-		$scripts->remove( 'jquery' );
-		$scripts->add( 'jquery', false, array( 'jquery-core' ), '1.12.4' );
+function dequeue_jquery_migrate( $scripts ) {
+	if ( ! is_admin() && ! empty( $scripts->registered['jquery'] ) ) {
+		$scripts->registered['jquery']->deps = array_diff(
+			$scripts->registered['jquery']->deps,
+			array( 'jquery-migrate' )
+		);
 	}
 }
-add_filter( 'wp_default_scripts', 'opt_remove_jquery_migrate' );
+add_action( 'wp_default_scripts', 'dequeue_jquery_migrate' );
 
 /**
  *
