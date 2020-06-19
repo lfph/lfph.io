@@ -34,7 +34,7 @@ if ( strlen( $content ) > 20 ) {
 	<?php if ( $show_modal ) : ?>
 		<button
 			data-modal-content-id="modal-<?php echo esc_html( $person_id ); ?>"
-			data-modal-prefix-class="lf" data-modal-close-text="X"
+			data-modal-prefix-class="lf" data-modal-close-text="Close"
 			class="js-modal button-reset">
 		<?php endif; ?>
 		<div class="background-image-wrapper people-profile-picture">
@@ -121,7 +121,7 @@ if ( strlen( $content ) > 20 ) {
 			?>
 		<button
 			data-modal-content-id="modal-<?php echo esc_html( $person_id ); ?>"
-			data-modal-prefix-class="lf" data-modal-close-text="X"
+			data-modal-prefix-class="lf" data-modal-close-text="Close"
 			class="js-modal button smaller margin-top">View profile</button>
 		<!-- Modal -->
 		<div class="modal-hide" id="modal-<?php echo esc_html( $person_id ); ?>"

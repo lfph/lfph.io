@@ -21,7 +21,7 @@ $image   = new Image();
 	<?php endif; ?>
 
 	<?php if ( $options['social_wechat_id'] ) : ?>
-	<li class="social_wechat_id"><button class="js-modal button-reset" data-modal-content-id="modal-wechat" data-modal-prefix-class="lf" data-modal-close-text="X" title="<?php echo esc_html( get_bloginfo( 'name' ) ) . ' on WeChat'; ?>"><?php $image->get_svg( 'social/wechat.svg' ); ?></button></li>
+	<li class="social_wechat_id"><button class="js-modal button-reset" data-modal-content-id="modal-wechat" data-modal-prefix-class="lf" data-modal-close-text="Close" title="<?php echo esc_html( get_bloginfo( 'name' ) ) . ' on WeChat'; ?>"><?php $image->get_svg( 'social/wechat.svg' ); ?></button></li>
 
 	<?php endif; ?>
 
