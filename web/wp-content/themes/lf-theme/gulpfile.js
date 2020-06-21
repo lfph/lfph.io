@@ -47,12 +47,10 @@ var gulp = require("gulp");
 
 /** CSS plugins */
 var sass = require("gulp-sass");
-var minifycss = require("gulp-uglifycss");
 var mmq = require("gulp-merge-media-queries");
 var postcss = require('gulp-postcss');
 var autoprefixer = require('autoprefixer');
 var cssnano = require('cssnano');
-var critical = require('critical');
 
 /** JS plugins */
 var concat = require("gulp-concat");
@@ -157,45 +155,6 @@ function styles() {
         .pipe(touch());
 }
 
-
-/**
- * Critical CSS
- */
-function criticalcss() {
-  return critical.generate({
-    inline: false,
-		base: './',
-    src: 'https://pr-5-lfph.pantheonsite.io',
-    target: 'build/critical.min.css',
-    minify: true,
-    dimensions: [{
-    height: 500,
-    width: 320
-    },
-    {
-    height: 600,
-    width: 375
-    },
-    {
-    height: 800,
-    width: 414
-    },
-    {
-    height: 1000,
-    width: 1000
-    },
-    {
-    height: 1200,
-    width: 1200
-    },
-    {
-    height: 1500,
-    width: 1500
-    }],
-
-	});
-}
-
 /**
  * Clean build folder to help with cache
  */
@@ -288,4 +247,3 @@ exports.phpcs = gulp.series(phpcs);
 exports.phpcbf = gulp.series(phpcbf);
 exports.standards = gulp.series(phpcbf,phpcs);
 exports.watch = gulp.series(watch);
-exports.critical = gulp.series(criticalcss);
