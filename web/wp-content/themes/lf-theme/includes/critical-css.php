@@ -9,43 +9,40 @@
  * @since 1.0.0
  */
 
-/**
- * Move CSS to preload/onload.
- *
- * @param object $html HTML.
- * @param string $handle File handle.
- * @param string $href link.
- * @param string $media media type.
- */
-function lf_home_css_rel_preload( $html, $handle, $href, $media ) {
-	if ( is_front_page() && ! is_admin() ) {
+ // Only run if front page, user not logged in, or in admin.
+if ( is_front_page() && ! is_user_logged_in() && ! is_admin() ) {
+	/**
+	 * Move CSS to preload/onload.
+	 *
+	 * @param object $html HTML.
+	 * @param string $handle File handle.
+	 * @param string $href link.
+	 * @param string $media media type.
+	 */
+	function lf_home_css_rel_preload( $html, $handle, $href, $media ) {
 		$html = '<link rel="preload" as="style" onload="this.onload=null;this.rel=\'stylesheet\' " id="' . $handle . '" href="' . $href . '" type="text/css" media="all" />';
+		return $html;
 	}
-	return $html;
-}
-add_filter( 'style_loader_tag', 'lf_home_css_rel_preload', 10, 4 );
+	add_filter( 'style_loader_tag', 'lf_home_css_rel_preload', 10, 4 );
 
-/**
- * Load critical CSS in head.
- */
-function lf_home_critical_css() {
-	if ( is_front_page() ) {
+	/**
+	 * Load critical CSS in head.
+	 */
+	function lf_home_critical_css() {
 
 		ob_start();
 		include get_template_directory() . '/build/critical.min.css';
 		$critical_css = ob_get_clean();
 
-		echo '<style>*/ Critical CSS */' . $critical_css . '</style>'; // phpcs:ignore
+	echo '<style>*/ Critical CSS */' . $critical_css . '</style>'; // phpcs:ignore
+
 	}
-}
-add_action( 'wp_head', 'lf_home_critical_css', 10 );
+	add_action( 'wp_head', 'lf_home_critical_css', 10 );
 
-/**
- * LoadCSS polyfill.
- */
-function lf_home_loadcss_critical_css() {
-	if ( is_front_page() ) { ?>
-
+	/**
+	 * LoadCSS polyfill.
+	 */
+	function lf_home_loadcss_critical_css() { ?>
 <script>
 (function(w) {
 	"use strict";
@@ -127,5 +124,6 @@ function lf_home_loadcss_critical_css() {
 
 		<?php
 	}
-}
-add_action( 'wp_head', 'lf_home_loadcss_critical_css', 11 );
+	add_action( 'wp_head', 'lf_home_loadcss_critical_css', 11 );
+
+} // end of if statement.
