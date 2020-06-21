@@ -19,7 +19,7 @@ $youtube   = get_post_meta( get_the_ID(), 'lf_person_youtube', true );
 $category  = Lf_Utils::get_term_names( get_the_ID(), 'lf-person-category', true );
 
 // setup image class.
-$image   = new Image();
+$image = new Image();
 
 // check to see if profile button should be shown.
 $content = get_the_content();
@@ -41,7 +41,7 @@ if ( strlen( $content ) > 20 ) {
 			<figure class="background-image-figure">
 				<?php
 				if ( has_post_thumbnail() ) {
-					echo wp_get_attachment_image( get_post_thumbnail_id(), 'full', false, array( 'class' => '' ) );
+					Lf_Utils::display_responsive_images( get_post_thumbnail_id(), 'full', '300px' );
 				} else {
 					$options = get_option( 'lf-mu' );
 					echo wp_get_attachment_image( $options['generic_avatar_id'], 'people', false, array( 'class' => '' ) );
@@ -134,9 +134,14 @@ if ( strlen( $content ) > 20 ) {
 					<div
 						class="background-image-wrapper people-profile-picture">
 						<figure class="background-image-figure">
-							<?php
-							echo wp_get_attachment_image( get_post_thumbnail_id(), 'full', false, array( 'class' => 'people-thumbnail' ) );
-							?>
+						<?php
+						if ( has_post_thumbnail() ) {
+							Lf_Utils::display_responsive_images( get_post_thumbnail_id(), 'full', '300px' );
+						} else {
+							$options = get_option( 'lf-mu' );
+							echo wp_get_attachment_image( $options['generic_avatar_id'], 'people', false, array( 'class' => '' ) );
+						}
+						?>
 						</figure>
 					</div>
 						<?php

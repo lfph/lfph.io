@@ -51,6 +51,8 @@ var minifycss = require("gulp-uglifycss");
 var mmq = require("gulp-merge-media-queries");
 var postcss = require('gulp-postcss');
 var autoprefixer = require('autoprefixer');
+var cssnano = require('cssnano');
+var critical = require('critical');
 
 /** JS plugins */
 var concat = require("gulp-concat");
@@ -69,10 +71,6 @@ var gulpphpcbf = require("gulp-phpcbf");
 var notify = require("gulp-notify");
 
 var browserSync = require("browser-sync").create();
-
-const POSTCSS_PROCESSORS = [
-  autoprefixer({ supports: true, cascade: true, grid: false })
-];
 
 function reload(done) {
     browserSync.reload();
@@ -123,7 +121,9 @@ function styles() {
                 loadMaps: true
             })
         )
-        .pipe(postcss(POSTCSS_PROCESSORS))
+        .pipe(postcss([
+          autoprefixer({ supports: true, cascade: true, grid: false })
+        ]))
         .pipe(sourcemaps.write())
         .pipe(lineec())
         .pipe(gulp.dest(styleDestination))
@@ -146,17 +146,54 @@ function styles() {
                 precision: 10
             })
         )
-        .pipe(postcss(POSTCSS_PROCESSORS))
-        .pipe(
-            minifycss({
-                maxLineLen: 10
-            })
-        )
+        .pipe(postcss([
+          autoprefixer({ supports: true, cascade: true, grid: false }),
+          cssnano
+        ]))
         .pipe(lineec())
         .pipe(gulp.dest(styleDestination))
         .pipe(filter("**/*.css"))
         .pipe(browserSync.stream())
         .pipe(touch());
+}
+
+
+/**
+ * Critical CSS
+ */
+function criticalcss() {
+  return critical.generate({
+    inline: false,
+		base: './',
+    src: 'https://pr-5-lfph.pantheonsite.io',
+    target: 'build/critical.min.css',
+    minify: true,
+    dimensions: [{
+    height: 500,
+    width: 320
+    },
+    {
+    height: 600,
+    width: 375
+    },
+    {
+    height: 800,
+    width: 414
+    },
+    {
+    height: 1000,
+    width: 1000
+    },
+    {
+    height: 1200,
+    width: 1200
+    },
+    {
+    height: 1500,
+    width: 1500
+    }],
+
+	});
 }
 
 /**
@@ -251,3 +288,4 @@ exports.phpcs = gulp.series(phpcs);
 exports.phpcbf = gulp.series(phpcbf);
 exports.standards = gulp.series(phpcbf,phpcs);
 exports.watch = gulp.series(watch);
+exports.critical = gulp.series(criticalcss);

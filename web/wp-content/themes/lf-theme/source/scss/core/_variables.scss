@@ -64,6 +64,18 @@ $hero-overlay: $primary-700;
 $error: #B80611;
 $success: green;
 
+// Setup variables for the hamburger.
+$hamburger-active-layer-color: $primary-color;
+$hamburger-layer-color: $white;
+$hamburger-padding-x: 0px;
+$hamburger-padding-y: 0px;
+$hamburger-layer-width: 32px;
+$hamburger-layer-height: 4px;
+$hamburger-layer-spacing: 4px;
+$hamburger-layer-border-radius: 1px;
+$hamburger-hover-opacity: 0.7;
+$hamburger-active-hover-opacity: 0.7;
+
 // font-stack.
 $font-primary: -apple-system,
 BlinkMacSystemFont,

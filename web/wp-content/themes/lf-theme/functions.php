@@ -236,7 +236,7 @@ function post_import_processing( $import_id ) {
 	$imported_posts = $wpdb->get_results( $wpdb->prepare( 'SELECT `post_id` FROM `' . $wpdb->prefix . 'pmxi_posts` WHERE `import_id` = %d', $import_id ) );
 	foreach ( $imported_posts as $x_post ) {
 		$i_post = get_post( $x_post->post_id );
-		$doc = new DOMDocument();
+		$doc    = new DOMDocument();
 		@$doc->loadHTML( $i_post->post_content, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD );
 
 		$image_tags = $doc->getElementsByTagName( 'img' );
@@ -245,7 +245,7 @@ function post_import_processing( $import_id ) {
 
 			foreach ( $image_tags as $tag ) {
 				$img_guid = preg_replace( '/(-\d+x\d+)/', '', $tag->getAttribute( 'src' ) );
-				$result = $wpdb->get_row( $wpdb->prepare( 'SELECT `ID` FROM `' . $wpdb->prefix . 'posts` WHERE `guid` LIKE %s', '%' . $img_guid . '%' ) );
+				$result   = $wpdb->get_row( $wpdb->prepare( 'SELECT `ID` FROM `' . $wpdb->prefix . 'posts` WHERE `guid` LIKE %s', '%' . $img_guid . '%' ) );
 				if ( $result ) {
 					$tag->setAttribute( 'class', 'wp-image-' . $result->ID );
 				}
@@ -271,3 +271,6 @@ function post_import_processing( $import_id ) {
 	}
 }
 add_action( 'pmxi_after_xml_import', 'post_import_processing', 10, 1 );
+
+// critical css - experiment.
+require_once 'includes/critical-css.php';

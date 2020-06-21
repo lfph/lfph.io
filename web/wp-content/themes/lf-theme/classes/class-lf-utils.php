@@ -191,4 +191,52 @@ class Lf_Utils {
 
 	}
 
+	/**
+	 * Custom responsive images.
+	 *
+	 * When WordPress generates the srcset attribute, it will only include images that match the same aspect ratio of the src image.
+	 *
+	 * @param int    $image_id image ID.
+	 * @param string $image_size thumbnail name.
+	 * @param string $max_width width with unit.
+	 * @param string $class_name class to apply to img tag.
+	 */
+	public static function display_responsive_images( $image_id, $image_size, $max_width, $class_name = '' ) {
+
+		// if no image id or not number, return.
+		if ( ! $image_id || ! is_integer( $image_id ) ) {
+			return;
+		}
+
+		// Get the default src image size.
+		$image_src = wp_get_attachment_image_url( $image_id, $image_size );
+
+		// Get the srcset with various image sizes.
+		$image_srcset = wp_get_attachment_image_srcset( $image_id, $image_size );
+
+		if ( $class_name ) {
+			$class_name = rtrim( esc_html( $class_name ) );
+		}
+
+		$html = '<img class="' . $class_name . '" src="' . $image_src . '" srcset="' . $image_srcset . '" sizes="(max-width: ' . $max_width . ') 100vw, ' . $max_width . '">';
+
+		echo wp_kses(
+			$html,
+			array(
+				'img' => array(
+					'src'    => true,
+					'srcset' => true,
+					'sizes'  => true,
+					'class'  => true,
+					'id'     => true,
+					'width'  => true,
+					'height' => true,
+					'alt'    => true,
+					'align'  => true,
+				),
+			)
+		);
+
+		return $html;
+	}
 }

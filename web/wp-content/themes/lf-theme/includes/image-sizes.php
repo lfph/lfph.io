@@ -28,7 +28,13 @@ add_image_size( 'spotlight', 320, 170, false );
 add_image_size( 'case-study', 320, 260, true );
 
 // Hero image.
-add_image_size( 'hero-extra-large', 1920, 260, true );
-add_image_size( 'hero-large', 1400, 260, true );
-add_image_size( 'hero-medium', 1000, 220, true );
-add_image_size( 'hero-small', 414, 220, true );
+add_image_size( 'hero-2560', 2560, 260, true );
+add_image_size( 'hero-1920', 1920, 260, true );
+add_image_size( 'hero-1600', 1600, 260, true );
+add_image_size( 'hero-1440', 1440, 260, true );
+add_image_size( 'hero-1400', 1400, 260, true );
+add_image_size( 'hero-1366', 1366, 220, true );
+add_image_size( 'hero-1112', 1112, 220, true );
+add_image_size( 'hero-1024', 1024, 220, true );
+add_image_size( 'hero-768', 768, 220, true );
+add_image_size( 'hero-414', 414, 220, true );

@@ -87,9 +87,13 @@ $image = new Image();
 					<?php
 
 					if ( has_post_thumbnail() ) {
-							echo wp_get_attachment_image( get_post_thumbnail_id(), 'newsroom-image', false, array( 'class' => 'newsroom-image' ) );
+
+						Lf_Utils::display_responsive_images( get_post_thumbnail_id(), 'newsroom-image', '400px', 'newsroom-image' );
+
 					} elseif ( isset( $options['generic_thumb_id'] ) && $options['generic_thumb_id'] ) {
-								echo wp_get_attachment_image( $options['generic_thumb_id'], 'newsroom-image', false, array( 'class' => 'newsroom-image' ) );
+
+						Lf_Utils::display_responsive_images( $options['generic_thumb_id'], 'newsroom-image', '400px', 'newsroom-image' );
+
 					} else {
 						echo '<img src="' . esc_url( get_stylesheet_directory_uri() )
 						. '/images/thumbnail-default.svg" alt="LFPH" class="newsroom-image"/>';

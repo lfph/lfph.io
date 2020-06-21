@@ -18,12 +18,16 @@ $options = get_option( 'lf-mu' );
 	<figure class="background-image-figure">
 		<?php
 		if ( has_post_thumbnail() && ! is_archive() ) {
-			echo wp_get_attachment_image( get_post_thumbnail_id(), 'full', false, false );
+
+			Lf_Utils::display_responsive_images( get_post_thumbnail_id(), 'hero-1440', '100vw' );
+
 		} elseif ( isset( $options['generic_hero_id'] ) && $options['generic_hero_id'] ) {
-			echo wp_get_attachment_image( $options['generic_hero_id'], 'full', false, false );
+
+			Lf_Utils::display_responsive_images( $options['generic_hero_id'], 'hero-1440', '100vw' );
+
 		} else {
 			echo '<img src="' . esc_url( get_stylesheet_directory_uri() )
-			. '/images/hero-default.jpg" alt="LFPH" height="400" width="100%"/>';
+			. '/images/hero-default.jpg" alt="LFPH" height="280" width="100%"/>';
 		}
 		?>
 	</figure>

@@ -207,14 +207,16 @@ figure {
     margin-inline-end: 0;
 }
 
-.background-image-figure img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    position: absolute;
-    z-index: 1;
-    top: 0;
-    left: 0;
+.background-image-figure {
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        position: absolute;
+        z-index: 1;
+        top: 0;
+        left: 0;
+    }
 }
 
 .background-image-text-overlay {
@@ -253,7 +255,7 @@ figure {
 
 .date-icon {
     display: flex;
-    align-items: baseline;
+    align-items: center;
 
     &::before {
         content: ' ';
