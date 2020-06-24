@@ -52,7 +52,7 @@ $options = get_option( 'cncf-mu' );
 		</section>
 
 		<div class="container">
-			<h2 class="launch-header">Launching in late June</h2>
+			<h2 class="launch-header">Launching in July</h2>
 			<p class="contact-text">You can contact us at <a
 					href="mailto:info@lfph.io">info@lfph.io</a></p>
 			<p class="subscribe-text">Subscribe to
