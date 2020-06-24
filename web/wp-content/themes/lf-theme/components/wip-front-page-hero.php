@@ -32,7 +32,7 @@
 		<div class="background-image-text-overlay">
 			<h1>Helping public health authorities around the world fight
 				epidemics</h1>
-			<p>Linux Foundation Public Health (LFPH) was launched in June 2020
+			<p>Linux Foundation Public Health (LFPH) was launched in July 2020
 				to bring together the world’s top open source software
 				developers, technology companies and academics to help public
 				health authorities (PHAs) combat COVID-19 and future epidemics.
