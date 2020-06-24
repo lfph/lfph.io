@@ -66,8 +66,8 @@ $image = new Image();
 						title="<?php the_title(); ?>">
 						<?php the_title(); ?>
 					</a></p>
-					<p class="date-author-row"><span class="posted-date date-icon">
-					<?php echo get_the_date( 'F j, Y' ); ?></span></p>
+				<p class="date-author-row"><span class="posted-date date-icon">
+						<?php echo get_the_date( 'F j, Y' ); ?></span></p>
 				<div class="archive-excerpt"><?php the_content(); ?></div>
 			</div>
 		</div>
@@ -86,13 +86,17 @@ $image = new Image();
 
 					<?php
 
-					if ( has_post_thumbnail() ) {
+					if ( has_post_thumbnail() && $is_featured ) {
+						// display large featured image.
+						Lf_Utils::display_responsive_images( get_post_thumbnail_id(), 'newsroom-600', '600px', 'newsroom-image' );
 
-						Lf_Utils::display_responsive_images( get_post_thumbnail_id(), 'newsroom-image', '400px', 'newsroom-image' );
+					} elseif ( has_post_thumbnail() ) {
+						// display smaller news image.
+						Lf_Utils::display_responsive_images( get_post_thumbnail_id(), 'newsroom-300', '300px', 'newsroom-image' );
 
 					} elseif ( isset( $options['generic_thumb_id'] ) && $options['generic_thumb_id'] ) {
-
-						Lf_Utils::display_responsive_images( $options['generic_thumb_id'], 'newsroom-image', '400px', 'newsroom-image' );
+						// show generic.
+						Lf_Utils::display_responsive_images( $options['generic_thumb_id'], 'newsroom-260', '260px', 'newsroom-image' );
 
 					} else {
 						echo '<img src="' . esc_url( get_stylesheet_directory_uri() )

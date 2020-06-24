@@ -19,11 +19,11 @@ $options = get_option( 'lf-mu' );
 		<?php
 		if ( has_post_thumbnail() && ! is_archive() ) {
 
-			Lf_Utils::display_responsive_images( get_post_thumbnail_id(), 'hero-1440', '100vw' );
+			Lf_Utils::display_picture( get_post_thumbnail_id(), 'hero' );
 
 		} elseif ( isset( $options['generic_hero_id'] ) && $options['generic_hero_id'] ) {
 
-			Lf_Utils::display_responsive_images( $options['generic_hero_id'], 'hero-1440', '100vw' );
+			Lf_Utils::display_picture( $options['generic_hero_id'], 'hero' );
 
 		} else {
 			echo '<img src="' . esc_url( get_stylesheet_directory_uri() )
