@@ -46,7 +46,9 @@ dialog {
         left: 50%;
         width: 75%;
         max-width: 800px;
-        max-height: 98vh;
+        height: 65vh;
+        min-height: 300px;
+        max-height: 800px;
         transform: translate(-50%, -50%);
         font-size: 0.8em;
     }
@@ -97,8 +99,8 @@ dialog {
 .lf-modal-close:focus,
 .lf-modal-close:hover,
 .lf-modal-close:active {
-    background: $link-hover;
-    color: $white;
+    outline-color: $link-hover;
+    color: $black;
 }
 
 .lf-modal-overlay[data-background-click="disabled"] {
@@ -145,7 +147,6 @@ dialog {
     height: 100%;
 }
 
-
 .modal-content-wrapper {
     display: flex;
     flex-direction: column;
@@ -154,6 +155,7 @@ dialog {
 
         .modal__content {
             margin-top: 1rem;
+            margin-bottom: 1rem;
         }
     }
 
@@ -163,6 +165,11 @@ dialog {
         .modal__content {
             margin-left: 2rem;
             margin-right: 2rem;
+            padding-bottom: 1rem;
+
+            p:last-child {
+                margin-bottom: 2rem;
+            }
         }
     }
 }
