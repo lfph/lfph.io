@@ -93,7 +93,6 @@ function watch() {
     });
 }
 
-
 /**
  * SASS to CSS tasks
  */
@@ -153,13 +152,6 @@ function styles() {
         .pipe(filter("**/*.css"))
         .pipe(browserSync.stream())
         .pipe(touch());
-}
-
-/**
- * Clean build folder to help with cache
- */
-function clean() {
-    return del([styleDestination + "/*"]);
 }
 
 // PHP Code Sniffer.

@@ -258,6 +258,10 @@ class Lf_Utils {
 	 * @param int $image_id image ID.
 	 */
 	public static function get_img_alt( $image_id ) {
+
+		if ( ! wp_attachment_is_image( $image_id ) ) {
+			return false;
+		}
 		$img_alt_text = trim( strip_tags( get_post_meta( $image_id, '_wp_attachment_image_alt', true ) ) );
 
 		return $img_alt_text;
@@ -270,6 +274,10 @@ class Lf_Utils {
 	 * @param array $sizes_array Array of sizes.
 	 */
 	public static function get_picture_srcsets( $image_id, $sizes_array ) {
+
+		if ( ! wp_attachment_is_image( $image_id ) ) {
+			return false;
+		}
 		$arr = array();
 		foreach ( $sizes_array as $size => $type ) {
 			$image_src = wp_get_attachment_image_src( $image_id, $type );
@@ -290,7 +298,7 @@ class Lf_Utils {
 	public static function display_picture( $image_id, $sizes_array = 'default', $class_name = '' ) {
 
 		// if no image id or not number, return.
-		if ( ! $image_id || ! is_integer( $image_id ) ) {
+		if ( ! $image_id || ! is_integer( $image_id ) || ! wp_attachment_is_image( $image_id ) ) {
 			return;
 		}
 
@@ -322,7 +330,7 @@ class Lf_Utils {
 		if ( $class_name ) {
 			$class_name = rtrim( esc_html( $class_name ) );
 		}
-		$html             = '<picture>' . self::get_picture_srcsets( $image_id, $mappings ) . '
+		$html = '<picture>' . self::get_picture_srcsets( $image_id, $mappings ) . '
 		<img src="' . $img[0] . '" class="' . $class_name . '" alt="' . self::get_img_alt( $image_id ) . '">
 		</picture>';
 

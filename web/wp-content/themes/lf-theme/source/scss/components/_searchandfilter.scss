@@ -1,5 +1,10 @@
 .searchandfilter {
+    @media (min-width: 1000px) {
+        height: 60px;
+    }
+
     >ul {
+        height: 100%;
         margin: 0; // reset
         display: flex;
         flex-wrap: wrap;
@@ -27,6 +32,12 @@
 
     select.sf-input-select {
         min-width: 150px;
+    }
+
+    @media (min-width: 1000px) {
+        .sf-input-select {
+            visibility: hidden;
+        }
     }
 
     .chosen-container {
@@ -58,8 +69,8 @@
     border-color: $grey-400;
     color: $grey-400;
 
-    &:hover {
-        border-color: $primary-color;
-    }
+	&:hover {
+	    border-color: $primary-color;
+	}
 
 }
