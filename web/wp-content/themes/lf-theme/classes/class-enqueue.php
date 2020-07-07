@@ -74,7 +74,6 @@ class Enqueue {
 
 		} else {
 			wp_enqueue_script( 'global-scripts', get_template_directory_uri() . '/build/global.min.js', array( 'jquery' ), filemtime( get_template_directory() . '/build/global.min.js' ), true );
-
 		}
 
 	}

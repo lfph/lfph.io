@@ -39,7 +39,7 @@
 				placeholder="Email Address" autocomplete="email"
 				spellcheck="false" required>
 		</label>
-		<button type="submit" class="button stocky"
+		<button type="submit" class="button"
 			id="sfmc-submit1">Subscribe</button>
 		<div id="recaptcha-form1" style="display:none;"></div>
 	</form>
@@ -48,6 +48,6 @@
 		your
 		information is subject to The Linux Foundation’s <a
 			href="https://www.linuxfoundation.org/privacy/"
-			rel="norefferer noopener" class="external is-footer"
+			rel="noopener" class="external is-footer"
 			target="_blank">Privacy Policy</a>.</p>
 </section>

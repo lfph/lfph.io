@@ -20,7 +20,6 @@ $category  = Lf_Utils::get_term_names( get_the_ID(), 'lf-person-category', true 
 
 // setup image class.
 $image = new Image();
-
 // check to see if profile button should be shown.
 $content = get_the_content();
 if ( strlen( $content ) > 20 ) {
