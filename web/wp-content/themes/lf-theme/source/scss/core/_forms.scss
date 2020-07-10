@@ -8,6 +8,8 @@ input[type="email"] {
     // iOS overrides.
     border-radius: 0;
     -webkit-appearance: none;
+    // makes border lighter.
+    border: 1px solid $grey-400;
 }
 
 input[type="submit"],
