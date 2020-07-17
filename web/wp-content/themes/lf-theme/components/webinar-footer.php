@@ -30,7 +30,7 @@ $image = new Image();
 			<h5 class="margin-bottom-large">Interested in hosting a LFPH
 				webinar?</h5>
 
-			<a title="Host a LFPH webinar" href="mailto:webinars@lfph.io"
+			<a title="Host a LFPH webinar" href="/about/contact/"
 				class="button outline transparent">Let us know</a>
 
 		</div>
