@@ -16,7 +16,6 @@ $github    = get_post_meta( get_the_ID(), 'lf_person_github', true );
 $wechat    = get_post_meta( get_the_ID(), 'lf_person_wechat', true );
 $website   = get_post_meta( get_the_ID(), 'lf_person_website', true );
 $youtube   = get_post_meta( get_the_ID(), 'lf_person_youtube', true );
-$category  = Lf_Utils::get_term_names( get_the_ID(), 'lf-person-category', true );
 
 // setup image class.
 $image = new Image();
@@ -35,20 +34,20 @@ if ( strlen( $content ) > 20 ) {
 			data-modal-content-id="modal-<?php echo esc_html( $person_id ); ?>"
 			data-modal-prefix-class="lf" data-modal-close-text="Close"
 			class="js-modal button-reset">
-		<?php endif; ?>
-		<div class="background-image-wrapper people-profile-picture">
-			<figure class="background-image-figure">
-				<?php
-				if ( has_post_thumbnail() ) {
-					Lf_Utils::display_responsive_images( get_post_thumbnail_id(), 'full', '300px' );
-				} else {
-					$options = get_option( 'lf-mu' );
-					echo wp_get_attachment_image( $options['generic_avatar_id'], 'people', false, array( 'class' => '' ) );
-				}
-				?>
-			</figure>
-		</div>
-		<?php if ( $show_modal ) : ?>
+	<?php endif; ?>
+	<div class="background-image-wrapper people-profile-picture">
+	<figure class="background-image-figure">
+	<?php
+	if ( has_post_thumbnail() ) {
+		LF_Utils::display_responsive_images( get_post_thumbnail_id(), 'people-250', '400px' );
+	} else {
+		$options = get_option( 'lf-mu' );
+		LF_Utils::display_responsive_images( $options['generic_avatar_id'], 'people-250', '400px' );
+	}
+	?>
+	</figure>
+	</div>
+	<?php if ( $show_modal ) : ?>
 	</button>
 	<?php endif; ?>
 	<!-- Name  -->
@@ -62,58 +61,58 @@ if ( strlen( $content ) > 20 ) {
 	<div class="people-excerpt">
 		<?php the_excerpt(); ?>
 	</div>
-	<div class="social-modal-wrapper">
-		<?php
+<div class="social-modal-wrapper">
+	<?php
 		// Social Icons.
-		if ( $linkedin || $twitter || $github || $wechat || $website || $youtube ) :
-			?>
+	if ( $linkedin || $twitter || $github || $wechat || $website || $youtube ) :
+		?>
 		<div class="people-social">
-			<?php
-			if ( $linkedin ) :
-				?>
+		<?php
+		if ( $linkedin ) :
+			?>
 			<a href="<?php echo esc_url( $linkedin ); ?>"
 				rel="noopener"
 				target="_blank"><?php $image->get_svg( 'social/linkedin.svg' ); ?></a>
 				<?php
 		endif;
-			if ( $twitter ) :
-				?>
+		if ( $twitter ) :
+			?>
 			<a href="<?php echo esc_url( $twitter ); ?>" target="_blank"
 				rel="noopener"
 				target="_blank"><?php $image->get_svg( 'social/twitter.svg' ); ?></a>
 				<?php
 		endif;
-			if ( $github ) :
-				?>
+		if ( $github ) :
+			?>
 			<a href="<?php echo esc_url( $github ); ?>" target="_blank"
 				rel="noopener"
 				target="_blank"><?php $image->get_svg( 'social/github.svg' ); ?></a>
 				<?php
 		endif;
-			if ( $wechat ) :
-				?>
+		if ( $wechat ) :
+			?>
 			<a href="<?php echo esc_url( $wechat ); ?>" target="_blank"
 				rel="noopener"
 				target="_blank"><?php $image->get_svg( 'social/wechat.svg' ); ?></a>
 				<?php
 		endif;
-			if ( $website ) :
-				?>
+		if ( $website ) :
+			?>
 			<a href="<?php echo esc_url( $website ); ?>" target="_blank"
 				rel="noopener"
 				target="_blank"><?php $image->get_svg( 'social/website.svg' ); ?></a>
 				<?php
 		endif;
-			if ( $youtube ) :
-				?>
+		if ( $youtube ) :
+			?>
 			<a href="<?php echo esc_url( $youtube ); ?>" target="_blank"
 				rel="noopener"
 				target="_blank"><?php $image->get_svg( 'social/youtube.svg' ); ?></a>
 				<?php
 		endif;
-			?>
+		?>
 		</div>
-			<?php endif; ?>
+		<?php endif; ?>
 		<?php
 		if ( $show_modal ) :
 			// View Profile Button.
@@ -135,10 +134,10 @@ if ( strlen( $content ) > 20 ) {
 						<figure class="background-image-figure">
 						<?php
 						if ( has_post_thumbnail() ) {
-							Lf_Utils::display_responsive_images( get_post_thumbnail_id(), 'full', '300px' );
+							LF_Utils::display_responsive_images( get_post_thumbnail_id(), 'people-250', '400px' );
 						} else {
 							$options = get_option( 'lf-mu' );
-							echo wp_get_attachment_image( $options['generic_avatar_id'], 'people', false, array( 'class' => '' ) );
+							LF_Utils::display_responsive_images( $options['generic_avatar_id'], 'people-250', '400px' );
 						}
 						?>
 						</figure>

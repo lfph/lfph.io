@@ -9,7 +9,7 @@
 		<figure class="background-image-figure">
 
 		<?php
-		Lf_Utils::display_responsive_images( get_post_thumbnail_id(), 'full', '1000px' );
+		Lf_Utils::display_picture( get_post_thumbnail_id(), 'tonih' );
 
 		?>
 

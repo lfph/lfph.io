@@ -16,17 +16,17 @@ $options = get_option( 'lf-mu' );
 <section class="hero background-image-wrapper">
 
 	<figure class="background-image-figure">
-		<?php
-		if ( has_post_thumbnail() && ! is_archive() ) {
-			Lf_Utils::display_picture( get_post_thumbnail_id(), 'hero' );
+	<?php
+	if ( has_post_thumbnail() && ! is_archive() ) {
+		Lf_Utils::display_picture( get_post_thumbnail_id(), 'hero' );
 
-		} elseif ( isset( $options['generic_hero_id'] ) && $options['generic_hero_id'] ) {
-			Lf_Utils::display_picture( $options['generic_hero_id'], 'hero' );
-		} else {
-			echo '<img src="' . esc_url( get_stylesheet_directory_uri() )
-			. '/images/hero-default.jpg" alt="LFPH" height="280" width="100%"/>';
-		}
-		?>
+	} elseif ( isset( $options['generic_hero_id'] ) && $options['generic_hero_id'] ) {
+		Lf_Utils::display_picture( $options['generic_hero_id'], 'hero' );
+	} else {
+		echo '<img src="' . esc_url( get_stylesheet_directory_uri() )
+		. '/images/hero-default.jpg" alt="LFPH" height="280" width="100%"/>';
+	}
+	?>
 	</figure>
 
 	<div class="container wrap background-image-text-overlay">
@@ -38,7 +38,7 @@ $options = get_option( 'lf-mu' );
 				<?php
 				the_archive_description( '<div class="taxonomy-description">', '</div>' );
 				?>
-			<?php elseif ( is_author() ) : ?>
+				<?php elseif ( is_author() ) : ?>
 			<h1 class="blog-title">All posts by <?php the_author(); ?></h1>
 			<?php elseif ( is_archive() ) : ?>
 			<h1 class="blog-title"><a href="<?php the_permalink(); ?>"
@@ -56,7 +56,7 @@ $options = get_option( 'lf-mu' );
 			<h1 class="post-title" itemprop="headline"><?php the_title(); ?>
 			</h1>
 			<?php elseif ( is_404() ) : ?>
-			<h2 class="post-title" itemprop="headline">Sorry that page wasn't
+				<h2 class="post-title" itemprop="headline">Sorry that page wasn't
 				found</h2>
 			<?php elseif ( is_home() ) : ?>
 			<h2 class="blog-title"><?php single_post_title(); ?></h2>

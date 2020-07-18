@@ -24,10 +24,11 @@
 			$is_blog_category = ( in_category( 'blog' ) ) ? true : false;
 
 			$featured_post = null;
-			$sticky = get_option( 'sticky_posts' );
+			$sticky        = get_option( 'sticky_posts' );
+
 			if ( 1 === $archive_page && $sticky && $is_blog_category ) {
 				// check for sticky post and display if it exists.
-				$args  = array(
+				$args        = array(
 					'posts_per_page'      => 1,
 					'post_type'           => array( 'post' ),
 					'post_status'         => array( 'publish' ),
@@ -50,7 +51,7 @@
 					$sticky_post_id = get_the_ID();
 					$count++;
 					$is_featured = ' featured';
-					$is_sticky = ' sticky';
+					$is_sticky   = ' sticky';
 					lf_post_loop_show_post( $is_featured, $is_sticky, $is_in_the_news_category, $is_blog_category );
 				}
 				wp_reset_postdata();
@@ -58,7 +59,7 @@
 
 			while ( have_posts() ) {
 				the_post();
-				if ( get_the_ID() === $sticky_post_id ) {
+				if ( isset( $sticky_post_id ) && get_the_ID() === $sticky_post_id ) {
 					// skip re-showing the sticky post.
 					continue;
 				}

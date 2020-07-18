@@ -220,14 +220,14 @@ class Lf_Utils {
 
 		if ( ! $image_srcset ) {
 
-			$img           = '<img class="' . $class_name . '"  src="' . $image_src . '">';
+			$img           = '<img loading="lazy" class="' . $class_name . '"  src="' . $image_src . '">';
 			$img_meta      = wp_get_attachment_metadata( $image_id );
 			$attachment_id = $image_id;
 			$html          = wp_image_add_srcset_and_sizes( $img, $img_meta, $attachment_id );
 
 		} else {
 
-			$html = '<img class="' . $class_name . '" src="' . $image_src . '" srcset="' . $image_srcset . '" sizes="(max-width: ' . $max_width . ') 100vw, ' . $max_width . '">';
+			$html = '<img loading="lazy" class="' . $class_name . '" src="' . $image_src . '" srcset="' . $image_srcset . '" sizes="(max-width: ' . $max_width . ') 100vw, ' . $max_width . '">';
 
 		}
 
@@ -245,6 +245,8 @@ class Lf_Utils {
 					'alt'    => true,
 					'align'  => true,
 					'style'  => true,
+					'media'  => true,
+					'loading'  => true,
 				),
 			)
 		);
@@ -313,7 +315,16 @@ class Lf_Utils {
 				'1200' => 'hero-1200',
 				'1440' => 'hero-1440',
 				'1920' => 'hero-1920',
-				'2560' => 'hero-2560',
+				'2880' => 'hero-2880',
+			);
+		} elseif ( 'tonih' === $sizes_array ) {
+			$mappings = array(
+				'0'    => 'thumbnail',
+				'375'  => 'tonih-375',
+				'470'  => 'tonih-470',
+				'680'  => 'tonih-680',
+				'800'  => 'tonih-800',
+				'1020' => 'tonih-1020',
 			);
 		} else {
 			// default WordPress sizes.
@@ -345,6 +356,7 @@ class Lf_Utils {
 			'alt'    => true,
 			'align'  => true,
 			'style'  => true,
+			'media'  => true,
 		);
 
 		echo wp_kses(
