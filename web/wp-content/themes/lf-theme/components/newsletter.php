@@ -48,6 +48,6 @@
 		your
 		information is subject to The Linux Foundation’s <a
 			href="https://www.linuxfoundation.org/privacy/"
-			rel="noopener" class="external is-footer"
+			rel="noopener" class="external is-white"
 			target="_blank">Privacy Policy</a>.</p>
 </section>
