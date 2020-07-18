@@ -30,7 +30,12 @@
         .newsroom-title {
             margin-bottom: 0.5em;
         }
+
+        &.expanded-view {
+            grid-template-columns: 1fr;
+        }
     }
+
 }
 
 .newsroom-post-wrapper {

@@ -1,8 +1,8 @@
 // Layout of Recorded Webinars from Search Filter (NOT Upcoming)
 .webinars-wrapper {
-	display: grid;
-	grid-row-gap: 1rem;
-	grid-column-gap: 1rem;
+    display: grid;
+    grid-row-gap: 1rem;
+    grid-column-gap: 1rem;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     margin-top: 1rem;
     margin-bottom: 2rem;
@@ -70,9 +70,6 @@
     padding: 1em;
     background-color: $tertiary-color;
     align-content: center;
-    // .home & {
-    //     background-color: $white;
-    // }
 }
 
 .webinars-upcoming-text-wrapper {
