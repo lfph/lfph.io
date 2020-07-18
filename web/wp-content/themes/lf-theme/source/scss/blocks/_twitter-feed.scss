@@ -1,0 +1,15 @@
+// Custom Twitter Feed Plugin.
+.ctf-styles {
+    padding: 0 0.5em;
+}
+
+// Custom LF Block.
+.wp-block-lf-twitter-feed {
+    background-color: $white;
+    padding: 10px;
+    height: 100%;
+}
+
+.twitter-item {
+    overflow-y: scroll;
+}

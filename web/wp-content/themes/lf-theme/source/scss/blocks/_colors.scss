@@ -1,0 +1,35 @@
+// define colors to use later in SASS functions
+// This should match color in gutenberg-preset-colors
+
+// The button color is this.
+$colors: ( // name variable : color to be used.
+    'primary': $primary-color,
+    'secondary': $secondary-color,
+    'tertiary': $tertiary-color,
+    'grey-700': $grey-700,
+    'white': $white,
+    'black': $black,
+);
+
+// When hovered it is this.
+$color_hover: ( // name variable : color to be used.
+    'primary': $primary-300,
+    'secondary': $secondary-800,
+    'tertiary': $tertiary-200,
+    'grey-700': $grey-500,
+    'white': $tertiary-color,
+    'black': $secondary-800,
+);
+
+// Text color is this.
+$text_color: ( // name variable : color to be used.
+    'primary': $white,
+    'secondary': $white,
+    'tertiary': $white,
+    'grey-700': $white,
+    'white': $black,
+    'black': $white,
+);
+
+// Take the first colour to be the default.
+$default: nth(nth($colors, 1), 2);

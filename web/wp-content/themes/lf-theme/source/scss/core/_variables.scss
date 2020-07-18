@@ -1,0 +1,110 @@
+// declare all colours.
+
+$white: #ffffff;
+$black: #202020;
+
+// primary - highlight colour
+$primary-300: #64adfb; // CTA / links rollover
+$primary-400: #0078f7; // preferred CTA / Links
+$primary-700: #4b6e92;
+
+// secondary - bolder colour
+$secondary-300: #808392;
+$secondary-500: #292972;
+$secondary-600: #15153a;
+$secondary-700: #282878;
+$secondary-800: #221a55;
+$secondary-900: #000726;
+
+// tertiary
+$tertiary-100: #e4edf6;
+$tertiary-200: #b9c5d2;
+$tertiary-400: #0078f7;
+$tertiary-600: #0078f7;
+
+// greys.
+$grey-100: #E6E6E6;
+$grey-200: #ABB2BF;
+$grey-400: #a7a7a6;
+$grey-500: #87969c;
+$grey-700: #97a8bb; // skew box grey.
+$grey-800: #333333;
+
+// main.
+$primary-color: $primary-400;
+$secondary-color: $secondary-700;
+$tertiary-color: $tertiary-100;
+
+// links.
+$link-color: $primary-400;
+$link-hover: $primary-300;
+
+// mobile menu.
+$menu-mobile-container: $secondary-900;
+$menu-mobile-submenu: $secondary-600;
+$menu-mobile-submenu-submenu: $secondary-500;
+$menu-mobile-divider: $secondary-800;
+
+// desktop menu.
+$menu-desktop-container: $secondary-900;
+$menu-desktop-submenu: $secondary-600;
+$menu-desktop-submenu-submenu: $secondary-500;
+$menu-desktop-divider: $secondary-500;
+$menu-desktop-search: $secondary-600;
+
+// menu text/links.
+$menu-link: $white;
+$menu-hover: $grey-100;
+
+// highlight elements (pricing table, case study overlay).
+$cs-overlay: $secondary-700;
+$hero-overlay: $primary-700;
+
+// forms.
+$error: #B80611;
+$success: green;
+
+// Setup variables for the hamburger.
+$hamburger-active-layer-color: $primary-color;
+$hamburger-layer-color: $white;
+$hamburger-padding-x: 0px;
+$hamburger-padding-y: 0px;
+$hamburger-layer-width: 32px;
+$hamburger-layer-height: 4px;
+$hamburger-layer-spacing: 4px;
+$hamburger-layer-border-radius: 1px;
+$hamburger-hover-opacity: 1;
+$hamburger-active-hover-opacity: 1;
+
+// font-stack.
+$font-primary: -apple-system,
+BlinkMacSystemFont,
+"Segoe UI",
+"Roboto",
+"Oxygen",
+"Ubuntu",
+"Cantarell",
+"Fira Sans",
+"Droid Sans",
+"Helvetica Neue",
+sans-serif;
+
+$font-code: Hack,
+"Fira Code",
+Consolas,
+Menlo,
+Monaco,
+"Andale Mono",
+"Lucida Console",
+"Lucida Sans Typewriter",
+"DejaVu Sans Mono",
+"Bitstream Vera Sans Mono",
+"Liberation Mono",
+"Nimbus Mono L",
+"Courier New",
+Courier,
+monospace;
+
+// spacing.
+$sm-padding: 2rem;
+$lg-padding: 4rem;

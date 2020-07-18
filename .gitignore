@@ -15,13 +15,12 @@ web/*
 !web/wp-content/
 web/wp-content/*
 
+# ignore Pantheon MU plugin
+web/wp-content/mu-plugins/pantheon/
+web/wp-content/mu-plugins/pantheon.php
+
 !web/wp-content/mu-plugins/
-web/wp-content/mu-plugins/*
-!web/wp-content/mu-plugins/cncf-mu/
-!web/wp-content/mu-plugins/cncf-mu.php
-!web/wp-content/mu-plugins/um-deactivate-assets.php
-!web/wp-content/mu-plugins/wp-no-base-permalink.php
-!web/wp-content/mu-plugins/.gitkeep
+web/wp-content/mu-plugins/wp-mu-plugins/
 
 !web/wp-content/plugins/
 web/wp-content/plugins/*
@@ -44,6 +43,7 @@ web/private/scripts/quicksilver
 behat-local.yml
 wraith/configs/capture.yaml
 wraith/shots
+web/wp-content/themes/twentynineteen/node_modules
 
 # :::::::::::::::::::::: cut ::::::::::::::::::::::
 
@@ -115,25 +115,15 @@ Thumbs.db
 ##########
 .sass-cache
 
-
 # Allowing premium plugins
-!web/wp-content/plugins/gravityforms
 !web/wp-content/plugins/search-filter-pro
-!web/wp-content/plugins/wp-all-import-pro
-!web/wp-content/plugins/customer-import-export-for-woocommerce
-!web/wp-content/plugins/miniorange-saml-20-single-sign-on
 
 # Allowing custom plugins
 !web/wp-content/plugins/text-on-image-block
 web/wp-content/plugins/text-on-image-block/node_modules
-!web/wp-content/plugins/tab-container-block
-web/wp-content/plugins/tab-container-block/node_modules
-!web/wp-content/plugins/lf-count-up-block
-web/wp-content/plugins/lf-count-up-block/node_modules
-!web/wp-content/plugins/lf-latest-jobs
-web/wp-content/plugins/lf-latest-jobs/node_modules
-!web/wp-content/plugins/lf-cncf-blocks
-web/wp-content/plugins/lf-cncf-blocks/node_modules
 
-#ignore the WIP theme
-web/wp-content/themes/lf-theme/
+# Ignore local VS code settings
+web/wp-content/themes/lf-theme/.vscode
+
+# Ignore the old CNCF theme (Landing Page)
+web/wp-content/themes/cncf-theme

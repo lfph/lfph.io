@@ -3,7 +3,7 @@
  * WP Config
  *
  * @package WordPress
- * @subpackage cncf-theme
+ * @subpackage lf-theme
  * @since 1.0.0
  */
 
@@ -182,7 +182,7 @@ endif;
 * Define wp-content directory outside of WordPress core directory.
 */
 define( 'WP_CONTENT_DIR', dirname( __FILE__ ) . '/wp-content' );
-define( 'WP_CONTENT_URL', getenv( 'WP_HOME' ) . '/wp-content' );
+define( 'WP_CONTENT_URL', WP_HOME . '/wp-content' );
 
 /**
  * Disallow on server file edits
