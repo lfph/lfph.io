@@ -18,6 +18,7 @@ add_image_size( 'newsroom-media-coverage', 260, 160, false );
 // Newsroom, mobile, featured, retina.
 add_image_size( 'newsroom-260', 260, 180, true );
 add_image_size( 'newsroom-300', 300, 200, true );
+add_image_size( 'newsroom-540', 540, 360, true );
 add_image_size( 'newsroom-600', 600, 320, true );
 add_image_size( 'newsroom-1200', 1200, 640, true );
 add_image_size( 'newsroom-post-width', 700, 9999, false );
