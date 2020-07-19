@@ -319,12 +319,12 @@ class Lf_Utils {
 			);
 		} elseif ( 'tonih' === $sizes_array ) {
 			$mappings = array(
-				'0'    => 'thumbnail',
-				'375'  => 'tonih-375',
+				'0'    => 'tonih-350',
 				'470'  => 'tonih-470',
 				'680'  => 'tonih-680',
 				'800'  => 'tonih-800',
 				'1020' => 'tonih-1020',
+				'2040' => 'tonih-2040',
 			);
 		} else {
 			// default WordPress sizes.

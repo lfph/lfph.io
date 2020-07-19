@@ -54,6 +54,7 @@ add_image_size( 'tonih-470', 470, 590, false );
 add_image_size( 'tonih-680', 680, 500, false );
 add_image_size( 'tonih-800', 800, 500, false );
 add_image_size( 'tonih-1020', 1020, 700, false );
+add_image_size( 'tonih-1020', 2040, 1400, false );
 
 // people.
 add_image_size( 'people-250', 250, 250, true );
