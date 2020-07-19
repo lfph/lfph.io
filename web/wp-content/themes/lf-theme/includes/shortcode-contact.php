@@ -355,8 +355,8 @@ function add_contact_shortcode() {
 				placeholder="Type your message here" required></textarea>
 		</div>
 		<div class="form-group checkbox-align">
-			<input type="checkbox" name="OptIn" id="OptIn"><label
-				for="OptIn">I would like to receive marketing emails about news, events and training from The Linux Foundation and its projects</label>
+			<label
+				for="OptIn" class="checkbox"><input type="checkbox" name="OptIn" id="OptIn"><span></span>I would like to receive marketing emails about news, events and training from The Linux Foundation and its projects</label>
 		</div>
 		<input type="hidden" id="txtUrl" name="txtUrl" value="" readonly="">
 		<script>
