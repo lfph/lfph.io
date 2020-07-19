@@ -266,7 +266,8 @@ figure {
 
 /* Assistive text */
 .assistive-text,
-.screen-reader-text {
+.screen-reader-text,
+.sr-text {
     position: absolute !important;
     clip: rect(1px, 1px, 1px, 1px);
     overflow: hidden;

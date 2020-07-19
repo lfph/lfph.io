@@ -73,7 +73,7 @@ jQuery( document ).ready(
 				if ( $modal_close_img !== '' ) {
 					 $modal_code += '<img src="' + $modal_close_img + '" alt="' + $modal_close_text + '" class="' + $modal_prefix_classes + 'modal__closeimg" />';
 				} else {
-						 $modal_code += '<span class="' + $modal_prefix_classes + 'modal-close__text">' + $modal_close_text + '</span>';
+						 $modal_code += '<span class="' + $modal_prefix_classes + 'modal-close__text screen-reader-text">' + $modal_close_text + '</span>';
 				}
 				$modal_code += '</button>';
 				$modal_code += '<div class="' + $modal_prefix_classes + 'modal__content">';
