@@ -20,7 +20,7 @@ add_image_size( 'newsroom-260', 260, 180, true );
 add_image_size( 'newsroom-300', 300, 200, true );
 add_image_size( 'newsroom-600', 600, 320, true );
 add_image_size( 'newsroom-1200', 1200, 640, true );
-
+add_image_size( 'newsroom-post-width', 700, 9999, false );
 // spotlight.
 add_image_size( 'spotlight-320', 320, 170, false );
 add_image_size( 'spotlight-515', 515, 270, false );
@@ -58,3 +58,20 @@ add_image_size( 'tonih-1020', 1020, 700, false );
 // people.
 add_image_size( 'people-250', 250, 250, true );
 add_image_size( 'people-500', 500, 500, true );
+
+/**
+ * Add custom image sizes to media select.
+ *
+ * @param array $sizes Current image sizes.
+ */
+function lf_custom_image_editor_sizes( $sizes ) {
+	$sizes = array_merge(
+		$sizes,
+		array(
+			'newsroom-post-width' => __( 'Blog Width' ),
+			'hero-768' => __( 'Widescreen Strip' ),
+		)
+	);
+	return $sizes;
+}
+add_filter( 'image_size_names_choose', 'lf_custom_image_editor_sizes' );
