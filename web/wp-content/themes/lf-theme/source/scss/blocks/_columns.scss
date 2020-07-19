@@ -145,7 +145,6 @@
     h6,
     p {
         margin-bottom: 0.5rem;
-        // text-align: left;
     }
 
     @media (min-width: 800px) {
@@ -170,15 +169,6 @@
 
 
 }
-
-// .wp-block-columns .wp-block-columns.is-style-section-header-column {
-
-//     // &:last-child,
-//     // &:last-of-type,
-//     &:nth-of-type(0) {
-//         border: 1px red solid;
-//     }
-// }
 
 .wp-block-column+.wp-block-column {
     .is-style-section-header-column {
