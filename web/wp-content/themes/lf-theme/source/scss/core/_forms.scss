@@ -26,6 +26,19 @@ input[type="search"] {
     }
 }
 
+input[type="checkbox"] {
+    -webkit-appearance: none;
+    width: 26px;
+    height: 15px;
+    background: $white;
+    border-radius: 0;
+    border: 1px solid $grey-400;
+}
+
+input[type='checkbox']:checked {
+    background: $secondary-700;
+}
+
 // make selectbox the same on all devices.
 .select-css,
 .gfield_select {
@@ -38,9 +51,9 @@ input[type="search"] {
     max-width: 100%;
     box-sizing: border-box;
     margin: 0;
-    border: 1px solid #aaa;
+    border: 1px solid $grey-400;
     box-shadow: 0 1px 0 1px rgba(0, 0, 0, .04);
-    border-radius: .5em;
+    border-radius: 0;
     -moz-appearance: none;
     -webkit-appearance: none;
     appearance: none;
@@ -120,6 +133,12 @@ body.um-page-user,
     textarea {
         width: 100%;
         padding: 0.5em;
+
+        // iOS overrides.
+        border-radius: 0;
+        -webkit-appearance: none;
+        // makes border lighter.
+        border: 1px solid $grey-400;
     }
 
     label {
@@ -154,6 +173,12 @@ body.um-page-user,
 
             label {
                 margin-bottom: 0;
+                margin-left: 10px;
+            }
+
+            input[type="checkbox"] {
+                align-self: flex-start;
+                margin-top: 2px;
             }
         }
     }
@@ -164,9 +189,7 @@ body.um-page-user,
         }
     }
 
-    input[type="checkbox"] {
-        margin-right: 1em;
-    }
+
 }
 
 // Results Message.
