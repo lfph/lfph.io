@@ -10,8 +10,16 @@
     display: flex;
     flex-direction: column;
 
+    @media (max-width: 999px) {
+        margin-bottom: 1rem;
+    }
+
     .posted-date {
         margin-bottom: 1.5rem;
+
+        @media (max-width: 999px) {
+            margin-bottom: 1rem;
+        }
     }
 
     @media (min-width: 1000px) {
