@@ -22,6 +22,11 @@ body {
     overscroll-behavior: none;
 }
 
+// applied on pages, need this because of .alignwide blocks.
+.page-content {
+    overflow-x: hidden;
+}
+
 .container {
     width: 100%;
     max-width: 1050px;
