@@ -1,6 +1,13 @@
 .wp-block-gallery {
     .blocks-gallery-item {
         margin-bottom: 1rem;
+
+        @media (max-width: 799px) {
+
+            width: 100%;
+            margin-right: 0;
+            margin-left: 0;
+        }
     }
 
     ul.blocks-gallery-grid {
