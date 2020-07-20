@@ -50,10 +50,11 @@
 
     h1 {
         max-width: 600px;
+        font-size: 4em;
     }
 
     p {
-        max-width: 550px;
+        max-width: 650px;
 
         @media (max-width: 699px) {
             margin-bottom: 2rem;
