@@ -25,3 +25,11 @@ p+.wp-block-gallery .blocks-gallery-grid {
     font-weight: 400;
     font-style: italic;
 }
+
+wp-block-gallery.is-style-no-margins {
+    .blocks-gallery-grid {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+}

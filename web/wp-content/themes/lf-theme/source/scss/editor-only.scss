@@ -21,6 +21,7 @@
         @import "blocks/columns";
         @import "blocks/colors";
         @import "blocks/buttons";
+        @import "blocks/gallery";
         @import "blocks/case-study-highlights";
         @import "blocks/case-study-overview";
         @import "blocks/latest-jobs";
@@ -32,7 +33,7 @@
         @import 'blocks/spacer';
         @import "components/events";
         @import "components/webinars";
-		@import "components/hero";
+        @import "components/hero";
 
         // to stop the included editor gutenberg styles.
         h1,
@@ -115,8 +116,8 @@
     padding-right: 25px;
     clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 100%, calc(100% - 22px) 0);
     // useful if inside flexbox.
-	align-self: start;
-	margin-bottom: 0.5rem;
+    align-self: start;
+    margin-bottom: 0.5rem;
 
     &.secondary {
         background-color: $grey-700;
