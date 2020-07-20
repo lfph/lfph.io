@@ -73,39 +73,40 @@ if ( $dat_webinar_start > $dat_now ) {
 			<?php
 			if ( 'upcoming' == $period_status ) :
 				?>
-		<span class="skew-box centered margin-bottom"><?php echo esc_html( str_replace( ':00', '', $dat_webinar_start->format( 'l F j, Y, g:iA T' ) ) ); ?></span>
-			<?php endif; ?>
+		<span
+			class="skew-box centered margin-bottom"><?php echo esc_html( str_replace( ':00', '', $dat_webinar_start->format( 'l F j, Y, g:iA T' ) ) ); ?></span>
+		<?php endif; ?>
 
 			<?php if ( $author_category ) : ?>
 		<div class="skew-box secondary centered">LFPH
 				<?php echo esc_html( $author_category ); ?> Webinar
-			</div>
-			<?php endif; ?>
+		</div>
+		<?php endif; ?>
 
 			<?php
 			// the company - presented by.
 			if ( $company ) :
 				?>
 		<div class="presented-by">Presented by:
-					<?php echo esc_html( $company ); ?></div>
-				<?php endif; ?>
+				<?php echo esc_html( $company ); ?></div>
+		<?php endif; ?>
 
 			<?php if ( 'past' == $period_status ) : ?>
 		<h3 class="margin-y">This webinar has passed.</h3>
 
-			<p class="date-icon">Broadcast on
+		<p class="date-icon">Broadcast on
 				<?php echo esc_html( $dat_webinar_start->format( 'l F j, Y, g:iA T' ) ); ?>
 			</p>
-					<?php endif; ?>
+		<?php endif; ?>
 
-				<?php
-				if ( 'upcoming' == $period_status && $registration_url ) :
-					?>
+			<?php
+			if ( 'upcoming' == $period_status && $registration_url ) :
+				?>
 		<p><a target="_blank" href="<?php echo esc_url( $registration_url ); ?>" rel="noopener"
 				class="button margin-top-large"
 				title="Register for <?php the_title(); ?> Webinar">Register
 				Now</a></p>
-			<?php endif; ?>
+		<?php endif; ?>
 
 			<?php
 			if ( 'recorded' == $period_status ) :
@@ -151,7 +152,8 @@ if ( $dat_webinar_start > $dat_now ) {
 
 			<div class="webinar-summary margin-y-large">
 				<h3>Webinar Summary</h3>
-				<p class="is-style-max-width-900"><strong>Webinar:</strong> <?php the_title(); ?></p>
+				<p
+					class="is-style-max-width-900"><strong>Webinar:</strong> <?php the_title(); ?></p>
 
 				<?php if ( $speakers ) : ?>
 				<p><strong>Speakers:</strong> <?php echo esc_html( $speakers ); ?></p>
@@ -164,9 +166,17 @@ if ( $dat_webinar_start > $dat_now ) {
 
 				<p><strong>Time:</strong> <?php echo esc_html( $dat_webinar_start->format( 'g:i' ) . ' - ' . $dat_webinar_end->format( 'g:i A T' ) ); ?></p>
 
-				<p><strong>How to attend:</strong> <a target="_blank" href="<?php echo esc_url( $registration_url ); ?>" rel="noopener" class="external is-primary-color"
+				<p><strong>How to attend:</strong>
+				<?php if ( $registration_url ) : ?>
+					<a target="_blank" href="<?php echo esc_url( $registration_url ); ?>" rel="noopener" class="external is-primary-color"
 				title="Register for <?php the_title(); ?> Webinar">Register for this
-					webinar</a></p>
+					webinar</a>
+					<?php
+						else :
+							?>
+						Registration link coming soon
+						<?php endif; ?>
+				</p>
 			</div>
 			<?php endif; ?>
 
