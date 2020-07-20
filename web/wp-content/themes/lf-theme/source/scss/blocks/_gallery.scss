@@ -18,3 +18,10 @@
 p+.wp-block-gallery .blocks-gallery-grid {
     margin-top: calc(#{$lg-padding} - 2rem);
 }
+
+
+.blocks-gallery-caption {
+    font-size: 0.8em;
+    font-weight: 400;
+    font-style: italic;
+}
