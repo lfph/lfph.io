@@ -56,13 +56,13 @@
         }
 
         @media (min-width: 1000px) {
-            font-size: 3.5em;
+            font-size: 3em;
         }
 
     }
 
     p {
-        max-width: 600px;
+        max-width: 450px;
 
         @media (max-width: 699px) {
             margin-bottom: 2rem;
