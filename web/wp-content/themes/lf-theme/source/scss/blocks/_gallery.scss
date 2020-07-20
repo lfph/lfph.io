@@ -27,9 +27,9 @@ p+.wp-block-gallery .blocks-gallery-grid {
 }
 
 wp-block-gallery.is-style-no-margins {
-    .blocks-gallery-grid {
-        margin-top: 0;
-        margin-bottom: 0;
+    ul.blocks-gallery-grid {
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
     }
 
 }
