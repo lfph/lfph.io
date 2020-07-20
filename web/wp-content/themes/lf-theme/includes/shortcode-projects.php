@@ -103,20 +103,6 @@ function add_projects_shortcode( $atts ) {
 				</a>
 			<?php endif; ?>
 
-		<h3 class="project-title">
-
-			<?php if ( $external_url ) : ?>
-		<a href="<?php echo esc_url( $external_url ); ?>"  rel="noopener" target="_blank">
-				<?php
-		endif;
-			the_title();
-			if ( $external_url ) :
-				?>
-			</a>
-			<?php endif; ?>
-
-		</h3>
-
 			<?php if ( $project_category ) : ?>
 		<span class="project-category">
 				<?php echo esc_html( $project_category ); ?></span>
@@ -161,7 +147,7 @@ function add_projects_shortcode( $atts ) {
 			<?php endif; ?>
 
 			<?php if ( $mail ) : ?>
-			<a title="<?php the_title(); ?> Discussions"
+			<a title="<?php the_title(); ?> Contact"
 				href="<?php echo esc_html( $mail ); ?>"
 				 rel="noopener" target="_blank"><?php $image->get_svg( '/social/email.svg' ); ?></a>
 			<?php endif; ?>
