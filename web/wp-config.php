@@ -188,7 +188,7 @@ define( 'WP_CONTENT_URL', WP_HOME . '/wp-content' );
  * Disallow on server file edits
  */
 define( 'DISALLOW_FILE_EDIT', true );
-define( 'DISALLOW_FILE_MODS', true );
+//define( 'DISALLOW_FILE_MODS', true );
 
 /**
  * Force SSL
