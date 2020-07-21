@@ -54,8 +54,8 @@ cp configs/capture.yaml.template configs/capture.yaml
 cat >>configs/capture.yaml <<EOL
 # (required) The domains to take screenshots of.
 domains:
-  current:  "http://test-$TERMINUS_S.pantheonsite.io"
-  new:      "https://$TERMINUS_ENV-$TERMINUS_S.pantheonsite.io"  
+  current:  "http://test-lfeventsci.pantheonsite.io"
+  new:      "https://dev-lfeventsci.pantheonsite.io"  
 EOL
 wraith capture capture
 
