@@ -23,7 +23,6 @@ paths:
   host: /join/host-your-project/
   faq: /join/faq/
   webinars: /community/webinars/
-  search: /?s=test
   blog: /blog/
 
 # (required) Screen widths (and optional height) to resize the browser to before taking the screenshot.
