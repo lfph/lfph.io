@@ -178,7 +178,7 @@ jobs:
 
     wraith_test_lfph:
         docker:
-            - image: rainsystems/wraith
+            - image: lopezs/wraith
 
         steps:
             - checkout
