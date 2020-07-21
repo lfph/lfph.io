@@ -2,7 +2,9 @@
  * JS code for handling forms with recaptcha
  *
  * @package WordPress
- */
+ * @since 1.0.0
+ * @author Chris Abraham
+*/
 
 /**
  * Callback for form submission.
