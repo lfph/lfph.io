@@ -1,4 +1,13 @@
 .wp-block-gallery {
+
+    &.is-style-no-margins {
+        ul.blocks-gallery-grid {
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+
+    }
+
     .blocks-gallery-item {
         margin-bottom: 1rem;
 
@@ -8,12 +17,28 @@
             margin-right: 0;
             margin-left: 0;
         }
+
+        figure {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .blocks-gallery-item__caption {
+            position: static;
+            padding: 0.5rem 1rem;
+            background: $grey-100;
+            color: $black;
+            text-align: left;
+            margin-top: 2px;
+        }
     }
 
     ul.blocks-gallery-grid {
         margin-left: 0;
         margin-top: $lg-padding;
         margin-bottom: calc(4rem - 1rem);
+        width: 100%;
     }
 
 }
@@ -33,15 +58,6 @@ p+.wp-block-gallery .blocks-gallery-grid {
     font-style: italic;
 }
 
-.wp-block-gallery.is-style-no-margins {
-    ul.blocks-gallery-grid {
-        margin-top: 0;
-        margin-bottom: 0;
-    }
-
-}
-
-
 // required for SVG to work properly in Gallery
 @supports ((position:-webkit-sticky) or (position:sticky)) {
 
@@ -50,23 +66,5 @@ p+.wp-block-gallery .blocks-gallery-grid {
     .wp-block-gallery .blocks-gallery-image img,
     .wp-block-gallery .blocks-gallery-item img {
         width: 100%
-    }
-}
-
-.wp-block-gallery .blocks-gallery-item {
-
-    figure {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-    }
-
-    .blocks-gallery-item__caption {
-        position: static;
-        padding: 0.5rem 1rem;
-        background: $grey-100;
-        color: $black;
-        text-align: left;
-        margin-top: 2px;
     }
 }
