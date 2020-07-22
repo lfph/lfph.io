@@ -40,3 +40,33 @@ p+.wp-block-gallery .blocks-gallery-grid {
     }
 
 }
+
+
+// required for SVG to work properly in Gallery
+@supports ((position:-webkit-sticky) or (position:sticky)) {
+
+    .blocks-gallery-grid .blocks-gallery-image img,
+    .blocks-gallery-grid .blocks-gallery-item img,
+    .wp-block-gallery .blocks-gallery-image img,
+    .wp-block-gallery .blocks-gallery-item img {
+        width: 100%
+    }
+}
+
+.wp-block-gallery .blocks-gallery-item {
+
+    figure {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .blocks-gallery-item__caption {
+        position: static;
+        padding: 0.5rem 1rem;
+        background: $grey-100;
+        color: $black;
+        text-align: left;
+        margin-top: 2px;
+    }
+}
