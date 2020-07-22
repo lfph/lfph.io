@@ -21,16 +21,18 @@
         figure {
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            justify-content: flex-end;
         }
 
         .blocks-gallery-item__caption {
             position: static;
             padding: 0.5rem 1rem;
-            background: $grey-100;
-            color: $black;
+            font-size: 0.8em;
+            font-weight: 400;
+            font-style: italic;
             text-align: left;
-            margin-top: 2px;
+            background: transparent;
+            color: $black;
         }
     }
 
