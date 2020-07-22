@@ -67,7 +67,7 @@ class Enqueue {
 			wp_enqueue_script( 'recaptcha', 'https://www.recaptcha.net/recaptcha/api.js?render=explicit', false, false, true ); // phpcs:ignore
 
 			// SalesForce Forms customization.
-			wp_enqueue_script( 'sfmc-forms', get_template_directory_uri() . '/source/js/third-party/sfmc-forms.js', array( 'jquery' ), filemtime( get_template_directory() . '/source/js/third-party/sfmc-forms.js' ), true );
+			wp_enqueue_script( 'sfmc-forms', get_template_directory_uri() . '/source/js/third-party/sfmc-forms.js', array( 'jquery', 'recaptcha' ), filemtime( get_template_directory() . '/source/js/third-party/sfmc-forms.js' ), true );
 
 		}
 
