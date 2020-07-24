@@ -74,6 +74,7 @@ jobs:
                     - vendor
 
             - slack/status
+                fail_only: true
 
     code_sniff_unit_test:
         <<: *defaults
