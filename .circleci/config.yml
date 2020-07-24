@@ -73,7 +73,7 @@ jobs:
                 paths:
                     - vendor
 
-            - slack/status
+            - slack/status:
                 fail_only: true
 
     code_sniff_unit_test:
