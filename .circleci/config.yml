@@ -101,10 +101,6 @@ jobs:
             - slack/status:
                 fail_only: true
 
-            # - run:
-            #     name: run unit tests
-            #     command: composer -n unit-test
-
     build_css_js:
         <<: *defaults
         docker:
@@ -173,6 +169,10 @@ jobs:
 
             - store_artifacts:
                 path: ./wraith/shots
+
+            - slack/status:
+                fail_only: true
+
 
 workflows:
   version: 2
