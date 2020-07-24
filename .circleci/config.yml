@@ -98,6 +98,9 @@ jobs:
                 name: check for WordPress coding standards
                 command: composer -n code-sniff
 
+            - slack/status:
+                fail_only: true
+
             # - run:
             #     name: run unit tests
             #     command: composer -n unit-test
@@ -121,6 +124,9 @@ jobs:
                 root: web/wp-content/themes/lf-theme
                 paths:
                     - build
+
+            - slack/status:
+                fail_only: true
 
 
     build_and_deploy_lfph:
@@ -151,6 +157,10 @@ jobs:
             - run:
                 name: deploy to Pantheon
                 command: ./.circleci/deploy-to-pantheon.sh $TERMINUS_SITE
+
+            - slack/status:
+                fail_only: true
+
 
     behat_test_lfph:
         <<: *defaults
@@ -221,3 +231,5 @@ workflows:
     #         requires:
     #             - build_and_deploy_lfph
     #             # - behat_test_lfph
+
+      - slack/status
