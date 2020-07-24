@@ -37,7 +37,9 @@ defaults: &defaults
     # BUILD_TOOLS_VERSION: 2.0.0-beta6
     TERM: dumb
 
-version: 2
+orbs:
+  slack: circleci/slack@3.4.2
+version: 2.1
 jobs:
     # @todo: common initialization, maybe
     build:
@@ -70,6 +72,9 @@ jobs:
                 paths:
                     - vendor
 
+            - slack/status:
+                # fail_only: true # Optional: if set to `true` then only failure messages will occur.
+
     code_sniff_unit_test:
         <<: *defaults
         # override the default image with drupaldocker/php as this job
@@ -96,6 +101,10 @@ jobs:
             #     name: run unit tests
             #     command: composer -n unit-test
 
+            - slack/status:
+                # fail_only: true # Optional: if set to `true` then only failure messages will occur.
+
+
     build_css_js:
         <<: *defaults
         docker:
@@ -116,6 +125,8 @@ jobs:
                 paths:
                     - build
 
+            - slack/status:
+                # fail_only: true # Optional: if set to `true` then only failure messages will occur.
 
     build_and_deploy_lfph:
         <<: *defaults
@@ -145,6 +156,9 @@ jobs:
             - run:
                 name: deploy to Pantheon
                 command: ./.circleci/deploy-to-pantheon.sh $TERMINUS_SITE
+
+            - slack/status:
+                # fail_only: true # Optional: if set to `true` then only failure messages will occur.
 
     behat_test_lfph:
         <<: *defaults
@@ -194,15 +208,15 @@ workflows:
   version: 2
   build_and_test:
     jobs:
-      # Install dev dependencies
-      - build
-      - build_css_js
-      # Build and deploy
-      - build_and_deploy_lfph:
+        # Install dev dependencies
+        - build
+        - build_css_js
+        # Build and deploy
+        - build_and_deploy_lfph:
             requires:
                 - build_css_js
-      # Code sniff
-      - code_sniff_unit_test:
+        # Code sniff
+        - code_sniff_unit_test:
             requires:
                 - build
       # Run Behat tests after deploy so they can be done on Pantheon
@@ -215,3 +229,4 @@ workflows:
     #         requires:
     #             - build_and_deploy_lfph
     #             # - behat_test_lfph
+        - slack/status
