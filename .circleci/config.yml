@@ -158,39 +158,7 @@ jobs:
                 name: deploy to Pantheon
                 command: ./.circleci/deploy-to-pantheon.sh $TERMINUS_SITE
 
-            - slack/status:
-                fail_only: true
-
-
-    behat_test_lfph:
-        <<: *defaults
-        steps:
-            - checkout
-
-            - attach_workspace:
-                # Must be absolute path or relative path from working_directory
-                at: /tmp
-
-            - restore_cache:
-                keys:
-                    - terminus-install
-
-            - run:
-                name: copy vendor
-                command: cp -r /tmp/vendor .
-
-            - run:
-                name: dependencies
-                command: ./.circleci/set-up-globals.sh
-
-            - run:
-                name: run Behat tests
-                command: ./.circleci/behat-test.sh
-
-            - run:
-                name: run Behat cleanup
-                command: ./.circleci/behat-test-cleanup.sh
-                when: always
+            - slack/status
 
     wraith_test_lfph:
         docker:
@@ -221,15 +189,7 @@ workflows:
       - code_sniff_unit_test:
             requires:
                 - build
-      # Run Behat tests after deploy so they can be done on Pantheon
-    # commenting out behat tests until we need them.
-    #   - behat_test_lfph:
-    #         requires:
-    #             - build
-    #             - build_and_deploy_lfph
     #   - wraith_test_lfph:
     #         requires:
     #             - build_and_deploy_lfph
     #             # - behat_test_lfph
-
-      - slack/status
