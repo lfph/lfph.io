@@ -42,6 +42,30 @@ jQuery(
 								};
 								widget_2 = x.renderInvisibleReCaptcha( 'recaptcha-form2', x.createCallbackFn( widget_2, 'form2', callbackFn ) );
 							}
+
+							let f1 = $( '#sfmc-form1' );
+							f1.on(
+								'click',
+								'#sfmc-submit1',
+								function( e ) {
+									if ( f1[ 0 ].checkValidity() ) {
+										e.preventDefault();
+										grecaptcha.execute( widget_1 );
+									}
+								}
+							);
+							let f2 = $( '#sfmc-form2' );
+							f2.on(
+								'click',
+								'#sfmc-submit2',
+								function( e ) {
+									if ( f2[ 0 ].checkValidity() ) {
+										e.preventDefault();
+										grecaptcha.execute( widget_2 );
+									}
+								}
+							);
+
 						} else {
 							setTimeout(
 								function() {
@@ -78,39 +102,7 @@ jQuery(
 			}( PS, $ ) );
 		}
 
-		$( window ).on(
-			'load',
-			function() {
-				PS.RECAPTCHA.init();
-			}
-		);
-
-		$( document ).ready(
-			function() {
-				let f1 = $( '#sfmc-form1' );
-				f1.on(
-					'click',
-					'#sfmc-submit1',
-					function( e ) {
-						if ( f1[ 0 ].checkValidity() ) {
-							e.preventDefault();
-							grecaptcha.execute( widget_1 );
-						}
-					}
-				);
-				let f2 = $( '#sfmc-form2' );
-				f2.on(
-					'click',
-					'#sfmc-submit2',
-					function( e ) {
-						if ( f2[ 0 ].checkValidity() ) {
-							e.preventDefault();
-							grecaptcha.execute( widget_2 );
-						}
-					}
-				);
-			}
-		);
+		PS.RECAPTCHA.init();
 
 		function saveData( form ) {
 			let message = document.getElementById( 'sfmc-message' + form );
@@ -141,6 +133,5 @@ jQuery(
 				}
 			);
 		}
-		window.saveData = saveData;
 	}
 );
