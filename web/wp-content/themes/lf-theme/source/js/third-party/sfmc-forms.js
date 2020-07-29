@@ -22,18 +22,18 @@ jQuery(
 				let retryTime = 300;
 				var x = {
 					init() {
-						console.log('calling init');
+						console.log( 'calling init' );
 						if ( typeof grecaptcha !== 'undefined' ) {
 							console.log( 'grecaptcha !== undefined' );
 							if ( typeof grecaptcha.render === 'function' ) {
-								console.log( 'render === function' ); 
+								console.log( 'render === function' );
 							} else {
 								console.log( 'render !== function' );
 							}
 						} else {
 							console.log( 'grecaptcha === undefined' );
 						}
-						
+
 						if ( typeof grecaptcha !== 'undefined' && typeof grecaptcha.render === 'function' ) {
 							// For Form 1 Initialization.
 							if ( $( '#sfmc-form1 #recaptcha-form1' ).length > 0 ) {
