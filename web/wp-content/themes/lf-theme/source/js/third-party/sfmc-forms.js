@@ -22,17 +22,6 @@ jQuery(
 				let retryTime = 300;
 				var x = {
 					init() {
-						console.log( 'calling init' );
-						if ( typeof grecaptcha !== 'undefined' ) {
-							console.log( 'grecaptcha !== undefined' );
-							if ( typeof grecaptcha.render === 'function' ) {
-								console.log( 'render === function' );
-							} else {
-								console.log( 'render !== function' );
-							}
-						} else {
-							console.log( 'grecaptcha === undefined' );
-						}
 
 						if ( typeof grecaptcha !== 'undefined' && typeof grecaptcha.render === 'function' ) {
 							// For Form 1 Initialization.
@@ -81,7 +70,6 @@ jQuery(
 						} else {
 							setTimeout(
 								function() {
-									console.log( 'retrying...' );
 									x.init();
 								},
 								retryTime
@@ -89,8 +77,6 @@ jQuery(
 						}
 					},
 					renderInvisibleReCaptcha( recaptchaID, callbackFunction ) {
-						console.log( 'calling renderInvisibleReCaptcha' );
-
 						return grecaptcha.render(
 							recaptchaID,
 							{
@@ -103,8 +89,6 @@ jQuery(
 						);
 					},
 					createCallbackFn( widget, formID, callbackFn ) {
-						console.log( 'calling createCallbackFn' );
-
 						return function( token ) {
 							$( '#' + formID + ' .g-recaptcha-response' ).val( token );
 							if ( $.trim( token ) == '' ) {
