@@ -2,6 +2,8 @@
  * JS code for handling forms with recaptcha
  *
  * @package WordPress
+ * @since 1.0.0
+ * @author Chris Abraham
  */
 
 /**
@@ -20,7 +22,8 @@ jQuery(
 				let retryTime = 300;
 				var x = {
 					init() {
-						if ( typeof grecaptcha !== 'undefined' ) {
+
+						if ( typeof grecaptcha !== 'undefined' && typeof grecaptcha.render === 'function' ) {
 							// For Form 1 Initialization.
 							if ( $( '#sfmc-form1 #recaptcha-form1' ).length > 0 ) {
 								var callbackFn = {
@@ -40,6 +43,30 @@ jQuery(
 								};
 								widget_2 = x.renderInvisibleReCaptcha( 'recaptcha-form2', x.createCallbackFn( widget_2, 'form2', callbackFn ) );
 							}
+
+							let f1 = $( '#sfmc-form1' );
+							f1.on(
+								'click',
+								'#sfmc-submit1',
+								function( e ) {
+									if ( f1[ 0 ].checkValidity() ) {
+										e.preventDefault();
+										grecaptcha.execute( widget_1 );
+									}
+								}
+							);
+							let f2 = $( '#sfmc-form2' );
+							f2.on(
+								'click',
+								'#sfmc-submit2',
+								function( e ) {
+									if ( f2[ 0 ].checkValidity() ) {
+										e.preventDefault();
+										grecaptcha.execute( widget_2 );
+									}
+								}
+							);
+
 						} else {
 							setTimeout(
 								function() {
@@ -76,39 +103,7 @@ jQuery(
 			}( PS, $ ) );
 		}
 
-		$( window ).on(
-			'load',
-			function() {
-				PS.RECAPTCHA.init();
-			}
-		);
-
-		$( document ).ready(
-			function() {
-				let f1 = $( '#sfmc-form1' );
-				f1.on(
-					'click',
-					'#sfmc-submit1',
-					function( e ) {
-						if ( f1[ 0 ].checkValidity() ) {
-							e.preventDefault();
-							grecaptcha.execute( widget_1 );
-						}
-					}
-				);
-				let f2 = $( '#sfmc-form2' );
-				f2.on(
-					'click',
-					'#sfmc-submit2',
-					function( e ) {
-						if ( f2[ 0 ].checkValidity() ) {
-							e.preventDefault();
-							grecaptcha.execute( widget_2 );
-						}
-					}
-				);
-			}
-		);
+		PS.RECAPTCHA.init();
 
 		function saveData( form ) {
 			let message = document.getElementById( 'sfmc-message' + form );
@@ -139,6 +134,5 @@ jQuery(
 				}
 			);
 		}
-		window.saveData = saveData;
 	}
 );
