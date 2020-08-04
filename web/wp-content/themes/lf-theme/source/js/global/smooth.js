@@ -18,15 +18,14 @@ jQuery( document ).ready(
 				function( event ) {
 					// On-page links.
 					if (
-					location.pathname.replace( /^\//, '' ) === this.pathname.replace( /^\//, '' ) &&
-					location.hostname === this.hostname
-					) {
-						  // Element to scroll to.
-						  let target = $( this.hash );
-						  // add offset for static menu.
-						  const customOffset = 120;
-						  target = target.length ? target : $( '[name=' + this.hash.slice( 1 ) + ']' );
-						  // Check scroll target exists.
+						location.pathname.replace( /^\//, '' ) === this.pathname.replace( /^\//, '' ) &&
+					location.hostname === this.hostname ) {
+						// Element to scroll to.
+						let target = $( this.hash );
+						// add offset for static menu.
+						const customOffset = 120;
+						target = target.length ? target : $( '[name=' + this.hash.slice( 1 ) + ']' );
+						// Check scroll target exists.
 						if ( target.length ) {
 							// Only prevent default if animation is actually gonna happen.
 							event.preventDefault();
@@ -40,5 +39,28 @@ jQuery( document ).ready(
 					}
 				}
 			);
+
+		function scrollToAnchor( hash ) {
+			let target = $( hash );
+			let headerHeight = 120;
+
+			target = target.length ? target : $( '[name=' + hash.slice( 1 ) + ']' );
+
+			if ( target.length ) {
+				$( 'html,body' ).animate(
+					{
+						scrollTop: target.offset().top - headerHeight,
+					},
+					500
+				);
+				return false;
+			}
+		}
+
+		window.onload = function() {
+			if ( window.location.hash ) {
+				scrollToAnchor( window.location.hash );
+			}
+		};
 	}
 );

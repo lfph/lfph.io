@@ -12,6 +12,11 @@
 
 jQuery( document ).ready(
 	function( $ ) {
+		// activate sticky-js.
+		var sticky = new Sticky( '.sticky-element' );
+		// if changes.
+		sticky.update();
+
 		let topMenu = $( '.tab-container-nav' );
 
 		if ( topMenu.length > 0 ) {
@@ -26,14 +31,14 @@ jQuery( document ).ready(
 				}
 			);
 
-      let spaceForHeader;
-      if ( $( window ).height() < 616 && $( window ).width() > 514 ) {
-        spaceForHeader = 10;
-      } else if ( $( window ).width() < 800 ) {
-        spaceForHeader = 80;
-      } else {
-        spaceForHeader = 125;
-      }
+			let spaceForHeader;
+			if ( $( window ).height() < 616 && $( window ).width() > 514 ) {
+				spaceForHeader = 10;
+			} else if ( $( window ).width() < 800 ) {
+				spaceForHeader = 80;
+			} else {
+				spaceForHeader = 125;
+			}
 
 			let spaceForAdmin;
 			var $wpAdminBar = $( '#wpadminbar' );
@@ -125,5 +130,24 @@ jQuery( document ).ready(
 				}
 			}
 		}
+
+		// looks for nav item and checks its in view.
+		function navInView() {
+			var currentItem = $( '.tab-container-nav-item.is-active' );
+			if ( currentItem.length ) {
+				currentItem[ 0 ].scrollIntoView(
+					{
+						block: 'nearest',
+					}
+				);
+			}
+		}
+
+		// Bind to scroll. TODO: Throttle.
+		$( window ).scroll(
+			function() {
+				navInView();
+			}
+		);
 	}
 );

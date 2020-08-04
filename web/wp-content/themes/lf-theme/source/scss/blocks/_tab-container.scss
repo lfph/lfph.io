@@ -12,24 +12,47 @@
 
 .sticky-column {
     @media (min-width:800px) {
-        max-width: 375px;
-        min-width: 25%;
+        max-width: 200px;
+        min-width: 200px;
+        width: 200px;
+        margin-right: $sm-padding;
+    }
+
+    @media (min-width:900px) {
+        max-width: 250px;
+        min-width: 250px;
+        width: 250px;
+        margin-right: $sm-padding;
+    }
+
+    @media (min-width:1000px) {
+        max-width: 300px;
+        min-width: 300px;
+        width: 300px;
         margin-right: $sm-padding;
     }
 }
 
 .sticky-element {
-    @media (min-width: 515px) and (max-height: 615px) {
-        top: 0px;
+    max-width: 100%;
+
+    @media (min-width:800px) {
+        width: 200px;
     }
 
-    @media (min-width:800px) and (min-height: 616px) {
-        position: sticky;
-        top: 125px;
+    @media (min-width:900px) {
+        width: 250px;
+    }
 
-        .admin-bar & {
-            top: calc(125px + 32px);
-        }
+    @media (min-width:1000px) {
+        width: 300px;
+    }
+}
+
+@media (min-width:800px) {
+    .sticky-nav-scroller {
+        height: calc(100vh - 150px);
+        overflow-y: scroll;
     }
 }
 
@@ -46,14 +69,13 @@
 
 ul.tab-container-nav {
     padding: 0;
+    max-width: 100%;
 
     @media (min-width: 800px) {
         list-style-type: none;
         margin: 0;
         padding-right: 1em;
-
     }
-
 }
 
 .tab-container-nav-item {
@@ -83,12 +105,18 @@ ul.tab-container-nav {
     max-width: 800px;
 }
 
-
 .wp-block-lf-tab-container-block {
+    margin-bottom: $lg-padding;
+
     @media (max-width: 799px) {
         border-top: 1px solid $grey-100;
         padding-top: 2rem;
     }
+}
 
-    margin-bottom: $lg-padding;
+
+@media (min-width: 800px) and (max-height: 615px) {
+    .sticky-element.is-sticky {
+        top: 30px !important;
+    }
 }
