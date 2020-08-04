@@ -19,7 +19,11 @@
 }
 
 .sticky-element {
-    @media (min-width:800px) {
+    @media (min-width: 515px) and (max-height: 615px) {
+        top: 0px;
+    }
+
+    @media (min-width:800px) and (min-height: 616px) {
         position: sticky;
         top: 125px;
 
