@@ -26,12 +26,14 @@ jQuery( document ).ready(
 				}
 			);
 
-			let spaceForHeader;
-			if ( $( window ).width() < 800 ) {
-				spaceForHeader = 80;
-			} else {
-				spaceForHeader = 125;
-			}
+      let spaceForHeader;
+      if ( $( window ).height() < 616 && $( window ).width() > 514 ) {
+        spaceForHeader = 10;
+      } else if ( $( window ).width() < 800 ) {
+        spaceForHeader = 80;
+      } else {
+        spaceForHeader = 125;
+      }
 
 			let spaceForAdmin;
 			var $wpAdminBar = $( '#wpadminbar' );
