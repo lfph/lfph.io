@@ -119,4 +119,9 @@ ul.tab-container-nav {
     .sticky-element.is-sticky {
         top: 30px !important;
     }
+
+    .sticky-nav-scroller {
+        height: calc(100vh - 20px);
+        overflow-y: scroll;
+    }
 }
