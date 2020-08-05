@@ -53,6 +53,12 @@
     .sticky-nav-scroller {
         height: calc(100vh - 150px);
         overflow-y: scroll;
+        // adding shadows on overflow.
+        background: linear-gradient(white 30%, rgba(255, 255, 255, 0)), linear-gradient(rgba(255, 255, 255, 0), #fff 70%) 0 100%, radial-gradient(farthest-side at 50% 0, rgba(0, 0, 0, .2), rgba(0, 0, 0, 0)), radial-gradient(farthest-side at 50% 100%, rgba(0, 0, 0, .2), rgba(0, 0, 0, 0)) 0 100%;
+        background-repeat: no-repeat;
+        background-color: #fff;
+        background-size: 100% 40px, 100% 40px, 100% 14px, 100% 14px;
+        background-attachment: local, local, scroll, scroll;
     }
 }
 
@@ -114,14 +120,13 @@ ul.tab-container-nav {
     }
 }
 
-
 @media (min-width: 800px) and (max-height: 615px) {
     .sticky-element.is-sticky {
-        top: 30px !important;
+        top: 40px !important;
     }
 
     .sticky-nav-scroller {
-        height: calc(100vh - 20px);
+        height: calc(100vh - 50px - 40px);
         overflow-y: scroll;
     }
 }
