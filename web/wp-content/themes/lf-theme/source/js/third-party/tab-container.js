@@ -134,7 +134,7 @@ jQuery( document ).ready(
 		// looks for nav item and checks its in view.
 		function navInView() {
 			var currentItem = $( '.tab-container-nav-item.is-active' );
-			if ( currentItem.length ) {
+			if ( $( window ).width() > 799 && currentItem.length ) {
 				currentItem[ 0 ].scrollIntoView(
 					{
 						block: 'nearest',
