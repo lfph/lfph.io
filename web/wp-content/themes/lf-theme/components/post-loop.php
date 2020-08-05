@@ -109,7 +109,7 @@ function lf_post_loop_show_post( $is_featured, $is_sticky, $is_in_the_news_categ
 
 		} else {
 			echo '<img src="' . esc_url( get_stylesheet_directory_uri() )
-			. '/images/thumbnail-default.svg" alt="LFPH Media Coverage" class=""/>';
+			. '/images/thumbnail-default.svg" alt="LFPH Media Coverage" />';
 		}
 		?>
 	</a>

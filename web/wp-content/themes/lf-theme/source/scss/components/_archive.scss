@@ -58,24 +58,22 @@
             font-weight: 600;
             font-size: 14px;
             padding: 0.5em;
+            top: 0;
 
             // align top right small screens.
             @media (max-width: 767px) {
-
-                top: 0;
                 right: 0;
                 // skew
                 padding-left: 25px;
                 clip-path: polygon(0px 0px, 22px 100%, 100% 100%, 100% 0px, 0px 0px);
             }
 
-            // align bottom left on larger screens.
+            // align top left on larger screens.
             @media (min-width: 768px) {
-                bottom: 0;
                 left: 0;
                 // skew
                 padding-right: 25px;
-                clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 100%, calc(100% - 22px) 0);
+                clip-path: polygon(0px 100%, calc(100% - 22px) 100%, 100% 0px, 0px 0px);
             }
         }
     }
