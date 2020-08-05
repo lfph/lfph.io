@@ -47,7 +47,3 @@ set -ex
 
 # Cleanup old multidevs
 terminus build:env:delete:pr -n "$TERMINUS_S" --yes
-
-# Store github info
-COMMIT_MESSAGE=$(git log --format="%s" -n 1 $CIRCLE_SHA1)
-COMMIT_AUTHOR=$(git log --format="%an" -n 1 $CIRCLE_SHA1)
