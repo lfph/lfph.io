@@ -154,7 +154,7 @@ jobs:
                 name: deploy to Pantheon
                 command: ./.circleci/deploy-to-pantheon.sh $TERMINUS_SITE
 
-            - slack/status
+            - slack/status:
                 success_message: '🎉 $COMMIT_AUTHOR\'s $CIRCLE_JOB job (message: $COMMIT_MESSAGE) has succeeded!'
                 failure_message: '🔴 $COMMIT_AUTHOR\'s $CIRCLE_JOB job (message: $COMMIT_MESSAGE) has failed!'
 
