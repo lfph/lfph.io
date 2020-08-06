@@ -1,29 +1,15 @@
 // date and author.
 
-// used on single post.
-.date-author-responsive {
-    display: flex;
-    flex-direction: column;
-
-    @media (max-width: 999px) {
-        margin-bottom: 2rem;
-    }
-
-    .posted-date {
-        margin-bottom: 1.5rem;
-
-        @media (max-width: 999px) {
-            margin-bottom: 0.5rem;
-        }
-    }
-}
-
-// used on archive.
 .date-author-row {
     display: inline-flex;
     flex-wrap: wrap;
     margin-bottom: 0.5rem;
     line-height: 1.8;
+}
+
+.single .date-author-row {
+    display: flex;
+    margin-bottom: 2rem;
 }
 
 .date-icon {
@@ -41,7 +27,6 @@
         margin-right: 5px;
     }
 }
-
 
 .author-icon {
     display: flex;
