@@ -154,7 +154,9 @@ jobs:
                 name: deploy to Pantheon
                 command: ./.circleci/deploy-to-pantheon.sh $TERMINUS_SITE
 
-            - slack/status
+            - slack/status:
+                success_message: "$COMMIT_AUTHOR's *$CIRCLE_JOB* job has succeeded \n- $COMMIT_HASH: $COMMIT_MESSAGE"
+                failure_message: "$COMMIT_AUTHOR's *$CIRCLE_JOB* job has failed \n- $COMMIT_HASH: $COMMIT_MESSAGE"
 
     wraith_test_lfph:
         docker:
