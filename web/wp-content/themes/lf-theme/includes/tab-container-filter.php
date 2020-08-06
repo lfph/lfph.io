@@ -27,9 +27,9 @@ function lf_content_filter( $content ) {
 <div class="sticky-container">
 	<div class="sticky-column" data-sticky-container>
 	<div class="sticky-element" data-sticky data-sticky-class="is-sticky" data-margin-top="125" data-margin-bottom="10" data-sticky-for="800">
-
+	<span class="sticky-nav-hint">Table of contents</span>
 		  <div class="sticky-nav-scroller">
-		<span class="sticky-nav-hint">Table of contents</span>
+
 		<ul id="tab-container-nav" class="tab-container-nav no-style">
 			<?php
 			// grab the data-menu-title and id from each tag to construct the menu.

@@ -57,7 +57,7 @@
 
 .sticky-nav-scroller {
     @media (max-height: 615px) and (min-width: 800px) {
-        height: calc(100vh - 50px - 20px);
+        height: calc(100vh - 50px - 50px);
     }
 
     @media (min-height: 616px) and (min-width: 800px) {
