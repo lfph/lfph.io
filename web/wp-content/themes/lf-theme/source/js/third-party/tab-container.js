@@ -30,14 +30,17 @@ jQuery( document ).ready(
 		if ( window.location.hash ) {
 			// smooth scroll to the anchor id if exists after 1s.
 			if ( $( window.location.hash ).length ) {
+				let theHash = $( window.location.hash );
+				let offsetNew = theHash === '#' ? 0 : theHash.offset().top - getSpacing();
 				setTimeout(
 					function() {
-						$( 'html, body' ).animate(
-							{
-								scrollTop: $( window.location.hash ).offset().top - getSpacing(),
-							},
-							500
-						);
+						$( 'html, body' )
+							.animate(
+								{
+									scrollTop: offsetNew,
+								},
+								500
+							);
 					},
 					1000
 				);
