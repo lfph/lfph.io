@@ -12,19 +12,35 @@
 
 jQuery( document ).ready(
 	function( $ ) {
-		// activate sticky-js.
-		let sticky = new Sticky( '.sticky-element' );
+		// Setup Sticky.
+		let sticky;
+		let setSticky;
+		( setSticky = function() {
+			sticky = new Sticky(
+				'.sticky-element',
+				{
+					marginTop: getSpacing(),
+					marginBottom: 100,
+					stickyFor: 800,
+				}
+			);
+		} )();
 
 		// If page loads with hash, go to it nicely after 1s.
 		if ( window.location.hash ) {
 			// smooth scroll to the anchor id if exists after 1s.
 			if ( $( window.location.hash ).length ) {
-				setTimeout( function() {
-					$( 'html, body' ).animate( {
-						scrollTop: $( window.location.hash ).offset().top - getSpacing(),
+				setTimeout(
+					function() {
+						$( 'html, body' ).animate(
+							{
+								scrollTop: $( window.location.hash ).offset().top - getSpacing(),
+							},
+							500
+						);
 					},
-					500 );
-				}, 1000 );
+					1000
+				);
 			}
 		}
 
@@ -45,8 +61,11 @@ jQuery( document ).ready(
 			// Check nav items are in view as user scrolls.
 			$( window ).on( 'scroll', throttle( navInView, 200, true ) );
 
-			// Update nav and hash as user scrolls
+			// Update nav and hash as user scrolls.
 			$( window ).on( 'scroll', throttle( navUpdate, 200, true ) );
+
+			// Update Sticky on resize.
+			$( window ).on( 'resize', throttle( setSticky, 200, true ) );
 
 			// Click handler for menu items so we can get a fancy scroll animation.
 			menuItems.click(
@@ -119,7 +138,7 @@ jQuery( document ).ready(
 			const adminBar = $( '#wpadminbar' );
 
 			if ( winH < 616 && winW > 514 ) {
-				spacingTotal += 10;
+				spacingTotal += 40;
 			} else if ( winW < 800 ) {
 				spacingTotal += 80;
 			} else {

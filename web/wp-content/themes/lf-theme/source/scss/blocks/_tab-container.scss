@@ -47,12 +47,6 @@
     @media (min-width:1000px) {
         width: 300px;
     }
-
-    @media (max-height: 615px) and (min-width: 800px) {
-        &.is-sticky {
-            top: 40px !important;
-        }
-    }
 }
 
 .sticky-nav-scroller {
@@ -61,7 +55,7 @@
     }
 
     @media (min-height: 616px) and (min-width: 800px) {
-        height: calc(100vh - 150px);
+        height: calc(100vh - 180px);
     }
 
     @media (min-width: 800px) {
