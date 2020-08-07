@@ -254,6 +254,7 @@
 
         .search-input {
             min-width: 0;
+            // iOS overrides.
             border-radius: 0;
             -webkit-appearance: none;
         }
@@ -566,6 +567,9 @@
         border-bottom: 1px solid $menu-link;
         padding-right: 0.5em;
         padding-bottom: 0.2em;
+        // iOS overrides.
+        border-radius: 0;
+        -webkit-appearance: none;
 
         &::placeholder {
             color: $menu-link;
