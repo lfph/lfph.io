@@ -36,8 +36,17 @@ jQuery( document ).ready(
 				if ( isMobile ) {
 					return;
 				}
-				$( '.search-bar' ).toggleClass( 'is-active' );
-				$( '.search-input' ).focus();
+
+				if ( $( '.search-bar:visible' ).length ) {
+					$( '.search-bar' ).hide();
+					$( '.search-bar' ).removeClass( 'is-active' );
+					// removes focus / keyboard on iOS.
+					$( window ).blur();
+				} else {
+					$( '.search-bar' ).show();
+					$( '.search-bar' ).addClass( 'is-active' );
+					$( '.search-input' ).focus();
+				}
 			},
 		);
 
