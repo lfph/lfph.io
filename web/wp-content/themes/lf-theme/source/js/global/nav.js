@@ -1,4 +1,3 @@
-
 /**
  * Navigation
  *
@@ -8,17 +7,16 @@
 
 /* eslint-disable no-lonely-if */
 /* eslint-disable no-mixed-operators */
-// phpcs:ignoreFile.
 
 jQuery( document ).ready(
 	function( $ ) {
+		// Mobile check.
 		let isMobile = checkMobile();
-
 		function checkMobile() {
 			return ( ( $( window ).width() < 1000 ) );
 		}
 
-		// Mobile Menu (hidden on desktop).
+		// Mobile Menu hamburger (hidden on desktop).
 		$( '.hamburger' ).click(
 			function( e ) {
 				e.preventDefault();
@@ -33,7 +31,7 @@ jQuery( document ).ready(
 
 		// Desktop Search (hidden on mobile).
 		$( '.search-button' ).click(
-			( e ) => {
+			function( e ) {
 				e.preventDefault();
 				if ( isMobile ) {
 					return;
@@ -58,14 +56,15 @@ jQuery( document ).ready(
 			},
 		);
 
-		// add is-current class to control arrow state.
+		// add is-current class to control arrow state (desktop only).
 		$( '.main-navigation > li.menu-item-has-children' ).hover(
 			function() {
 				if ( ! isMobile ) {
 					$( this ).removeClass( 'is-current' );
 					$( this ).addClass( 'is-current' );
 				}
-			}, function() {
+			},
+			function() {
 				if ( ! isMobile ) {
 					$( this ).removeClass( 'is-current' );
 				}
@@ -77,7 +76,8 @@ jQuery( document ).ready(
 			'mouseenter mouseleave',
 			function() {
 				if ( $( 'ul', this ).length ) {
-					const ul = $( 'ul:first', this ); // pick first ul after el.
+					// pick first ul after el.
+					const ul = $( 'ul:first', this );
 
 					// testing for menu off-screen at right.
 					const r = this.getBoundingClientRect().right; // menu from the edge of screen.
@@ -101,12 +101,12 @@ jQuery( document ).ready(
 					const outsideHeight = ( t + h + 100 <= docH );
 
 					if ( ! outsideHeight ) {
-					// compare half height again plus buffer.
+						// compare half height again plus buffer.
 						if ( ( h / 2 + h + 100 ) >= docH ) {
-						// if submenu fits in middle of screen.
+							// if submenu fits in middle of screen.
 							$( this ).addClass( 'is-middle' );
 						} else {
-						// will be bottom aligned.
+							// will be bottom aligned.
 							$( this ).addClass( 'is-bottom' );
 						}
 					} else {
@@ -123,28 +123,7 @@ jQuery( document ).ready(
 		}
 
 		// Update on resize.
-		$( window ).on( 'resize', throttle( resizeHandle, 200, true ) );
-
-		// Generic throttle function.
-		// window.throttle = function throttle( callback, wait, immediate = false ) {
-		function throttle( callback, wait, immediate = false ) {
-			let timeout = null;
-			let initialCall = true;
-			return function() {
-				const callNow = immediate && initialCall;
-				const next = () => {
-					callback.apply( this, arguments );
-					timeout = null;
-				};
-				if ( callNow ) {
-					initialCall = false;
-					next();
-				}
-				if ( ! timeout ) {
-					timeout = setTimeout( next, wait );
-				}
-			};
-		}
+		$( window ).on( 'resize', window.utils.isThrottled( resizeHandle, 200, true ) );
 
 		// END.
 	},
