@@ -37,7 +37,7 @@ jQuery( document ).ready(
 					return;
 				}
 
-				if ( $( '.search-bar:visible' ).length ) {
+				if ( $( '.search-bar.is-active' ).length ) {
 					$( '.search-bar' ).hide();
 					$( '.search-bar' ).removeClass( 'is-active' );
 					// removes focus / keyboard on iOS.
