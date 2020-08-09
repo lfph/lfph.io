@@ -187,7 +187,7 @@ workflows:
       - code_sniff_unit_test:
             requires:
                 - build
-    #   - wraith_test_lfph:
-    #         requires:
-    #             - build_and_deploy_lfph
-    #             # - behat_test_lfph
+      - wraith_test_lfph:
+            requires:
+                - build_and_deploy_lfph
+                # - behat_test_lfph
