@@ -27,6 +27,10 @@
         flex-direction: row;
         align-items: center;
 
+        &.in-news-item {
+            align-items: flex-start;
+        }
+
         &.featured {
             flex-direction: row;
 
@@ -90,11 +94,37 @@
 
 .archive-image-wrapper {
     border: 1px solid $tertiary-color;
-    max-width: 100%;
     transition: all 0.25s ease;
-    overflow: hidden;
     position: relative;
-    object-fit: cover;
+
+    @media (max-width: 767px) {
+        margin-bottom: 1rem;
+    }
+
+    @media (min-width: 768px) {
+        flex-basis: 275px;
+        flex-grow: 0;
+        flex-shrink: 0;
+        margin-right: 2.5rem;
+        height: auto;
+
+        &:hover {
+            .newsroom-image {
+                opacity: 0.75;
+            }
+        }
+    }
+
+    @media (min-width: 1000px) {
+        flex-basis: 325px;
+    }
+
+    a {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 
     // padding for image wrapper.
     &::before {
@@ -118,33 +148,23 @@
         display: block;
     }
 
-    @media (max-width: 767px) {
-        margin-bottom: 1rem;
+    .archive-image {
+        object-fit: cover;
+        width: 100%;
+        height: 100.1%;
     }
 
-    @media (min-width: 768px) {
-        flex-basis: 275px;
-        flex-grow: 0;
-        flex-shrink: 0;
-        margin-right: 2.5rem;
-        height: auto;
-
-        &:hover {
-            .newsroom-image {
-                opacity: 0.75;
-            }
+    // aligns the SVG default image.
+    img[src$=".svg"] {
+        &.archive-default-svg {
+            position: absolute;
+            transform: translateY(-50%);
+            top: 50%;
+            width: 80%;
+            height: 90%;
+            padding: 1rem 0;
         }
     }
-
-    @media (min-width: 1000px) {
-        flex-basis: 325px;
-    }
-}
-
-.archive-image {
-    object-fit: cover;
-    width: 100%;
-    height: 100.1%;
 }
 
 .archive-text-wrapper {
@@ -155,50 +175,25 @@
     }
 }
 
-// aligns the SVG default image.
-.archive-default-svg {
-    position: absolute;
-    transform: translateY(-50%);
-    top: 50%;
-}
-
 // In the News only.
 .in-news-item {
+
     .archive-image-wrapper {
-        display: flex;
-        align-content: center;
-        justify-content: center;
-        min-height: 150px;
 
-        @media (max-width: 799px) {
-            height: 200px;
+        @media (max-width: 767px) {
+            height: 150px;
         }
 
-        a {
-            display: flex;
-            align-content: center;
-            justify-content: center;
-        }
-
-        // apply to all images (inc default).
         img {
-            align-self: center;
-            // some control of size.
-            max-height: 200px;
-            // for small logos.
-            min-width: 200px;
+            width: 80%;
+            height: 90%;
+            object-fit: contain;
 
-            // for non SVGs.
-            &.media-logo {
-                padding: 0.5em;
-            }
-
-            // for SVGs.
-            .media-logo {
-                &[src$=".svg"] {
-                    padding: 2em;
-                }
+            @media (min-width: 768px) {
+                height: 180px;
+                padding: 1rem 0;
             }
         }
+
     }
 }

@@ -62,13 +62,13 @@ jQuery( document ).ready(
 			);
 
 			// Check nav items are in view as user scrolls.
-			$( window ).on( 'scroll', throttle( navInView, 200, true ) );
+			$( window ).on( 'scroll', window.utils.isThrottled( navInView, 200, true ) );
 
 			// Update nav and hash as user scrolls.
-			$( window ).on( 'scroll', throttle( navUpdate, 200, true ) );
+			$( window ).on( 'scroll', window.utils.isThrottled( navUpdate, 200, true ) );
 
 			// Update Sticky on resize.
-			$( window ).on( 'resize', throttle( setSticky, 200, true ) );
+			$( window ).on( 'resize', window.utils.isThrottled( setSticky, 200, true ) );
 
 			// Click handler for menu items so we can get a fancy scroll animation.
 			menuItems.click(
@@ -188,24 +188,6 @@ jQuery( document ).ready(
 			}
 		}
 
-		// Generic throttle function.
-		function throttle( callback, wait, immediate = false ) {
-			let timeout = null;
-			let initialCall = true;
-			return function() {
-				const callNow = immediate && initialCall;
-				const next = () => {
-					callback.apply( this, arguments );
-					timeout = null;
-				};
-				if ( callNow ) {
-					initialCall = false;
-					next();
-				}
-				if ( ! timeout ) {
-					timeout = setTimeout( next, wait );
-				}
-			};
-		}
+		// END.
 	}
 );

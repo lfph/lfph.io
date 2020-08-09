@@ -136,6 +136,7 @@ function lf_post_loop_show_post( $is_featured, $is_sticky, $is_in_the_news_categ
 		?>
 <div class="archive-item<?php echo esc_html( $is_featured . $is_sticky ); ?>">
 
+
 <div class="archive-image-wrapper"><a
 		href="<?php the_permalink(); ?>"
 		title="<?php the_title(); ?>">

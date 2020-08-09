@@ -13,7 +13,7 @@
  */
 
 // Media images, no hard crop.
-add_image_size( 'newsroom-media-coverage', 260, 160, false );
+add_image_size( 'newsroom-media-coverage', 325, 200, false );
 
 // Newsroom, mobile, featured, retina.
 add_image_size( 'newsroom-260', 261, 137, true );
