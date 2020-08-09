@@ -8,7 +8,7 @@
  */
 
 ?>
-<main class="newsroom-archive">
+<main class="archive">
 	<div class="container wrap archive-container">
 		<?php
 		if ( have_posts() ) :
@@ -105,11 +105,11 @@ function lf_post_loop_show_post( $is_featured, $is_sticky, $is_in_the_news_categ
 		title="<?php the_title(); ?>">
 		<?php
 		if ( has_post_thumbnail() ) {
-			echo wp_get_attachment_image( get_post_thumbnail_id(), 'newsroom-media-coverage', false, array( 'class' => 'newsroom-media-coverage media-logo' ) );
+			echo wp_get_attachment_image( get_post_thumbnail_id(), 'newsroom-media-coverage', false, array( 'class' => 'media-logo' ) );
 
 		} else {
 			echo '<img src="' . esc_url( get_stylesheet_directory_uri() )
-			. '/images/thumbnail-default.svg" alt="LFPH Media Coverage" class="newsroom-media-coverage"/>';
+			. '/images/thumbnail-default.svg" alt="LFPH Media Coverage" />';
 		}
 		?>
 	</a>
@@ -136,6 +136,7 @@ function lf_post_loop_show_post( $is_featured, $is_sticky, $is_in_the_news_categ
 		?>
 <div class="archive-item<?php echo esc_html( $is_featured . $is_sticky ); ?>">
 
+
 <div class="archive-image-wrapper"><a
 		href="<?php the_permalink(); ?>"
 		title="<?php the_title(); ?>">
@@ -144,26 +145,26 @@ function lf_post_loop_show_post( $is_featured, $is_sticky, $is_in_the_news_categ
 
 		if ( has_post_thumbnail() && $is_featured ) {
 			// display large featured image.
-			Lf_Utils::display_responsive_images( get_post_thumbnail_id(), 'newsroom-600', '600px', 'newsroom-image' );
+			Lf_Utils::display_responsive_images( get_post_thumbnail_id(), 'newsroom-600', '600px', 'archive-image' );
 
 		} elseif ( has_post_thumbnail() ) {
 			// display smaller news image.
-			Lf_Utils::display_responsive_images( get_post_thumbnail_id(), 'newsroom-540', '540px', 'newsroom-image' );
+			Lf_Utils::display_responsive_images( get_post_thumbnail_id(), 'newsroom-540', '540px', 'archive-image' );
 
 		} elseif ( isset( $options['generic_thumb_id'] ) && $options['generic_thumb_id'] ) {
 			// show generic.
-			Lf_Utils::display_responsive_images( $options['generic_thumb_id'], 'newsroom-260', '260px', 'newsroom-image' );
+			Lf_Utils::display_responsive_images( $options['generic_thumb_id'], 'newsroom-260', '260px', 'archive-default-svg' );
 
 		} else {
 			echo '<img src="' . esc_url( get_stylesheet_directory_uri() )
-			. '/images/thumbnail-default.svg" alt="LFPH" class="newsroom-image"/>';
+			. '/images/thumbnail-default.svg" alt="LFPH" class="archive-default-svg"/>';
 		}
 		?>
 	</a>
 </div>
 <div class="archive-text-wrapper">
 		<?php if ( $is_blog_category && $category_author ) : ?>
-	<div class="skew-box secondary centered margin-bottom">LFPH
+	<div class="skew-box secondary centered margin-bottom-small">LFPH
 			<?php
 			echo esc_html( $category_author );
 			?>
@@ -185,7 +186,14 @@ function lf_post_loop_show_post( $is_featured, $is_sticky, $is_in_the_news_categ
 		<?php
 		// Post author.
 		if ( in_category( 'blog' ) ) :
+
+			// Get the guest author meta.
+			$guest_author = get_post_meta( get_the_ID(), 'lf_post_guest_author', true );
+
+			// don't display guest author field on archvie as it's too long.
+			if ( ! $guest_author ) {
 				echo wp_kses_post( Lf_Utils::display_author( get_the_ID(), true ) );
+			}
 		endif;
 		?>
 	</p>
