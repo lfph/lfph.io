@@ -40,7 +40,6 @@ defaults: &defaults
 version: 2.1
 orbs:
   slack: circleci/slack@3.4.2
-  percy: percy/agent@0.1.2
 
 jobs:
     # @todo: common initialization, maybe
@@ -161,9 +160,6 @@ jobs:
 
     run_percy_tests:
         <<: *defaults
-        # environment:
-        #     PERCY_PARALLEL_TOTAL: -1
-        # parallelism: 3
         steps:
             - checkout
             - run:
@@ -185,6 +181,3 @@ workflows:
       - run_percy_tests:
             requires:
                 - build_and_deploy_lfph
-      - percy/finalize_all:
-            requires:
-                - run_percy_tests
