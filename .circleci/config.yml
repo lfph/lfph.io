@@ -160,6 +160,7 @@ jobs:
                 failure_message: "$COMMIT_AUTHOR's *$CIRCLE_JOB* job has failed \n- $COMMIT_HASH: $COMMIT_MESSAGE"
 
     run_percy_tests:
+        <<: *defaults
         parallelism: 3
         steps:
             - attach_workspace:
