@@ -181,8 +181,8 @@ workflows:
             requires:
                 - build
       - run_percy_tests
-            # requires:
-            #     - build_and_deploy_lfph
+            requires:
+                - build_and_deploy_lfph
       - percy/finalize_all:
             requires:
                 - run_percy_tests
