@@ -180,9 +180,9 @@ workflows:
       - code_sniff_unit_test:
             requires:
                 - build
-      - run_percy_tests:
-            requires:
-                - build_and_deploy_lfph
+      - run_percy_tests
+            # requires:
+            #     - build_and_deploy_lfph
       - percy/finalize_all:
             requires:
                 - run_percy_tests
