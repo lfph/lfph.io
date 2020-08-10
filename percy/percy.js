@@ -1,6 +1,6 @@
 const PercyScript = require('@percy/script');
 let rooturl = process.argv[2];
-let delay = 5000;
+let delay = 10000;
 
 PercyScript.run(async (page, percySnapshot) => {
   await page.goto(rooturl);
