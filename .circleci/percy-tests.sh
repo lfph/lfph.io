@@ -31,11 +31,6 @@ then
   exit 1
 fi
 
-echo "::::::::::::::::::::::::::::::::::::::::::::::::"
-echo "Percy test site: $TERMINUS_S.$TERMINUS_ENV"
-echo "::::::::::::::::::::::::::::::::::::::::::::::::"
-echo
-
 # Exit immediately on errors
 set -ex
 

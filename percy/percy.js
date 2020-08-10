@@ -1,6 +1,5 @@
 const PercyScript = require('@percy/script');
 let rooturl = process.argv[2];
-console.log(rooturl);
 
 PercyScript.run(async (page, percySnapshot) => {
   await page.goto(rooturl);
