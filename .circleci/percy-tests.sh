@@ -13,5 +13,8 @@ source $BASH_ENV
 # Exit immediately on errors
 set -ex
 
+# Install Percy
+npm install -D @percy/script
+
 # Run the tests
 npx percy exec -- node ./percy/percy.js
