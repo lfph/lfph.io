@@ -6,14 +6,16 @@ PercyScript.run(async (page, percySnapshot) => {
   await page.goto(rooturl);
   await page.waitFor(delay);
   await percySnapshot('homepage');
+  await page.click('.search-button');
+  await percySnapshot('homepage w search bar');
 
   await page.goto(rooturl + 'projects/');
   await page.waitFor(delay);
   await percySnapshot('projects');
 
-  await page.goto(rooturl + 'join/faq/#what-is-upstream-what-is-a-fork-what-is-a-maintainer');
+  await page.goto(rooturl + 'join/faq/');
   await page.waitFor(delay);
-  await percySnapshot('faq at anchor');
+  await percySnapshot('faq');
 
   await page.goto(rooturl + 'community/webinars/');
   await page.waitFor(delay);
@@ -22,6 +24,10 @@ PercyScript.run(async (page, percySnapshot) => {
   await page.goto(rooturl + 'blog/');
   await page.waitFor(delay);
   await percySnapshot('blog');
+
+  await page.goto(rooturl + 'news/');
+  await page.waitFor(delay);
+  await percySnapshot('news');
 
   await page.goto(rooturl + 'about/staff/');
   await page.waitFor(delay);
