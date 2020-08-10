@@ -161,7 +161,9 @@ jobs:
 
     run_percy_tests:
         <<: *defaults
-        # parallelism: 3
+        environment:
+            PERCY_PARALLEL_TOTAL: -1
+        parallelism: 3
         steps:
             - checkout
             - run:
