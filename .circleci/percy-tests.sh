@@ -24,6 +24,12 @@ fi
 echo 'export TERMINUS_ENV=${TERMINUS_ENV:-$DEFAULT_ENV}' >> $BASH_ENV
 source $BASH_ENV
 
+if [[ (${CIRCLE_BRANCH} != "master" && -z ${CIRCLE_PULL_REQUEST+x}) || (${CIRCLE_BRANCH} == "master" && -n ${CIRCLE_PULL_REQUEST+x}) ]];
+then
+    echo -e "CircleCI will only run tests if on the master branch or creating a pull request.\n"
+    exit 0;
+fi
+
 # Bail if required environment varaibles are missing
 if [ -z "$TERMINUS_S" ] || [ -z "$TERMINUS_ENV" ]
 then
