@@ -163,8 +163,7 @@ jobs:
         <<: *defaults
         parallelism: 3
         steps:
-            - attach_workspace:
-                at: /tmp
+            - checkout
             - run:
                 name: Percy tests
                 command: ./.circleci/percy-tests.sh $TERMINUS_SITE

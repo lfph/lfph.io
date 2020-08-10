@@ -14,4 +14,4 @@ fi
 set -ex
 
 # Run the tests
-npx percy exec -- node ../percy/percy.js
+npx percy exec -- node ./percy/percy.js
