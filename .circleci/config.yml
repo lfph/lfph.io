@@ -40,6 +40,7 @@ defaults: &defaults
 version: 2.1
 orbs:
   slack: circleci/slack@3.4.2
+  percy: percy/agent@0.1.2
 
 jobs:
     # @todo: common initialization, maybe
@@ -158,22 +159,14 @@ jobs:
                 success_message: "$COMMIT_AUTHOR's *$CIRCLE_JOB* job has succeeded \n- $COMMIT_HASH: $COMMIT_MESSAGE"
                 failure_message: "$COMMIT_AUTHOR's *$CIRCLE_JOB* job has failed \n- $COMMIT_HASH: $COMMIT_MESSAGE"
 
-    wraith_test_lfph:
-        docker:
-            - image: lopezs/wraith
-
+    run_percy_tests:
+        <<: *defaults
+        parallelism: 3
         steps:
             - checkout
-
             - run:
-                name: run Wraith tests
-                command: ./.circleci/wraith-test.sh $TERMINUS_SITE
-
-            - store_artifacts:
-                path: ./wraith/shots
-
-            - slack/status:
-                fail_only: true
+                name: Percy tests
+                command: ./.circleci/percy-tests.sh $TERMINUS_SITE
 
 
 workflows:
@@ -187,7 +180,9 @@ workflows:
       - code_sniff_unit_test:
             requires:
                 - build
-    #   - wraith_test_lfph:
-    #         requires:
-    #             - build_and_deploy_lfph
-    #             # - behat_test_lfph
+      - run_percy_tests
+            # requires:
+            #     - build_and_deploy_lfph
+      - percy/finalize_all:
+            requires:
+                - run_percy_tests
