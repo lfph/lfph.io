@@ -1,5 +1,6 @@
 const PercyScript = require('@percy/script');
-let rooturl = 'https://dev-lfph.pantheonsite.io/';
+let rooturl = process.argv[2];
+echo rooturl;
 
 PercyScript.run(async (page, percySnapshot) => {
   await page.goto(rooturl);
