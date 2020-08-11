@@ -7,6 +7,7 @@ PercyScript.run(async (page, percySnapshot) => {
   await page.waitFor(delay);
   await percySnapshot('homepage');
   await page.evaluate(()=>document.querySelector('button.search-button').click());
+  await page.waitFor('.search-input');
   await percySnapshot('homepage w search bar');
 
   await page.goto(rooturl + 'projects/');
