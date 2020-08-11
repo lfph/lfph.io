@@ -168,7 +168,7 @@ if ( $dat_webinar_start > $dat_now ) {
 
 				<p><strong>How to attend:</strong>
 				<?php if ( $registration_url ) : ?>
-					<a target="_blank" href="<?php echo esc_url( $registration_url ); ?>" rel="noopener" class="external is-primary-color"
+					<a target="_blank" href="<?php echo esc_url( $registration_url ); ?>" rel="noopener" class="external is-primary-color is-inline"
 				title="Register for <?php the_title(); ?> Webinar">Register for this
 					webinar</a>
 					<?php

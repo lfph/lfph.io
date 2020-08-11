@@ -17,6 +17,11 @@
         margin-right: -20px;
     }
 
+    // fix for some lines wrapping prematurely.
+    &.is-inline {
+        display: inline;
+    }
+
     &.is-primary-color {
         &::after {
             // blue.
