@@ -356,7 +356,7 @@ function add_contact_shortcode() {
 		</div>
 		<div class="form-group checkbox-align">
 			<label
-				for="OptIn" class="checkbox"><input type="checkbox" name="OptIn" id="OptIn"><span></span>I would like to receive marketing emails about news, events and training from The Linux Foundation and its projects</label>
+				for="OptIn" class="checkbox"><input type="checkbox" name="OptIn" id="OptIn"><span></span>I would like to receive marketing emails about news, events and training from Linux Foundation Public Health</label>
 		</div>
 		<input type="hidden" id="txtUrl" name="txtUrl" value="" readonly="">
 		<script>
