@@ -14,44 +14,69 @@
 
 // import typography and styles over the top of editor styles defaults.
 #editor {
-
     .editor-styles-wrapper {
-        @import "core/typography";
+        @import "components/link-icons";
+        @import "components/hero";
+        // @import "components/speakers"; // cncf only.
+        @import "components/webinars";
+        @import "components/events";
+        @import "components/people";
+        @import "components/projects";
+        @import "components/case-studies";
+        @import "components/spotlights";
+
+        @import 'blocks/colors';
+        @import 'blocks/has-color-function';
+        @import 'blocks/buttons';
+        @import 'blocks/columns';
+        @import "blocks/lists";
         @import "blocks/gradients";
-        @import "blocks/columns";
-        @import "blocks/colors";
-        @import "blocks/buttons";
+        @import 'blocks/quote';
         @import "blocks/gallery";
+        @import 'blocks/landscape';
+        @import 'blocks/spacer';
+        @import 'blocks/table';
+
+        // Blocks
+        @import "blocks/paragraph-headers";
+        @import "blocks/newsroom";
         @import "blocks/case-study-highlights";
         @import "blocks/case-study-overview";
         @import "blocks/latest-jobs";
-        @import "blocks/lists";
-        @import "blocks/newsroom";
-        @import "blocks/paragraph-headers";
-        @import 'blocks/quote';
-        @import 'blocks/table';
-        @import 'blocks/spacer';
-        @import "components/events";
-        @import "components/webinars";
-        @import "components/hero";
+        @import 'blocks/stats';
+    }
+}
 
-        // to stop the included editor gutenberg styles.
+#editor {
+    .editor-styles-wrapper {
+
         h1,
         h2,
         h3,
         h4,
         h5,
         h6 {
-            margin-top: unset;
             margin-bottom: 0.5rem;
         }
 
-        p {
-            margin-top: unset;
-            margin-bottom: unset;
 
-        }
     }
+}
+
+// Fixing alignment for blocks in editor.
+.wp-block {
+    max-width: 100%;
+}
+
+.block-editor-writing-flow {
+    max-width: 1150px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.block-editor-block-list__layout .wp-block {
+    margin-left: unset;
+    margin-right: unset;
 }
 
 // Fix the font in the editor.
@@ -76,15 +101,10 @@
     color: $primary-color;
 }
 
-.wp-block-group {
+// Add padding to make more easily selectable.
+.wp-block-group,
+.wp-block-columns {
     padding: 1em;
-}
-
-// make blocks wider to fit the screen
-.wp-block {
-    margin-right: auto;
-    margin-left: auto;
-    max-width: 1150px;
 }
 
 // stop ridiculous dropcap in paragraph preview.
@@ -96,15 +116,6 @@
     margin: inherit;
     text-transform: inherit;
     font-style: inherit;
-}
-
-// allows for transparent images to be visible in Sidebar Metabox.
-#pmc-lf_event-logo .pmc-image-container {
-    background-color: $grey-200;
-}
-
-.wp-block-columns {
-    padding: 1em;
 }
 
 .skew-box {
@@ -196,11 +207,17 @@ figure {
     z-index: 2;
 }
 
+// allows for transparent images to be visible in Sidebar Metabox.
+#pmc-lf_event-logo .pmc-image-container {
+    background-color: $grey-200;
+}
+
 // make placeholder text easier to see in sidebar.
 div.pmc-sidebar ::placeholder {
     color: #c4c4c4;
 }
 
+// Make SVGs fill containers (Safe SVG related).
 img[src$=".svg"] {
     width: 100%;
     height: auto;

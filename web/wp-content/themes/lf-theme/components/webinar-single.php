@@ -93,17 +93,18 @@ if ( $dat_webinar_start > $dat_now ) {
 
 			<?php if ( 'past' == $period_status ) : ?>
 		<h3 class="margin-y">This webinar has passed.</h3>
-
+				<?php if ( $dat_webinar_start ) { ?>
 		<p class="date-icon">Broadcast on
-				<?php echo esc_html( $dat_webinar_start->format( 'l F j, Y, g:iA T' ) ); ?>
+					<?php echo esc_html( $dat_webinar_start->format( 'l F j, Y, g:iA T' ) ); ?>
 			</p>
-		<?php endif; ?>
+					<?php } ?>
+			<?php endif; ?>
 
 			<?php
 			if ( 'upcoming' == $period_status && $registration_url ) :
 				?>
-		<p><a target="_blank" href="<?php echo esc_url( $registration_url ); ?>" rel="noopener"
-				class="button margin-top-large"
+		<p><a target="_blank" href="<?php echo esc_url( $registration_url ); ?>"
+		rel="noopener" class="button margin-top-large"
 				title="Register for <?php the_title(); ?> Webinar">Register
 				Now</a></p>
 		<?php endif; ?>
@@ -136,8 +137,6 @@ if ( $dat_webinar_start > $dat_now ) {
 				Slides</a></p>
 		<?php endif; ?>
 
-
-
 		<div class="entry-content">
 
 			<?php if ( $speakers ) : ?>
@@ -147,16 +146,16 @@ if ( $dat_webinar_start > $dat_now ) {
 
 			<?php the_content(); ?>
 
-
 			<?php if ( 'upcoming' == $period_status ) : ?>
 
 			<div class="webinar-summary margin-y-large">
 				<h3>Webinar Summary</h3>
-				<p
-					class="is-style-max-width-900"><strong>Webinar:</strong> <?php the_title(); ?></p>
+				<p class="is-style-max-width-900"><strong>Webinar:</strong>
+				<?php the_title(); ?></p>
 
 				<?php if ( $speakers ) : ?>
-				<p><strong>Speakers:</strong> <?php echo esc_html( $speakers ); ?></p>
+				<p><strong>Speakers:</strong>
+					<?php echo esc_html( $speakers ); ?></p>
 				<?php endif; ?>
 
 
@@ -164,7 +163,9 @@ if ( $dat_webinar_start > $dat_now ) {
 					<?php echo esc_html( $dat_webinar_start->format( 'l F jS, Y' ) ); ?>
 				</p>
 
-				<p><strong>Time:</strong> <?php echo esc_html( $dat_webinar_start->format( 'g:i' ) . ' - ' . $dat_webinar_end->format( 'g:i A T' ) ); ?></p>
+				<p><strong>Time:</strong>
+				<?php echo esc_html( $dat_webinar_start->format( 'g:i' ) . ' - ' . $dat_webinar_end->format( 'g:i A T' ) ); ?>
+				</p>
 
 				<p><strong>How to attend:</strong>
 				<?php if ( $registration_url ) : ?>

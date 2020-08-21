@@ -61,11 +61,14 @@
 
 .newsroom-image-wrapper {
     border: 1px solid $tertiary-color;
-    max-width: 100%;
     transition: all 0.25s ease;
-    overflow: hidden;
     position: relative;
-    object-fit: cover;
+
+    // add for home page alignment of SVG.
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
 
     // padding for image wrapper.
     &::before {
@@ -87,6 +90,24 @@
     // stops 1px padding.
     img {
         display: block;
+    }
+
+    .archive-image {
+        object-fit: cover;
+        width: 100%;
+        height: 100.1%;
+    }
+
+    // aligns the SVG default image.
+    img[src$=".svg"] {
+        &.archive-default-svg {
+            position: absolute;
+            transform: translateY(-50%);
+            top: 50%;
+            width: 80%;
+            height: 90%;
+            padding: 1rem 0;
+        }
     }
 
     @media (min-width: 768px) {

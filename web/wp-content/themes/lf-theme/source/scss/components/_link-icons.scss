@@ -11,10 +11,19 @@
         width: 0.8em;
         background-repeat: no-repeat;
         background-position: right;
+        align-self: center;
         display: inline-flex;
         white-space: nowrap;
-        align-self: center;
+    }
+
+    &::after:not(.button) {
         margin-right: -20px;
+    }
+
+    &.button {
+        &::after {
+            margin-left: 5px;
+        }
     }
 
     // fix for some lines wrapping prematurely.
