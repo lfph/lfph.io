@@ -24,11 +24,10 @@
 			$is_blog_category = ( in_category( 'blog' ) ) ? true : false;
 
 			$featured_post = null;
-			$sticky        = get_option( 'sticky_posts' );
-
+			$sticky = get_option( 'sticky_posts' );
 			if ( 1 === $archive_page && $sticky && $is_blog_category ) {
 				// check for sticky post and display if it exists.
-				$args        = array(
+				$args  = array(
 					'posts_per_page'      => 1,
 					'post_type'           => array( 'post' ),
 					'post_status'         => array( 'publish' ),
@@ -136,7 +135,6 @@ function lf_post_loop_show_post( $is_featured, $is_sticky, $is_in_the_news_categ
 		?>
 <div class="archive-item<?php echo esc_html( $is_featured . $is_sticky ); ?>">
 
-
 <div class="archive-image-wrapper"><a
 		href="<?php the_permalink(); ?>"
 		title="<?php the_title(); ?>">
@@ -153,7 +151,7 @@ function lf_post_loop_show_post( $is_featured, $is_sticky, $is_in_the_news_categ
 
 		} elseif ( isset( $options['generic_thumb_id'] ) && $options['generic_thumb_id'] ) {
 			// show generic.
-			Lf_Utils::display_responsive_images( $options['generic_thumb_id'], 'newsroom-260', '260px', 'archive-default-svg' );
+			Lf_Utils::display_responsive_images( $options['generic_thumb_id'], 'newsroom-540', '540px', 'archive-default-svg' );
 
 		} else {
 			echo '<img src="' . esc_url( get_stylesheet_directory_uri() )
@@ -190,7 +188,7 @@ function lf_post_loop_show_post( $is_featured, $is_sticky, $is_in_the_news_categ
 			// Get the guest author meta.
 			$guest_author = get_post_meta( get_the_ID(), 'lf_post_guest_author', true );
 
-			// don't display guest author field on archvie as it's too long.
+			// don't display guest author field on archive as it's too long.
 			if ( ! $guest_author ) {
 				echo wp_kses_post( Lf_Utils::display_author( get_the_ID(), true ) );
 			}

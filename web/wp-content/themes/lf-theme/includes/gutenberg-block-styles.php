@@ -200,18 +200,19 @@ register_block_style(
 register_block_style(
 	'core/columns',
 	array(
-		'name'  => 'column-white-background',
-		'label' => 'Columns with White Background',
+		'name'  => 'equal-height-responsive',
+		'label' => 'Equal Height, Better Responsive',
 	)
 );
 
 register_block_style(
 	'core/columns',
 	array(
-		'name'  => 'equal-height-responsive',
-		'label' => 'Equal Height, Better Responsive',
+		'name'  => 'column-white-background',
+		'label' => 'Columns with White Background',
 	)
 );
+
 
 // COLUMN.
 register_block_style(
