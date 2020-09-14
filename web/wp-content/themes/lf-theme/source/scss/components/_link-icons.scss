@@ -69,11 +69,13 @@
             align-self: center;
         }
 
-        &:hover {
-            &::after {
-                // blue.
-                // https://codepen.io/sosuke/pen/Pjoqqp
-                filter: invert(29%) sepia(86%) saturate(2416%) hue-rotate(197deg) brightness(97%) contrast(104%);
+        @media (hover: hover) and (min-width:1000px) {
+            &:hover {
+                &::after {
+                    // blue.
+                    // https://codepen.io/sosuke/pen/Pjoqqp
+                    filter: invert(29%) sepia(86%) saturate(2416%) hue-rotate(197deg) brightness(97%) contrast(104%);
+                }
             }
         }
     }
@@ -98,12 +100,6 @@
             display: inline-flex;
             white-space: nowrap;
             align-self: center;
-        }
-
-        &:hover {
-            &::after {
-                filter: brightness(0) saturate(100%) invert(29%) sepia(98%) saturate(2129%) hue-rotate(317deg) brightness(97%) contrast(84%);
-            }
         }
     }
 }
@@ -138,7 +134,7 @@
     }
 }
 
-// PDF icon
+// PDF icon, needs specificty to override external link.
 .site-header .site-navigation .main-navigation,
 .wp-block-buttons {
 
