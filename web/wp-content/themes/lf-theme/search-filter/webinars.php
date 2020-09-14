@@ -147,5 +147,5 @@ endwhile;
 </div>
 	<?php
 else :
-	echo 'No Results Found';
+	echo 'Stay tuned for new webinars in the coming weeks. <a href="#newsletter">Sign up for our newsletter to stay informed</a>.';
 endif;
