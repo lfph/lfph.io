@@ -39,6 +39,8 @@
 				$location = 'TBC';
 			} elseif ( ! $country ) {
 				$location = $city;
+			} elseif ( ! $city ) {
+				$location = $country;
 			} else {
 				$location = $city . ', ' . $country;
 			}
@@ -64,7 +66,7 @@
 				LF_Utils::display_responsive_images( $background, 'event-415', '415px' );
 
 				?>
-			</figure>
+		</figure>
 		<?php endif; ?>
 
 		<div class="event-content-wrapper background-image-text-overlay">

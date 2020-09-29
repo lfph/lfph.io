@@ -43,7 +43,8 @@
         @import "blocks/case-study-highlights";
         @import "blocks/case-study-overview";
         @import "blocks/latest-jobs";
-        @import 'blocks/stats';
+		@import 'blocks/stats';
+		@import "blocks/media-text";
     }
 }
 
@@ -74,7 +75,7 @@
     margin-right: auto;
 }
 
-.block-editor-block-list__layout .wp-block {
+.block-editor-block-list__layout .wp-block:not(.wp-block-button) {
     margin-left: unset;
     margin-right: unset;
 }
@@ -159,26 +160,26 @@
 
 // block using alignwide include:
 // case study overview
-.alignwide:not(.wp-block-gallery) {
-    width: 100%;
+// .alignwide:not(.wp-block-gallery) {
+//     width: 100%;
 
-    @media (min-width: 800px) {
-        width: 100vw;
-        position: relative;
-        left: 50%;
-        right: 50%;
-        margin-left: -50vw;
-        margin-right: -50vw;
+//     @media (min-width: 800px) {
+//         width: 100vw;
+//         position: relative;
+//         left: 50%;
+//         right: 50%;
+//         margin-left: -50vw;
+//         margin-right: -50vw;
 
-        >* {
-            max-width: 1000px;
-            margin-left: auto;
-            margin-right: auto;
-            padding-left: 4em;
-            padding-right: 4em;
-        }
-    }
-}
+//         >* {
+//             max-width: 1000px;
+//             margin-left: auto;
+//             margin-right: auto;
+//             padding-left: 4em;
+//             padding-right: 4em;
+//         }
+//     }
+// }
 
 .background-image-wrapper {
     overflow: hidden;
@@ -221,4 +222,9 @@ body.wp-admin div.pmc-sidebar ::placeholder {
 img[src$=".svg"] {
     width: 100%;
     height: auto;
+}
+
+/* hides the hide pre-publish checklist option */
+.editor-post-publish-panel__footer {
+    display: none;
 }

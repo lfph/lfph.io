@@ -213,6 +213,13 @@ register_block_style(
 	)
 );
 
+register_block_style(
+	'core/columns',
+	array(
+		'name'  => 'equal-height-responsive-mobile-mini',
+		'label' => 'Equal Height, Better Responsive, Mini Mobile Columns',
+	)
+);
 
 // COLUMN.
 register_block_style(
@@ -297,6 +304,14 @@ register_block_style(
 	)
 );
 
+register_block_style(
+	'core/list',
+	array(
+		'name'  => 'spaced-items',
+		'label' => 'Spaced items',
+	)
+);
+
 // SPACERS.
 register_block_style(
 	'core/spacer',
@@ -336,5 +351,14 @@ register_block_style(
 	array(
 		'name'  => 'no-margins',
 		'label' => 'No top/bottom margin',
+	)
+);
+
+// Media Text.
+register_block_style(
+	'core/media-text',
+	array(
+		'name'  => 'no-side-padding',
+		'label' => 'No Side Padding',
 	)
 );

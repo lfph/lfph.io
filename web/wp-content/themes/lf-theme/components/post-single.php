@@ -41,21 +41,20 @@ endif;
 			<?php
 			// Get the Category Author.
 			$category_author = Lf_Utils::get_term_names( get_the_ID(), 'lf-author-category', true );
-
-			// Get the guest author meta.
-			$guest_author = get_post_meta( get_the_ID(), 'lf_post_guest_author', true );
+			$category_author_slug = Lf_Utils::get_term_slugs( get_the_ID(), 'lf-author-category', true );
 
 			if ( $category_author ) :
+				$category_author_link = '/lf-author-category/' . $category_author_slug . '/';
 				?>
-		<div class="skew-box secondary centered margin-bottom-large">LFPH
+				<a class="skew-box secondary centered margin-bottom-small" title="See more content from <?php echo esc_attr( $category_author ); ?>" href="<?php echo esc_url( $category_author_link ); ?>">LFPH
 				<?php
 				echo esc_html( $category_author );
 				?>
-			Blog Post</div>
+				Blog Post</a>
 				<?php
 		endif;
 			?>
-		<p class="date-author-row"><span
+			<p class="date-author-row"><span
 				class="posted-date date-icon">Posted on
 				<?php
 				the_date();
@@ -64,15 +63,7 @@ endif;
 			<?php
 			// Post author.
 			if ( in_category( 'blog' ) ) :
-				if ( $guest_author ) {
-					?>
-			<span class="author-name author-icon">
-					<?php echo esc_html( $guest_author ); ?>
-			</span>
-					<?php
-				} else {
-					echo wp_kses_post( Lf_Utils::display_author( get_the_ID(), true ) );
-				}
+				echo wp_kses_post( Lf_Utils::display_author( get_the_ID(), true ) );
 				?>
 			</span>
 				<?php

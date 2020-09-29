@@ -8,7 +8,8 @@
  */
 
 // event host.
-$event_host = Lf_Utils::get_term_names( get_the_ID(), 'lf-event-host', true );
+$event_host      = Lf_Utils::get_term_names( get_the_ID(), 'lf-event-host', true );
+$event_host_slug = Lf_Utils::get_term_slugs( get_the_ID(), 'lf-event-host', true );
 
 // external URL.
 $external_url     = get_post_meta( get_the_ID(), 'lf_event_external_url', true );
@@ -21,8 +22,26 @@ if ( ! $city && ! $country ) {
 	$location = 'TBC';
 } elseif ( ! $country ) {
 	$location = $city;
+} elseif ( ! $city ) {
+	$location = $country;
 } else {
 	$location = $city . ', ' . $country;
+}
+
+// Get date and time now.
+$now           = new DateTime( '', new DateTimeZone( 'America/Los_Angeles' ) );
+$date_now      = $now->format( 'Y-m-d' );
+$period_status = '';
+
+// Event status. check for start date on event, otherwise don't show anything.
+if ( $event_start_date ) {
+	if ( $event_start_date > $date_now ) {
+		$period_status = 'upcoming';
+	} elseif ( ( $event_start_date <= $date_now ) && ( $event_end_date >= $date_now ) ) {
+		$period_status = 'current';
+	} else {
+		$period_status = 'past';
+	}
 }
 
 ?>
@@ -53,10 +72,16 @@ if ( ! $city && ! $country ) {
 		<?php endif; ?>
 			<?php
 			if ( $event_host ) :
+				$event_host_link = '/events/?_sft_lf-event-host=' . $event_host_slug;
 				?>
-		<div class="skew-box secondary centered">
-				<?php echo esc_html( $event_host ); ?> Event</div>
+		<a class="skew-box secondary centered" title="See other <?php echo esc_attr( $event_host ); ?> events" href="<?php echo esc_url( $event_host_link ); ?>">
+				<?php echo esc_html( $event_host ); ?> Event</a>
 		<?php endif; ?>
+
+			<?php if ( 'past' == $period_status ) : ?>
+		<h3 class="margin-y">This event has passed.</h3>
+		<?php endif; ?>
+
 		<div class="entry-content">
 			<?php the_content(); ?>
 		</div>

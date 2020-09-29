@@ -28,6 +28,7 @@ $video_id = Lf_Utils::get_youtube_id_from_url( $recording_url );
 
 // get author category.
 $author_category = Lf_Utils::get_term_names( get_the_ID(), 'lf-author-category', true );
+$author_category_slug = Lf_Utils::get_term_slugs( get_the_ID(), 'lf-author-category', true );
 
 // get companies (presented by).
 $company = Lf_Utils::get_term_names( get_the_ID(), 'lf-company' );
@@ -77,10 +78,13 @@ if ( $dat_webinar_start > $dat_now ) {
 			class="skew-box centered margin-bottom"><?php echo esc_html( str_replace( ':00', '', $dat_webinar_start->format( 'l F j, Y, g:iA T' ) ) ); ?></span>
 		<?php endif; ?>
 
-			<?php if ( $author_category ) : ?>
-		<div class="skew-box secondary centered">LFPH
+			<?php
+			if ( $author_category ) :
+				$author_category_link = '/lf-author-category/' . $author_category_slug . '/';
+				?>
+		<a class="skew-box secondary centered" title="See more content from <?php echo esc_attr( $author_category ); ?>" href="<?php echo esc_url( $author_category_link ); ?>">LFPH
 				<?php echo esc_html( $author_category ); ?> Webinar
-		</div>
+			</a>
 		<?php endif; ?>
 
 			<?php
@@ -94,17 +98,16 @@ if ( $dat_webinar_start > $dat_now ) {
 			<?php if ( 'past' == $period_status ) : ?>
 		<h3 class="margin-y">This webinar has passed.</h3>
 				<?php if ( $dat_webinar_start ) { ?>
-		<p class="date-icon">Broadcast on
-					<?php echo esc_html( $dat_webinar_start->format( 'l F j, Y, g:iA T' ) ); ?>
-			</p>
-					<?php } ?>
-			<?php endif; ?>
+		<p class="date-icon">Broadcast on <?php echo esc_html( $dat_webinar_start->format( 'l F j, Y, g:iA T' ) ); ?>
+		</p>
+				<?php } ?>
+		<?php endif; ?>
 
 			<?php
 			if ( 'upcoming' == $period_status && $registration_url ) :
 				?>
-		<p><a target="_blank" href="<?php echo esc_url( $registration_url ); ?>"
-		rel="noopener" class="button margin-top-large"
+		<p class="wp-block-buttons"><a target="_blank" href="<?php echo esc_url( $registration_url ); ?>"
+				rel="noopener" class="button margin-top-large "
 				title="Register for <?php the_title(); ?> Webinar">Register
 				Now</a></p>
 		<?php endif; ?>
@@ -122,7 +125,7 @@ if ( $dat_webinar_start > $dat_now ) {
 
 			<?php if ( $video_id ) : ?>
 		<iframe
-			src="https://www.youtube.com/embed/<?php echo esc_html( $video_id ); ?>"
+			src="https://www.youtube-nocookie.com/embed/<?php echo esc_html( $video_id ); ?>"
 			frameborder="0"
 			allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
 			allowfullscreen></iframe>
@@ -151,7 +154,7 @@ if ( $dat_webinar_start > $dat_now ) {
 			<div class="webinar-summary margin-y-large">
 				<h3>Webinar Summary</h3>
 				<p class="is-style-max-width-900"><strong>Webinar:</strong>
-				<?php the_title(); ?></p>
+					<?php the_title(); ?></p>
 
 				<?php if ( $speakers ) : ?>
 				<p><strong>Speakers:</strong>
@@ -164,7 +167,7 @@ if ( $dat_webinar_start > $dat_now ) {
 				</p>
 
 				<p><strong>Time:</strong>
-				<?php echo esc_html( $dat_webinar_start->format( 'g:i' ) . ' - ' . $dat_webinar_end->format( 'g:i A T' ) ); ?>
+					<?php echo esc_html( $dat_webinar_start->format( 'g:i' ) . ' - ' . $dat_webinar_end->format( 'g:i A T' ) ); ?>
 				</p>
 
 				<p><strong>How to attend:</strong>

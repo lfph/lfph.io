@@ -101,7 +101,7 @@ if ( ! is_admin() ) {
 		if ( false === strpos( $url, '.js' ) ) {
 			return $url;
 		}
-		if ( strpos( $url, 'jquery' ) ) {
+		if ( strpos( $url, 'jquery-3.5.1' ) ) {
 			return $url;
 		}
 		return str_replace( ' src', ' defer src', $url );
@@ -121,7 +121,7 @@ function lf_projects_menu_filter( $items, $menu, $args ) {
 	if ( is_admin() ) {
 		return $items;
 	}
-	// Setup empty array to add all items too later.
+	// Setup empty array to add all items to later.
 	$child_items = array();
 	// required, to make sure it doesn't push out other menu items.
 	$menu_order = count( $items );
@@ -137,6 +137,7 @@ function lf_projects_menu_filter( $items, $menu, $args ) {
 
 	// Loop through each taxonomy from the array.
 	foreach ( $stage_taxonomies as $stage_term => $stage_class ) {
+		$parent_item_id = 0;
 		foreach ( $items as $item ) {
 
 			// Check to see if CSS class is in the menu.
@@ -220,48 +221,9 @@ foreach ( $regex_json_path_patterns as $regex_json_path_pattern ) {
 }
 
 /**
- * Updates image class names after post import in order to correct the IDs.
- * It also adds the external url of news posts as a meta value.
- *
- * @param int $import_id Import ID.
+ * Remove tags support from posts
  */
-function post_import_processing( $import_id ) {
-	global $wpdb;
-	$imported_posts = $wpdb->get_results( $wpdb->prepare( 'SELECT `post_id` FROM `' . $wpdb->prefix . 'pmxi_posts` WHERE `import_id` = %d', $import_id ) );
-	foreach ( $imported_posts as $x_post ) {
-		$i_post = get_post( $x_post->post_id );
-		$doc    = new DOMDocument();
-		@$doc->loadHTML( $i_post->post_content, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD );
-
-		$image_tags = $doc->getElementsByTagName( 'img' );
-
-		if ( $image_tags->length > 0 ) {
-
-			foreach ( $image_tags as $tag ) {
-				$img_guid = preg_replace( '/(-\d+x\d+)/', '', $tag->getAttribute( 'src' ) );
-				$result   = $wpdb->get_row( $wpdb->prepare( 'SELECT `ID` FROM `' . $wpdb->prefix . 'posts` WHERE `guid` LIKE %s', '%' . $img_guid . '%' ) );
-				if ( $result ) {
-					$tag->setAttribute( 'class', 'wp-image-' . $result->ID );
-				}
-			}
-			$i_post->post_content = $doc->saveHTML();
-			wp_update_post( $i_post );
-		}
-
-		$anchor_tags = $doc->getElementsByTagName( 'a' );
-
-		if ( $anchor_tags->length > 0 ) {
-			$last_tag = $anchor_tags->item( $anchor_tags->length - 1 );
-			if ( 'READ MORE' === strtoupper( $last_tag->nodeValue ) ) { //phpcs:ignore
-				$external_url = $last_tag->getAttribute( 'href' );
-				if ( $external_url ) {
-					update_post_meta( $x_post->post_id, 'lf_post_external_url', $external_url );
-					$last_tag->parentNode->removeChild( $last_tag );//phpcs:ignore
-					$i_post->post_content = $doc->saveHTML();
-					wp_update_post( $i_post );
-				}
-			}
-		}
-	}
+function myprefix_unregister_tags() {
+	unregister_taxonomy_for_object_type( 'post_tag', 'post' );
 }
-add_action( 'pmxi_after_xml_import', 'post_import_processing', 10, 1 );
+add_action( 'init', 'myprefix_unregister_tags' );

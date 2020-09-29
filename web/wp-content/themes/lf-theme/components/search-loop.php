@@ -40,45 +40,73 @@
 
 			// Get the Category Author.
 			$category_author = Lf_Utils::get_term_names( get_the_ID(), 'lf-author-category', true );
+			$category_author_slug = Lf_Utils::get_term_slugs( get_the_ID(), 'lf-author-category', true );
+
+			if ( in_category( 'blog' ) ) {
+				$content_type_singular = 'Blog Post';
+				$content_type_plural = 'Blog Posts';
+				$content_type_url = '/blog/';
+			} elseif ( in_category( 'news' ) ) {
+				$content_type_singular = 'Media Coverage';
+				$content_type_plural = 'Media Coverage';
+				$content_type_url = '/news/';
+			} elseif ( in_category( 'announcements' ) ) {
+				$content_type_singular = 'Announcement';
+				$content_type_plural = 'Announcements';
+				$content_type_url = '/announcements/';
+			} elseif ( 'lf_webinar' == get_post_type() ) {
+				$content_type_singular = 'Webinar';
+				$content_type_plural = 'Webinars';
+				$content_type_url = '/webinars/';
+			} elseif ( 'lf_person' == get_post_type() ) {
+				$content_type_singular = 'People';
+				$content_type_plural = 'People';
+				$content_type_url = '/people/staff/';
+			} elseif ( 'lf_case_study' == get_post_type() ) {
+				$content_type_singular = 'Case Study';
+				$content_type_plural = 'Case Studies';
+				$content_type_url = '/case-studies/';
+			} elseif ( 'lf_case_study_cn' == get_post_type() ) {
+				$content_type_singular = 'Case Study';
+				$content_type_plural = 'Case Studies';
+				$content_type_url = '/case-studies-cn/';
+			} elseif ( 'lf_event' == get_post_type() ) {
+				$content_type_singular = 'Event';
+				$content_type_plural = 'Events';
+				$content_type_url = '/events/';
+			} elseif ( 'lf_speaker' == get_post_type() ) {
+				$content_type_singular = 'Speaker';
+				$content_type_plural = 'Speakers';
+				$content_type_url = '/speakers/';
+			} elseif ( 'lf_spotlight' == get_post_type() ) {
+				$content_type_singular = 'Spotlight';
+				$content_type_plural = 'Spotlights';
+				$content_type_url = '/spotlights/';
+			} elseif ( 'page' == get_post_type() ) {
+				$content_type_singular = 'Page';
+				$content_type_plural = 'Pages';
+				$content_type_url = '/';
+			} else {
+				$content_type_singular = 'Page';
+				$content_type_plural = 'Pages';
+				$content_type_url = '/';
+			}
 
 			?>
 		<div class="archive-item">
 
 			<div class="archive-text-wrapper">
 
-				<div class="skew-box centered margin-bottom">
-					<?php
-					if ( in_category( 'blog' ) ) {
-							echo 'Blog Post';
-					} elseif ( in_category( 'news' ) ) {
-								echo 'Media Coverage';
-					} elseif ( in_category( 'announcements' ) ) {
-						echo 'Announcement';
-					} elseif ( 'lf_webinar' == get_post_type() ) {
-						echo 'Webinar';
-					} elseif ( 'lf_person' == get_post_type() ) {
-						echo 'People';
-					} elseif ( 'lf_case_study' == get_post_type() ) {
-						echo 'Case Study';
-					} elseif ( 'lf_case_studych' == get_post_type() ) {
-						echo 'Case Study';
-					} elseif ( 'lf_event' == get_post_type() ) {
-						echo 'Event';
-					} elseif ( 'lf_speaker' == get_post_type() ) {
-						echo 'Speaker';
-					} elseif ( 'lf_spotlight' == get_post_type() ) {
-						echo 'Spotlight';
-					} elseif ( 'page' == get_post_type() ) {
-						echo 'Page';
-					} else {
-						echo 'Page';
-					}
+				<a class="skew-box centered margin-bottom" title="See all <?php echo esc_attr( $content_type_plural ); ?>" href="<?php echo esc_attr( $content_type_url ); ?>">
+					<?php echo esc_html( $content_type_singular ); ?>
+				</a>
+
+
+				<?php
+				if ( $category_author ) :
+					$category_link = '/lf-author-category/' . $category_author_slug . '/';
 					?>
-				</div>
-
-
-				<?php if ( $category_author ) : ?>
-				<div class="skew-box secondary centered margin-bottom">LFPH
+				<a class="skew-box secondary centered margin-bottom" title="See more content from <?php echo esc_attr( $category_author ); ?>" href="<?php echo esc_url( $category_link ); ?>">LFPH
 					<?php
 					echo esc_html( $category_author );
 
@@ -94,7 +122,7 @@
 						echo ' Post';
 					}
 					?>
-				</div>
+				</a>
 				<?php endif; ?>
 
 					<?php
@@ -105,15 +133,13 @@
 						target="_blank" rel="noopener"
 						href="<?php echo esc_url( $link_url ); ?>"
 						title="<?php the_title(); ?>">
-						<?php the_title(); ?>
-					</a></p>
+						<?php the_title(); ?></a></p>
 						<?php
 					} else {
 						?>
 				<p class="archive-title"><a href="<?php the_permalink(); ?>"
 						title="<?php the_title(); ?>">
-						<?php the_title(); ?>
-					</a></p>
+						<?php the_title(); ?></a></p>
 						<?php
 					}
 					?>
@@ -122,47 +148,7 @@
 
 					<?php
 					if ( 'lf_webinar' == get_post_type() ) {
-
-							// Get date and time now.
-							$dat_now = new DateTime( '', new DateTimeZone( 'America/Los_Angeles' ) );
-
-							// Get date and time of webinar for comparison.
-							$webinar_date              = get_post_meta( get_the_ID(), 'lf_webinar_date', true );
-							$webinar_start_time        = get_post_meta( get_the_ID(), 'lf_webinar_start_time', true );
-							$webinar_start_time_period = get_post_meta( get_the_ID(), 'lf_webinar_start_time_period', true );
-							$webinar_timezone          = get_post_meta( get_the_ID(), 'lf_webinar_timezone', true );
-							$dat_webinar_start         = Lf_Utils::get_webinar_date_time( $webinar_date, $webinar_start_time, $webinar_start_time_period, $webinar_timezone );
-							$date_and_time             = str_replace( ':00', '', $dat_webinar_start->format( 'l F j, Y, g:iA T' ) );
-
-							// get recording URL.
-							$recording_url = get_post_meta( get_the_ID(), 'lf_webinar_recording_url', true );
-
-							// date period.
-						if ( $dat_webinar_start > $dat_now ) {
-							?>
-
-					<span class="date-icon">Upcoming Webinar on
-							<?php echo esc_html( $dat_webinar_start->format( 'l F j, Y' ) ); ?>
-					</span>
-							<?php
-						} elseif ( ( $dat_webinar_start < $dat_now ) && ( $recording_url ) ) {
-							?>
-
-					<span class="live-icon">Recorded on
-							<?php echo esc_html( $dat_webinar_start->format( 'l F j, Y' ) ); ?>
-					</span>
-
-							<?php
-						} else {
-							?>
-					<span class="posted-date date-icon">
-						Broadcast on
-							<?php
-							echo esc_html( $dat_webinar_start->format( 'l F j, Y' ) );
-							?>
-					</span>
-							<?php
-						}
+						Lf_Utils::get_webinar_author_row();
 					} elseif ( 'lf_event' == get_post_type() ) {
 
 						$event_start_date = get_post_meta( get_the_ID(), 'lf_event_date_start', true );
@@ -189,7 +175,7 @@
 					<?php
 					// Post author.
 					if ( in_category( 'blog' ) ) {
-							echo wp_kses_post( Lf_Utils::display_author( get_the_ID(), true ) );
+						echo wp_kses_post( Lf_Utils::display_author( get_the_ID(), true ) );
 					}
 					?>
 				</p>
@@ -212,7 +198,7 @@ else :
 		<form role="search" method="get" class="no-search-results"
 			action="<?php echo esc_url( home_url() ); ?>">
 			<label><span class="search-text screen-reader-text">Search the
-					site</span><br />
+					site</span>
 				<input type="search" class="search-field margin-y"
 					placeholder="Enter search term"
 					value="<?php echo get_search_query(); ?>" name="s"

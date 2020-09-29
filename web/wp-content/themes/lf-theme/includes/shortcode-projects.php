@@ -32,7 +32,7 @@ function add_projects_shortcode( $atts ) {
 	$query_args = array(
 		'post_type'      => 'lf_project',
 		'post_status'    => array( 'publish' ),
-		'posts_per_page' => -1,
+		'posts_per_page' => 100,
 		'tax_query'      => array(
 			array(
 				'taxonomy' => 'lf-project-stage',
@@ -45,8 +45,8 @@ function add_projects_shortcode( $atts ) {
 	);
 
 	$project_query = new WP_Query( $query_args );
+	ob_start();
 	if ( $project_query->have_posts() ) {
-		ob_start();
 		?>
 
 <div class="projects-wrapper">
@@ -55,6 +55,8 @@ function add_projects_shortcode( $atts ) {
 			$project_query->the_post();
 
 			$external_url = get_post_meta( get_the_ID(), 'lf_project_external_url', true );
+
+			$date_accepted = get_post_meta( get_the_ID(), 'lf_project_date_accepted', true ) ? ' (accepted to CNCF on ' . gmdate( 'n/j/Y', strtotime( get_post_meta( get_the_ID(), 'lf_project_date_accepted', true ) ) ) . ')' : '';
 
 			$project_category = get_post_meta( get_the_ID(), 'lf_project_category', true );
 
@@ -86,12 +88,12 @@ function add_projects_shortcode( $atts ) {
 			<?php
 			if ( $external_url ) :
 				?>
-				<a href="<?php echo esc_url( $external_url ); ?>"  rel="noopener" target="_blank">
+				<a href="<?php echo esc_url( $external_url ); ?>"  rel="noopener" target="_blank" title="<?php echo esc_html( the_title() . $date_accepted ); ?>">
 				<?php
 				endif;
 
 			if ( has_post_thumbnail() ) {
-				echo wp_get_attachment_image( get_post_thumbnail_id(), '', false, array( 'class' => 'project-thumbnail' ) );
+				echo wp_get_attachment_image( get_post_thumbnail_id(), false, false, array( 'class' => 'project-thumbnail' ) );
 			} else {
 				?>
 		<img src="https://via.placeholder.com/100x100/d9d9d9/000000" alt=""

@@ -9,13 +9,13 @@
  * @since 1.0.0
  */
 
-  /**
-   * Utility Class
-   *
-   * Small helper utilities.
-   *
-   * @since 1.0.0
-   */
+/**
+ * Utility Class
+ *
+ * Small helper utilities.
+ *
+ * @since 1.0.0
+ */
 class Lf_Utils {
 
 	/**
@@ -62,6 +62,35 @@ class Lf_Utils {
 			$result = $term->name;
 		} else {
 			$result = join( ', ', wp_list_pluck( $terms, 'name' ) );
+		}
+
+		return isset( $result ) ? $result : false;
+	}
+
+	/**
+	 * Get Terms and Extract Slugs.
+	 *
+	 * @param integer $post_id Post ID.
+	 * @param string  $taxonomy Taxonomy name.
+	 * @param boolean $first_only To show only first result.
+	 */
+	public static function get_term_slugs( $post_id, $taxonomy, $first_only = false ) {
+
+		if ( ! is_integer( $post_id ) || ! is_string( $taxonomy ) ) {
+			return false;
+		}
+
+		$terms = get_the_terms( $post_id, $taxonomy );
+
+		if ( empty( $terms ) || is_wp_error( $terms ) ) {
+			return false;
+		}
+
+		if ( $first_only ) {
+			$term   = array_shift( $terms );
+			$result = $term->slug;
+		} else {
+			$result = join( ', ', wp_list_pluck( $terms, 'slug' ) );
 		}
 
 		return isset( $result ) ? $result : false;
@@ -171,8 +200,11 @@ class Lf_Utils {
 			return;
 		}
 
-		$author_id = get_post_field( 'post_author', $the_post_id );
-		$author    = get_the_author_meta( 'display_name', $author_id );
+		$author = get_post_meta( get_the_ID(), 'lf_post_guest_author', true );
+		if ( ! $author ) {
+			$author_id = get_post_field( 'post_author', $the_post_id );
+			$author    = get_the_author_meta( 'display_name', $author_id );
+		}
 
 		// Basic match for admin user.
 		if ( 'CNCF' === $author || 'admin' === $author ) {
@@ -373,6 +405,45 @@ class Lf_Utils {
 		);
 
 		return $html;
+	}
+
+	/**
+	 * Get author row for webinar in loop.
+	 */
+	public static function get_webinar_author_row() {
+		// Get date and time now.
+		$dat_now = new DateTime( '', new DateTimeZone( 'America/Los_Angeles' ) );
+
+		// Get date and time of webinar for comparison.
+		$webinar_date              = get_post_meta( get_the_ID(), 'lf_webinar_date', true );
+		$webinar_start_time        = get_post_meta( get_the_ID(), 'lf_webinar_start_time', true );
+		$webinar_start_time_period = get_post_meta( get_the_ID(), 'lf_webinar_start_time_period', true );
+		$webinar_timezone          = get_post_meta( get_the_ID(), 'lf_webinar_timezone', true );
+		$dat_webinar_start         = self::get_webinar_date_time( $webinar_date, $webinar_start_time, $webinar_start_time_period, $webinar_timezone );
+
+		// get recording URL.
+		$recording_url = get_post_meta( get_the_ID(), 'lf_webinar_recording_url', true );
+
+		// date period.
+		if ( $dat_webinar_start > $dat_now ) {
+			?>
+			<span class="date-icon">Upcoming Webinar on
+				<?php echo esc_html( $dat_webinar_start->format( 'l F j, Y' ) ); ?>
+			</span>
+			<?php
+		} elseif ( ( $dat_webinar_start ) && ( $dat_webinar_start < $dat_now ) && ( $recording_url ) ) {
+			?>
+			<span class="live-icon">Recorded on
+				<?php echo esc_html( $dat_webinar_start->format( 'l F j, Y' ) ); ?>
+			</span>
+			<?php
+		} elseif ( $dat_webinar_start ) {
+			?>
+			<span class="posted-date date-icon">Broadcast on
+				<?php echo esc_html( $dat_webinar_start->format( 'l F j, Y' ) ); ?>
+			</span>
+			<?php
+		}
 	}
 
 }
