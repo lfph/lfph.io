@@ -31,8 +31,9 @@
 }
 
 .project-thumbnail {
-
-
+    width: 100%;
+    max-width: 150px;
+    max-height: 150px;
 
     &:hover {
         opacity: 0.8;

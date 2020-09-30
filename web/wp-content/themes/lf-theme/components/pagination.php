@@ -23,7 +23,7 @@ $next_text = sprintf(
 $posts_pagination = get_the_posts_pagination(
 	array(
 		'mid_size'  => 2,
-		'end_size'  => 2,
+		'end_size'  => 1,
 		'prev_text' => $prev_text,
 		'next_text' => $next_text,
 	)
@@ -36,7 +36,7 @@ if ( strpos( $posts_pagination, 'prev page-numbers' ) === false ) {
 
 // If no next page link, append a placeholder with `visibility: hidden` to take its place.
 if ( strpos( $posts_pagination, 'next page-numbers' ) === false ) {
-	$posts_pagination = str_replace( '</div>', '<span class="next page-numbers placeholder" aria-hidden="true">' . $next_text . '</span></div>', $posts_pagination );
+	$posts_pagination = str_replace( '</div>', '<span class="next page-numbers assistive-text" aria-hidden="true">' . $next_text . '</span></div>', $posts_pagination );
 }
 
 if ( $posts_pagination ) :

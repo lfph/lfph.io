@@ -70,9 +70,12 @@ var notify = require("gulp-notify");
 
 var browserSync = require("browser-sync").create();
 
+/**
+ * BrowserSync Reload.
+ */
 function reload(done) {
-    browserSync.reload();
-    done();
+  browserSync.reload();
+  done();
 }
 
 /**
@@ -127,7 +130,7 @@ function styles() {
         .pipe(filter("**/*.css"))
         .pipe(
             mmq({
-                log: true
+                log: false
             })
         )
         .pipe(browserSync.stream())

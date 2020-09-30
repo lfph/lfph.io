@@ -19,9 +19,9 @@
 
 			$archive_page = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
 
-			$is_in_the_news_category = ( in_category( 'news' ) ) ? true : false;
-
-			$is_blog_category = ( in_category( 'blog' ) ) ? true : false;
+			$is_in_the_news_category = ( is_category( 'news' ) ) ? true : false;
+			$is_announcements_category = ( is_category( 'announcements' ) ) ? true : false;
+			$is_blog_category = ( is_category( 'blog' ) ) ? true : false;
 
 			$featured_post = null;
 			$sticky = get_option( 'sticky_posts' );
@@ -50,7 +50,7 @@
 					$sticky_post_id = get_the_ID();
 					$count++;
 					$is_featured = ' featured';
-					$is_sticky   = ' sticky';
+					$is_sticky = ' sticky';
 					lf_post_loop_show_post( $is_featured, $is_sticky, $is_in_the_news_category, $is_blog_category );
 				}
 				wp_reset_postdata();
@@ -63,7 +63,7 @@
 					continue;
 				}
 				$count++;
-				$is_featured = ( 1 == $archive_page && 1 == $count ? ' featured' : '' );
+				$is_featured = ( 1 == $archive_page && 1 == $count && ( $is_blog_category || $is_announcements_category ) ? ' featured' : '' );
 				lf_post_loop_show_post( $is_featured, '', $is_in_the_news_category, $is_blog_category );
 
 			}
@@ -131,6 +131,7 @@ function lf_post_loop_show_post( $is_featured, $is_sticky, $is_in_the_news_categ
 
 		// Get the Category Author.
 		$category_author = Lf_Utils::get_term_names( get_the_ID(), 'lf-author-category', true );
+		$category_author_slug = Lf_Utils::get_term_slugs( get_the_ID(), 'lf-author-category', true );
 
 		?>
 <div class="archive-item<?php echo esc_html( $is_featured . $is_sticky ); ?>">
@@ -161,12 +162,20 @@ function lf_post_loop_show_post( $is_featured, $is_sticky, $is_in_the_news_categ
 	</a>
 </div>
 <div class="archive-text-wrapper">
-		<?php if ( $is_blog_category && $category_author ) : ?>
-	<div class="skew-box secondary centered margin-bottom-small">LFPH
+		<?php
+		if ( $category_author ) :
+			$category_link = '/lf-author-category/' . $category_author_slug . '/';
+			?>
+		<a class="skew-box secondary centered margin-bottom-small" title="See more content from <?php echo esc_attr( $category_author ); ?>" href="<?php echo esc_url( $category_link ); ?>">LFPH
 			<?php
 			echo esc_html( $category_author );
+			if ( 'lf_webinar' === get_post_type() ) {
+				echo ' Webinar';
+			} else {
+				echo ' Blog Post';
+			}
 			?>
-		Blog Post</div>
+		</a>
 			<?php
 		endif;
 		?>
@@ -176,23 +185,23 @@ function lf_post_loop_show_post( $is_featured, $is_sticky, $is_in_the_news_categ
 			<?php the_title(); ?>
 		</a></p>
 
-	<p class="date-author-row"><span class="posted-date date-icon">
-			<?php
-			echo get_the_date();
-			?>
-		</span>
+	<p class="date-author-row">
 		<?php
-		// Post author.
-		if ( in_category( 'blog' ) ) :
-
-			// Get the guest author meta.
-			$guest_author = get_post_meta( get_the_ID(), 'lf_post_guest_author', true );
-
-			// don't display guest author field on archive as it's too long.
-			if ( ! $guest_author ) {
+		if ( 'lf_webinar' == get_post_type() ) {
+			Lf_Utils::get_webinar_author_row();
+		} else {
+			?>
+			<span class="posted-date date-icon">
+				<?php
+				echo get_the_date();
+				?>
+			</span>
+			<?php
+			// Post author.
+			if ( in_category( 'blog' ) ) :
 				echo wp_kses_post( Lf_Utils::display_author( get_the_ID(), true ) );
-			}
-		endif;
+			endif;
+		}
 		?>
 	</p>
 	<div class="archive-excerpt"><?php the_excerpt(); ?></div>

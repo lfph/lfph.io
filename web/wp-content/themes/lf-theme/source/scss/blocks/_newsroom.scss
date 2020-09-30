@@ -59,16 +59,15 @@
     }
 }
 
+// differs between CNCF and LFPH.
 .newsroom-image-wrapper {
     border: 1px solid $tertiary-color;
     transition: all 0.25s ease;
     position: relative;
-
     // add for home page alignment of SVG.
     display: flex;
     align-items: center;
     justify-content: center;
-
 
     // padding for image wrapper.
     &::before {
@@ -105,7 +104,7 @@
             transform: translateY(-50%);
             top: 50%;
             width: 80%;
-            height: 90%;
+            // height: 90%; // remove on LFPH as making default SVG too small.
             padding: 1rem 0;
         }
     }

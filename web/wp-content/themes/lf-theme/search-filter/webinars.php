@@ -81,6 +81,7 @@ if ( $query->have_posts() ) : ?>
 
 		// get author category.
 		$author_category = Lf_Utils::get_term_names( get_the_ID(), 'lf-author-category', true );
+		$author_category_slug = Lf_Utils::get_term_slugs( get_the_ID(), 'lf-author-category', true );
 
 		// get companies (presented by).
 		$company = Lf_Utils::get_term_names( get_the_ID(), 'lf-company' );
@@ -100,7 +101,7 @@ if ( $query->have_posts() ) : ?>
 					<use href="#play" /></svg>
 					<?php
 				} elseif ( isset( $options['generic_thumb_id'] ) && $options['generic_thumb_id'] ) {
-					echo wp_get_attachment_image( $options['generic_thumb_id'], 'medium', false, array( 'class' => 'webinar-default' ) );
+					echo wp_get_attachment_image( $options['generic_thumb_id'], 'full', false, array( 'class' => 'webinar-default' ) );
 				} else {
 					echo '<img src="' . esc_url( get_stylesheet_directory_uri() )
 					. '/images/thumbnail-default.svg" alt="LFPH" class="webinar-default"/>';
@@ -109,10 +110,13 @@ if ( $query->have_posts() ) : ?>
 			</a>
 		</figure>
 
-			<?php if ( $author_category ) : ?>
-		<div class="skew-box secondary">LFPH
-				<?php echo esc_html( $author_category ); ?> Webinar</div>
-		<?php endif; ?>
+			<?php
+			if ( $author_category ) :
+				$author_category_link = '/lf-author-category/' . $author_category_slug . '/';
+				?>
+		<a class="skew-box secondary" title="See more content from <?php echo esc_attr( $author_category ); ?>" href="<?php echo esc_url( $author_category_link ); ?>">LFPH
+				<?php echo esc_html( $author_category ); ?> Webinar</a>
+			<?php endif; ?>
 
 		<h5 class="webinar-title"><a
 				href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h5>
