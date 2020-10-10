@@ -32,6 +32,7 @@
     "wpackagist-plugin/safe-svg":"^1.9.3",
     "wpackagist-plugin/autodescription":"^4.0.1",
     "wpackagist-plugin/post-meta-controls":"^1.2.0",
+    "wpackagist-plugin/redirection": "^4.4.2",
     "wpackagist-plugin/china-video-block":"^0.2.0",
     "wpackagist-plugin/flying-pages":"^2.0.8",
     "wpackagist-plugin/shortpixel-image-optimiser":"^4.15.3",
