@@ -28,12 +28,12 @@
 		href="/wp-content/themes/lf-theme/images/site.webmanifest">
 	<link rel="mask-icon"
 		href="/wp-content/themes/lf-theme/images/safari-pinned-tab.svg"
-		color="#de176c">
+		color="#0078f7">
 	<link rel="shortcut icon"
 		href="/wp-content/themes/lf-theme/images/favicon.ico">
 	<meta name="apple-mobile-web-app-title" content="LFPH">
 	<meta name="application-name" content="LFPH">
-	<meta name="msapplication-TileColor" content="#de176c">
+	<meta name="msapplication-TileColor" content="#0078f7">
 	<meta name="msapplication-config"
 		content="/wp-content/themes/lf-theme/images/browserconfig.xml">
 	<meta name="theme-color" content="#ffffff">
