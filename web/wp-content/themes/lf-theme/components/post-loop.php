@@ -111,7 +111,7 @@ function lf_post_loop_show_post( $is_featured, $is_sticky, $is_in_the_news_categ
 			. '/images/thumbnail-default.svg" alt="LFPH Media Coverage" />';
 		}
 		?>
-	</a>
+		</a>
 </div>
 <div class="archive-text-wrapper">
 	<p class="archive-title"><a

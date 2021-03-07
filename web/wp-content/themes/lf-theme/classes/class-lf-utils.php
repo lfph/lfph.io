@@ -202,8 +202,13 @@ class Lf_Utils {
 
 		$author = get_post_meta( get_the_ID(), 'lf_post_guest_author', true );
 		if ( ! $author ) {
+			$authors_to_ignore = array(); // Authors we don't want to show a byline for.
 			$author_id = get_post_field( 'post_author', $the_post_id );
-			$author    = get_the_author_meta( 'display_name', $author_id );
+			if ( in_array( $author_id, $authors_to_ignore ) ) {
+				return;
+			}
+
+			$author = get_the_author_meta( 'display_name', $author_id );
 		}
 
 		// Basic match for admin user.
@@ -256,14 +261,14 @@ class Lf_Utils {
 
 		if ( ! $image_srcset ) {
 
-			$img           = '<img loading="lazy" class="' . $class_name . '"  src="' . $image_src . '">';
+			$img           = '<img loading="lazy" class="' . $class_name . '"  src="' . $image_src . '" alt="' . self::get_img_alt( $image_id ) . '">';
 			$img_meta      = wp_get_attachment_metadata( $image_id );
 			$attachment_id = $image_id;
 			$html          = wp_image_add_srcset_and_sizes( $img, $img_meta, $attachment_id );
 
 		} else {
 
-			$html = '<img loading="lazy" class="' . $class_name . '" src="' . $image_src . '" srcset="' . $image_srcset . '" sizes="(max-width: ' . $max_width . ') 100vw, ' . $max_width . '">';
+			$html = '<img loading="lazy" class="' . $class_name . '" src="' . $image_src . '" srcset="' . $image_srcset . '" sizes="(max-width: ' . $max_width . ') 100vw, ' . $max_width . '" alt="' . self::get_img_alt( $image_id ) . '">';
 
 		}
 
@@ -353,6 +358,7 @@ class Lf_Utils {
 				'1920' => 'hero-1920',
 				'2880' => 'hero-2880',
 			);
+			// Text on Image Hero (LFPH)
 		} elseif ( 'tonih' === $sizes_array ) {
 			$mappings = array(
 				'0'    => 'tonih-350',

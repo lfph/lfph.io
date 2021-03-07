@@ -46,7 +46,7 @@ $image   = new Image();
 	<?php endif; ?>
 
 	<?php if ( $options['social_email'] ) : ?>
-	<li class="social_email"><a target="_blank" title="<?php echo 'Contact ' . esc_html( get_bloginfo( 'name' ) ); ?>"
+	<li class="social_email"><a title="<?php echo 'Contact ' . esc_html( get_bloginfo( 'name' ) ); ?>"
 			href="<?php echo esc_url( $options['social_email'] ); ?>"><?php $image->get_svg( 'social/email.svg' ); ?></a></li>
 	<?php endif; ?>
 
@@ -70,6 +70,11 @@ $image   = new Image();
 			href="<?php echo esc_url( $options['social_slack'] ); ?>"><?php $image->get_svg( 'social/slack.svg' ); ?></a></li>
 	<?php endif; ?>
 
+	<?php if ( $options['social_twitch'] ) : ?>
+	<li class="social_twitch"><a target="_blank" rel="noopener" title="<?php echo esc_html( get_bloginfo( 'name' ) ) . ' on Twitch'; ?>"
+			href="<?php echo esc_url( $options['social_twitch'] ); ?>"><?php $image->get_svg( 'social/twitch.svg' ); ?></a></li>
+	<?php endif; ?>
+
 	<?php if ( $options['social_rss'] ) : ?>
 	<li class="social_rss"><a target="_blank" rel="noopener" title="<?php echo esc_html( get_bloginfo( 'name' ) ) . ' RSS feed'; ?>"
 			href="<?php echo esc_url( $options['social_rss'] ); ?>"><?php $image->get_svg( 'social/rss.svg' ); ?></a></li>
@@ -85,7 +90,7 @@ if ( $options['social_wechat_id'] ) :
 			<div class="modal-content-wrapper">
 				<div class="modal__content"
 					id="modal-wechat-content">
-					<img src="<?php echo esc_url( wp_get_attachment_url( $options['social_wechat_id'] ) ); ?>">
+					<img loading="lazy" src="<?php echo esc_url( wp_get_attachment_url( $options['social_wechat_id'] ) ); ?>">
 				</div>
 			</div>
 		</div>
