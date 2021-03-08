@@ -358,7 +358,7 @@ class Lf_Utils {
 				'1920' => 'hero-1920',
 				'2880' => 'hero-2880',
 			);
-			// Text on Image Hero (LFPH)
+			// Text on Image Hero (LFPH).
 		} elseif ( 'tonih' === $sizes_array ) {
 			$mappings = array(
 				'0'    => 'tonih-350',

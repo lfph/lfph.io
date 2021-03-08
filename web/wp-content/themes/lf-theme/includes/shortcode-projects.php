@@ -114,7 +114,7 @@ function add_projects_shortcode( $atts ) {
 				<?php
 		}
 		?>
-		<?php // No project title on LFPH. ?>
+			<?php // No project title on LFPH. ?>
 
 
 			<?php if ( $project_category ) : ?>
