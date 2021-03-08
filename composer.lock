@@ -731,7 +731,7 @@
         },
         {
             "name": "wpackagist-plugin/leadin",
-            "version": "7.51.108",
+            "version": "7.52.0",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/leadin/",
@@ -739,7 +739,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/leadin.zip?timestamp=1614100027"
+                "url": "https://downloads.wordpress.org/plugin/leadin.zip?timestamp=1615210508"
             },
             "require": {
                 "composer/installers": "~1.0"
