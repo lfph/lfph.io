@@ -63,6 +63,12 @@
 		h6 {
 			margin-bottom: 0.5rem;
 		}
+
+		// style links same as frontend.
+		a {
+			color: $primary-color;
+			text-decoration: none;
+		}
 	}
 }
 
@@ -75,19 +81,7 @@
 .wp-block-quote__citation {
 	font-family: $font-primary;
 	font-weight: 300;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
 	line-height: 1.5;
-}
-
-.editor-styles-wrapper {
-	font-family: $font-primary !important;
-}
-
-// style links same as frontend.
-#editor .editor-styles-wrapper a {
-	color: $primary-color;
-	text-decoration: none;
 }
 
 // Add padding to make more easily selectable.
