@@ -27,6 +27,7 @@ add_image_size( 'newsroom-post-width', 700, 9999, false );
 add_image_size( 'spotlight-320', 320, 170, false );
 add_image_size( 'spotlight-515', 515, 270, false );
 add_image_size( 'spotlight-640', 640, 340, false );
+add_image_size( 'spotlight-1280', 1280, 680, false );
 
 // case study.
 add_image_size( 'case-study-320', 320, 260, true );
@@ -51,6 +52,9 @@ add_image_size( 'hero-320', 320, 220, true );
 
 // Image Hero Block.
 add_image_size( 'ihero-1400', 1400, 400, true );
+add_image_size( 'ihero-2048', 2048, 585, true );
+add_image_size( 'ihero-415', 415, 119, true );
+add_image_size( 'ihero-830', 830, 237, true );
 
 // Text on Image Hero.
 add_image_size( 'tonih-350', 350, 530, false );
