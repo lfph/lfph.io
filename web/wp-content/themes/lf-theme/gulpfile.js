@@ -46,7 +46,7 @@ var projectHTMLWatchFiles = PROJECT_FOLDER + "/**/**/*.html";
 var gulp = require("gulp");
 
 /** CSS plugins */
-var sass = require("gulp-sass");
+var sass = require('gulp-sass')(require('sass'));
 var mmq = require("gulp-merge-media-queries");
 var postcss = require('gulp-postcss');
 var autoprefixer = require('autoprefixer');

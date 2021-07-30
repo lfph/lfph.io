@@ -19,7 +19,7 @@ $image = new Image();
 	<p>We're sorry, but that page cannot be found. Use search to find what you're looking for.</p>
 
 	<form role="search" method="get" class="no-search-results"
-			action="<?php echo esc_url( home_url() ); ?>">
+			action="<?php echo esc_url( home_url( '/' ) ); ?>">
 			<label><span class="search-text screen-reader-text">Search the
 					site</span>
 

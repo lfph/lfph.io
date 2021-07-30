@@ -9,7 +9,7 @@
 
 ?>
 
-<main class="case-study-single">
+<main class="case-study-single" id="maincontent">
 	<article class="container wrap">
 		<?php
 		while ( have_posts() ) :
@@ -25,3 +25,4 @@
 		?>
 	</article>
 </main>
+<?php get_template_part( 'components/case-study-cta' ); ?>

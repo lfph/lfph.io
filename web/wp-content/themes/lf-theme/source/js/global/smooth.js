@@ -7,13 +7,14 @@
  * @since 1.0.0
  */
 
-jQuery( document ).ready(
+ jQuery( document ).ready(
 	function( $ ) {
 		// Select all links with hashes.
 		$( 'a[href*="#"]' )
 		// Remove links that don't actually link to anything.
 			.not( '[href="#"]' )
 			.not( '[href="#0"]' )
+		.not( '[href="#maincontent"]' )
 			.click(
 				function( event ) {
 					// On-page links.

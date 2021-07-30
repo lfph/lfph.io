@@ -117,7 +117,7 @@ function lf_post_loop_show_post( $is_featured, $is_sticky, $is_in_the_news_categ
 	<p class="archive-title"><a
 			class="<?php echo esc_html( $add_external_icon ); ?>"
 			href="<?php echo esc_url( $link_url ); ?>"
-			<?php echo $target_attr; //phpcs:ignore ?>
+			<?php echo $target_attr;  //phpcs:ignore ?>
 			title="<?php the_title(); ?>">
 			<?php the_title(); ?>
 		</a></p>
