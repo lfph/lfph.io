@@ -1,4 +1,16 @@
-// Button styling
+// makes button plain like icon (wechat, people modal).
+.button-reset {
+	border: none;
+	background: none;
+	box-sizing: border-box;
+	padding: 0;
+	cursor: pointer;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+// Gutenberg Button styling
 .wp-block-button__link {
 	border: 0; // reset
 	border-radius: 0 !important;

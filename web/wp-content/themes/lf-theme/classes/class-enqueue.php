@@ -97,12 +97,12 @@ class Enqueue {
 
 		if ( WP_DEBUG === true ) {
 			// Use un-minified versions.
-			wp_enqueue_script( 'editor-scripts', get_template_directory_uri() . '/build/blocks.js', array( 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-editor', 'wp-data' ), filemtime( get_template_directory() . '/build/blocks.js' ), true );
+			wp_enqueue_script( 'editor-scripts', get_template_directory_uri() . '/build/blocks.js', array( 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-dom-ready', 'wp-data', 'wp-dom' ), filemtime( get_template_directory() . '/build/blocks.js' ), true );
 
 			wp_enqueue_style( 'editor-css', get_template_directory_uri() . '/build/editor-only.css', array( 'wp-edit-blocks' ), filemtime( get_template_directory() . '/build/editor-only.css' ), 'all' );
 
 		} else {
-			wp_enqueue_script( 'editor-scripts', get_template_directory_uri() . '/build/blocks.js', array( 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-editor', 'wp-data' ), filemtime( get_template_directory() . '/build/blocks.min.js' ), true );
+			wp_enqueue_script( 'editor-scripts', get_template_directory_uri() . '/build/blocks.js', array( 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-dom-ready', 'wp-data', 'wp-dom' ), filemtime( get_template_directory() . '/build/blocks.min.js' ), true );
 
 			wp_enqueue_style( 'editor-css', get_template_directory_uri() . '/build/editor-only.css', array( 'wp-edit-blocks' ), filemtime( get_template_directory() . '/build/editor-only.min.css' ), 'all' );
 

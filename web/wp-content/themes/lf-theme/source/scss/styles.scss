@@ -17,7 +17,7 @@
 @import "components/archive";
 @import "components/single";
 @import "components/date-and-author";
-// @import "components/404";
+// @import "components/404"; // cncf only
 @import "components/footer";
 @import "components/social-share";
 @import "components/back-to-top";
@@ -25,7 +25,8 @@
 @import "components/searchandfilter";
 // @import "components/speakers"; // CNCF only.
 @import "components/webinars";
-// @import "components/tooltips"; // speakers bureau CNCF only.
+// @import "components/kubeweeklys"; // cncf only
+// @import "components/tooltips"; // speakers only.
 @import "components/modal";
 @import "components/people";
 @import "components/projects";
@@ -35,6 +36,8 @@
 @import "components/events";
 @import "components/spotlights";
 @import "components/add-to-calendar";
+// @import "components/end-users"; // cncf only
+// @import "components/home"; // cncf only
 
 // Block Parts and Core Styling.
 @import "blocks/colors";
@@ -53,7 +56,7 @@
 @import "blocks/spacer";
 @import "blocks/tab-container";
 @import "blocks/table";
-@import "blocks/text-on-image"; // lfph only
+@import "blocks/text-on-image"; // lfph only.
 @import "blocks/twitter";
 @import "blocks/media-text";
 
@@ -63,5 +66,8 @@
 @import "blocks/countup-block";
 @import "blocks/case-study-highlights";
 @import "blocks/case-study-overview";
-@import "blocks/latest-jobs";
+// @import "blocks/latest-jobs";
 @import "blocks/stats";
+
+// Print styles (load last)
+// @import "core/print"; // cncf only.

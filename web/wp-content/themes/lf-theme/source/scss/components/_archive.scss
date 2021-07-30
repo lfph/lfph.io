@@ -1,3 +1,5 @@
+@use "sass:math";
+
 .archive-container {
 	display: grid;
 	grid-row-gap: 4rem;
@@ -132,7 +134,7 @@
 		margin-left: -1px;
 		float: left;
 		height: 0;
-		padding-top: 630px / 1200px * 100%;
+		padding-top: math.div(630px, 1200px) * 100%;
 	}
 
 	&::after {

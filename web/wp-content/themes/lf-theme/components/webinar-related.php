@@ -31,7 +31,7 @@
 			array(
 				'key'     => 'lf_webinar_date',
 				'value'   => date_i18n( 'Y-m-d' ),
-				'compare' => '>=',
+				'compare' => '>',
 			),
 			array(
 				'key'     => 'lf_webinar_recording',
@@ -62,10 +62,12 @@
 	);
 
 	$related_query = new WP_Query( $related_args );
-	?>
+
+	if ( $related_query->have_posts() ) :
+		?>
 
 <div
-	class="wp-block-lf-upcoming-webinars is-style-horizontal entry-content center-align margin-bottom-large">
+	class="wp-block-lf-upcoming-webinars entry-content center-align margin-bottom-large">
 <div class="container wrap">
 	<h3 class="margin-top-large">Related upcoming webinars</h3>
 	</div>
@@ -96,7 +98,7 @@
 					array(
 						'key'     => 'lf_webinar_date',
 						'value'   => date_i18n( 'Y-m-d' ),
-						'compare' => '>=',
+						'compare' => '>',
 					),
 					array(
 						'key'     => 'lf_webinar_recording',
@@ -120,4 +122,7 @@
 		}
 		?>
 	</div>
-</div>
+	</div>
+		<?php
+		endif;
+	?>

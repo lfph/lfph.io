@@ -1,6 +1,6 @@
 <?php // phpcs:ignore. ?>
 
-<section class="text-hero">
+<section class="text-hero" id="maincontent">
 
 <div class="text-hero-overlay"></div>
 

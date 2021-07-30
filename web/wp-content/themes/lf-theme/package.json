@@ -60,6 +60,7 @@
         "gulp-touch-cmd": "0.0.1",
         "gulp-uglify": "^3.0.2",
         "prettier": "^2.0.5",
+        "sass": "^1.36.0",
         "socket.io": "^2.3.0",
         "stylelint": "^9.3.0",
         "stylelint-config-recommended": "^3.0.0",

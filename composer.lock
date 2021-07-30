@@ -4,35 +4,36 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "de5ce3fd6f29dba4042165db7a557521",
+    "content-hash": "fb8b716310f06a1449a4c1868c3f1c37",
     "packages": [
         {
             "name": "cncf/wp-mu-plugins",
-            "version": "dev-wp58update",
+            "version": "dev-main",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cncf/wp-mu-plugins.git",
-                "reference": "5b6f5a6120ea36f006c6ee3746097c33a1f6d083"
+                "reference": "badb4ceb60f1a4115abf64f247190e66f9a120ac"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cncf/wp-mu-plugins/zipball/5b6f5a6120ea36f006c6ee3746097c33a1f6d083",
-                "reference": "5b6f5a6120ea36f006c6ee3746097c33a1f6d083",
+                "url": "https://api.github.com/repos/cncf/wp-mu-plugins/zipball/badb4ceb60f1a4115abf64f247190e66f9a120ac",
+                "reference": "badb4ceb60f1a4115abf64f247190e66f9a120ac",
                 "shasum": ""
             },
             "require": {
                 "php": "^7.2"
             },
+            "default-branch": true,
             "type": "wordpress-muplugin",
             "license": [
                 "MIT"
             ],
             "description": "Must Use (MU) plugins used to power WordPress sites cncf.io, lfph.io, and possibly others.",
             "support": {
-                "source": "https://github.com/cncf/wp-mu-plugins/tree/wp58update",
+                "source": "https://github.com/cncf/wp-mu-plugins/tree/main",
                 "issues": "https://github.com/cncf/wp-mu-plugins/issues"
             },
-            "time": "2021-07-29T10:19:01+00:00"
+            "time": "2021-07-29T19:15:46+00:00"
         },
         {
             "name": "composer/installers",
@@ -642,15 +643,15 @@
         },
         {
             "name": "wpackagist-plugin/china-video-block",
-            "version": "0.2.4",
+            "version": "0.2.5",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/china-video-block/",
-                "reference": "tags/0.2.4"
+                "reference": "tags/0.2.5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/china-video-block.0.2.4.zip"
+                "url": "https://downloads.wordpress.org/plugin/china-video-block.0.2.5.zip"
             },
             "require": {
                 "composer/installers": "~1.0"
@@ -801,6 +802,24 @@
             },
             "type": "wordpress-plugin",
             "homepage": "https://wordpress.org/plugins/post-meta-controls/"
+        },
+        {
+            "name": "wpackagist-plugin/public-post-preview",
+            "version": "2.9.3",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/public-post-preview/",
+                "reference": "tags/2.9.3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/public-post-preview.2.9.3.zip"
+            },
+            "require": {
+                "composer/installers": "~1.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/public-post-preview/"
         },
         {
             "name": "wpackagist-plugin/redirection",

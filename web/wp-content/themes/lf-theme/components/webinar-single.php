@@ -69,16 +69,16 @@ wp_enqueue_script(
 
 
 // date period.
-if ( $dat_webinar_start > $dat_now ) {
+if ( $dat_webinar_end > $dat_now ) {
 	$period_status = 'upcoming';
-} elseif ( ( $dat_webinar_start < $dat_now ) && ( $recording_url ) ) {
+} elseif ( ( $dat_webinar_end < $dat_now ) && ( $recording_url ) ) {
 	$period_status = 'recorded';
 } else {
 	$period_status = 'past';
 }
 
 ?>
-<section class="hero">
+<section class="hero" id="maincontent">
 	<div class="container wrap no-background">
 		<p class="hero-parent-link"><a href="/webinars/"
 				title="Go to Webinars">Webinar</a></p>
@@ -110,7 +110,7 @@ if ( $dat_webinar_start > $dat_now ) {
 				?>
 		<a class="skew-box secondary centered" title="See more content from <?php echo esc_attr( $author_category ); ?>" href="<?php echo esc_url( $author_category_link ); ?>">LFPH
 				<?php echo esc_html( $author_category ); ?> Webinar
-			</a>
+						</a>
 		<?php endif; ?>
 
 			<?php
@@ -150,18 +150,25 @@ if ( $dat_webinar_start > $dat_now ) {
 
 
 			<?php if ( $video_id ) : ?>
+	<figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio">
+<div class="wp-block-embed__wrapper">
 		<iframe
 			src="https://www.youtube-nocookie.com/embed/<?php echo esc_html( $video_id ); ?>"
+			title=""
+			loading="lazy"
 			frameborder="0"
+			width="500" height="281"
 			allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
 			allowfullscreen></iframe>
+			</div></figure>
 		<?php endif; ?>
 
 			<?php
 			if ( $slides_url ) :
 				?>
 		<p><a target="_blank" href="<?php echo esc_url( $slides_url ); ?>"
-				class="button margin-top"
+				class="button margin-top external"
+				rel="noopener"
 				title="Download slides for <?php the_title(); ?> Webinar">Download
 				Slides</a></p>
 		<?php endif; ?>
@@ -178,7 +185,7 @@ if ( $dat_webinar_start > $dat_now ) {
 			<?php if ( 'upcoming' == $period_status ) : ?>
 
 			<div class="webinar-summary margin-y-large">
-				<h3>Webinar Summary</h3>
+				<h3>Summary</h3>
 				<p class="is-style-max-width-900"><strong>Webinar:</strong>
 					<?php the_title(); ?></p>
 
