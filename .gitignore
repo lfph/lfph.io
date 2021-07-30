@@ -77,7 +77,7 @@ web/sitemap.xml.gz
 web/wp-content/cache/
 web/wp-content/backups/
 
-# Avoid accidental modification of pantheon.upstream.yml in sites
+# Avoid accidental modification of pantheon.upstream.yml in sites.
 # created from this upstream
 pantheon.upstream.yml
 
