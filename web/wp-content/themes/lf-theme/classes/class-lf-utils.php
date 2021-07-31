@@ -237,6 +237,7 @@ class Lf_Utils {
 	 * @param string $image_size thumbnail name.
 	 * @param string $max_width width with unit.
 	 * @param string $class_name class to apply to img tag.
+	 * @param string $loading add lazy load attribute.
 	 */
 	public static function display_responsive_images( $image_id, $image_size, $max_width, $class_name = '', $loading = 'lazy' ) {
 
@@ -255,6 +256,7 @@ class Lf_Utils {
 		// Get the srcset with various image sizes.
 		$image_srcset = wp_get_attachment_image_srcset( $image_id, $image_size );
 
+		// get the default size of the passed image sized.
 		$size = wp_get_attachment_image_src( $image_id, $image_size );
 
 		if ( $class_name ) {

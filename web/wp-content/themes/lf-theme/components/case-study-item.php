@@ -51,18 +51,19 @@ if ( $cn ) {
 
 	<div class="case-study-content-wrapper background-image-text-overlay">
 
-	<div class="title-stat-date-type">
+<div class="title-stat-date-type">
 
-	<h2 class="case-study-title"><a title="<?php the_title(); ?>"
+<!-- title -->
+<h2 class="case-study-title"><a title="<?php the_title(); ?>"
 				href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
 
 <!-- stat  -->
 <?php if ( $case_study_key_stat || $case_study_key_stat_label ) : ?>
 <p class="case-study-stat"><span><?php echo esc_html( $case_study_key_stat ); ?></span> <?php echo esc_html( $case_study_key_stat_label ); ?>
 </p>
-	<?php endif; ?>
+<?php endif; ?>
 
-	<div class="date-and-type">
+<div class="date-and-type">
 <!-- date  -->
 <p class="case-study-date date-icon"><?php echo get_the_date(); ?></p>
 </div>
@@ -79,10 +80,10 @@ if ( $cn ) {
 			href="<?php the_permalink(); ?>"><?php echo esc_html( $read_case_study ); ?></a>
 		<?php endif; ?>
 
-	</div>
-
-
-
-
 </div>
+
+
+
+
+	</div>
 </div>

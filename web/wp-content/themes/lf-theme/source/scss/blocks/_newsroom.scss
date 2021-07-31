@@ -18,6 +18,9 @@
 
 	.newsroom-title {
 		margin-bottom: 0.5em;
+		.single-post & {
+			margin-top: 0;
+		}
 	}
 
 	&.has-images-border {
