@@ -876,24 +876,6 @@
             "homepage": "https://wordpress.org/plugins/shortpixel-image-optimiser/"
         },
         {
-            "name": "wpackagist-plugin/strong-testimonials",
-            "version": "2.51.5",
-            "source": {
-                "type": "svn",
-                "url": "https://plugins.svn.wordpress.org/strong-testimonials/",
-                "reference": "tags/2.51.5"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/strong-testimonials.2.51.5.zip"
-            },
-            "require": {
-                "composer/installers": "~1.0"
-            },
-            "type": "wordpress-plugin",
-            "homepage": "https://wordpress.org/plugins/strong-testimonials/"
-        },
-        {
             "name": "wpackagist-plugin/svg-autocrop",
             "version": "0.1.1",
             "source": {
