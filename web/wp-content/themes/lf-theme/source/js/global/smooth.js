@@ -7,7 +7,7 @@
  * @since 1.0.0
  */
 
- jQuery( document ).ready(
+jQuery( document ).ready(
 	function( $ ) {
 		// Select all links with hashes.
 		$( 'a[href*="#"]' )

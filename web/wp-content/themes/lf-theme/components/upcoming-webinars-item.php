@@ -9,8 +9,11 @@
  * @since 1.0.0
  */
 
+$passed_data = wp_parse_args( $args, array( 'show_images' => '' ) );
+$show_images = $passed_data['show_images'];
+
 // get author category.
-$author_category = Lf_Utils::get_term_names( get_the_ID(), 'lf-author-category', true );
+$author_category      = Lf_Utils::get_term_names( get_the_ID(), 'lf-author-category', true );
 $author_category_slug = Lf_Utils::get_term_slugs( get_the_ID(), 'lf-author-category', true );
 
 // get companies (presented by).
@@ -21,15 +24,16 @@ $webinar_date              = get_post_meta( get_the_ID(), 'lf_webinar_date', tru
 $webinar_start_time        = get_post_meta( get_the_ID(), 'lf_webinar_start_time', true );
 $webinar_start_time_period = get_post_meta( get_the_ID(), 'lf_webinar_start_time_period', true );
 $webinar_timezone          = get_post_meta( get_the_ID(), 'lf_webinar_timezone', true );
+$webinar_reg_url           = get_post_meta( get_the_ID(), 'lf_webinar_registration_url', true );
 $dat_webinar_start         = Lf_Utils::get_webinar_date_time( $webinar_date, $webinar_start_time, $webinar_start_time_period, $webinar_timezone, true );
-$date_and_time             = str_replace( ':00', '', $dat_webinar_start->format( 'l F j, g:iA T' ) );
+$date_and_time             = $dat_webinar_start->format( 'l F j' );
 ?>
 <article class="webinars-upcoming-box">
 
 	<div class="webinars-upcoming-text-wrapper">
 
 	<?php
-	if ( $author_category ) :
+	if ( $author_category && false ) :
 		$author_category_link = '/lf-author-category/' . $author_category_slug . '/';
 		?>
 		<!-- Category of Webinar  -->
@@ -52,6 +56,5 @@ $date_and_time             = str_replace( ':00', '', $dat_webinar_start->format(
 		<span class="presented-by">Presented by
 			<?php echo esc_html( $company ); ?></span>
 		<?php endif; ?>
-
 	</div>
 </article>

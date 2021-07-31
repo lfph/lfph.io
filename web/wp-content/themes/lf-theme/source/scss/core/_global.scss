@@ -3,13 +3,12 @@ body {
 	background-color: $white;
 	font-family: $font-primary;
 	font-size: 1em; // 16px
+	color: $black;
+	font-weight: 300;
 
 	@media (min-width: 1200px) {
 		font-size: 1.125em; // 18px
 	}
-
-	color: $black;
-	font-weight: 300;
 
 	// added to improve rendering, but could hamper performance.
 	-webkit-font-smoothing: antialiased;
