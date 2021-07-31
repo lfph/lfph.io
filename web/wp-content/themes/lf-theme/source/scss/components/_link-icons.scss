@@ -72,12 +72,12 @@
 }
 
 // PDF icon, needs specificty to override external link.
-.site-header .site-navigation .main-navigation,
+.site-navigation .main-navigation,
 .wp-block-buttons {
-	a[href^="http://"][href$=".pdf"]:not([href^="http://www.lfph.io"]):not([href^="http://lfph.io"]):not([href^="http://localhost"]):not([href^="http://dev-lfph"]),
-    a[href^="https://"][href$=".pdf"]:not([href^="https://www.lfph.io"]):not([href^="https://lfph.io"]):not([href^="https://localhost"]):not([href^="https://dev-lfph"]),
-    a[href^="//"][href$=".pdf"]:not([href^="//www.lfph.io"]):not([href^="//lfph.io"]):not([href^="//localhost"]):not([href^="//dev-lfph"]),
-    a[href$=".pdf"]:not([href^="https://www.lfph.io"]):not([href^="https://lfph.io"]):not([href^="https://localhost"]):not([href^="https://dev-lfph"]),
+	a[href^="http://"][href$=".pdf"],
+    a[href^="https://"][href$=".pdf"],
+    a[href^="//"][href$=".pdf"],
+    a[href$=".pdf"],
 	&.is-style-button-pdf .wp-block-button__link {
 		display: flex;
 		align-items: center;
@@ -137,5 +137,60 @@
 		&::after {
 			background-size: 0.9em 0.9em;
 		}
+	}
+}
+
+// Arrow CTA style.
+.is-style-arrow-cta {
+	font-weight: 700;
+
+	&::after {
+		content: "";
+		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='15.815' viewBox='0 0 16 15.815'%3E%3Cpath id='arrow-right-regular' d='M7.789,34.711l-.707.707a.429.429,0,0,0,0,.606l5.54,5.54H.429A.429.429,0,0,0,0,41.993v1a.429.429,0,0,0,.429.429H12.623l-5.54,5.54a.429.429,0,0,0,0,.606l.707.707a.429.429,0,0,0,.606,0L15.874,42.8a.429.429,0,0,0,0-.606L8.4,34.711A.428.428,0,0,0,7.789,34.711Z' transform='translate(0 -34.586)' fill='%23f0a'/%3E%3C/svg%3E");
+		margin-left: 0.2em; // connects to word.
+		padding-left: 1.5em;
+		background-size: 0.8em 0.9em;
+		background-position: center center;
+		background-repeat: no-repeat;
+	}
+
+	&.has-white-color {
+		&::after {
+			filter: brightness(0) saturate(100%) invert(100%);
+		}
+	}
+}
+
+.is-style-add-chevron-after {
+	a {
+		display: inline-flex;
+		align-items: center;
+
+		&::after {
+			content: " ";
+			background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 28 28' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M23.662 15.286l-6.9-6.999a.994.994 0 0 0-1.414 0 1.016 1.016 0 0 0 0 1.428L21.544 16l-6.196 6.285a1.016 1.016 0 0 0 0 1.428.994.994 0 0 0 1.414 0l6.899-6.999a1.043 1.043 0 0 0 .001-1.428z' fill='%230078f7'/%3E%3Cpath d='M16.662 15.286L9.763 8.287a.994.994 0 0 0-1.414 0 1.016 1.016 0 0 0 0 1.428L14.544 16l-6.196 6.285a1.016 1.016 0 0 0 0 1.428.994.994 0 0 0 1.414 0l6.899-6.999a1.043 1.043 0 0 0 .001-1.428z' fill='%230078f7'/%3E%3C/svg%3E");
+			background-size: 1em 1em;
+			height: 1em;
+			width: 1em;
+			background-repeat: no-repeat;
+			margin-left: 0rem;
+			display: inline-flex;
+			white-space: nowrap;
+			align-self: center;
+		}
+	}
+}
+
+.live-icon {
+	display: inline-flex;
+	align-items: center;
+	&::before {
+		content: " ";
+		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='%232a0552' d='M16 16c0 1.104-.896 2-2 2h-12c-1.104 0-2-.896-2-2v-8c0-1.104.896-2 2-2h12c1.104 0 2 .896 2 2v8zm8-10l-6 4.223v3.554l6 4.223v-12z'/%3E%3C/svg%3E%0A");
+		background-size: 1em;
+		height: 1em;
+		width: 1em;
+		background-repeat: no-repeat;
+		margin-right: 5px;
 	}
 }

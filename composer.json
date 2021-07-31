@@ -41,8 +41,8 @@
     "wpackagist-plugin/svg-autocrop": "^0.1.0",
     "wpackagist-plugin/wp-mail-smtp": "^2.0.1",
     "wpackagist-plugin/leadin":"^8",
-    "wpackagist-plugin/strong-testimonials":"^2.51.4",
-	"wpackagist-plugin/wp-native-php-sessions": "^1.0.0"
+	"wpackagist-plugin/wp-native-php-sessions": "^1.0.0",
+	"wpackagist-plugin/public-post-preview":"2.9.3"
   },
   "require-dev": {
     "roave/security-advisories": "dev-master",

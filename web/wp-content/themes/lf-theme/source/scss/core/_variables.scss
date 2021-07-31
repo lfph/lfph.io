@@ -21,6 +21,7 @@ $tertiary-100: #e4edf6;
 $tertiary-200: #b9c5d2;
 $tertiary-400: #0078f7;
 $tertiary-600: #0078f7;
+$tertiary-700: #0078f7;
 
 // greys.
 $grey-100: #e6e6e6;
@@ -84,6 +85,10 @@ $font-code: Hack, "Fira Code", Consolas, Menlo, Monaco, "Andale Mono", "Lucida C
 	"DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L", "Courier New", Courier,
 	monospace;
 
+$body-text-color: $black;
+
 // spacing.
 $sm-padding: 2rem;
 $lg-padding: 4rem;
+
+$content-width: 1050px;
