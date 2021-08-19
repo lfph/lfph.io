@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/cncf/wp-mu-plugins.git",
-                "reference": "82c2f1418318b1e213907c723bc434f5f3aae5b7"
+                "reference": "6f881fbb0e780d5a95a6e0341f6a8f401ac9e159"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cncf/wp-mu-plugins/zipball/82c2f1418318b1e213907c723bc434f5f3aae5b7",
-                "reference": "82c2f1418318b1e213907c723bc434f5f3aae5b7",
+                "url": "https://api.github.com/repos/cncf/wp-mu-plugins/zipball/6f881fbb0e780d5a95a6e0341f6a8f401ac9e159",
+                "reference": "6f881fbb0e780d5a95a6e0341f6a8f401ac9e159",
                 "shasum": ""
             },
             "require": {
@@ -33,7 +33,7 @@
                 "source": "https://github.com/cncf/wp-mu-plugins/tree/main",
                 "issues": "https://github.com/cncf/wp-mu-plugins/issues"
             },
-            "time": "2021-08-06T17:30:28+00:00"
+            "time": "2021-08-19T19:40:55+00:00"
         },
         {
             "name": "composer/installers",
@@ -937,12 +937,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Roave/SecurityAdvisories.git",
-                "reference": "1eb2f918082aab68a3a0858d3d23c36171122fe7"
+                "reference": "3c3cc12a9f163e589a12b9ea756c5a2dae9c59dd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/1eb2f918082aab68a3a0858d3d23c36171122fe7",
-                "reference": "1eb2f918082aab68a3a0858d3d23c36171122fe7",
+                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/3c3cc12a9f163e589a12b9ea756c5a2dae9c59dd",
+                "reference": "3c3cc12a9f163e589a12b9ea756c5a2dae9c59dd",
                 "shasum": ""
             },
             "conflict": {
@@ -992,7 +992,7 @@
                 "doctrine/mongodb-odm": ">=1,<1.0.2",
                 "doctrine/mongodb-odm-bundle": ">=2,<3.0.1",
                 "doctrine/orm": ">=2,<2.4.8|>=2.5,<2.5.1|>=2.8.3,<2.8.4",
-                "dolibarr/dolibarr": "<11.0.4",
+                "dolibarr/dolibarr": "<14",
                 "dompdf/dompdf": ">=0.6,<0.6.2",
                 "drupal/core": ">=7,<7.80|>=8,<8.9.14|>=9,<9.0.12|>=9.1,<9.1.7",
                 "drupal/drupal": ">=7,<7.80|>=8,<8.9.14|>=9,<9.0.12|>=9.1,<9.1.7",
@@ -1224,7 +1224,7 @@
                 "twig/twig": "<1.38|>=2,<2.7",
                 "typo3/cms": ">=6.2,<6.2.30|>=7,<7.6.32|>=8,<8.7.38|>=9,<9.5.29|>=10,<10.4.19|>=11,<11.3.2",
                 "typo3/cms-backend": ">=7,<=7.6.50|>=8,<=8.7.39|>=9,<=9.5.24|>=10,<=10.4.13|>=11,<=11.1",
-                "typo3/cms-core": ">=6.2,<=6.2.56|>=7,<7.6.52|>=8,<8.7.41|>=9,<9.5.29|>=10,<10.4.19|>=11,<11.3.2",
+                "typo3/cms-core": ">=6.2,<=6.2.56|>=7,<=7.6.52|>=8,<=8.7.41|>=9,<9.5.29|>=10,<10.4.19|>=11,<11.3.2",
                 "typo3/cms-form": ">=8,<=8.7.39|>=9,<=9.5.24|>=10,<=10.4.13|>=11,<=11.1",
                 "typo3/flow": ">=1,<1.0.4|>=1.1,<1.1.1|>=2,<2.0.1|>=2.3,<2.3.16|>=3,<3.0.12|>=3.1,<3.1.10|>=3.2,<3.2.13|>=3.3,<3.3.13|>=4,<4.0.6",
                 "typo3/neos": ">=1.1,<1.1.3|>=1.2,<1.2.13|>=2,<2.0.4|>=2.3,<2.3.99|>=3,<3.0.20|>=3.1,<3.1.18|>=3.2,<3.2.14|>=3.3,<3.3.23|>=4,<4.0.17|>=4.1,<4.1.16|>=4.2,<4.2.12|>=4.3,<4.3.3",
@@ -1311,7 +1311,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-08-11T13:12:21+00:00"
+            "time": "2021-08-19T16:07:21+00:00"
         },
         {
             "name": "squizlabs/php_codesniffer",
@@ -1472,5 +1472,5 @@
     "platform-overrides": {
         "php": "7.2"
     },
-    "plugin-api-version": "2.0.0"
+    "plugin-api-version": "2.1.0"
 }
