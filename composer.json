@@ -42,6 +42,7 @@
     "wpackagist-plugin/wp-mail-smtp": "^3.0.1",
     "wpackagist-plugin/leadin":"^8",
 	"wpackagist-plugin/wp-native-php-sessions": "^1.0.0",
+	"wpackagist-plugin/wp-crontrol":"1.10.0",
 	"wpackagist-plugin/public-post-preview":"2.9.3"
   },
   "require-dev": {
