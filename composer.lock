@@ -4,37 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4ff838b8eddb0b15f26a139828b5d720",
+    "content-hash": "2e3fc8fb22dbe5288f63d1a9f1ccbfa7",
     "packages": [
-        {
-            "name": "cncf/wp-mu-plugins",
-            "version": "dev-main",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/cncf/wp-mu-plugins.git",
-                "reference": "9b7f6ce68d27d74f1da495b1b2eeea536386581c"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/cncf/wp-mu-plugins/zipball/9b7f6ce68d27d74f1da495b1b2eeea536386581c",
-                "reference": "9b7f6ce68d27d74f1da495b1b2eeea536386581c",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^7.2"
-            },
-            "default-branch": true,
-            "type": "wordpress-muplugin",
-            "license": [
-                "MIT"
-            ],
-            "description": "Must Use (MU) plugins used to power WordPress sites cncf.io, lfph.io, and possibly others.",
-            "support": {
-                "source": "https://github.com/cncf/wp-mu-plugins/tree/main",
-                "issues": "https://github.com/cncf/wp-mu-plugins/issues"
-            },
-            "time": "2021-09-17T18:20:47+00:00"
-        },
         {
             "name": "composer/installers",
             "version": "v1.12.0",
@@ -896,15 +867,15 @@
         },
         {
             "name": "wpackagist-plugin/wp-mail-smtp",
-            "version": "3.0.3",
+            "version": "3.1.0",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/wp-mail-smtp/",
-                "reference": "tags/3.0.3"
+                "reference": "tags/3.1.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/wp-mail-smtp.3.0.3.zip"
+                "url": "https://downloads.wordpress.org/plugin/wp-mail-smtp.3.1.0.zip"
             },
             "require": {
                 "composer/installers": "~1.0 || ~2.0"
@@ -938,12 +909,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Roave/SecurityAdvisories.git",
-                "reference": "25ba9c9c3fe3c26cc041f93602bf146abba74db4"
+                "reference": "0488e161600117fc3a0d72397dad154729002f54"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/25ba9c9c3fe3c26cc041f93602bf146abba74db4",
-                "reference": "25ba9c9c3fe3c26cc041f93602bf146abba74db4",
+                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/0488e161600117fc3a0d72397dad154729002f54",
+                "reference": "0488e161600117fc3a0d72397dad154729002f54",
                 "shasum": ""
             },
             "conflict": {
@@ -1044,6 +1015,7 @@
                 "getgrav/grav": "<1.7.21",
                 "getkirby/cms": "<=3.5.6",
                 "getkirby/panel": "<2.5.14",
+                "gilacms/gila": "<=1.11.4",
                 "gos/web-socket-bundle": "<1.10.4|>=2,<2.6.1|>=3,<3.3",
                 "gree/jose": "<=2.2",
                 "gregwar/rst": "<1.0.3",
@@ -1238,6 +1210,7 @@
                 "theonedemon/phpwhois": "<=4.2.5",
                 "titon/framework": ">=0,<9.9.99",
                 "topthink/think": "<=6.0.9",
+                "topthink/thinkphp": "<=3.2.3",
                 "tribalsystems/zenario": "<8.8.53370",
                 "truckersmp/phpwhois": "<=4.3.1",
                 "twig/twig": "<1.38|>=2,<2.7",
@@ -1333,7 +1306,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-09-29T18:03:48+00:00"
+            "time": "2021-09-30T18:03:50+00:00"
         },
         {
             "name": "squizlabs/php_codesniffer",
@@ -1482,7 +1455,6 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "cncf/wp-mu-plugins": 20,
         "roave/security-advisories": 20
     },
     "prefer-stable": false,
