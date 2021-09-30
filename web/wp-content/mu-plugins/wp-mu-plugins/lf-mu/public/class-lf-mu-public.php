@@ -273,11 +273,7 @@ class Lf_Mu_Public {
 	 */
 	public function remove_news_from_rss( $query ) {
 		if ( $query->is_feed ) {
-			if ( $this->is_cncf ) {
-				$query->set( 'cat', '-229' );
-			} else {
-				$query->set( 'cat', '-6' );
-			}
+			$query->set( 'cat', '-6' );
 		}
 		return $query;
 	}
@@ -288,23 +284,9 @@ class Lf_Mu_Public {
 	 * @param array $args Query args.
 	 */
 	public function remove_news_from_sitemap( $args ) {
-		if ( $this->is_cncf ) {
-			$args['cat'] = -229;
-		} else {
-			$args['cat'] = -6;
-		}
+		$args['cat'] = -6;
 
 		return $args;
-	}
-
-	/**
-	 * Remove the Kubeweekly archive from the SEO Framework sitemap.
-	 *
-	 * @param array $post_types Query args.
-	 */
-	public function remove_kubeweekly_from_sitemap( $post_types ) {
-		$to_exclude = array( 'lf_kubeweekly' );
-		return array_diff( $post_types, $to_exclude );
 	}
 
 }
