@@ -214,6 +214,8 @@ class Lf_Mu_Admin {
 
 		$options['site'] = ( isset( $input['site'] ) && ! empty( $input['site'] ) ) ? esc_html( $input['site'] ) : '';
 
+		$options['google_api_key'] = ( isset( $input['google_api_key'] ) && ! empty( $input['google_api_key'] ) ) ? esc_attr( $input['google_api_key'] ) : '';
+
 		return $options;
 	}
 
