@@ -163,6 +163,8 @@ class Lf_Mu {
 		$this->loader->add_action( 'admin_menu', $plugin_admin, 'add_plugin_admin_menu' );
 		$this->loader->add_action( 'admin_head', $plugin_admin, 'change_adminbar_colors' );
 		$this->loader->add_action( 'wp_head', $plugin_admin, 'change_adminbar_colors' );
+//		$this->loader->add_action( 'save_post_lf_webinar', $plugin_admin, 'sync_webinar_to_gcal' );
+		// $this->loader->add_action( 'init', $plugin_admin, 'sync_webinar_to_gcal' );
 
 		// Sync projects with landscape.
 		$this->loader->add_action( 'lf_sync_projects', $plugin_admin, 'sync_projects' );

@@ -261,6 +261,59 @@ class Lf_Mu_Admin {
 	}
 
 	/**
+	 * Syncs webinar to Google Calendar.
+	 *
+	 * @param int    $post_id Post ID.
+	 * @param object $post Post object.
+	 * @param bool   $update Whether this is an existing post being updated.
+	 */
+	// public function sync_webinar_to_gcal( $post_id, $post, $update ) {
+	public function sync_webinar_to_gcal() {
+		$options = get_option( $this->plugin_name );
+		$google_api_key = isset( $options['google_api_key'] ) ? $options['google_api_key'] : '';
+		if ( ! $google_api_key ) {
+			return;
+		}
+
+		$client = new Google\Client();
+		$client->setDeveloperKey( $google_api_key );
+		$service = new Google_Service_Calendar($client);
+		$calendar_id = 'c_htaak172v70297a31v42l3u8ic@group.calendar.google.com'; //LFPH Cal ID.
+		$calendar_id = 'cjyabraham@gmail.com'; //My Cal ID.
+
+
+		$event = new Google_Service_Calendar_Event(array(
+			'summary' => 'Google I/O 2015',
+			'location' => '800 Howard St., San Francisco, CA 94103',
+			'description' => 'A chance to hear more about Google\'s developer products.',
+			'start' => array(
+			  'dateTime' => '2022-04-28T09:00:00-07:00',
+			  'timeZone' => 'America/Los_Angeles',
+			),
+			'end' => array(
+			  'dateTime' => '2022-04-28T17:00:00-07:00',
+			  'timeZone' => 'America/Los_Angeles',
+			),
+			'recurrence' => array(
+			  'RRULE:FREQ=DAILY;COUNT=2'
+			),
+			'attendees' => array(
+			  array('email' => 'lpage@example.com'),
+			  array('email' => 'sbrin@example.com'),
+			),
+			'reminders' => array(
+			  'useDefault' => FALSE,
+			  'overrides' => array(
+				array('method' => 'email', 'minutes' => 24 * 60),
+				array('method' => 'popup', 'minutes' => 10),
+			  ),
+			),
+		  ));
+
+		$event = $service->events->insert($calendar_id, $event);
+	}
+
+	/**
 	 * Sync projects data from landscape.
 	 */
 	public function sync_projects() {
