@@ -58,24 +58,12 @@ $project_slug = strtolower( get_the_title() );
 					<?php
 				}
 
-				if ( $date_accepted && $stage ) {
+				if ( $date_accepted ) {
 					?>
 				<p class="projects-single-box__accepted">
 					<?php the_title(); ?>&nbsp;was accepted to CNCF on
-<strong><?php echo esc_html( $date_accepted ); ?></strong>
-and is at the
-<strong><?php echo esc_html( $stage ); ?></strong>
-project maturity level.
-</p>
-					<?php
-				} elseif ( $stage ) {
-					?>
-				<p class="projects-single-box__accepted">
-					<?php the_title(); ?>
- is at the
-<strong><?php echo esc_html( $stage ); ?></strong>
-project maturity level.
-</p>
+					<strong><?php echo esc_html( $date_accepted ); ?></strong>
+				</p>
 					<?php
 				}
 				?>
@@ -305,41 +293,37 @@ endif;
 
 		if ( $related_query->have_posts() ) :
 			?>
-		<div class="wp-block-group is-style-no-padding is-style-see-all">
-			<div class="wp-block-columns are-vertically-aligned-bottom">
-				<div class="wp-block-column is-vertically-aligned-bottom"
-					style="flex-basis:80%">
-					<h3 class="is-style-section-heading">Recent
-						<?php the_title(); ?> news</h3>
-				</div>
-				<div class="wp-block-column is-vertically-aligned-bottom"
-					style="flex-basis:20%">
-					<p class="has-text-align-right is-style-link-cta"><a
-href="<?php echo esc_url( '/?post_type=post&s=' . $project_slug ); ?>">See
-all news</a></p>
-				</div>
-			</div>
-			<div style="height:40px" aria-hidden="true"
-				class="wp-block-spacer is-style-20-40"></div>
+			<div class="wp-container-3 wp-block-group alignfull has-tertiary-background-color has-background"><div class="wp-block-group__inner-container">
+			<div class="wp-container-2 wp-block-group"><div class="wp-block-group__inner-container">
+			<div style="height:60px" aria-hidden="true" class="wp-block-spacer is-style-60-responsive"></div>
 
-			<div class="columns-three">
+			<div class="wp-block-columns is-style-section-header">
+			<div class="wp-block-column bh-01" style="flex-basis:70%">	
+			<h3>Recent <?php the_title(); ?> news</h3>
+			</div>
+
+			<div class="wp-block-column bh-02" style="flex-basis:30%">
+			<h6 class="is-style-add-chevron-after">
+				<a href="<?php echo esc_url( '/?post_type=post&s=' . $project_slug ); ?>">See all news</a></h6>
+			</div>
+			</div>
+
+			<section class="wp-block-lf-newsroom is-style-horizontal has-images-border">
+
 				<?php
 				while ( $related_query->have_posts() ) {
 					$related_query->the_post();
-
-					get_template_part( 'components/news-item-vertical' );
+					Lf_Utils::newsroom_show_post( get_the_ID(), true, false );
 				}
 				?>
-			</div>
 
-			<div style="height:40px" aria-hidden="true"
-				class="wp-block-spacer is-style-20-40"></div>
-		</div>
+			</section>
 
-
+			<div style="height:60px" aria-hidden="true" class="wp-block-spacer is-style-60-responsive"></div>
+			</div></div>
+			</div></div>
 		<div style="height:120px" aria-hidden="true"
 			class="wp-block-spacer is-style-80-120"></div>
-
 			<?php
 			wp_reset_postdata();
 endif;
