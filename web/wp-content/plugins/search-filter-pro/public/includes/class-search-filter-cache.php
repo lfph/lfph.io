@@ -8,6 +8,11 @@
  * @copyright 2018 Search & Filter
  */
 
+// If this file is called directly, abort.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 class Search_Filter_Cache
 {
 
@@ -16,7 +21,7 @@ class Search_Filter_Cache
     public $all_unfiltered_post_ids = array();
     public $unfiltered_post_ids = array();
     public $filtered_post_ids_excl = array();
-    public $table_name = "";
+    public $cache_table_name = "";
     public $WP_FILTER = null;
 
     public $cache_term_results = array(); //
@@ -57,8 +62,8 @@ class Search_Filter_Cache
 
             $this->sfid = $sfid;
 
-            $this->table_name = $wpdb->prefix . 'search_filter_cache';
-            $this->term_results_table_name = $wpdb->prefix . 'search_filter_term_results';
+	        $this->cache_table_name = Search_Filter_Helper::get_table_name('search_filter_cache');
+	        $this->term_results_table_name = Search_Filter_Helper::get_table_name('search_filter_term_results');
 
             $this->form_fields = $fields;
             $this->form_settings = $settings;
@@ -707,8 +712,12 @@ class Search_Filter_Cache
             $filter_names = apply_filters('search_filter_cache_filter_names', $filter_names, $this->sfid);
         }
 
-        foreach ($filter_names as $filter_name) {
-            array_push($filter_query_arr, "field_name = '$filter_name'");
+        foreach ( $filter_names as $filter_name ) {
+           
+            array_push( $filter_query_arr, $wpdb->prepare(
+                "field_name = '%s'",
+                $filter_name
+            ) );
         }
 
         $filter_query_sql = implode(" OR ", $filter_query_arr);
@@ -718,6 +727,8 @@ class Search_Filter_Cache
         }
 
         $already_init = false;
+
+	    $this->term_results_table_name = Search_Filter_Helper::get_table_name('search_filter_term_results');
 
         if(empty($this->field_terms_results)) {
 
@@ -1148,13 +1159,15 @@ class Search_Filter_Cache
 
         }
 
+	    $this->cache_table_name = Search_Filter_Helper::get_table_name('search_filter_cache');
+
         if($filter_value!="")
         {
             $field_terms_results = $wpdb->get_results( $wpdb->prepare(
 
                 "
 				SELECT post_id, post_parent_id
-				FROM $this->table_name
+				FROM $this->cache_table_name
 				WHERE field_name = '%s' 
 					AND cast(field_value AS UNSIGNED) $compare_operator %d
 				",
@@ -1238,7 +1251,11 @@ class Search_Filter_Cache
             }
         }
 
-        //post meta start/end must be within user selection
+	    $this->cache_table_name = Search_Filter_Helper::get_table_name('search_filter_cache');
+	    $this->term_results_table_name = Search_Filter_Helper::get_table_name('search_filter_term_results');
+
+
+	    //post meta start/end must be within user selection
         if($filter['compare_mode']=="userrange")
         {
             if($start_field_name == $end_field_name) {
@@ -1246,7 +1263,7 @@ class Search_Filter_Cache
 
                     "
                     SELECT post_id, post_parent_id, field_value FROM
-                    $this->table_name WHERE
+                    $this->cache_table_name WHERE
                     field_name = '%s' AND 
                     cast(field_value AS $cast_type) >= cast(%s AS $cast_type) AND
                     cast(field_value AS $cast_type) <= cast(%s AS $cast_type)
@@ -1261,8 +1278,8 @@ class Search_Filter_Cache
                     "
                         SELECT post_id, post_parent_id, field_value_min, field_value_max FROM
                         (SELECT min_table.post_id as post_id, min_table.post_parent_id as post_parent_id, min_table.field_value as field_value_min, max_table.field_value as field_value_max
-                        FROM (SELECT post_id, post_parent_id, field_value FROM $this->table_name WHERE field_name = '%s') AS min_table
-                        LEFT JOIN (SELECT post_id, field_value FROM $this->table_name WHERE field_name = '%s') AS max_table
+                        FROM (SELECT post_id, post_parent_id, field_value FROM $this->cache_table_name WHERE field_name = '%s') AS min_table
+                        LEFT JOIN (SELECT post_id, field_value FROM $this->cache_table_name WHERE field_name = '%s') AS max_table
                         ON min_table.post_id = max_table.post_id) as range_table
                         WHERE
                         cast(field_value_min AS $cast_type) >= cast(%s as $cast_type) AND
@@ -1279,8 +1296,8 @@ class Search_Filter_Cache
                 "
 				SELECT post_id, post_parent_id, field_value_min, field_value_max FROM
 					(SELECT min_table.post_id as post_id, min_table.post_parent_id as post_parent_id, min_table.field_value as field_value_min, max_table.field_value as field_value_max 
-					FROM (SELECT post_id, post_parent_id, field_value FROM $this->table_name WHERE field_name = '%s') AS min_table
-					LEFT JOIN (SELECT post_id, field_value FROM $this->table_name WHERE field_name = '%s') AS max_table 
+					FROM (SELECT post_id, post_parent_id, field_value FROM $this->cache_table_name WHERE field_name = '%s') AS min_table
+					LEFT JOIN (SELECT post_id, field_value FROM $this->cache_table_name WHERE field_name = '%s') AS max_table 
 					ON min_table.post_id = max_table.post_id) as range_table
 				WHERE 
 				cast(field_value_min AS $cast_type) <= cast(%s as $cast_type) AND
@@ -1295,8 +1312,8 @@ class Search_Filter_Cache
                 "
 				SELECT post_id, post_parent_id, field_value_min, field_value_max FROM
 					(SELECT min_table.post_id as post_id, min_table.post_parent_id as post_parent_id, min_table.field_value as field_value_min, max_table.field_value as field_value_max 
-					FROM (SELECT post_id, post_parent_id, field_value FROM $this->table_name WHERE field_name = '%s') AS min_table
-					LEFT JOIN (SELECT post_id, field_value FROM $this->table_name WHERE field_name = '%s') AS max_table 
+					FROM (SELECT post_id, post_parent_id, field_value FROM $this->cache_table_name WHERE field_name = '%s') AS min_table
+					LEFT JOIN (SELECT post_id, field_value FROM $this->cache_table_name WHERE field_name = '%s') AS max_table 
 					ON min_table.post_id = max_table.post_id) as range_table
 				WHERE 
 				(
@@ -1375,9 +1392,11 @@ class Search_Filter_Cache
             }
             else
             {
-                $cache_search_sql = "
+	            $this->cache_table_name = Search_Filter_Helper::get_table_name('search_filter_cache');
+
+	            $cache_search_sql = "
                 SELECT DISTINCT post_id 
-                FROM $this->table_name
+                FROM $this->cache_table_name
                 ";
 
                 $cache_search_result = $wpdb->get_results($cache_search_sql);
@@ -1500,8 +1519,8 @@ class Search_Filter_Cache
 		        $this->query_args['post__not_in'] = array($this->query_args['post__not_in']);
 	        }
             $post__in = array_diff($post__in, $this->query_args['post__not_in']);
+            // unset( $this->query_args['post__not_in'] ); // we probably should unset this
 
-            /* todo check if we need to unset Post__not_in */
         }
 
         if(!is_array($this->query_args))
@@ -1510,7 +1529,7 @@ class Search_Filter_Cache
             $this->query_args = array();
         }
 
-
+        
         if(count($post__in)==0)
         {
             $post__in = array(0); //force no search results on query if no post IDs are included
@@ -1782,11 +1801,6 @@ class Search_Filter_Cache
 
         $query_args = array_merge($this->query_args, $expand_args);
 
-
-        //$this->hard_remove_filters();
-
-        // The Query
-        //Search_Filter_Helper::start_log("QUERY (set_count_unfiltered_post_ids)");
         $cache_key = 'count_unfiltered_post_ids_'.$this->sfid;
 
         $query_trans = array();
@@ -1808,13 +1822,8 @@ class Search_Filter_Cache
                 Search_Filter_Wp_Cache::set_transient( $cache_key, $query);
             }
         }
-
-        //$this->hard_restore_filters();
-	    //echo "\r\nLast SQL-Query: {$query->request}";
+        
         if ( $query->have_posts() ){
-
-            //now this is used for displaying a ton of relations types, but we need to integrate things like price and meta here so the counts update accordingly
-            //we don't need to do this for the "filtered_result_ids" becuase the query has been applied to them and includes range/date restrictions
 
             $extras_result_array = array();
             $extras_result_array['result_ids'] = $query->posts;
@@ -1822,13 +1831,6 @@ class Search_Filter_Cache
 
             $this->count_data['current_unfiltered_result_ids'] = $this->combine_result_arrays($extras_result_array, "and");
         }
-
-
-        //$time_end = microtime(true);
-        //$total_time = $time_end - $time_start;
-
-        //echo "Total time to generate <strong>all_unfiltered_post_ids</strong> : $total_time seconds<br />";
-        //echo "----------------------------<br /><br />";
     }
 
 
@@ -1944,7 +1946,7 @@ class Search_Filter_Cache
                                 //$combined_results['filtered_results'] = $filter['wp_query_result_ids']; //combine with the IDS for this field
                                 //$combined_results['filtered_results'] = $filter['wp_query_inactive_result_ids']; //combine with the IDS for this field
                                 $combined_results['filtered_results'] = $filter['wp_query_active_result_ids']; //combine with the IDS for this field
-
+                               
                                 $term_result_ids = $this->combine_result_arrays($combined_results, "and");
 
 
@@ -1957,23 +1959,12 @@ class Search_Filter_Cache
                     {
                         $combined_results = array();
                         $combined_results['cache_result_ids'] = $term['cache_result_ids'];
-                        //$combined_results['filtered_results'] = $this->count_data['current_filtered_result_ids'];
+
                         $combined_results['filtered_results'] = $filter['wp_query_inactive_result_ids']; //combine with the IDS for this field
                         $term_result_ids = $this->combine_result_arrays($combined_results, "and");
                     }
 
-                    /* - this is the numeric and date filters - DONT NEED, we won't be showing the count, and this function is only for count! Numbers have been updated arleady because the main search is already affected...
-                    ** ************ we are applying this filter on every field adding in valuable time, we
-                    **************** should be applying this once, before we calculate these filters - either directly on the result set or possibly on the fields themselves
-
-                    //then we do one more calculation based on a group of items using "AND" - these are fields like price range or date range which you ALWAYs want applied to the results
-                    $extras_result_array = array();
-                    $extras_result_array['term_result_ids'] = $term_result_ids;
-                    $extras_result_array['filter_ids_extra'] = $this->filter_ids_extra;
-                    $term_result_ids = $this->combine_result_arrays($extras_result_array, "and");
-                    *********************** */
-
-	                if(has_filter("sf_query_cache_count_ids")) {
+	                if ( has_filter( "sf_query_cache_count_ids" ) ) {
 		                $term_result_ids = apply_filters('sf_query_cache_count_ids', $term_result_ids, $this->sfid);
 	                }
 
@@ -1994,13 +1985,12 @@ class Search_Filter_Cache
         $this->set_count_table();
     }
 
-    public function set_count_table()
-    {
+    public function set_count_table() {
         $count_vars = array();
         foreach($this->filters as $filter_name => $filter)
         {
             $field_terms = $this->filters[$filter_name]["terms"];
-
+            
             $count_vars[$filter_name] = array();
 
             foreach($field_terms as $term_name => $term)
@@ -2023,7 +2013,6 @@ class Search_Filter_Cache
             }
         }
 
-        //global $searchandfilter;
         $searchandfilter->get($this->sfid)->set_count_table($count_vars);
 
     }
@@ -2114,11 +2103,13 @@ class Search_Filter_Cache
             $field_col_select = "field_value_num as field_value";
         }
 
+	    $this->cache_table_name = Search_Filter_Helper::get_table_name('search_filter_cache');
+
         $field_terms_result = $wpdb->get_results( $wpdb->prepare(
 
             "
 			SELECT DISTINCT $field_col_select
-			FROM $this->table_name
+			FROM $this->cache_table_name
 			WHERE field_name = '%s'
 			",
             $field_name

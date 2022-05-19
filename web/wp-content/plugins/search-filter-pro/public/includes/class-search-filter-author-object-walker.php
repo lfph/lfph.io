@@ -7,7 +7,12 @@
  * @link      https://searchandfilter.com
  * @copyright 2018 Search & Filter
  */
- 
+
+// If this file is called directly, abort.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 class Search_Filter_Author_Object_Walker {
 	
 	private $type;
@@ -54,14 +59,19 @@ class Search_Filter_Author_Object_Walker {
 				if(post_type_exists($post_type))
 				{
 					$post_type = esc_attr($post_type);
-					$where_conditions[] = " (post_type = '$post_type' AND " . get_private_posts_cap_sql( $post_type ) . ")";
+					$where_conditions[] = $wpdb->prepare(
+						"(post_type = '%s' AND " . get_private_posts_cap_sql( $post_type ) . ")",
+						$post_type
+					);
 				}
 			}
-			$where_query = implode(" OR", $where_conditions);
+			$where_query = implode(" OR ", $where_conditions);
 		}
 		
 		$author_count = array();
-		foreach ( (array) $wpdb->get_results("SELECT DISTINCT post_author, COUNT(ID) AS count FROM $wpdb->posts WHERE$where_query GROUP BY post_author") as $row )
+		$author_count_query = $wpdb->get_results("SELECT DISTINCT post_author, COUNT(ID) AS count FROM $wpdb->posts WHERE $where_query GROUP BY post_author");
+
+		foreach ( (array) $author_count_query as $row )
 			$author_count[$row->post_author] = $row->count;
 		
 		
@@ -83,8 +93,11 @@ class Search_Filter_Author_Object_Walker {
 		foreach ( $authors as $author_id ) {
 			
 			$author = get_userdata( $author_id );
+			
+			//check if user role is administrator or not
+			$is_user_role_admin = in_array( 'administrator', $author->roles );
 
-			if ( $exclude_admin && 'admin' == $author->display_name )
+			if ( $exclude_admin && $is_user_role_admin)
 				continue;
 
 			$option_count = isset( $author_count[$author->ID] ) ? $author_count[$author->ID] : 0;

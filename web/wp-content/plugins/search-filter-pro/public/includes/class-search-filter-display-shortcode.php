@@ -8,6 +8,11 @@
  * @copyright 2018 Search & Filter
  */
 
+// If this file is called directly, abort.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 class Search_Filter_Display_Shortcode {
 
     public function __construct($plugin_slug)
@@ -45,8 +50,6 @@ class Search_Filter_Display_Shortcode {
         //$this->set_inherited_defaults($searchform);
 
         //$current_query = $searchform->current_query()->get_array();
-
-        //var_dump($current_query);
 
         //give priority to user selections by setting them up after
 
@@ -307,9 +310,7 @@ class Search_Filter_Display_Shortcode {
         ), $atts));
 
         $returnvar = "";
-        /*Search_Filter_Helper::start_log("----- Start display_shortcode $base_form_id");
-        Search_Filter_Helper::finish_log("----- Start display_shortcode $base_form_id");
-        Search_Filter_Helper::start_log("----- Finish display_shortcode");*/
+
         //make sure its set
         if(($id!=="")||($slug!==""))
         {
@@ -325,11 +326,13 @@ class Search_Filter_Display_Shortcode {
             $base_form_id = (int)$id;
             if(Search_Filter_Helper::has_wpml())
             {
-                $base_form_id = Search_Filter_Helper::wpml_object_id($id, 'search-filter-widget', true, ICL_LANGUAGE_CODE);
+                $current_lang = Search_Filter_Helper::wpml_current_language();
+                if ( $current_lang ) {
+                    $base_form_id = Search_Filter_Helper::wpml_object_id($id, 'search-filter-widget', true, $current_lang);
+                }
             }
 
-
-
+            
             if(get_post_status($base_form_id)!="publish")
             {
                 return;
@@ -346,8 +349,18 @@ class Search_Filter_Display_Shortcode {
 
             $this->set_defaults($base_form_id);
 
+
             if($action=="prep_query")
             {
+	            //old, used for EDD, same as "filter_next_query"
+	            do_action("search_filter_filter_next_query", $base_form_id);
+	            if(!isset($skip)){
+		            $skip = 0;
+	            }
+	            $skip = intval($skip);
+
+	            //$searchform->query()->prep_query();
+	            $searchform->query()->filter_next_query($skip);
                 return $returnvar;
             }
             else if($action=="do_archive_query")
@@ -364,14 +377,16 @@ class Search_Filter_Display_Shortcode {
             }
             else if($action=="filter_next_query")
             {
+	            do_action("search_filter_filter_next_query", $base_form_id);
 
             	if(!isset($skip)){
             		$skip = 0;
 	            }
 	            $skip = intval($skip);
-	            
+
                 //$searchform->query()->prep_query();
                 $searchform->query()->filter_next_query($skip);
+
                 return $returnvar;
             }
             else if($show=="form")
@@ -443,8 +458,7 @@ class Search_Filter_Display_Shortcode {
                         //prep the query so we can get the counts for the items in the search form
                         $searchform->query()->prep_query(true);
                         //}
-
-
+						
                         if($display_results_as=="shortcode")
                         {//if we're using a shortcode, grab the selector automatically from the id
                             $ajax_target = "#search-filter-results-".$base_form_id;
@@ -546,10 +560,6 @@ class Search_Filter_Display_Shortcode {
                         {//use the results_url defined by the user
                             $ajax_url = home_url("?sfid=".$base_form_id."&sf_action=get_data");
                         }
-                        else if($display_results_as=="custom_edd_store")
-                        {//use the results_url defined by the user
-
-                        }
                         else if(($display_results_as=="custom_woocommerce_store")&&(Search_Filter_Helper::wc_get_page_id())) {
                             //find woocommerce shop page
 
@@ -633,11 +643,6 @@ class Search_Filter_Display_Shortcode {
                             $form_attributes['data-ajax-form-url'] = $ajax_form_url;
                         }
 
-
-
-                        //$form_attr .= ' data-display-result-method="'.esc_attr($display_results_as).'"';
-                        //$form_attr .= ' data-use-history-api="'.(int)$use_history_api.'"';
-                        //$form_attr .= ' data-template-loaded="'.(int)$this->is_template_loaded.'"';
                         $form_attributes['data-display-result-method'] = $display_results_as;
                         $form_attributes['data-use-history-api'] = (int)$use_history_api;
                         $form_attributes['data-template-loaded'] = (int)$this->is_template_loaded;
@@ -650,7 +655,7 @@ class Search_Filter_Display_Shortcode {
                             if(isset($settings['post_types'])) {
                                 $post_types = array_keys($settings['post_types']);
                                 if (isset($post_types[0])) {
-                                	
+
 	                                $single = true;
 	                                if($display_results_as == "custom_woocommerce_store"){
 		                                $single = false;
@@ -669,11 +674,10 @@ class Search_Filter_Display_Shortcode {
                         $lang_code = "";
 
                         if(Search_Filter_Helper::has_wpml()){
-
-                            $lang_code = ICL_LANGUAGE_CODE;
+                            $lang_code = Search_Filter_Helper::wpml_current_language();
                         }
                         else{
-	                        //$lang_code = strtolower(substr( get_bloginfo ( 'language' ), 0, 2 ));
+	                        $lang_code = strtolower( substr( get_bloginfo ( 'language' ), 0, 2 ) );
                         }
 
 
@@ -690,6 +694,17 @@ class Search_Filter_Display_Shortcode {
                             if($display_results_as=="shortcode") {
 
                                 $form_attributes['data-ajax-data-type'] = "json";
+                                $form_attributes['data-ajax-links-selector'] = ".pagination a";
+                            }
+                            else{
+	                            if( $ajax_links_selector != "" )
+	                            {
+		                            //$form_attr.=' data-ajax-links-selector="'.$ajax_links_selector.'"';
+		                            $form_attributes['data-ajax-links-selector'] = $ajax_links_selector;
+	                            }
+	                            else{
+		                            //$form_attributes['data-ajax-links-selector'] = '';
+	                            }
                             }
 
                             if(has_filter('sf_ajax_data_type')) {
@@ -733,20 +748,14 @@ class Search_Filter_Display_Shortcode {
                             }
 
 
-                            if($ajax_links_selector!="")
-                            {
-                                //$form_attr.=' data-ajax-links-selector="'.$ajax_links_selector.'"';
-                                $form_attributes['data-ajax-links-selector'] = $ajax_links_selector;
-                            }
+
 
                             if($update_ajax_url!="")
                             {
-                                //$form_attr.=' data-update-ajax-url="'.$update_ajax_url.'"';
                                 $form_attributes['data-update-ajax-url'] = $update_ajax_url;
                             }
                             if($only_results_ajax!="")
                             {
-                                //$form_attr.=' data-only-results-ajax="'.$only_results_ajax.'"';
                                 $form_attributes['data-only-results-ajax'] = $only_results_ajax;
                             }
 
@@ -755,14 +764,12 @@ class Search_Filter_Display_Shortcode {
 
                             if($scroll_to_pos!="")
                             {
-                                //$form_attr.=' data-scroll-to-pos="'.$scroll_to_pos.'"';
                                 $form_attributes['data-scroll-to-pos'] = $scroll_to_pos;
 
                                 if($scroll_to_pos=="custom")
                                 {
                                     if($custom_scroll_to!="")
                                     {
-                                        //$form_attr.=' data-custom-scroll-to="'.$custom_scroll_to.'"';
                                         $form_attributes['data-custom-scroll-to'] = $custom_scroll_to;
                                     }
                                 }
@@ -770,7 +777,6 @@ class Search_Filter_Display_Shortcode {
 
                             if($scroll_on_action!="")
                             {
-                                //$form_attr.=' data-scroll-on-action="'.$scroll_on_action.'"';
                                 $form_attributes['data-scroll-on-action'] = $scroll_on_action;
                             }
                         }
@@ -780,19 +786,15 @@ class Search_Filter_Display_Shortcode {
                         {
                             $init_paged = (int)$_GET['sf_paged'];
                         }
-                        //$form_attr.=' data-init-paged="'.$init_paged.'"';
-                        //$form_attr.=' data-auto-update="'.$ajax_auto_submit.'"';
                         $form_attributes['data-init-paged'] = $init_paged;
                         $form_attributes['data-auto-update'] = $ajax_auto_submit;
 
                         if($auto_count==1)
                         {
-                            //$form_attr.=' data-auto-count="'.esc_attr($auto_count).'"';
                             $form_attributes['data-auto-count'] = $auto_count;
 
                             if($auto_count_refresh_mode==1)
                             {
-                                //$form_attr.=' data-auto-count-refresh-mode="'.esc_attr($auto_count_refresh_mode).'"';
                                 $form_attributes['data-auto-count-refresh-mode'] = $auto_count_refresh_mode;
                             }
                         }
@@ -805,6 +807,11 @@ class Search_Filter_Display_Shortcode {
                         $form_attributes['autocomplete'] = "off";
                         $form_attributes['data-instance-count'] = $searchandfilter->get_form_count($base_form_id);
 
+                        $ajax_update_sections = apply_filters("search_filter_form_attributes_update_sections", [], $base_form_id);
+
+                        if ( ! empty( $ajax_update_sections ) ) {
+                            $form_attributes['data-ajax-update-sections'] = wp_json_encode( $ajax_update_sections );
+                        }
 
                         if(has_filter("search_filter_form_attributes"))
                         {
@@ -832,6 +839,7 @@ class Search_Filter_Display_Shortcode {
 
                         $returnvar .= "</ul>";
                         $returnvar .= "</form>";
+
 
 
                     }

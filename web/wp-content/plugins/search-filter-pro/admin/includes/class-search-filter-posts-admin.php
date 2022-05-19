@@ -8,6 +8,11 @@
  * @copyright 2018 Search & Filter
  */
 
+// If this file is called directly, abort.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 class Search_Filter_Posts_Admin {
 	
 	private $post_meta_keys = array();
@@ -48,7 +53,6 @@ class Search_Filter_Posts_Admin {
 	public function enqueue_admin_scripts()
 	{
 		wp_enqueue_script( $this->plugin_slug . '-admin-posts-script', plugins_url( '/assets/js/admin-posts.js',dirname(__FILE__) ), array( 'jquery-ui-sortable', 'jquery-ui-draggable', 'jquery' ), Search_Filter_Admin::VERSION );
-		wp_enqueue_script( $this->plugin_slug . '-admin-posts-qtip-script', plugins_url( '/assets/js/jquery.qtip.min.js',dirname(__FILE__) ), array( 'jquery-ui-sortable', 'jquery-ui-draggable', 'jquery' ), Search_Filter_Admin::VERSION );
 	}
 	
 	function save_search_form_meta($post_id, $post)
@@ -982,11 +986,10 @@ class Search_Filter_Posts_Admin {
 		}
 		
 		//now add a default for published if the form has not been saved before
-		if(!isset($settings['post_status']))
+		if( ! isset( $settings['post_status'] ) )
 		{
-			$defaults['post_status']['publish'] = "publish";
+			$defaults['post_status']['publish'] = "1";
 		}
-		
 		
 		if(is_array($settings))
 		{
@@ -1043,10 +1046,8 @@ class Search_Filter_Posts_Admin {
 		}
 	}
 	
-	function set_checked($current_value)
-	{
-		if($current_value!="")
-		{
+	function set_checked($current_value) {
+		if( 1 === absint( $current_value ) ) {
 			echo ' checked="checked"';
 		}
 	}
@@ -1055,13 +1056,18 @@ class Search_Filter_Posts_Admin {
 	{
 		global $wpdb;
 		$data   =   array();
-		$wpdb->query("
-			SELECT `meta_key`, `meta_value`
-			FROM $wpdb->postmeta
-			WHERE `post_id` = $post_id
-		");
+		$wpdb->query( $wpdb->prepare(
+			"
+				SELECT `meta_key`, `meta_value`
+				FROM $wpdb->postmeta
+				WHERE `post_id` = '%d'
+			",
+			$post_id
+		) );
+
+
 		foreach($wpdb->last_result as $k => $v){
-			$data[$v->meta_key] =   $v->meta_value;
+			$data[$v->meta_key] = $v->meta_value;
 		};
 		return $data;
 	}
@@ -1079,15 +1085,29 @@ class Search_Filter_Posts_Admin {
 				global $wpdb;
 				$data   =   array();
 
-				$wpdb->query("
-					SELECT DISTINCT(BINARY `meta_key`) as meta_key_binary, `meta_key`
-					FROM $wpdb->postmeta ORDER BY `meta_key` ASC
-				");
-				
+				$case_sensitive = true;
+				if(defined("SEARCH_FILTER_CASE_SENSITIVE_META_KEYS")){
+				    if( SEARCH_FILTER_CASE_SENSITIVE_META_KEYS === false ){
+					    $case_sensitive = false;
+                    }
+                }
+                if($case_sensitive){
+	                $wpdb->query("
+                        SELECT DISTINCT(BINARY `meta_key`) as meta_key_binary, `meta_key`
+                        FROM $wpdb->postmeta ORDER BY `meta_key` ASC
+                    ");
+                }
+                else{
+	                $wpdb->query("
+                        SELECT DISTINCT(`meta_key`) 
+                        FROM $wpdb->postmeta ORDER BY `meta_key` ASC
+                    ");
+                }
+
 				foreach($wpdb->last_result as $k => $v){
 					//$data[$v->meta_key] =   $v->meta_value;
 					$data[] = $v->meta_key;
-				};
+				}
 				
 				$this->post_meta_keys = $data;
 
