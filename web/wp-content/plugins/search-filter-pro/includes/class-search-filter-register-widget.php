@@ -8,9 +8,12 @@
  * @copyright 2018 Search & Filter
  */
 
-/**
- *
- */
+// If this file is called directly, abort.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
+
 class Search_Filter_Register_Widget extends WP_Widget
 {
 	
@@ -90,16 +93,25 @@ class Search_Filter_Register_Widget extends WP_Widget
 							
 							if ( Search_Filter_Helper::has_wpml() )
 							{
-								if(defined("ICL_LANGUAGE_CODE")) {
-									$formid = Search_Filter_Helper::wpml_object_id( $formid, 'search-filter-widget', true, ICL_LANGUAGE_CODE );
+								$current_lang = Search_Filter_Helper::wpml_current_language();
+								if ( $current_lang ) {
+									$formid = Search_Filter_Helper::wpml_object_id( $formid, 'search-filter-widget', true, $current_lang );
 								}
 							}
 
-							while ($custom_posts->have_posts()) : $custom_posts->the_post();
+                            if( $custom_posts->post_count > 0 ){
+                                foreach ($custom_posts->posts as $post){
+                                    ?>
+                                    <option value="<?php echo $post->ID; ?>" <?php if($formid==$post->ID){ echo ' selected="selected"'; } ?>><?php echo esc_html($post->post_title); ?></option>
+                                    <?php
+                                }
+                            }
+
+							/*while ($custom_posts->have_posts()) : $custom_posts->the_post();
 						?>
 							<option value="<?php the_ID(); ?>" <?php if($formid==get_the_ID()){ echo ' selected="selected"'; } ?>><?php the_title(); ?></option>
 						<?php endwhile; ?>
-
+                        <?php wp_reset_postdata();*/ ?>
 					</select>
 				</label>
 			</p>

@@ -2,9 +2,9 @@
 Contributors: DesignsAndCode, CodeAmp
 Donate link:
 Tags: posts, custom posts, products, category, filter, taxonomy, post meta, custom fields, search, wordpress, post type, post date, author
-Requires at least: 3.5
-Tested up to: 4.9
-Stable tag: 2.5.0
+Requires at least: 5.1
+Tested up to: 5.9
+Stable tag: 2.5.12
 
 Search and Filtering for posts, products and custom posts. Allow your users to Search & Filter by taxonomies, custom fields and more.
 
@@ -57,6 +57,99 @@ Great for searching in your online shop, tested with: WooCommerce and WP eCommer
 
 == Changelog ==
 
+= 2.5.12 =
+* Fix - Support ajax in multiple results areas when using our third party integrations
+* Fix - an issue with the author field not hiding admin authors (when that option was enabled)
+* Fix - pagination issues with some of our integrations when using multiple search forms + results
+* Fix - an issue where the query was not integrating with the Custom Layouts block
+* Fix - issues in the admin UI since WordPress 5.9
+* Fix - update to using wp_initialize_site for multisite - thanks to Chrissyd
+* Update - minimum required WordPress version to 5.1
+
+= 2.5.11 =
+* Fix - an issue with ajax and the results URL not being correctly detected
+* Fix - updated some of our plugin update procedures
+* New - options to use text input control for selecting post meta keys (to prevent loading of all meta keys in large databases) - available via the settings page
+* New - action - `search_filter_remove_pagination` - use this before your template pagination functions to stop S&F from modifying the pagination
+
+= 2.5.10 =
+* Fix - Fix an ajax issue for Dynamic Content maps - * Note: if you are using the maps + posts display method, you might need to reset this option.
+* Fix - Translate the labels for options in the `sort` field via WPMLs Advanced Translation editor
+
+= 2.5.9 =
+* Fix - Update fix for Dynamic Content maps integration
+* Fix - An issue with with WPML Advanced Translation Editor (the text for our submit and reset buttons was not being detected)
+
+= 2.5.8 =
+* Fix - an issue with Ajax and Dynamic Content's Google maps widget
+* Fix - a PHP notice in our admin notices
+* New - experimental hook for displaying WooCommerce variations individually
+
+= 2.5.7 =
+* Fix - scroll (on pagination only) was not working correctly
+* Fix - duplicate search form stopped working in a previous update
+* Fix - an issue with the cache not progressing on nginx + php8
+* Fix - a PHP8 admin issue where checkboxes were not being set
+* New - initial support for Dynamic.ooo Posts + Maps combined
+* New - basic support for multiple ajax areas via hooks
+* New - support for WPMLs advanced translation editor
+
+= 2.5.6 =
+* Fix - a PHP 5.x error due to a trailing comma
+
+= 2.5.5 =
+* Fix - an issue where the cache wouldn't restart because of an incorrect permissions check
+* Fix - a PHP error that would be thrown under certain conditions
+* Fix - an issue with WPML + ACF, and syncing data for relationship fields
+* Fix - PHP 8 Compatibility
+* Fix - Issues with multiple Dynamic Content Posts widgets + Search Forms on the same page (update required for DC to 1.13.0)
+* New - Add support for Dynamic Content Google Maps widget
+* Compatibility + tested upto WP 5.7
+
+= 2.5.4 =
+* Fix - a WooCommerce issue that was introduced where variations data was not being saved correctly
+
+= 2.5.3 =
+* Fix - `hide empty` in taxonomy fields was ignoring certain posts completely based on their post stati
+* Fix - issues with the combobox "No Results Message" with post meta fields
+* Fix - js warnings on admin pages
+* Fix - issues relating to jQuery migrate plugin being removed
+* Fix - an issue with refocussing the search box after pressing enter to submit
+* Fix - a css issue with the datepicker dropdown
+* Remove - js library dependency for admin tooltips
+* Update - Select2 library to 4.0.13
+* Compatibility + tested upto WP 5.6
+* New - Display Results method - integration with Dynamic Posts v2 from Dynamic Content for Elementor
+
+= 2.5.2 =
+* Fix - a warning about stripslashes expecting a string
+* Fix - an issue where getting labels for ACF fields was failing on private posts
+* Fix - an issue with infinite scroll not working when the pagination selector was not set
+* Fix - a JS warning where we using attribute to set checked state in certain admin screens
+* Fix - an issue where infinite scroll was causing issues on taxonomy archives
+* Fix - an issue where scrolling to results was fired before the content had loaded, causing an unwanted offset
+* Fix - an issue with EDD Purchase buttons not using ajax to add to cart after a search
+* Fix - an issue when WooCommerce is enabled with S&F, and interference being caused to non related search forms
+* Fix - some compatibility issues with WPML and WooCommerce product variations
+* New - better integration with WC products shortcode, simply add a `search_filter_id` argument to integrate
+
+= 2.5.1 =
+* NOTICE - if you are using Search & Filter with Easy Digital Downloads please read the new integration notes first
+* Fix - a PolyLang issue when permalinks were disabled and the default language is not in the URL params
+* Fix - an issue with range min / max being detected, when using certain post stati
+* Fix - an issue with a loop not using `wp_reset_postdata` after
+* Fix - change another loop so that it improves compatibility with plugins + themes
+* Fix - respect `infinite-scroll-end` when it is found on the first page of results
+* Fix - some compatibility issues with php7.4 using the `implode` function
+* Fix - our tables were not being created on some server setups - modified dbdelta sql
+* Fix - admin - an issue where pagination selector was showing when it shouldn't be
+* Fix - an issue with setting wpdb prefix at too early, causing an issue in some multisites
+* Fix - an issue with custom post stati not being picked up properly on cache rebuild
+* Fix - an issue with Polylang working with our page builder extensions
+* New - action - `search_filter_filter_next_query` - runs when the shortcode is run
+* Improvement - integration with EDD - simply add `search_filter_id` to you downloads shortcode to get up and running
+* Security - fix a potential security issue + add some hardening measures
+
 = 2.5.0 =
 * Fix - issues with number range fields not setting the "max" value by default
 * Fix - some errors were being thrown when checking if a term exists
@@ -79,8 +172,8 @@ Great for searching in your online shop, tested with: WooCommerce and WP eCommer
 * Fix - issues detecting post meta for WC variations
 * Fix - added date and datetime meta type options for ordering by meta values
 * Fix - re-fix mobile Safari back button issue
+* Fix - an issue where multiple meta keys with the same name (but different cases) were not being correctly detected
 * New - added "Relevance" to default order by and sort fields
-* New - an issue where multiple meta keys with the same name (but different cases) were not being correctly detected
 * Improvement - updates to license page
 
 = 2.4.6 =
@@ -563,5 +656,5 @@ Great for searching in your online shop, tested with: WooCommerce and WP eCommer
 
 == Upgrade Notice ==
 
-= 1.0 =
-Initial release
+= 2.5.7 =
+PHP 8 users - if you are seeing errors on upgrading, please disable Search & Filter before proceeding with the update and it will complete successfully.  This is related to the duplicate Search Form bug (now fixed in this version).

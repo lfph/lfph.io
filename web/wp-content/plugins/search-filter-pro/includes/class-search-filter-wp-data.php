@@ -1,11 +1,10 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: DrMorse
- * Date: 22/10/2016
- * Time: 17:56
- */
+// If this file is called directly, abort.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 class Search_Filter_Wp_Data
 {
     public static $wp_tax_terms = array();
@@ -112,7 +111,7 @@ class Search_Filter_Wp_Data
     }
 
 
-    public static function get_taxonomy_term_by($by = "id", $term_name, $taxonomy_name)
+    public static function get_taxonomy_term_by($by, $term_name, $taxonomy_name)
     {
         self::setup($taxonomy_name);
 

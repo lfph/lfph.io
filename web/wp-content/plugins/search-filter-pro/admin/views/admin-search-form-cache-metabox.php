@@ -7,6 +7,11 @@
  * @link      https://searchandfilter.com
  * @copyright 2018 Search & Filter
  */
+
+// If this file is called directly, abort.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
  
 ?>
 
@@ -145,7 +150,7 @@
 			<?php _e("<strong>Error: </strong>Unable to cache posts.", $this->plugin_slug); ?>	
 		</p>
 		<p class="description-inline notice-alert">
-			<?php _e("Something prevented the caching process from running, you can try again by selecting <strong>Rebuild Cache</strong>.<br /><a href='#' target='_blank'>More info</a>", $this->plugin_slug); ?>			
+			<?php _e("Something prevented the caching process from running, you can try again by selecting <strong>Rebuild Cache</strong>.<br /><a href='https://searchandfilter.com/documentation/troubleshooting/#the-cache-won8217t-complete' target='_blank'>More info</a>", $this->plugin_slug); ?>			
 		</p>
 		
 	</div>

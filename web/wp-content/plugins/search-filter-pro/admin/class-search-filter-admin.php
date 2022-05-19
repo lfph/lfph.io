@@ -8,34 +8,45 @@
  * @copyright 2018 Search & Filter
  */
 
+// If this file is called directly, abort.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 // this is the URL our updater / license checker pings. This should be the URL of the site with EDD installed
 define( 'SEARCH_FILTER_STORE_URL', 'https://searchandfilter.com' ); // you should use your own CONSTANT name, and be sure to replace it throughout this file
 
 // the name of your product. This should match the download name in EDD exactly
 define( 'SEARCH_FILTER_ITEM_NAME', 'Search & Filter Pro' ); // you should use your own CONSTANT name, and be sure to replace it throughout this file
 
-if( !class_exists( 'EDD_SL_Plugin_Updater' ) ) {
+if( !class_exists( 'SF_EDD_SL_Plugin_Updater' ) ) {
 	// load our custom updater
 	require_once( plugin_dir_path( __FILE__ ) . 'includes/EDD_SL_Plugin_Updater.php' );
 }
 
 function search_filter_plugin_updater() {
 
+	// To support auto-updates, this needs to run during the wp_version_check cron job for privileged users.
+	$doing_cron = defined( 'DOING_CRON' ) && DOING_CRON;
+	if ( ! current_user_can( 'manage_options' ) && ! $doing_cron ) {
+		return;
+	}
+	
 	// retrieve our license key from the DB
 	$license_key = trim( get_option( 'search_filter_license_key' ) );
 
 	// setup the updater
-	$edd_updater = new EDD_SL_Plugin_Updater( SEARCH_FILTER_STORE_URL, SEARCH_FILTER_PRO_BASE_PATH, array(
+	$edd_updater = new SF_EDD_SL_Plugin_Updater( SEARCH_FILTER_STORE_URL, SEARCH_FILTER_PRO_BASE_PATH, array(
 			'version' 	=> SEARCH_FILTER_VERSION,				// current version number
 			'license' 	=> $license_key, 		// license key (used get_option above to retrieve from DB)
 			'item_name' => SEARCH_FILTER_ITEM_NAME, 	// name of this plugin
 			'author' 	=> 'Ross Morsali',  // author of this plugin
-			'url'       => home_url()
+			'url'       => home_url(),
+			'beta'      => false,
 		)
 	);
 }
-add_action( 'admin_init', 'search_filter_plugin_updater', 0 );
-
+add_action( 'init', 'search_filter_plugin_updater' );
 
 class Search_Filter_Admin {
 
@@ -77,13 +88,10 @@ class Search_Filter_Admin {
 	private function __construct() {
 
 		$this->plugin_slug = "search-filter";
+
 		global $search_filter_shared;
         $shared = $search_filter_shared; //this sets up shared (between frontend and admin) attributes (like post types & taxonomies)
 
-		global $wpdb;
-		$this->cache_table_name = $wpdb->prefix . 'search_filter_cache';
-		$this->term_results_table_name = $wpdb->prefix . 'search_filter_term_results';
-		
 		// Load admin style sheet and JavaScript.
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_styles' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_scripts' ) );
@@ -97,7 +105,7 @@ class Search_Filter_Admin {
 		add_action('admin_init', array($this,'search_filter_deactivate_license'));
 
 		//new blog created
-		add_action( 'wpmu_new_blog', array($this, 'on_create_blog'), 10, 6 );
+        add_action( 'wp_initialize_site', array( $this, 'init_new_site_dbs' ) );
 
 		//adds all the filters for the post cache and admin hooks, probably should be singleton
 		global $search_filter_post_cache;
@@ -105,16 +113,12 @@ class Search_Filter_Admin {
 
 		global $search_filter_third_party;
         $this->third_party = $search_filter_third_party;
+		
 		// Add an action link pointing to the options page.
 		$plugin_basename = plugin_basename( plugin_dir_path( dirname(__FILE__) ) . $this->plugin_slug . '.php' );
 		add_filter( 'plugin_action_links_' . $plugin_basename, array( $this, 'add_action_links' ) );
 
-		/*
-		 * Define custom functionality.
-		 *
-		 * Read more about actions and filters:
-		 * http://codex.wordpress.org/Plugin_API#Hooks.2C_Actions_and_Filters
-		 */
+		
 		add_action( 'admin_notices', array( $this, 'action_display_welcome_header' ) );
 		$this->admin_notices = new Search_Filter_Admin_Notices($this->plugin_slug);
 
@@ -226,7 +230,7 @@ class Search_Filter_Admin {
 							$fields_arr[] = $field['type'];
 						}
 
-						$fields_text = implode($fields_arr, ", ");
+						$fields_text = implode(", ", $fields_arr);
 						echo $fields_text;
 					}
 
@@ -281,7 +285,7 @@ class Search_Filter_Admin {
 					}
 					else if($display_results_as=="custom_edd_store")
 					{
-						$results_label = __("EDD Downloads Page", $this->plugin_slug);
+						$results_label = __("EDD Downloads Shortcode", $this->plugin_slug);
 					}
 					else
 					{
@@ -330,8 +334,6 @@ class Search_Filter_Admin {
 		if ( in_array ( $screen->id, $this->plugin_screen_hook_suffix ) ) {
 
 			wp_enqueue_style( $this->plugin_slug .'-admin-styles', plugins_url( 'assets/css/admin.css', __FILE__ ), array(), Search_Filter_Admin::VERSION );
-			//wp_enqueue_style( $this->plugin_slug .'-admin-hint', plugins_url( 'assets/css/hint.min.css', __FILE__ ), array(), Search_Filter_Admin::VERSION );
-			wp_enqueue_style( $this->plugin_slug .'-admin-qtip', plugins_url( 'assets/css/jquery.qtip.min.css', __FILE__ ), array(), Search_Filter_Admin::VERSION );
 
 			wp_enqueue_style('thickbox');
 
@@ -494,10 +496,6 @@ class Search_Filter_Admin {
 
 	public function display_plugin_settings_admin_page()
 	{
-        // *******************
-        //**********************
-        //need to do a custom "get option" function which initialised the defaults, then use that everywhere
-
 		$cache_speed 								= Search_Filter_Helper::get_option( 'cache_speed' );
 		$cache_use_manual 							= Search_Filter_Helper::get_option( 'cache_use_manual' );
 		$cache_use_background_processes 			= Search_Filter_Helper::get_option( 'cache_use_background_processes' );
@@ -509,6 +507,7 @@ class Search_Filter_Admin {
 		
 		$combobox_script 							= Search_Filter_Helper::get_option( 'combobox_script' );
 		$remove_all_data 							= Search_Filter_Helper::get_option( 'remove_all_data' );
+		$meta_key_text_input                        = Search_Filter_Helper::get_option( 'meta_key_text_input' );
 
 		include_once( 'views/admin-settings.php' );
 	}
@@ -520,7 +519,6 @@ class Search_Filter_Admin {
 		$status 	= get_option( 'search_filter_license_status' );
 		$expires 	= get_option( 'search_filter_license_expires' );
 		$error 	    = get_option( 'search_filter_license_error' );
-
 
 
 		include_once( 'views/admin-license-settings.php' );
@@ -542,6 +540,7 @@ class Search_Filter_Admin {
 		register_setting('search_filter_settings', 'search_filter_load_jquery_i18n', array($this, 'sf_sanitize_options') );
 		register_setting('search_filter_settings', 'search_filter_combobox_script', array($this, 'sf_sanitize_options') );
 		register_setting('search_filter_settings', 'search_filter_remove_all_data', array($this, 'sf_sanitize_options') );
+		register_setting('search_filter_settings', 'search_filter_meta_key_text_input', array($this, 'sf_sanitize_options') );
 	}
 
 	function sf_sanitize_options( $new )
@@ -551,7 +550,7 @@ class Search_Filter_Admin {
 			delete_option( 'search_filter_license_status' ); // new license has been entered, so must reactivate
 		}*/
 
-		return $new;
+		return sanitize_text_field( $new );
 	}
 
 	function sf_cache_sanitize_use_transients_options( $new )
@@ -564,7 +563,7 @@ class Search_Filter_Admin {
 			//clear transients when updating updating this setting
 			Search_Filter_Wp_Cache::purge_all_transients();
 		//}
-		return $new;
+		return sanitize_text_field( $new );
 	}
 
 	function edd_sanitize_license( $new )
@@ -612,16 +611,30 @@ class Search_Filter_Admin {
 			$license_data = json_decode( wp_remote_retrieve_body( $response ) );
 
 			// $license_data->license will be either "valid" or "invalid"
+			$license_status = 'invalid';
+			if ( property_exists( $license_data, 'license' ) ) {
+				$license_status = $license_data->license;
+				update_option( 'search_filter_license_status', $license_status );
+				if( $license_status==="invalid" ) {
+					update_option( 'search_filter_license_error', $license_data->error );
+				}
+				else{
+					delete_option( 'search_filter_license_error', '' );
+				}
 
-			update_option( 'search_filter_license_status', $license_data->license );
-			update_option( 'search_filter_license_expires', $license_data->expires );
+			} else {
+				update_option( 'search_filter_license_status', $license_status );
+				update_option( 'search_filter_license_error', __( 'Could not retreive license information.', 'search-filter-pro' ) );
+			}
+			
+			if ( property_exists( $license_data, 'expires' ) ) {
+				update_option( 'search_filter_license_expires', $license_data->expires );
+			} else {
+				update_option( 'search_filter_license_expires', 0 );
+				update_option( 'search_filter_license_error', __( 'Could not retreive expiry information.', 'search-filter-pro' ) );
+			}
 
-			if($license_data->license==="invalid"){
-				update_option( 'search_filter_license_error', $license_data->error );
-            }
-            else{
-	            delete_option( 'search_filter_license_error', '' );
-            }
+			
 
 
 		}
@@ -678,6 +691,10 @@ class Search_Filter_Admin {
 	}
 
 	public function display_plugin_system_status_page() {
+
+		$this->cache_table_name = Search_Filter_Helper::get_table_name('search_filter_cache');
+		$this->term_results_table_name = Search_Filter_Helper::get_table_name('search_filter_term_results');
+
 		include_once( 'views/admin-system-status.php' );
 	}
 
@@ -783,11 +800,15 @@ class Search_Filter_Admin {
 
 		global $wpdb;
 		$data = array();
-		$wpdb->query("
+
+		$wpdb->query( $wpdb->prepare(
+            "
 			SELECT `meta_key`, `meta_value`
 			FROM $wpdb->postmeta
-			WHERE BINARY `meta_key` = '$meta_key'
-		");
+			WHERE BINARY `meta_key` = '%s'
+			",
+            $meta_key
+        ) );
 
 		foreach($wpdb->last_result as $k => $v)
 		{
@@ -837,7 +858,7 @@ class Search_Filter_Admin {
 		{
 			foreach($return_data as $return_item)
 			{
-				echo '<label><input type="checkbox" value="'.$return_item.'" />'.$return_item.'</label>';
+				echo '<label><input type="checkbox" value="'. esc_attr( $return_item ).'" />'.esc_html( $return_item ).'</label>';
 			}
 		}
 		else
@@ -975,7 +996,7 @@ class Search_Filter_Admin {
 								<h4><?php _e( 'Help', $this->plugin_slug ); ?></h4>
 								<ul>
 									<li><div class="welcome-icon welcome-widgets-menus"><a href="https://searchandfilter.com/documentation/faq/" target="_blank"><?php _e( 'Frequently Asked Questions', $this->plugin_slug ); ?></a></div></li>
-									<li><div class="welcome-icon welcome-widgets-menus"><a href="https://support.searchandfilter.com/forums/forum/search-filter-pro/support/" target="_blank"><?php _e( 'Support Forums', $this->plugin_slug ); ?></a></div></li>
+									<li><div class="welcome-icon welcome-widgets-menus"><a href="https://searchandfilter.com/account/support/" target="_blank"><?php _e( 'Get Support', $this->plugin_slug ); ?></a></div></li>
 								</ul>
 							</div>
 
@@ -1052,31 +1073,34 @@ class Search_Filter_Admin {
 
 	function search_filter_build_cache_tables()
 	{
-		if (current_user_can('edit_plugins'))
+		if (current_user_can('manage_options'))
 		{
 			$this->db_install();
 		}
 
 		exit;
 	}
-
-	public function on_create_blog( $blog_id, $user_id, $domain, $path, $site_id, $meta )
-	{
-		if ( is_plugin_active_for_network( 'search-filter-pro/search-filter-pro.php' ) )
-		{
-			switch_to_blog( $blog_id );
-			$this->db_install();
-			restore_current_blog();
+	public function init_new_site_dbs( $new_site ) {
+		if ( is_a( $new_site, 'WP_Site' ) ) {
+			if ( is_plugin_active_for_network( 'search-filter-pro/search-filter-pro.php' ) )
+			{
+				switch_to_blog( $new_site->blog_id );
+				$this->db_install();
+				restore_current_blog();
+			}
 		}
 	}
 
 	public function db_install() {
 		global $wpdb;
-		//global $jal_db_version;
 
 		$table_name = $wpdb->prefix . 'search_filter_cache';
 
-		$charset_collate = $wpdb->get_charset_collate();
+		$charset_collate = '';
+
+		if ( $wpdb->has_cap( 'collation' ) ) {
+			$charset_collate = $wpdb->get_charset_collate();
+		}
 
 		$sql = "CREATE TABLE $table_name (
 			id bigint(20) NOT NULL AUTO_INCREMENT,
@@ -1088,20 +1112,16 @@ class Search_Filter_Admin {
 			field_parent_num bigint(20) NULL,
 			term_parent_id bigint(20) NULL,
 			PRIMARY KEY  (id),
-            KEY field_name_index (field_name),
-            KEY field_value_index (field_value),
-            KEY field_value_num_index (field_value_num)
+            KEY sf_c_field_name_index (field_name(32)),
+            KEY sf_c_field_value_index (field_value(32)),
+            KEY sf_c_field_value_num_index (field_value_num)
 		) $charset_collate;";
 
 		require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
 		dbDelta( $sql );
 
-		//add_option( 'jal_db_version', $jal_db_version );
-
-
 		$table_name = $wpdb->prefix . 'search_filter_term_results';
 
-		$charset_collate = $wpdb->get_charset_collate();
 
 		$sql = "CREATE TABLE $table_name (
 			id bigint(20) NOT NULL AUTO_INCREMENT,
@@ -1110,9 +1130,9 @@ class Search_Filter_Admin {
 			field_value_num bigint(20) NULL,
 			result_ids mediumtext NOT NULL,
 			PRIMARY KEY  (id),
-            KEY field_name_index (field_name),
-            KEY field_value_index (field_value),
-            KEY field_value_num_index (field_value)
+            KEY sf_tr_field_name_index (field_name(32)),
+            KEY sf_tr_field_value_index (field_value(32)),
+            KEY sf_tr_field_value_num_index (field_value_num)
 
 		) $charset_collate;";
 
@@ -1122,16 +1142,22 @@ class Search_Filter_Admin {
 	/*
 	 * Function creates post duplicate as a draft and redirects then to the edit post screen
 	 */
-	function action_duplicate_post_as_draft(){
+	public function action_duplicate_post_as_draft(){
 		global $wpdb;
 		if (! ( isset( $_GET['post']) || isset( $_POST['post'])  || ( isset($_REQUEST['action']) && 'sf_duplicate_form' == $_REQUEST['action'] ) ) ) {
-			wp_die('No post to duplicate has been supplied!');
+			wp_die('Source post not provided.');
 		}
+
+		/*
+		 * Nonce verification
+		 */
+		if ( !isset( $_GET['duplicate_nonce'] ) || !wp_verify_nonce( $_GET['duplicate_nonce'], basename( __FILE__ ) ) )
+			return;
 
 		/*
 		 * get the original post id
 		 */
-		$post_id = (isset($_GET['post']) ? $_GET['post'] : $_POST['post']);
+		$post_id = isset( $_GET['post'] ) ? absint( $_GET['post'] ) : 0;
 		/*
 		 * and all the original post data then
 		 */
@@ -1159,13 +1185,13 @@ class Search_Filter_Admin {
 				'post_author'    => $new_post_author,
 				'post_content'   => $post->post_content,
 				'post_excerpt'   => $post->post_excerpt,
-				'post_name'      => $post->post_name,
+				//'post_name'      => $post->post_name,
 				'post_parent'    => $post->post_parent,
 				'post_password'  => $post->post_password,
 				'post_status'    => 'draft',
 				'post_title'     => $post->post_title,
 				'post_type'      => $post->post_type,
-				'to_ping'        => $post->to_ping,
+				//'to_ping'        => $post->to_ping,
 				'menu_order'     => $post->menu_order
 			);
 
@@ -1175,7 +1201,7 @@ class Search_Filter_Admin {
 			$new_post_id = wp_insert_post( $args );
 
 			/*
-			 * get all current post terms ad set them to the new post draft
+			 * get all current post terms and set them to the new post draft
 			 */
 			$taxonomies = get_object_taxonomies($post->post_type); // returns array of taxonomy names for post type, ex array("category", "post_tag");
 			foreach ($taxonomies as $taxonomy) {
@@ -1186,27 +1212,22 @@ class Search_Filter_Admin {
 			/*
 			 * duplicate all post meta
 			 */
-			$post_meta_infos = $wpdb->get_results("SELECT meta_key, meta_value FROM $wpdb->postmeta WHERE post_id=$post_id");
-			if (count($post_meta_infos)!=0) {
-				$sql_query = "INSERT INTO $wpdb->postmeta (post_id, meta_key, meta_value) ";
-				foreach ($post_meta_infos as $meta_info) {
-					$meta_key = $meta_info->meta_key;
-					$meta_value = addslashes($meta_info->meta_value);
-					$sql_query_sel[]= "SELECT $new_post_id, '$meta_key', '$meta_value'";
+			$post_meta = get_post_meta( $post_id );
+			if ( $post_meta ) {
+				if ( is_array( $post_meta ) ) {
+					foreach ( $post_meta as $meta_key => $meta_value ) {
+						// doing it this way handles the serialisation / deserialisation
+						$real_meta_value = get_post_meta( $post_id, $meta_key, true );
+						if ( $real_meta_value ) {
+							update_post_meta( $new_post_id, $meta_key, $real_meta_value );
+						}
+					}
 				}
-				$sql_query.= implode(" UNION ALL ", $sql_query_sel);
-				$wpdb->query($sql_query);
 			}
+			wp_redirect( esc_url( admin_url( 'edit.php?post_type=' . $post->post_type ) ) );
 
-
-			/*
-			 * finally, redirect to the edit post screen for the new draft
-			 */
-			//wp_redirect( admin_url( 'post.php?action=edit&post=' . $new_post_id ) );
-			wp_redirect( admin_url( 'edit.php?post_type=' . $post->post_type ) );
-			exit;
 		} else {
-			wp_die('Post creation failed, could not find original post: ' . $post_id);
+			wp_die( esc_html( 'Post creation failed, could not find original post: ' . $post_id ) );
 		}
 	}
 
@@ -1219,7 +1240,7 @@ class Search_Filter_Admin {
 		{
 			if (current_user_can('edit_posts')) {
 
-				$actions['duplicate'] = '<a href="admin.php?action=sf_duplicate_form&amp;post=' . $post->ID . '" title="Duplicate this item" rel="permalink">Duplicate</a>';
+				$actions['duplicate'] = '<a href="' . wp_nonce_url('admin.php?action=sf_duplicate_form&post=' . $post->ID, basename(__FILE__), 'duplicate_nonce' ) . '" title="Duplicate Search Form" rel="permalink">Duplicate</a>';
 
 			}
 			unset($actions['inline hide-if-no-js']);
@@ -1272,10 +1293,8 @@ class Search_Filter_Admin {
 		}
 	}
 
-	function set_checked($current_value)
-	{
-		if($current_value!="")
-		{
+	function set_checked($current_value) {
+		if( 1 === absint( $current_value ) ) {
 			echo ' checked="checked"';
 		}
 	}
