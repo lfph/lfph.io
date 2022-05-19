@@ -69,7 +69,7 @@ $project_slug = strtolower( get_the_title() );
 				?>
 
 				<div style="height:60px" aria-hidden="true"
-					class="wp-block-spacer is-style-40-60">
+					class="wp-block-spacer is-style-60-responsive">
 				</div>
 
 				<div class="projects-single-box__links">
@@ -140,141 +140,8 @@ endif;
 			</div>
 		</div>
 
-		<div style="height:120px" aria-hidden="true"
-			class="wp-block-spacer is-style-80-120"></div>
-
-		<?php
-		// CASE STUDIES.
-		$related_args = array(
-			'posts_per_page'     => 2,
-			'ignore_custom_sort' => true,
-			'post_type'          => array( 'lf_case_study' ),
-			'post_status'        => array( 'publish' ),
-			'order'              => 'DESC',
-			'orderby'            => 'date',
-			'no_found_rows'      => true,
-			'tax_query'          => array(
-				array(
-					'taxonomy' => 'lf-project',
-					'field'    => 'slug',
-					'terms'    => $project_slug,
-				),
-			),
-		);
-
-		$related_query = new WP_Query( $related_args );
-
-		if ( $related_query->have_posts() ) :
-			?>
-
-		<div class="wp-block-group is-style-no-padding is-style-see-all">
-			<div class="wp-block-columns are-vertically-aligned-bottom">
-				<div class="wp-block-column is-vertically-aligned-bottom"
-					style="flex-basis:70%">
-					<h3 class="is-style-section-heading"><?php the_title(); ?>
-						case studies</h3>
-				</div>
-				<div class="wp-block-column is-vertically-aligned-bottom"
-					style="flex-basis:30%">
-					<p class="has-text-align-right is-style-link-cta"><a href="<?php echo esc_url( '/case-studies/?_sft_lf-project=' . $project_slug ); ?>">Related Case
-Studies</a></p>
-				</div>
-			</div>
-			<div style="height:40px" aria-hidden="true"
-				class="wp-block-spacer is-style-20-40"></div>
-
-			<div class="case-studies">
-				<?php
-				while ( $related_query->have_posts() ) {
-					$related_query->the_post();
-					get_template_part( 'components/case-study-item' );
-				}
-				?>
-			</div>
-			<div style="height:40px" aria-hidden="true"
-				class="wp-block-spacer is-style-20-40"></div>
-		</div>
-
-
-		<div style="height:120px" aria-hidden="true"
-			class="wp-block-spacer is-style-80-120"></div>
-
-			<?php
-			wp_reset_postdata();
-endif;
-		?>
-
-		<?php
-		// ONLINE PROGRAMS.
-
-		$programs_args = array(
-			'posts_per_page'     => 3,
-			'ignore_custom_sort' => true,
-			'post_type'          => array( 'lf_webinar' ),
-			'post_status'        => array( 'publish' ),
-			'meta_key'           => 'lf_webinar_date',
-			'order'              => 'DESC',
-			'orderby'            => 'meta_value',
-			'no_found_rows'      => true,
-			'meta_query'         => array(
-				array(
-					'key'     => 'lf_webinar_recording_url',
-					'value'   => 0,
-					'compare' => '>',
-				),
-			),
-			'tax_query'          => array(
-				array(
-					'taxonomy' => 'lf-project',
-					'field'    => 'slug',
-					'terms'    => $project_slug,
-				),
-			),
-		);
-
-		$programs_query = new WP_Query( $programs_args );
-
-		if ( $programs_query->have_posts() ) :
-
-			?>
-
-		<div class="wp-block-group is-style-no-padding is-style-see-all">
-			<div class="wp-block-columns are-vertically-aligned-bottom">
-				<div class="wp-block-column is-vertically-aligned-bottom"
-					style="flex-basis:70%">
-					<h3 class="is-style-section-heading">Recorded
-						<?php the_title(); ?> programs</h3>
-				</div>
-				<div class="wp-block-column is-vertically-aligned-bottom"
-					style="flex-basis:30%">
-					<p class="has-text-align-right is-style-link-cta"><a href="<?php echo esc_url( '/online-programs?_sft_lf-project=' . $project_slug ); ?>">See
-more recordings</a></p>
-				</div>
-			</div>
-			<div style="height:40px" aria-hidden="true"
-				class="wp-block-spacer is-style-20-40"></div>
-			<div class="webinars columns-three">
-				<?php
-				while ( $programs_query->have_posts() ) :
-					$programs_query->the_post();
-
-					get_template_part( 'components/webinar-recorded-item' );
-
-		endwhile;
-				?>
-
-			</div>
-			<div style="height:40px" aria-hidden="true"
-				class="wp-block-spacer is-style-20-40"></div>
-		</div>
-
-		<div style="height:120px" aria-hidden="true"
-			class="wp-block-spacer is-style-80-120"></div>
-
-			<?php
-			wp_reset_postdata();
-endif;
-		?>
+		<div style="height:100px" aria-hidden="true"
+			class="wp-block-spacer is-style-100-responsive"></div>
 		<?php
 		// NEWS.
 
@@ -295,7 +162,7 @@ endif;
 			?>
 			<div class="wp-container-3 wp-block-group alignfull has-tertiary-background-color has-background"><div class="wp-block-group__inner-container">
 			<div class="wp-container-2 wp-block-group"><div class="wp-block-group__inner-container">
-			<div style="height:60px" aria-hidden="true" class="wp-block-spacer is-style-60-responsive"></div>
+			<div style="height:40px" aria-hidden="true" class="wp-block-spacer is-style-40-responsive"></div>
 
 			<div class="wp-block-columns is-style-section-header">
 			<div class="wp-block-column bh-01" style="flex-basis:70%">	
@@ -322,8 +189,8 @@ endif;
 			<div style="height:60px" aria-hidden="true" class="wp-block-spacer is-style-60-responsive"></div>
 			</div></div>
 			</div></div>
-		<div style="height:120px" aria-hidden="true"
-			class="wp-block-spacer is-style-80-120"></div>
+		<div style="height:80px" aria-hidden="true"
+			class="wp-block-spacer is-style-80-responsive"></div>
 			<?php
 			wp_reset_postdata();
 endif;
@@ -331,37 +198,35 @@ endif;
 
 		<?php
 		// TWITTER.
-		// Check if Twitter is present, parses username, checks if not CNCF account.
-		if ( $twitter && ( preg_match( '/^https?:\/\/(www\.)?twitter\.com\/(#!\/)?(?<name>[^\/]+)(\/\w+)*$/', $twitter, $matches ) ) && ( 'CloudNativeFdn' !== $matches['name'] ) ) :
+		// Check if Twitter is present, parses username, checks if not LFPH account.
+		if ( $twitter && ( preg_match( '/^https?:\/\/(www\.)?twitter\.com\/(#!\/)?(?<name>[^\/]+)(\/\w+)*$/', $twitter, $matches ) ) && ( 'LFPubHealth' !== $matches['name'] ) ) :
 
 			// Only continue if some tweets are returned.
 			$out = do_shortcode( '[custom-twitter-feeds num=8 layout=masonry includeretweets=false showheader=true showbutton=false masonrycols=4 masonrymobilecols=1 screenname="' . esc_html( $matches['name'] ) . '"]' );
 			if ( ! strpos( $out, 'Unable to load Tweets' ) ) :
 				?>
 		<div class="wp-block-group is-style-no-padding is-style-see-all">
-			<div class="wp-block-columns are-vertically-aligned-bottom">
-				<div class="wp-block-column is-vertically-aligned-bottom"
-					style="flex-basis:80%">
-					<h3 class="is-style-section-heading">Latest tweets from
-						<?php the_title(); ?></h3>
-				</div>
-				<div class="wp-block-column is-vertically-aligned-bottom"
-					style="flex-basis:20%">
-					<p
-						class="has-text-align-right is-style-link-cta"><a href="<?php echo esc_url( $twitter ); ?>">See all tweets</a></p>
-				</div>
+
+			<div class="wp-block-columns is-style-section-header">
+			<div class="wp-block-column bh-01" style="flex-basis:70%">	
+			<h3>Latest tweets from <?php the_title(); ?></h3>
 			</div>
+
+			<div class="wp-block-column bh-02" style="flex-basis:30%">
+			<h6 class="is-style-add-chevron-after">
+			<a href="<?php echo esc_url( $twitter ); ?>">See all tweets</a></h6>
+			</div>
+			</div>
+
 			<div style="height:40px" aria-hidden="true"
-				class="wp-block-spacer is-style-20-40"></div>
+				class="wp-block-spacer is-style-40-responsive"></div>
 
 				<?php
 		echo $out; //phpcs:ignore
 				?>
 			<div style="height:40px" aria-hidden="true"
-				class="wp-block-spacer"></div>
+				class="wp-block-spacer is-style-40-responsive"></div>
 		</div>
-		<div style="height:100px" aria-hidden="true"
-				class="wp-block-spacer"></div>
 				<?php
 
 		endif;
