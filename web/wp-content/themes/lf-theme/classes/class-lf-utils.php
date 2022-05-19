@@ -485,4 +485,98 @@ class Lf_Utils {
 		}
 	}
 
+
+	/**
+	 * Displays a post.
+	 *
+	 * @param int     $lf_post ID of post to display.
+	 * @param boolean $show_images Whether to show images.
+	 * @param boolean $sticky Whether the post is sticky.
+	 */
+	public static function newsroom_show_post( $lf_post, $show_images, $sticky = false ) {
+		if ( ! $lf_post ) {
+			return;
+		}
+		$options = get_option( 'lf-mu' );
+		if ( $sticky ) {
+			$sticky_class = 'sticky';
+		} else {
+			$sticky_class = '';
+		}
+
+		// get the correct link for the block.
+		if ( in_category( 'news', $lf_post ) ) {
+			$correct_link = get_post_meta( get_the_ID( $lf_post ), 'lf_post_external_url', true ) ? get_post_meta( get_the_ID( $lf_post ), 'lf_post_external_url', true ) : '';
+		} else {
+			$correct_link = get_permalink( $lf_post );
+		}
+
+		?>
+	<div class="newsroom-post-wrapper <?php echo esc_attr( $sticky_class ); ?>">
+
+		<?php
+		if ( $show_images ) :
+			?>
+		<div class="newsroom-image-wrapper">
+
+			<?php
+			if ( in_category( 'news', $lf_post ) || ( get_post_meta( get_the_ID( $lf_post ), 'lf_post_external_url', true ) ) ) {
+				?>
+
+			<a class="box-link" href="<?php echo esc_url( $correct_link ); ?>" target="_blank"
+				title="<?php echo esc_attr( get_the_title( $lf_post ) ); ?>"></a>
+				<?php
+				if ( has_post_thumbnail( $lf_post ) ) {
+					echo wp_get_attachment_image( get_post_thumbnail_id( $lf_post ), 'newsroom-media-coverage', false, array( 'class' => 'media-logo' ) );
+				} else {
+					echo '<img src="' . esc_url( get_stylesheet_directory_uri() )
+					. '/images/thumbnail-default.svg" alt="CNCF Media Coverage" />';
+				}
+			} else {
+				?>
+			<a class="box-link" href="<?php echo esc_url( $correct_link ); ?>"
+				title="<?php echo esc_attr( get_the_title( $lf_post ) ); ?>"></a>
+
+				<?php
+				if ( has_post_thumbnail( $lf_post ) ) {
+					self::display_responsive_images( get_post_thumbnail_id( $lf_post ), 'newsroom-540', '540px', 'archive-image' );
+				} elseif ( isset( $options['generic_thumb_id'] ) && $options['generic_thumb_id'] ) {
+					self::display_responsive_images( $options['generic_thumb_id'], 'newsroom-540', '540px', 'archive-default-svg' );
+				} else {
+					echo '<img src="' . esc_url( get_stylesheet_directory_uri() )
+					. '/images/thumbnail-default.svg" alt="' . esc_attr( lf_blocks_get_site() ) . '" class="archive-default-svg"/>';
+				}
+			}
+			?>
+		</div>
+			<?php
+		endif; // end of show images.
+		?>
+
+		<?php
+		if ( in_category( 'news', $lf_post ) && ( get_post_meta( get_the_ID( $lf_post ), 'lf_post_external_url', true ) ) ) {
+			?>
+		<h5 class="newsroom-title"><a class="external is-primary-color"
+				target="_blank" rel="noopener"
+				href="<?php echo esc_url( $correct_link ); ?>"
+				title="<?php echo esc_attr( get_the_title( $lf_post ) ); ?>">
+				<?php echo esc_html( get_the_title( $lf_post ) ); ?>
+			</a></h5>
+			<?php
+		} else {
+			?>
+		<h5 class="newsroom-title"><a href="<?php echo esc_url( $correct_link ); ?>"
+				title="<?php echo esc_attr( get_the_title( $lf_post ) ); ?>">
+				<?php echo esc_html( get_the_title( $lf_post ) ); ?>
+			</a></h5>
+			<?php
+		}
+		?>
+
+		<span class="newsroom-date date-icon">
+			<?php echo get_the_date( 'F j, Y', $lf_post ); ?></span>
+	</div>
+		<?php
+	}
+
 }

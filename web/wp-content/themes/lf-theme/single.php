@@ -27,7 +27,7 @@ elseif ( is_singular( 'lf_project' ) ) :
 
 elseif ( is_singular( 'lf_spotlight' ) ) :
 	get_template_part( 'components/spotlight-single' );
-	
+
 else :
 	get_template_part( 'components/post-single' );
 endif;
