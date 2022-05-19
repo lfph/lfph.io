@@ -22,9 +22,12 @@ elseif ( is_singular( 'lf_webinar' ) ) :
 elseif ( is_singular( 'lf_event' ) ) :
 	get_template_part( 'components/event-single' );
 
-	elseif ( is_singular( 'lf_spotlight' ) ) :
-		get_template_part( 'components/spotlight-single' );
-		// Default.
+elseif ( is_singular( 'lf_project' ) ) :
+	get_template_part( 'components/project-single' );
+
+elseif ( is_singular( 'lf_spotlight' ) ) :
+	get_template_part( 'components/spotlight-single' );
+	
 else :
 	get_template_part( 'components/post-single' );
 endif;

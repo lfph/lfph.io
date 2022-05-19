@@ -456,4 +456,33 @@ class Lf_Utils {
 		}
 	}
 
+	/**
+	 * Grab SVG from images folder
+	 *
+	 * Grabs an SVG from within the theme /images/ folder and outputs it. Add true for path.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @see class/Image
+	 *
+	 * @param string  $file Filename relative to images directory.
+	 * @param boolean $path Set true to return string for image.
+	 */
+	public static function get_svg( $file, $path = false ) {
+
+		if ( $path ) {
+			$output = get_stylesheet_directory_uri() . '/images/' . $file;
+			echo esc_url( $output );
+		} else {
+			$abs_path = get_stylesheet_directory() . '/images/' . $file;
+			if ( file_exists( $abs_path ) ) {
+				ob_start();
+				include $abs_path;
+				$output = ob_get_contents();
+				ob_end_clean();
+				echo $output; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			}
+		}
+	}
+
 }
