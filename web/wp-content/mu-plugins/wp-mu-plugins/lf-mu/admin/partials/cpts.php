@@ -16,13 +16,12 @@ $opts = array(
 		'singular_name' => __( 'Project' ),
 		'all_items'     => __( 'All Projects' ),
 	),
-	'public'              => false,
+	'public'              => true,
 	'has_archive'         => false,
 	'show_in_nav_menus'   => false,
 	'show_in_rest'        => true,
 	'hierarchical'        => false,
-	'exclude_from_search' => true, // to hide the singular pages on FE.
-	'publicly_queryable'  => false, // to hide the singular pages on FE.
+	'show_ui'             => false,
 	'rewrite'             => array( 'slug' => 'projects' ),
 	'supports'            => array( 'title', 'editor', 'thumbnail', 'revisions', 'custom-fields' ),
 );
