@@ -32,12 +32,28 @@ $project_slug = strtolower( get_the_title() );
 
 ?>
 
+<section class="hero" id="maincontent">
+	<div class="container wrap no-background">
+		<p class="hero-parent-link">
+			<a href="/join/projects/" title="See all Projects">Projects</a>
+		</p>
+		<h1 class="hero-post-title" itemprop="headline">
+			<?php
+			the_title();
+			?>
+		</h1>
+	</div>
+</section>
+
 <main class="projects-single">
 	<article class="container wrap">
+		<div style="height:20px" aria-hidden="true"
+			class="wp-block-spacer">
+		</div>
 
-		<div class="projects-single-box lf-grid">
+		<div class="wp-block-columns">
 			<!-- column 1 -->
-			<div class="projects-single-box__col1">
+			<div class="wp-block-column" style="flex-basis:33.33%">
 
 				<a class="projects-single-box__link"
 					href="<?php echo esc_url( $external_url ); ?>"><img
@@ -47,14 +63,11 @@ $project_slug = strtolower( get_the_title() );
 			</div>
 
 			<!-- column 2 -->
-			<div class="projects-single-box__col2">
+			<div class="wp-block-column" style="flex-basis:66.66%">
 				<?php if ( $description ) { ?>
-				<h2 class="projects-single-box__description">
+				<p class="has-header-4-font-size">
 					<?php echo esc_html( $description ); ?>
-				</h2>
-				<div style="height:20px" aria-hidden="true"
-					class="wp-block-spacer">
-				</div>
+				</p>
 					<?php
 				}
 
@@ -62,15 +75,11 @@ $project_slug = strtolower( get_the_title() );
 					?>
 				<p class="projects-single-box__accepted">
 					<?php the_title(); ?>&nbsp;was accepted to CNCF on
-					<strong><?php echo esc_html( $date_accepted ); ?></strong>
+					<strong><?php echo esc_html( $date_accepted ); ?></strong>.
 				</p>
 					<?php
 				}
 				?>
-
-				<div style="height:60px" aria-hidden="true"
-					class="wp-block-spacer is-style-60-responsive">
-				</div>
 
 				<div class="projects-single-box__links">
 
@@ -81,7 +90,7 @@ $project_slug = strtolower( get_the_title() );
 							class="wp-block-button__link">Visit Project
 							Website</a></div>
 						<?php
-endif;
+					endif;
 					?>
 					<div class="projects-single-box__icons">
 
@@ -116,7 +125,7 @@ endif;
 						<?php endif; ?>
 
 						<?php if ( $mail ) : ?>
-						<a title="<?php the_title_attribute(); ?> Discussion Group"
+						<a title="<?php the_title_attribute(); ?> Mail"
 							href="<?php echo esc_html( $mail ); ?>"><?php LF_utils::get_svg( '/social/boxed-email.svg' ); ?></a>
 						<?php endif; ?>
 
@@ -203,6 +212,7 @@ endif;
 
 			// Only continue if some tweets are returned.
 			$out = do_shortcode( '[custom-twitter-feeds num=8 layout=masonry includeretweets=false showheader=true showbutton=false masonrycols=4 masonrymobilecols=1 screenname="' . esc_html( $matches['name'] ) . '"]' );
+
 			if ( ! strpos( $out, 'Unable to load Tweets' ) ) :
 				?>
 		<div class="wp-block-group is-style-no-padding is-style-see-all">

@@ -52,7 +52,7 @@ function add_projects_shortcode( $atts ) {
 	if ( $project_query->have_posts() ) {
 		?>
 
-<div class="projects-archive columns-five">
+<div class="projects-wrapper">
 		<?php
 		while ( $project_query->have_posts() ) :
 			$project_query->the_post();
@@ -61,18 +61,17 @@ function add_projects_shortcode( $atts ) {
 			$logo             = get_post_meta( get_the_ID(), 'lf_project_logo', true );
 
 			?>
-	<div class="project-item has-animation-scale-2">
+	<div class="project-box">
 		<a href="<?php the_permalink(); ?>"
 			title="<?php echo esc_html( the_title_attribute() . $date_accepted ); ?>"
-			class="project-item__link">
+			class="project-thumbnail-container">
 
 			<img src="<?php echo esc_url( $logo ); ?>" loading="lazy"
 				title="<?php echo esc_html( the_title_attribute() . $date_accepted ); ?>"
-				class="project-item__image">
+				class="project-thumbnail">
 		</a>
 			<?php if ( $project_category ) : ?>
-		<span class="project-item__category">
-					<?php echo esc_html( $project_category ); ?></span>
+			<span class="project-category"><?php echo esc_html( $project_category ); ?></span>
 		<?php endif; ?>
 	</div>
 			<?php
