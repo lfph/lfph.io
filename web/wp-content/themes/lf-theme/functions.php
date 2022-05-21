@@ -80,6 +80,7 @@ require_once 'includes/shortcode-people.php';
 
 // projects shortcode.
 require_once 'includes/shortcode-projects.php';
+require_once 'includes/shortcode-a-projects.php';
 
 // Fuerza utils.
 require_once 'classes/class-fuerza-utils.php';
