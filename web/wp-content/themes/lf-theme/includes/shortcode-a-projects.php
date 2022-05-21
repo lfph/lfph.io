@@ -64,32 +64,15 @@ function add_all_projects_shortcode( $atts ) {
 
 			?>
 	<div class="project-box">
-			<?php
-			if ( $external_url ) {
-				?>
-		<a href="<?php echo esc_url( $external_url ); ?>" rel="noopener"
-			target="_blank"
-			title="<?php echo esc_html( the_title() . $date_accepted ); ?>"
+	<a href="<?php the_permalink(); ?>"
+			title="<?php echo esc_html( the_title_attribute() . $date_accepted ); ?>"
 			class="project-thumbnail-container">
-				<?php
-			} else {
-				?>
-			<div class="project-thumbnail-container">
-				<?php
-			}
-			?>
-			<img src="<?php echo esc_url( $logo ); ?>"
-				title="<?php echo esc_html( the_title() . $date_accepted ); ?>"
+
+			<img src="<?php echo esc_url( $logo ); ?>" loading="lazy"
+				title="<?php echo esc_html( the_title_attribute() . $date_accepted ); ?>"
 				class="project-thumbnail">
-			<?php
-			if ( $external_url ) {
-				?>
 		</a>
-		<?php } else { ?>
-	</div>
-				<?php
-		}
-		?>
+
 			<?php if ( $project_category ) : ?>
 	<span class="project-category">
 				<?php echo esc_html( $project_category ); ?></span>
