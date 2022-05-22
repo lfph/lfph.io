@@ -1,13 +1,13 @@
 @media (min-width: 1000px) {
-    div[data-section-id="lfph-members-general"] div.mosaic-wrap {
-    width: 20%;
-    }
+	div[data-section-id="lfph-members-general"] div.mosaic-wrap {
+	width: 20%;
+	}
 
-    div[data-section-id="lfph-members-associate"] div.mosaic-wrap {
-        width: 16.66%;
-    }
+	div[data-section-id="lfph-members-associate"] div.mosaic-wrap {
+		width: 16.66%;
+	}
 }
 
 .borderless-mode .mosaic-wrap {
-    padding: 5px 30px;
+	padding: 5px 30px;
 }
