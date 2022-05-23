@@ -27,7 +27,7 @@ function add_all_projects_shortcode( $atts ) {
 	if ( $project_query->have_posts() ) {
 		?>
 
-<div class="projects-wrapper">
+<div class="a-projects-wrapper">
 		<?php
 		while ( $project_query->have_posts() ) :
 			$project_query->the_post();

@@ -1,4 +1,4 @@
-.projects-wrapper {
+.projects-wrapper, .a-projects-wrapper {
 	display: grid;
 	grid-row-gap: 1rem;
 	grid-column-gap: 1rem;
@@ -13,6 +13,12 @@
 	@media (min-width: 1000px) {
 		grid-row-gap: 1.5rem;
 		grid-column-gap: 1.5rem;
+	}
+}
+
+.a-projects-wrapper {
+	@media (min-width: 550px) {
+		grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
 	}
 }
 
