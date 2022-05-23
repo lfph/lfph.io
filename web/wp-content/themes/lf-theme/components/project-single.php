@@ -74,7 +74,7 @@ $project_slug = strtolower( get_the_title() );
 				if ( $date_accepted ) {
 					?>
 				<p class="projects-single-box__accepted">
-					<?php the_title(); ?>&nbsp;was accepted to CNCF on
+					<?php the_title(); ?>&nbsp;was accepted to LFPH on
 					<strong><?php echo esc_html( $date_accepted ); ?></strong>.
 				</p>
 					<?php
