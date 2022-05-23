@@ -16,12 +16,6 @@
 	}
 }
 
-.a-projects-wrapper {
-	@media (min-width: 550px) {
-		grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-	}
-}
-
 .project-box {
 	display: flex;
 	flex-direction: column;
@@ -51,6 +45,17 @@
 		opacity: 0.8;
 	}
 }
+
+.a-projects-wrapper {
+	@media (min-width: 550px) {
+		grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+	}
+	.project-thumbnail-container, .project-thumbnail {
+		width: 130px;
+		height: 130px;
+	}
+}
+
 
 .project-title {
 	margin: 0;
