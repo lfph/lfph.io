@@ -530,7 +530,7 @@ class Lf_Utils {
 					echo wp_get_attachment_image( get_post_thumbnail_id( $lf_post ), 'newsroom-media-coverage', false, array( 'class' => 'media-logo' ) );
 				} else {
 					echo '<img src="' . esc_url( get_stylesheet_directory_uri() )
-					. '/images/thumbnail-default.svg" alt="CNCF Media Coverage" />';
+					. '/images/thumbnail-default.svg" alt="LFPH Media Coverage" />';
 				}
 			} else {
 				?>
