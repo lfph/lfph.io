@@ -11,3 +11,7 @@
 .borderless-mode .mosaic-wrap {
 	padding: 5px 30px;
 }
+
+.items-cont {
+	display: none;
+}
