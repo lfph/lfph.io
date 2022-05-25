@@ -116,6 +116,7 @@ Thumbs.db
 
 # Allowing premium plugins
 !web/wp-content/plugins/search-filter-pro
+!web/wp-content/plugins/custom-twitter-feeds-pro
 
 # Allowing custom plugins
 !web/wp-content/plugins/text-on-image-block
