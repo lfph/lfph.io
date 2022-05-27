@@ -82,6 +82,10 @@
 				$content_type_singular = 'Spotlight';
 				$content_type_plural = 'Spotlights';
 				$content_type_url = '/spotlights/';
+			} elseif ( 'lf_project' == get_post_type() ) {
+				$content_type_singular = 'Project';
+				$content_type_plural = 'Projects';
+				$content_type_url = '/projects/';
 			} elseif ( 'page' == get_post_type() ) {
 				$content_type_singular = 'Page';
 				$content_type_plural = 'Pages';
