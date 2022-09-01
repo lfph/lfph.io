@@ -16,9 +16,8 @@
 		</figure>
 
 		<div class="background-image-text-overlay">
-			<h1>Collaborating to <br/>improve digital <br/>health equity</h1>
-			<p class="h4">Linux Foundation Public Health (LFPH) builds, secures, and sustains open source software to improve global health equity and innovation.
-			</p>
+			<h1>Fostering the world's largest collaborative environment for open source public health and health IT</h1>
+			<p class="h4">Linux Foundation Public Health (LFPH) builds, promotes, and sustains open source software to improve global health innovation and collaboration.</p>
 
 		</div>
 	</div>
