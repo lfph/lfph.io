@@ -84,7 +84,7 @@ endwhile;
 
 	} else {
 		?>
- <p class="is-style-max-width-100 italic">New webinars coming soon. <a href="#newsletter" title="Sign up for newsletter">Sign up for our newsletter to stay informed</a>.</p>
+ <p class="is-style-max-width-100 italic"></p>
 		<?php
 	}
 
