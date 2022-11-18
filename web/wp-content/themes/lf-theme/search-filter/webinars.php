@@ -151,5 +151,5 @@ endwhile;
 </div>
 	<?php
 else :
-	echo '';
+	echo 'New webinars coming soon. <a href="#newsletter">Sign up for our newsletter to stay informed</a>.';
 endif;
