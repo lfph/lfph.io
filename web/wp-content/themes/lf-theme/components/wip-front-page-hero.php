@@ -16,8 +16,8 @@
 		</figure>
 
 		<div class="background-image-text-overlay">
-			<h1>Fostering the world's largest collaborative environment for open source public health</h1>
-			<p class="h4">Linux Foundation Public Health (LFPH) builds, promotes, and sustains open source software to improve global health innovation.</p>
+			<h1>Fostering a collaborative environment for open source public health</h1>
+			<p class="h4">Linux Foundation Public Health (LFPH)’s mission is to build, promote and sustain open source software to improve global health innovation.</p>
 
 		</div>
 	</div>
