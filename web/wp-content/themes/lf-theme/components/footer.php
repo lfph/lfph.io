@@ -16,7 +16,7 @@ $options = get_option( 'lf-mu' );
 	<div class="container wrap">
 
 	<!--Removed while putting website into deep freeze mode-->
-	<?php /*get_template_part( 'components/newsletter' ); */?>-->
+	<!--<?php /*get_template_part( 'components/newsletter' ); */?>-->
 
 	<div class="copyright-text">
 				<p>Copyright &copy; <?php echo esc_html( gmdate( 'Y' ) ); ?>
